@@ -1631,9 +1631,9 @@
                     return showToast(`INSUFFICIENT FUNDS! Available: ₹${currentBalance}`, "error");
                 }
 
-                document.getElementById('loader-text').innerText = "FETCHING DYNAMIC API CONFIG...";
+                document.getElementById('loader-text').innerText = "CONNECTING SECURE GATEWAY...";
                 
-                // 2. Fetch Dynamic Ultra Pay API Settings from Database
+                // 2. Fetch Dynamic Ultra Pay API Settings
                 const settingsRef = doc(db, "settings", "ultrapay");
                 const settingsSnap = await getDoc(settingsRef);
                 
@@ -1645,12 +1645,12 @@
                     dynamicKey = settingsSnap.data().key;
                 } else {
                     hideLoader();
-                    return showToast("SYSTEM ERROR: Admin has not configured API settings yet.", "error");
+                    return showToast("SYSTEM ERROR: API Configuration Missing.", "error");
                 }
 
-                document.getElementById('loader-text').innerText = "ROUTING TO ULTRA PAY GATEWAY...";
+                document.getElementById('loader-text').innerText = "ROUTING TO ULTRA PAY (PROXY)...";
 
-                // 3. Connect to Ultra Pay API
+                // 3. Connect to Ultra Pay API using a CORS Proxy to bypass Browser Blocking
                 const apiUrl = 'https://ultra-pay.store/APIs/api';
                 const params = new URLSearchParams({
                     token: dynamicToken, 
@@ -1660,11 +1660,24 @@
                     comment: `App_Withdraw_${currentUserId}`
                 });
 
-                const apiResponse = await fetch(`${apiUrl}?${params}`);
-                const data = await apiResponse.json();
+                // CORS Proxy वापरल्याने 'Server Error' येणार नाही आणि रिस्पॉन्स वाचता येईल.
+                const targetUrl = `${apiUrl}?${params}`;
+                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
 
-                // 4. Handle API Response
-                if (data.status === 'success') {
+                const apiResponse = await fetch(proxyUrl);
+                const responseText = await apiResponse.text(); // Raw text read करतोय जेणेकरून क्रॅश होणार नाही
+                
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                } catch (parseError) {
+                    console.error("API Response is not proper JSON:", responseText);
+                    throw "Invalid API Response Format";
+                }
+
+                // 4. Handle API Response Safely
+                // काही वेळेस API status = 'success' किंवा message मध्ये 'success' पाठवते, दोन्ही तपासले आहेत.
+                if (data.status === 'success' || data.message?.toLowerCase().includes('success') || data.status === true) {
                     
                     // Deduct Balance
                     await updateDoc(userRef, { balance: currentBalance - withdrawAmt });
@@ -1684,18 +1697,18 @@
                     switchView('view-dashboard');
                     
                 } else {
-                    // API Failed (e.g. invalid token, ultra pay server down, invalid number)
-                    showToast(`GATEWAY REJECTED: ${data.message}`, "error");
+                    // API Failed (e.g. invalid token, invalid number)
+                    showToast(`GATEWAY REJECTED: ${data.message || 'Unknown Error'}`, "error");
                 }
                 
             } catch (error) {
                 console.error("Withdraw Error:", error);
-                showToast("API TIMEOUT OR SERVER ERROR", "error");
+                showToast("API TIMEOUT OR NETWORK BLOCKED", "error");
             }
             
             hideLoader();
         };
-
+        
         // ==========================================
         // ADVANCED ADMIN OPERATIONS
         // ==========================================

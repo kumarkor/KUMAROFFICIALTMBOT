@@ -1648,7 +1648,7 @@
                     return showToast("SYSTEM ERROR: API Configuration Missing.", "error");
                 }
 
-                // 3. EXACTLY YOUR PROVIDED CODE LOGIC
+                // 3. API Params Setup
                 const apiUrl = 'https://ultra-pay.store/APIs/api';
                 const params = new URLSearchParams({
                     token: dynamicToken,
@@ -1658,17 +1658,28 @@
                     comment: `Withdrawal_${currentUserId}`
                 });
 
-                // Direct fetch waiting for exact JSON response
-                const response = await fetch(`${apiUrl}?${params}`);
-                const data = await response.json();
+                const targetUrl = `${apiUrl}?${params}`;
+
+                // ⚠️ BROWSER CORS FIX ⚠️
+                // AllOrigins Proxy वापरत आहोत जेणेकरून ब्राउझर ब्लॉक करणार नाही आणि रिस्पॉन्स वाचता येईल.
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+
+                const response = await fetch(proxyUrl);
+                const proxyData = await response.json();
                 
-                // 4. Strict Validation (No Fake Success)
+                // Proxy च्या 'contents' मधून खरा Ultra Pay चा डेटा बाहेर काढणे
+                if (!proxyData.contents) {
+                    throw new Error("Empty response from Proxy");
+                }
+                
+                const data = JSON.parse(proxyData.contents);
+                
+                // 4. Exact Validation
                 if (data.status === 'success') {
                     
-                    // Deduct Balance ONLY if Ultra Pay confirms payment is successful
+                    // पैसे खरोखरच गेले आहेत, आता बॅलन्स कट करा
                     await updateDoc(userRef, { balance: currentBalance - withdrawAmt });
                     
-                    // Add History Log
                     await addDoc(collection(db, "users", currentUserId, "history"), {
                         type: "WITHDRAWAL", 
                         amount: withdrawAmt, 
@@ -1689,7 +1700,6 @@
                 }
                 
             } catch (error) {
-                // Catch any network or fetch errors directly
                 console.error('API Error:', error);
                 showToast("API ERROR: Transaction Failed", "error");
             }

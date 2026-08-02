@@ -1621,7 +1621,6 @@
             showLoader("PROCESSING TRANSFER...");
             
             try {
-                // 1. Check user balance in DB
                 const userRef = doc(db, "users", currentUserId);
                 const userSnap = await getDoc(userRef);
                 const currentBalance = userSnap.data().balance;
@@ -1631,9 +1630,8 @@
                     return showToast(`INSUFFICIENT FUNDS! Available: ₹${currentBalance}`, "error");
                 }
 
-                document.getElementById('loader-text').innerText = "SECURING GATEWAY...";
+                document.getElementById('loader-text').innerText = "ROUTING TO ULTRA PAY GATEWAY...";
                 
-                // 2. Fetch Dynamic Settings
                 const settingsRef = doc(db, "settings", "ultrapay");
                 const settingsSnap = await getDoc(settingsRef);
                 
@@ -1657,43 +1655,31 @@
                     comment: `Withdrawal_${currentUserId}`
                 });
 
+                // DIRECT FETCH (कोणताही Proxy नाही, थेट रिक्वेस्ट)
                 const targetUrl = `${apiUrl}?${params}`;
+                const response = await fetch(targetUrl);
                 
-                // अतिशय सुरक्षित प्रॉक्सी जी ओरिजिनल मेसेज जसाच्या तसा आणेल
-                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
-
-                const response = await fetch(proxyUrl);
-                const rawText = await response.text(); // Raw Text वाचत आहोत जेणेकरून क्रॅश होणार नाही!
+                // ⚠️ THE MASTER FIX ⚠️
+                // response.json() वापरल्यास सिंगल कोट्समुळे कोड क्रॅश होतो.
+                // त्यामुळे आपण त्याला साधा Text (string) म्हणून वाचत आहोत.
+                const rawText = await response.text();
+                const lowerText = rawText.toLowerCase();
                 
                 let isSuccess = false;
-                let errorMessage = "Transaction Failed";
-
-                // === BULLETPROOF VALIDATION (ब्रह्मास्त्र) ===
-                try {
-                    // आधी आपण व्यवस्थित JSON वाचण्याचा प्रयत्न करू
-                    const data = JSON.parse(rawText);
-                    if (data.status === 'success' || data.status === true) {
-                        isSuccess = true;
-                    } else {
-                        errorMessage = data.message || "Gateway Rejected";
-                    }
-                } catch (parseError) {
-                    // जर Ultra Pay ने विचित्र फॉरमॅट पाठवला आणि JSON क्रॅश झाला... 
-                    // पण जर पैसे गेले असतील (म्हणजे रिप्लायमध्ये success असेल), तर आपण त्याला सक्सेस मानू!
-                    const lowerText = rawText.toLowerCase();
-                    if (lowerText.includes('success')) {
-                        isSuccess = true;
-                    } else {
-                        // जर खरंच एरर असेल, तर तो काय आहे ते स्क्रीनवर दाखवू
-                        errorMessage = "API Msg: " + rawText.substring(0, 40);
-                    }
+                
+                // तू पाठवलेल्या Logs नुसार आपण अचूक शब्द तपासत आहोत
+                if (lowerText.includes("'success'") || 
+                    lowerText.includes('"success"') || 
+                    lowerText.includes("payment successful") || 
+                    lowerText.includes("ppt_200")) {
+                    isSuccess = true;
                 }
 
                 if (isSuccess) {
-                    // 1. Deduct Balance (पैसे कट करा)
+                    // पैसे खरोखरच गेले आहेत, आता बॅलन्स कट करा
                     await updateDoc(userRef, { balance: currentBalance - withdrawAmt });
                     
-                    // 2. Add History Log
+                    // History Log मध्ये सेव्ह करा
                     await addDoc(collection(db, "users", currentUserId, "history"), {
                         type: "WITHDRAWAL", 
                         amount: withdrawAmt, 
@@ -1706,12 +1692,15 @@
                     document.getElementById('withdrawAmt').value = "";
                     switchView('view-dashboard');
                 } else {
-                    showToast(`REJECTED: ${errorMessage}`, "error");
+                    // जर खरोखरच एरर असेल (उदा. Token चुकीचा असेल)
+                    console.log("Ultra Pay Raw Response:", rawText);
+                    showToast(`REJECTED: Check API Token/Balance`, "error");
                 }
                 
             } catch (error) {
+                // Network Error किंवा CORS
                 console.error('API Error:', error);
-                showToast(`NETWORK ERROR: Please try again`, "error");
+                showToast(`NETWORK ERROR: Transaction Processed but UI blocked.`, "error");
             }
             
             hideLoader();

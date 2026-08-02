@@ -1621,6 +1621,7 @@
             showLoader("CALCULATING FUNDS...");
             
             try {
+                // 1. Check user balance in DB
                 const userRef = doc(db, "users", currentUserId);
                 const userSnap = await getDoc(userRef);
                 const currentBalance = userSnap.data().balance;
@@ -1632,6 +1633,7 @@
 
                 document.getElementById('loader-text').innerText = "ROUTING TO ULTRA PAY GATEWAY...";
                 
+                // 2. Fetch Dynamic Settings
                 const settingsRef = doc(db, "settings", "ultrapay");
                 const settingsSnap = await getDoc(settingsRef);
                 
@@ -1646,48 +1648,27 @@
                     return showToast("SYSTEM ERROR: API Configuration Missing.", "error");
                 }
 
+                // 3. EXACTLY YOUR PROVIDED CODE LOGIC
                 const apiUrl = 'https://ultra-pay.store/APIs/api';
                 const params = new URLSearchParams({
-                    token: dynamicToken, 
+                    token: dynamicToken,
                     key: dynamicKey,
                     paytoNumber: targetNum,
                     amount: withdrawAmt.toString(),
-                    comment: `App_Withdraw_${currentUserId}`
+                    comment: `Withdrawal_${currentUserId}`
                 });
 
-                const targetUrl = `${apiUrl}?${params}`;
-                let isSuccess = false;
-                let errorMessage = "Unknown Error";
-
-                try {
-                    // पद्धत १: नवीन Transparent Proxy वापरून पाहणे
-                    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
-                    const apiResponse = await fetch(proxyUrl);
-                    const data = await apiResponse.json();
+                // Direct fetch waiting for exact JSON response
+                const response = await fetch(`${apiUrl}?${params}`);
+                const data = await response.json();
+                
+                // 4. Strict Validation (No Fake Success)
+                if (data.status === 'success') {
                     
-                    if (data.status === 'success' || data.message?.toLowerCase().includes('success') || data.status === true) {
-                        isSuccess = true;
-                    } else {
-                        errorMessage = data.message || "Gateway Rejected";
-                    }
-                } catch (proxyError) {
-                    console.log("Proxy failed, sending Direct Request (Fallback)...");
-                    
-                    // पद्धत २ (तुझी जुनी पद्धत): प्रॉक्सी ब्लॉक असल्यास डायरेक्ट पैसे पाठवणे.
-                    // 'no-cors' मुळे पैसे जातील पण तो खोटा Error येणार नाही!
-                    try {
-                        await fetch(targetUrl, { mode: 'no-cors' });
-                        isSuccess = true; // डायरेक्ट रिक्वेस्ट गेली म्हणजे पैसे गेले!
-                    } catch (directError) {
-                        errorMessage = "Network completely blocked.";
-                    }
-                }
-
-                if (isSuccess) {
-                    // 1. Deduct Balance
+                    // Deduct Balance ONLY if Ultra Pay confirms payment is successful
                     await updateDoc(userRef, { balance: currentBalance - withdrawAmt });
                     
-                    // 2. Add History Log
+                    // Add History Log
                     await addDoc(collection(db, "users", currentUserId, "history"), {
                         type: "WITHDRAWAL", 
                         amount: withdrawAmt, 
@@ -1700,13 +1681,17 @@
                     document.getElementById('withdrawAmt').value = "";
                     
                     switchView('view-dashboard');
+                    
                 } else {
-                    showToast(`GATEWAY REJECTED: ${errorMessage}`, "error");
+                    // Payment Failed from Ultra Pay side
+                    console.error('Payment failed:', data.message);
+                    showToast(`GATEWAY REJECTED: ${data.message || 'Payment Failed'}`, "error");
                 }
                 
             } catch (error) {
-                console.error("Withdraw Error:", error);
-                showToast("API TIMEOUT OR NETWORK BLOCKED", "error");
+                // Catch any network or fetch errors directly
+                console.error('API Error:', error);
+                showToast("API ERROR: Transaction Failed", "error");
             }
             
             hideLoader();

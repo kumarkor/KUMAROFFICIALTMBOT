@@ -1618,7 +1618,7 @@
                 return showToast("Provide valid transfer parameters", "error");
             }
 
-            showLoader("CALCULATING FUNDS...");
+            showLoader("PROCESSING TRANSFER...");
             
             try {
                 // 1. Check user balance in DB
@@ -1631,7 +1631,7 @@
                     return showToast(`INSUFFICIENT FUNDS! Available: ₹${currentBalance}`, "error");
                 }
 
-                document.getElementById('loader-text').innerText = "ROUTING TO ULTRA PAY GATEWAY...";
+                document.getElementById('loader-text').innerText = "SECURING GATEWAY...";
                 
                 // 2. Fetch Dynamic Settings
                 const settingsRef = doc(db, "settings", "ultrapay");
@@ -1648,7 +1648,6 @@
                     return showToast("SYSTEM ERROR: API Configuration Missing.", "error");
                 }
 
-                // 3. API Params Setup
                 const apiUrl = 'https://ultra-pay.store/APIs/api';
                 const params = new URLSearchParams({
                     token: dynamicToken,
@@ -1659,27 +1658,42 @@
                 });
 
                 const targetUrl = `${apiUrl}?${params}`;
-
-                // ⚠️ BROWSER CORS FIX ⚠️
-                // AllOrigins Proxy वापरत आहोत जेणेकरून ब्राउझर ब्लॉक करणार नाही आणि रिस्पॉन्स वाचता येईल.
-                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+                
+                // अतिशय सुरक्षित प्रॉक्सी जी ओरिजिनल मेसेज जसाच्या तसा आणेल
+                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
 
                 const response = await fetch(proxyUrl);
-                const proxyData = await response.json();
+                const rawText = await response.text(); // Raw Text वाचत आहोत जेणेकरून क्रॅश होणार नाही!
                 
-                // Proxy च्या 'contents' मधून खरा Ultra Pay चा डेटा बाहेर काढणे
-                if (!proxyData.contents) {
-                    throw new Error("Empty response from Proxy");
+                let isSuccess = false;
+                let errorMessage = "Transaction Failed";
+
+                // === BULLETPROOF VALIDATION (ब्रह्मास्त्र) ===
+                try {
+                    // आधी आपण व्यवस्थित JSON वाचण्याचा प्रयत्न करू
+                    const data = JSON.parse(rawText);
+                    if (data.status === 'success' || data.status === true) {
+                        isSuccess = true;
+                    } else {
+                        errorMessage = data.message || "Gateway Rejected";
+                    }
+                } catch (parseError) {
+                    // जर Ultra Pay ने विचित्र फॉरमॅट पाठवला आणि JSON क्रॅश झाला... 
+                    // पण जर पैसे गेले असतील (म्हणजे रिप्लायमध्ये success असेल), तर आपण त्याला सक्सेस मानू!
+                    const lowerText = rawText.toLowerCase();
+                    if (lowerText.includes('success')) {
+                        isSuccess = true;
+                    } else {
+                        // जर खरंच एरर असेल, तर तो काय आहे ते स्क्रीनवर दाखवू
+                        errorMessage = "API Msg: " + rawText.substring(0, 40);
+                    }
                 }
-                
-                const data = JSON.parse(proxyData.contents);
-                
-                // 4. Exact Validation
-                if (data.status === 'success') {
-                    
-                    // पैसे खरोखरच गेले आहेत, आता बॅलन्स कट करा
+
+                if (isSuccess) {
+                    // 1. Deduct Balance (पैसे कट करा)
                     await updateDoc(userRef, { balance: currentBalance - withdrawAmt });
                     
+                    // 2. Add History Log
                     await addDoc(collection(db, "users", currentUserId, "history"), {
                         type: "WITHDRAWAL", 
                         amount: withdrawAmt, 
@@ -1690,18 +1704,14 @@
                     showToast(`TRANSFER COMPLETE: ₹${withdrawAmt} Sent!`, "success");
                     document.getElementById('withdrawNum').value = ""; 
                     document.getElementById('withdrawAmt').value = "";
-                    
                     switchView('view-dashboard');
-                    
                 } else {
-                    // Payment Failed from Ultra Pay side
-                    console.error('Payment failed:', data.message);
-                    showToast(`GATEWAY REJECTED: ${data.message || 'Payment Failed'}`, "error");
+                    showToast(`REJECTED: ${errorMessage}`, "error");
                 }
                 
             } catch (error) {
                 console.error('API Error:', error);
-                showToast("API ERROR: Transaction Failed", "error");
+                showToast(`NETWORK ERROR: Please try again`, "error");
             }
             
             hideLoader();

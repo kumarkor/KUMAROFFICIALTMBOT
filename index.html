@@ -3,133 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ultra Pay Pro | The Ultimate Fintech Network</title>
+    <meta name="theme-color" content="#05070f">
+    <title>Ultra Pay Pro | Premium Secure Network</title>
     
-    <!-- =======================================================================
-         EXTERNAL FONTS & RESOURCES
-         ======================================================================= -->
+    <!-- PWA Manifest & Fonts -->
+    <link rel="manifest" id="manifest-placeholder">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         /* =======================================================================
-           1. CSS VARIABLES & CORE THEME (CYBERPUNK NEON)
+           1. CORE THEME & VARIABLES
            ======================================================================= */
         :root {
-            /* Colors */
-            --primary: #00f3ff;
-            --secondary: #bc13fe;
-            --accent: #0077ff;
-            --danger: #ff0055;
-            --success: #00ff88;
-            --warning: #ffaa00;
-            --bg-dark: #05070f;
-            --panel-bg: rgba(10, 14, 26, 0.85);
-            --input-bg: rgba(0, 0, 0, 0.6);
-            --text-main: #ffffff;
-            --text-muted: #8b9bb4;
-            
-            /* Glows */
-            --glow-primary: 0 0 20px rgba(0, 243, 255, 0.4);
-            --glow-danger: 0 0 20px rgba(255, 0, 85, 0.4);
-            --glow-success: 0 0 20px rgba(0, 255, 136, 0.4);
-            --glow-warning: 0 0 20px rgba(255, 170, 0, 0.4);
-            
-            /* Transitions */
+            --primary: #00f3ff; --secondary: #bc13fe; --accent: #0077ff;
+            --danger: #ff0055; --success: #00ff88; --warning: #ffaa00;
+            --bg-dark: #05070f; --panel-bg: rgba(10, 14, 26, 0.85); --input-bg: rgba(0, 0, 0, 0.6);
+            --text-main: #ffffff; --text-muted: #8b9bb4;
+            --glow-primary: 0 0 20px rgba(0, 243, 255, 0.4); --glow-danger: 0 0 20px rgba(255, 0, 85, 0.4);
+            --glow-success: 0 0 20px rgba(0, 255, 136, 0.4); --glow-warning: 0 0 20px rgba(255, 170, 0, 0.4);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* =======================================================================
-           2. GLOBAL RESETS & BASE STYLES
-           ======================================================================= */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; 
-            overflow-x: hidden; position: relative; display: flex; justify-content: center; align-items: center;
-        }
-
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        body { background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; overflow-x: hidden; display: flex; justify-content: center; align-items: center; position: relative; }
+        ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); } ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
 
         /* =======================================================================
-           3. BACKGROUND EFFECTS
+           2. BACKGROUND & MARQUEE
            ======================================================================= */
-        .ambient-light { 
-            position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: -2; 
-            background: radial-gradient(circle at 15% 20%, rgba(0, 243, 255, 0.08) 0%, transparent 40%),
-                        radial-gradient(circle at 85% 80%, rgba(188, 19, 254, 0.08) 0%, transparent 40%); 
-            animation: pulseBg 10s infinite alternate; 
-        }
+        .ambient-light { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: -2; background: radial-gradient(circle at 15% 20%, rgba(0, 243, 255, 0.08) 0%, transparent 40%), radial-gradient(circle at 85% 80%, rgba(188, 19, 254, 0.08) 0%, transparent 40%); animation: pulseBg 10s infinite alternate; }
         @keyframes pulseBg { 0% { opacity: 0.6; } 100% { opacity: 1; transform: scale(1.05); } }
-
-        .cyber-grid { 
-            position: fixed; width: 200vw; height: 200vh; top: -50%; left: -50%; z-index: -1; 
-            background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), 
-                              linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); 
-            background-size: 50px 50px; transform: perspective(700px) rotateX(60deg); 
-            animation: gridScroll 15s linear infinite; 
-        }
+        .cyber-grid { position: fixed; width: 200vw; height: 200vh; top: -50%; left: -50%; z-index: -1; background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; transform: perspective(700px) rotateX(60deg); animation: gridScroll 15s linear infinite; }
         @keyframes gridScroll { 100% { transform: perspective(700px) rotateX(60deg) translateY(50px); } }
 
-        /* =======================================================================
-           4. LAYOUT & CONTAINERS
-           ======================================================================= */
-        .app-container { width: 100%; max-width: 500px; padding: 20px; z-index: 10; position: relative; margin: auto; }
+        .top-ticker { position: fixed; top: 0; left: 0; width: 100%; background: var(--primary); color: #000; font-size: 12px; font-weight: 700; padding: 5px 0; z-index: 100; overflow: hidden; white-space: nowrap; display: none; }
+        .top-ticker span { display: inline-block; padding-left: 100%; animation: marquee 15s linear infinite; }
+        @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-        .view-panel { 
-            background: var(--panel-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); 
-            border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 24px; padding: 35px 25px; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 0 20px rgba(0, 243, 255, 0.03); 
-            display: none; opacity: 0; transform: translateY(30px) scale(0.98); 
-        }
+        /* =======================================================================
+           3. LAYOUT & PANELS
+           ======================================================================= */
+        .app-container { width: 100%; max-width: 500px; padding: 20px; z-index: 10; margin: auto; position: relative; padding-top: 40px; }
+        .view-panel { background: var(--panel-bg); backdrop-filter: blur(24px); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 24px; padding: 35px 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 0 20px rgba(0, 243, 255, 0.03); display: none; opacity: 0; transform: translateY(30px) scale(0.98); }
         .view-panel.active { display: block; animation: panelEntrance 0.4s forwards; }
         @keyframes panelEntrance { to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        /* =======================================================================
-           5. TYPOGRAPHY
-           ======================================================================= */
-        h2.title { 
-            font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 800; text-align: center; 
-            margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; 
-            background: linear-gradient(to right, var(--primary), var(--secondary)); 
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-        }
-        p.subtitle { text-align: center; color: var(--text-muted); font-size: 13px; margin-bottom: 35px; }
+        h2.title { font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 800; text-align: center; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p.subtitle { text-align: center; color: var(--text-muted); font-size: 13px; margin-bottom: 30px; }
 
         /* =======================================================================
-           6. FORM ELEMENTS
+           4. FORMS & BUTTONS
            ======================================================================= */
         .input-group { position: relative; margin-bottom: 22px; }
         .input-icon { position: absolute; left: 18px; top: 18px; width: 20px; height: 20px; fill: var(--text-muted); transition: var(--transition); z-index: 2; }
-        .form-control { 
-            width: 100%; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1); 
-            color: var(--text-main); padding: 18px 20px 18px 50px; border-radius: 14px; 
-            font-size: 14px; outline: none; transition: var(--transition); 
-        }
+        .form-control { width: 100%; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); padding: 18px 20px 18px 50px; border-radius: 14px; font-size: 14px; outline: none; transition: var(--transition); }
         .form-control:focus { border-color: var(--primary); background: rgba(0,0,0,0.8); box-shadow: var(--glow-primary); }
         .form-control:focus ~ .input-icon { fill: var(--primary); }
-        .form-label { 
-            position: absolute; top: 18px; left: 50px; color: var(--text-muted); 
-            font-size: 14px; pointer-events: none; transition: var(--transition); z-index: 1; 
-        }
-        .form-control:focus ~ .form-label, .form-control:valid ~ .form-label { 
-            top: -10px; left: 15px; font-size: 11px; font-weight: 600; background: var(--bg-dark); 
-            padding: 0 8px; color: var(--primary); border: 1px solid var(--primary); border-radius: 6px; 
-        }
+        .form-label { position: absolute; top: 18px; left: 50px; color: var(--text-muted); font-size: 14px; pointer-events: none; transition: var(--transition); z-index: 1; }
+        .form-control:focus ~ .form-label, .form-control:valid ~ .form-label { top: -10px; left: 15px; font-size: 11px; font-weight: 600; background: var(--bg-dark); padding: 0 8px; color: var(--primary); border: 1px solid var(--primary); border-radius: 6px; }
 
-        /* =======================================================================
-           7. BUTTONS
-           ======================================================================= */
-        .btn { 
-            width: 100%; padding: 16px; border: none; border-radius: 14px; font-size: 15px; font-weight: 700; 
-            font-family: 'Orbitron', sans-serif; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; 
-            display: flex; justify-content: center; align-items: center; gap: 10px; transition: var(--transition); 
-            background: linear-gradient(135deg, var(--primary), var(--accent)); color: #000; box-shadow: var(--glow-primary); margin-bottom: 12px;
-        }
+        .btn { width: 100%; padding: 16px; border: none; border-radius: 14px; font-size: 15px; font-weight: 700; font-family: 'Orbitron', sans-serif; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: flex; justify-content: center; align-items: center; gap: 10px; transition: var(--transition); background: linear-gradient(135deg, var(--primary), var(--accent)); color: #000; box-shadow: var(--glow-primary); margin-bottom: 12px; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 243, 255, 0.6); }
         .btn-danger { background: linear-gradient(135deg, var(--danger), #ff5e00); color: #fff; box-shadow: var(--glow-danger); }
         .btn-success { background: linear-gradient(135deg, var(--success), #00aa55); color: #000; box-shadow: var(--glow-success); }
@@ -141,15 +76,12 @@
         .link-text:hover { color: var(--primary); }
 
         /* =======================================================================
-           8. DASHBOARD & PROFILE UI
+           5. DASHBOARD, PROFILE, ADMIN MINI
            ======================================================================= */
-        .balance-card { 
-            background: linear-gradient(145deg, rgba(188, 19, 254, 0.15), rgba(0, 243, 255, 0.15)); 
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 22px; padding: 35px 20px; 
-            text-align: center; margin-bottom: 25px; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.6); 
-        }
+        #adminMiniDash { display:none; background:rgba(255,170,0,0.15); border:1px solid var(--warning); border-radius:15px; padding:15px; margin-bottom:20px; text-align:center; box-shadow:var(--glow-warning); }
+        
+        .balance-card { background: linear-gradient(145deg, rgba(188, 19, 254, 0.15), rgba(0, 243, 255, 0.15)); border: 1px solid rgba(255,255,255,0.1); border-radius: 22px; padding: 35px 20px; text-align: center; margin-bottom: 25px; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.6); }
         .balance-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%); transform: rotate(30deg); animation: rotateShine 15s linear infinite; pointer-events: none; }
-        @keyframes rotateShine { to { transform: rotate(390deg); } }
         .bal-title { font-family: 'Orbitron'; font-size: 13px; color: var(--text-muted); letter-spacing: 3px; }
         .bal-amt { font-family: 'Orbitron'; font-size: 50px; font-weight: 800; color: #fff; text-shadow: var(--glow-primary); margin: 10px 0 20px; }
         .badge { display: inline-block; background: rgba(0,0,0,0.7); padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 600; color: var(--primary); border: 1px solid var(--primary); letter-spacing: 1px; }
@@ -160,35 +92,23 @@
         .action-box svg { width: 34px; height: 34px; fill: var(--primary); margin-bottom: 12px; filter: drop-shadow(0 0 5px var(--primary)); }
         .action-text { font-size: 13px; font-weight: 700; font-family: 'Orbitron', sans-serif; color: #fff; }
 
-        /* Profile Elements */
+        /* Profile & History */
         .profile-avatar { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 40px; box-shadow: var(--glow-primary); border: 3px solid rgba(255,255,255,0.2); }
         .info-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(0,0,0,0.4); border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
-        .info-label { color: var(--text-muted); }
-        .info-val { font-weight: 700; color: #fff; }
         .support-box { background: rgba(0, 243, 255, 0.05); border: 1px dashed var(--primary); padding: 20px; border-radius: 14px; text-align: center; margin-top: 25px; }
+        .kumarkor-link { font-family:'Orbitron'; font-weight:700; color:var(--primary); font-size:18px; text-decoration:none; display:inline-block; transition:0.3s; }
+        .kumarkor-link:hover { text-shadow:var(--glow-primary); transform:scale(1.05); }
 
-        /* =======================================================================
-           9. HISTORY LOGS
-           ======================================================================= */
         .history-header { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-        .history-header h3 { font-family: 'Orbitron'; font-size: 16px; color: var(--secondary); }
-        .history-header span { font-size: 10px; background: rgba(0,0,0,0.5); padding: 4px 10px; border-radius: 10px; color: var(--text-muted); }
         .data-list { max-height: 350px; overflow-y: auto; padding-right: 5px; }
-        .hist-item { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.03); padding: 18px; border-radius: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+        .hist-item { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.03); padding: 18px; border-radius: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
         .hist-item:hover { background: rgba(0,0,0,0.6); transform: translateX(5px); }
-        .hist-credit { border-left: 4px solid var(--success); }
-        .hist-debit { border-left: 4px solid var(--danger); }
-        .hist-pending { border-left: 4px solid var(--warning); }
-        .hist-details { display: flex; flex-direction: column; gap: 5px; }
-        .hist-title { font-size: 14px; font-weight: 600; color: #fff; }
-        .hist-date { font-size: 11px; color: var(--text-muted); }
+        .hist-credit { border-left: 4px solid var(--success); } .hist-debit { border-left: 4px solid var(--danger); } .hist-pending { border-left: 4px solid var(--warning); }
+        .hist-title { font-size: 14px; font-weight: 600; color: #fff; } .hist-date { font-size: 11px; color: var(--text-muted); }
         .hist-amount { font-family: 'Orbitron'; font-size: 18px; font-weight: 700; }
-        .hist-credit .hist-amount { color: var(--success); }
-        .hist-debit .hist-amount { color: var(--danger); }
-        .hist-pending .hist-amount { color: var(--warning); }
 
         /* =======================================================================
-           10. ADVANCED ADMIN PANEL (TABS & SECTIONS)
+           6. ADVANCED ADMIN PANEL
            ======================================================================= */
         .admin-nav { display: flex; overflow-x: auto; gap: 10px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .admin-nav::-webkit-scrollbar { height: 3px; }
@@ -196,11 +116,11 @@
         .admin-tab.active { background: var(--primary); color: #000; box-shadow: var(--glow-primary); }
         .admin-content { display: none; max-height: 65vh; overflow-y: auto; padding-right: 5px; }
         .admin-content.active { display: block; animation: slideUp 0.3s; }
+        @keyframes slideUp { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
         
         .admin-card { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,170,0,0.2); padding: 22px; border-radius: 18px; margin-bottom: 20px; }
-        .admin-card-title { font-family: 'Orbitron'; font-size: 14px; color: var(--warning); margin-bottom: 18px; border-bottom: 1px dashed rgba(255,170,0,0.3); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .admin-card-title { font-family: 'Orbitron'; font-size: 14px; color: var(--warning); margin-bottom: 18px; border-bottom: 1px dashed rgba(255,170,0,0.3); padding-bottom: 8px; }
         
-        /* Toggles */
         .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; background: rgba(0,0,0,0.5); border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.05); font-size: 14px; font-weight: 500; }
         .switch { position: relative; display: inline-block; width: 46px; height: 26px; }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -209,27 +129,21 @@
         input:checked + .slider { background-color: var(--success); box-shadow: 0 0 10px var(--success); }
         input:checked + .slider:before { transform: translateX(20px); }
 
-        /* Dynamic Data Boxes */
         .result-box { background: rgba(0,0,0,0.6); padding: 18px; border-radius: 14px; margin-top: 15px; border: 1px dashed var(--primary); font-size: 13px; line-height: 1.6; }
-        .req-card { background: rgba(0,0,0,0.5); border: 1px solid var(--warning); padding: 18px; border-radius: 14px; margin-bottom: 15px; position: relative; }
-        .req-info { font-size: 13px; color: #ccc; margin-bottom: 15px; line-height: 1.6; }
-        .req-actions { display: flex; gap: 10px; }
-        
         .copy-box { background: rgba(0, 255, 136, 0.08); border: 1px dashed var(--success); padding: 20px; border-radius: 14px; text-align: center; margin-top: 20px; cursor: pointer; }
-        .copy-text { font-family: 'Orbitron'; font-size: 26px; font-weight: 800; color: var(--success); letter-spacing: 3px; margin-bottom: 5px; text-shadow: 0 0 10px rgba(0,255,136,0.5); }
-        .user-row { display: flex; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.4); border-left: 3px solid var(--primary); margin-bottom: 10px; border-radius: 8px; font-size: 13px; align-items: center; }
+        .copy-text { font-family: 'Orbitron'; font-size: 26px; font-weight: 800; color: var(--success); letter-spacing: 3px; margin-bottom: 5px; }
 
         /* =======================================================================
-           11. TOAST & LOADER
+           7. UTILITIES (MAINTENANCE, PWA, TOAST, LOADER)
            ======================================================================= */
-        #toast-box { position: fixed; top: 25px; right: 25px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
+        #maintenance-screen { position: fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg-dark); z-index:99999; display:none; justify-content:center; align-items:center; flex-direction:column; text-align:center; padding:20px; }
+        #toast-box { position: fixed; top: 35px; right: 25px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
         .toast { min-width: 320px; padding: 18px 25px; border-radius: 14px; color: #fff; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 15px; backdrop-filter: blur(20px); box-shadow: 0 15px 35px rgba(0,0,0,0.6); transform: translateX(120%); animation: slideIn 0.4s forwards; }
         .toast.success { border-left: 5px solid var(--success); background: rgba(0, 255, 136, 0.15); }
         .toast.error { border-left: 5px solid var(--danger); background: rgba(255, 0, 85, 0.15); }
         .toast.info { border-left: 5px solid var(--primary); background: rgba(0, 243, 255, 0.15); }
         .toast.fade-out { animation: slideOut 0.4s forwards; }
-        @keyframes slideIn { to { transform: translateX(0); } }
-        @keyframes slideOut { to { transform: translateX(150%); opacity: 0; } }
+        @keyframes slideIn { to { transform: translateX(0); } } @keyframes slideOut { to { transform: translateX(150%); opacity: 0; } }
 
         #loader { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5, 7, 15, 0.95); z-index: 10000; display: none; justify-content: center; align-items: center; flex-direction: column; }
         .loader-ring { width: 90px; height: 90px; border: 4px solid transparent; border-top-color: var(--primary); border-bottom-color: var(--secondary); border-radius: 50%; animation: spin 1s infinite; position: relative; }
@@ -237,17 +151,29 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
         .loader-txt { margin-top: 30px; font-family: 'Orbitron'; font-size: 16px; font-weight: 700; color: var(--primary); letter-spacing: 4px; animation: blink 1.5s infinite; text-shadow: var(--glow-primary); }
         @keyframes blink { 50% { opacity: 0.4; } }
-        
+
+        #installAppBtn { display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg, var(--success), #00aa55); color:#000; padding:12px 25px; border-radius:30px; font-weight:bold; font-family:'Orbitron'; z-index:1000; box-shadow:var(--glow-success); border:none; cursor:pointer; }
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
+    <!-- PWA Install Button -->
+    <button id="installAppBtn" onclick="installPWA()">⬇️ INSTALL APP</button>
+
     <!-- OVERLAYS -->
     <div class="ambient-light"></div>
     <div class="cyber-grid"></div>
+    <div class="top-ticker" id="topTicker"><span>🔥 Welcome to Ultra Pay Pro - The most secure network! 🚀</span></div>
+    
     <div id="toast-box"></div>
     <div id="loader"><div class="loader-ring"></div><div class="loader-txt" id="loaderText">INITIALIZING...</div></div>
+    
+    <div id="maintenance-screen">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="var(--warning)"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.61-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        <h1 style="color:var(--warning); font-family:'Orbitron'; margin-top:20px;">SYSTEM UPDATING</h1>
+        <p style="color:var(--text-muted); margin-top:10px;">Please wait while we upgrade our servers. We will be back shortly!</p>
+    </div>
 
     <div class="app-container">
 
@@ -283,18 +209,13 @@
             
             <div id="reg-s1">
                 <button class="btn btn-telegram" onclick="window.open('https://t.me/SafeKey1_Bot', '_blank')">🤖 START @SafeKey1_Bot FIRST</button>
-                <p style="text-align:center; font-size:11px; color:var(--warning); margin-top:-15px; margin-bottom:20px;">* Mandatory: Click above to start bot, then enter ID.</p>
-                
                 <div class="input-group"><input type="number" class="form-control" id="regId" required><label class="form-label">Telegram User ID</label></div>
                 <div class="input-group"><input type="password" class="form-control" id="regPass" required><label class="form-label">Create Secure Password</label></div>
                 <button class="btn" onclick="appAuth('reqReg')">REQUEST OTP ON BOT</button>
             </div>
             
             <div id="reg-s2" class="hidden">
-                <div style="text-align:center; margin-bottom:20px;">
-                    <svg width="45" height="45" viewBox="0 0 24 24" fill="var(--success)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                    <p style="color:var(--success); font-weight:700; font-size:14px; margin-top:5px;">OTP Dispatched Successfully!</p>
-                </div>
+                <p style="text-align:center; color:var(--success); font-weight:700; margin-bottom:15px;">OTP Dispatched Successfully!</p>
                 <div class="input-group"><input type="number" class="form-control" id="regOtp" required><label class="form-label">Enter 6-Digit OTP</label></div>
                 <button class="btn btn-danger" onclick="appAuth('verifyReg')">VERIFY & CREATE ID</button>
             </div>
@@ -306,14 +227,11 @@
              ========================================================== -->
         <div class="view-panel" id="view-forgot">
             <h2 class="title">RESET KEY</h2>
-            <p class="subtitle">Recover System Access</p>
-            
             <div id="for-s1">
                 <button class="btn btn-telegram" onclick="window.open('https://t.me/SafeKey1_Bot', '_blank')">🤖 OPEN BOT TO RECEIVE OTP</button>
                 <div class="input-group"><input type="number" class="form-control" id="forId" required><label class="form-label">Registered Telegram ID</label></div>
                 <button class="btn" onclick="appAuth('reqFor')">SEND RESET OTP</button>
             </div>
-            
             <div id="for-s2" class="hidden">
                 <div class="input-group"><input type="number" class="form-control" id="forOtp" required><label class="form-label">Enter Bot OTP</label></div>
                 <div class="input-group"><input type="password" class="form-control" id="forPass" required><label class="form-label">New Secure Password</label></div>
@@ -327,6 +245,16 @@
              ========================================================== -->
         <div class="view-panel" id="view-dashboard">
             
+            <!-- Admin Mini Dashboard (Visible only to Admin) -->
+            <div id="adminMiniDash">
+                <div style="color:var(--warning); font-family:'Orbitron'; font-weight:bold; margin-bottom:10px;">👑 ADMIN MINI-CONSOLE</div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:10px;">
+                    <span>System Liq: <b id="miniLiqDisp" style="color:var(--success);">₹0</b></span>
+                    <span>Pending UPI: <b id="miniUpiReqs" style="color:var(--primary);">0</b></span>
+                </div>
+                <button class="btn btn-danger" style="padding:10px; font-size:12px; margin:0;" onclick="admAct('emergencyStop')">🚨 EMERGENCY STOP ALL WD</button>
+            </div>
+
             <div class="balance-card">
                 <div class="bal-title">NETWORK BALANCE</div>
                 <div class="bal-amt" id="dashBal">₹0</div>
@@ -344,7 +272,7 @@
                 </div>
                 <div class="action-box" onclick="switchView('view-history')">
                     <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
-                    <div class="action-text">LOGS</div>
+                    <div class="action-text">HISTORY</div>
                 </div>
                 <div class="action-box" onclick="switchView('view-profile')">
                     <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
@@ -352,31 +280,30 @@
                 </div>
             </div>
 
-            <button id="btnAdmin" class="btn btn-warning hidden" onclick="switchView('view-admin')">👑 ADMIN COMMAND CENTER</button>
+            <button id="btnAdmin" class="btn btn-warning hidden" onclick="switchView('view-admin')">👑 FULL ADMIN PANEL</button>
 
             <div class="history-header"><h3>RECENT LOGS</h3></div>
             <div class="data-list" id="dashHistList" style="max-height: 200px;"></div>
 
-            <button class="btn btn-outline" onclick="currentUserId=null; switchView('view-login'); showToast('Connection Terminated', 'info')">LOGOUT SECURELY</button>
+            <button class="btn btn-outline" onclick="currentUserId=null; switchView('view-login'); showToast('Session Terminated', 'info')">LOGOUT SECURELY</button>
         </div>
 
         <!-- ==========================================================
-             VIEW 5: PROFILE & SUPPORT
+             VIEW 5: PROFILE
              ========================================================== -->
         <div class="view-panel" id="view-profile">
             <h2 class="title">MY PROFILE</h2>
-            <div class="profile-header">
-                <div class="profile-avatar">👤</div>
-                <div class="badge" id="profIdBadge">ID: -----</div>
-            </div>
+            <div class="profile-avatar">👤</div>
+            <div style="text-align:center; margin-bottom:20px;"><div class="badge" id="profIdBadge">ID: -----</div></div>
             
             <div class="info-row"><span class="info-label">Account Status</span><span class="info-val" style="color:var(--success);">Active</span></div>
             <div class="info-row"><span class="info-label">Network Join Date</span><span class="info-val" id="profDate">--</span></div>
             <div class="info-row"><span class="info-label">Total Withdrawals</span><span class="info-val" id="profWdCount">0</span></div>
             
             <div class="support-box">
-                <div style="font-size:12px; color:var(--text-muted); margin-bottom:5px;">Need Help? Contact Support via Telegram</div>
-                <div style="font-family:'Orbitron'; font-weight:700; color:var(--primary); font-size:18px;">@kumarkor</div>
+                <div style="font-size:12px; color:var(--text-muted); margin-bottom:5px;">Need Help? Contact Support</div>
+                <!-- Telegram Clickable Link -->
+                <a href="https://t.me/kumarkor" target="_blank" class="kumarkor-link">@kumarkor</a>
             </div>
 
             <span class="link-text" onclick="switchView('view-dashboard')">⬅ RETURN TO DASHBOARD</span>
@@ -388,32 +315,28 @@
         <div class="view-panel" id="view-history">
             <h2 class="title">LIFETIME LOGS</h2>
             <p class="subtitle">Complete Transaction History</p>
-            <div class="data-list" id="fullHistList" style="max-height: 60vh; margin-top:10px;"></div>
+            <div class="data-list" id="fullHistList" style="max-height: 60vh;"></div>
             <span class="link-text" onclick="switchView('view-dashboard')">⬅ RETURN TO DASHBOARD</span>
         </div>
 
         <!-- ==========================================================
-             VIEW 7: REDEEM GIFT CODE
+             VIEW 7: REDEEM GIFT
              ========================================================== -->
         <div class="view-panel" id="view-gift">
             <h2 class="title">REDEEM FUNDS</h2>
-            <p class="subtitle">Inject Value into Wallet</p>
-            
             <div class="input-group" style="margin-top:25px;">
-                <input type="text" class="form-control" id="inGiftCode" style="text-transform:uppercase; text-align:center; font-family:'Orbitron'; font-size:18px; letter-spacing:2px;" required>
+                <input type="text" class="form-control" id="inGiftCode" style="text-transform:uppercase; text-align:center; font-family:'Orbitron'; font-size:18px;" required>
                 <label class="form-label" style="left:50%; transform:translateX(-50%);">Enter Secure GIFT Code</label>
             </div>
-            
             <button class="btn" onclick="userAction('redeem')">CLAIM FUNDS NOW</button>
             <span class="link-text" onclick="switchView('view-dashboard')">⬅ RETURN TO DASHBOARD</span>
         </div>
 
         <!-- ==========================================================
-             VIEW 8: WITHDRAWAL SYSTEM
+             VIEW 8: WITHDRAWAL
              ========================================================== -->
         <div class="view-panel" id="view-withdraw">
             <h2 class="title">TRANSFER ROUTE</h2>
-            <p class="subtitle">Extract funds from Network</p>
             
             <div id="wd-select">
                 <button class="btn" style="background:linear-gradient(135deg, #ff0055, #ffaa00); color:#fff;" id="btnUlt" onclick="openWdForm('UltraPay')">⚡ ULTRA PAY (AUTO)</button>
@@ -440,31 +363,26 @@
         </div>
 
         <!-- ==========================================================
-             VIEW 9: ADVANCED ADMIN PANEL (TABBED)
+             VIEW 9: ADVANCED ADMIN PANEL
              ========================================================== -->
         <div class="view-panel" id="view-admin" style="padding: 20px 15px; width:100%; max-width:550px;">
             <h2 class="title" style="color:var(--warning); text-shadow:0 0 10px rgba(255,170,0,0.5); font-size:22px;">ADMIN CONTROL</h2>
             
-            <!-- Admin Navigation Tabs -->
             <div class="admin-nav">
-                <div class="admin-tab active" onclick="openAdmTab('adm-ov')">📊 Overview & Config</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-code')">🎁 Codes Tracker</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-usr')">👥 User Manager</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-req')">💸 UPI Requests</div>
+                <div class="admin-tab active" onclick="openAdmTab('adm-ov')">📊 Overview</div>
+                <div class="admin-tab" onclick="openAdmTab('adm-code')">🎁 Codes</div>
+                <div class="admin-tab" onclick="openAdmTab('adm-usr')">👥 Users</div>
+                <div class="admin-tab" onclick="openAdmTab('adm-req')">💸 UPI</div>
+                <div class="admin-tab" onclick="openAdmTab('adm-wdchk')">🔍 Check WD</div>
             </div>
 
             <!-- TAB 1: OVERVIEW & CONFIG -->
             <div class="admin-content active" id="adm-ov">
                 <!-- Liquidity Wallet -->
                 <div class="admin-card" style="border-color:var(--success);">
-                    <div class="admin-card-title" style="color:var(--success); border-bottom-color:rgba(0,255,136,0.3);">
-                        <svg viewBox="0 0 24 24" fill="var(--success)"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-2V9h2zM5 19V5h14v2h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2H5z"/><circle cx="16" cy="12" r="1.5"/></svg>
-                        SYSTEM LIQUIDITY WALLET
-                    </div>
-                    <div style="font-size:13px; color:var(--text-main); margin-bottom: 15px; text-align:center;">
-                        Available Withdrawal Limit:<br>
-                        <span id="dispLiq" style="font-family:'Orbitron'; font-size:32px; color:var(--success); font-weight:bold; text-shadow:var(--glow-success);">₹0</span>
-                    </div>
+                    <div class="admin-card-title" style="color:var(--success);">SYSTEM LIQUIDITY WALLET</div>
+                    <div style="font-size:12px; color:var(--text-muted); text-align:center; margin-bottom:10px;">(Deducted ONLY when Ultra Pay Auto is used)</div>
+                    <div style="font-family:'Orbitron'; font-size:32px; text-align:center; color:var(--success); font-weight:bold; margin-bottom: 15px;" id="dispLiq">₹0</div>
                     <div class="input-group"><input type="number" class="form-control" id="admLiqAmt" required><label class="form-label">Set Balance Limit (₹)</label></div>
                     <button class="btn btn-success" onclick="admAct('setLiq')">UPDATE LIQUIDITY</button>
                 </div>
@@ -472,17 +390,12 @@
                 <!-- Toggles -->
                 <div class="admin-card">
                     <div class="admin-card-title">SYSTEM TOGGLES</div>
-                    <div class="toggle-row">
-                        <span>Global Withdrawals</span> 
-                        <label class="switch"><input type="checkbox" id="tgWd" onchange="admAct('tog', 'isWdOn', this.checked)"><span class="slider"></span></label>
-                    </div>
-                    <div class="toggle-row">
-                        <span>Ultra Pay Gateway (Auto)</span> 
-                        <label class="switch"><input type="checkbox" id="tgUlt" onchange="admAct('tog', 'isUltOn', this.checked)"><span class="slider"></span></label>
-                    </div>
-                    <div class="toggle-row">
-                        <span>UPI Gateway (Manual)</span> 
-                        <label class="switch"><input type="checkbox" id="tgUpi" onchange="admAct('tog', 'isUpiOn', this.checked)"><span class="slider"></span></label>
+                    <div class="toggle-row"><span>Global Withdrawals</span> <label class="switch"><input type="checkbox" id="tgWd" onchange="admAct('tog', 'isWdOn', this.checked)"><span class="slider"></span></label></div>
+                    <div class="toggle-row"><span>Ultra Pay (Auto)</span> <label class="switch"><input type="checkbox" id="tgUlt" onchange="admAct('tog', 'isUltOn', this.checked)"><span class="slider"></span></label></div>
+                    <div class="toggle-row"><span>UPI Gateway (Manual)</span> <label class="switch"><input type="checkbox" id="tgUpi" onchange="admAct('tog', 'isUpiOn', this.checked)"><span class="slider"></span></label></div>
+                    <div class="toggle-row" style="border-color:var(--warning);">
+                        <span style="color:var(--warning);">Maintenance Mode</span> 
+                        <label class="switch"><input type="checkbox" id="tgMaint" onchange="admAct('tog', 'isMaintenance', this.checked)"><span class="slider"></span></label>
                     </div>
                 </div>
 
@@ -491,26 +404,21 @@
                     <div class="admin-card-title">ULTRA PAY API CONFIG</div>
                     <div class="input-group"><input type="text" class="form-control" id="admApiTok" required><label class="form-label">Ultra Pay Token</label></div>
                     <div class="input-group"><input type="text" class="form-control" id="admApiKey" required><label class="form-label">Ultra Pay Key</label></div>
-                    <button class="btn" style="background:#0077ff; color:#fff;" onclick="admAct('saveApi')">SAVE CONFIGURATION</button>
+                    <button class="btn" style="background:#0077ff; color:#fff;" onclick="admAct('saveApi')">SAVE CONFIG</button>
                 </div>
             </div>
 
             <!-- TAB 2: CODES TRACKER -->
             <div class="admin-content" id="adm-code">
-                <!-- Create Code -->
                 <div class="admin-card">
                     <div class="admin-card-title">GENERATE NEW CODE</div>
                     <div class="input-group"><input type="number" class="form-control" id="admGiftAmt" required><label class="form-label">Amount per User (₹)</label></div>
                     <div class="input-group"><input type="number" class="form-control" id="admGiftMax" required><label class="form-label">Max Users Can Claim</label></div>
                     <button class="btn btn-warning" onclick="admAct('createCode')">CREATE CODE</button>
-                    
                     <div id="newCodeBox" class="copy-box hidden" onclick="navigator.clipboard.writeText(document.getElementById('newCodeTxt').innerText); showToast('COPIED!');">
-                        <div class="copy-text" id="newCodeTxt"></div>
-                        <div class="badge" style="background:var(--success); color:#000;">TAP TO COPY</div>
+                        <div class="copy-text" id="newCodeTxt"></div><div class="badge" style="background:var(--success); color:#000;">TAP TO COPY</div>
                     </div>
                 </div>
-
-                <!-- Check Code Details -->
                 <div class="admin-card">
                     <div class="admin-card-title">INSPECT CODE STATUS</div>
                     <div class="input-group"><input type="text" class="form-control" id="admChkCodeInp" style="text-transform:uppercase;" required><label class="form-label">Enter GIFT-XXXXX</label></div>
@@ -521,34 +429,20 @@
 
             <!-- TAB 3: USER MANAGER -->
             <div class="admin-content" id="adm-usr">
-                <!-- Cut/Add Balance -->
                 <div class="admin-card">
                     <div class="admin-card-title">BALANCE MANAGER</div>
                     <div class="input-group"><input type="number" class="form-control" id="admBalId" required><label class="form-label">Target User ID</label></div>
                     <div class="input-group"><input type="number" class="form-control" id="admBalAmt" required><label class="form-label">Amount (₹)</label></div>
-                    <div style="display:flex; gap:10px;">
-                        <button class="btn btn-success" style="flex:1;" onclick="admAct('addBal')">ADD (+)</button>
-                        <button class="btn btn-danger" style="flex:1;" onclick="admAct('cutBal')">CUT (-)</button>
-                    </div>
+                    <div style="display:flex; gap:10px;"><button class="btn btn-success" style="flex:1;" onclick="admAct('addBal')">ADD (+)</button><button class="btn btn-danger" style="flex:1;" onclick="admAct('cutBal')">CUT (-)</button></div>
                 </div>
-
-                <!-- Inspect & Ban -->
                 <div class="admin-card">
                     <div class="admin-card-title">USER INSPECTION & BAN</div>
                     <div class="input-group"><input type="number" class="form-control" id="admUsrId" required><label class="form-label">User ID</label></div>
-                    <div style="display:flex; gap:10px; margin-bottom:15px;">
-                        <button class="btn" style="flex:1;" onclick="admAct('checkUsr')">INSPECT</button>
-                        <button class="btn btn-warning" style="flex:1;" onclick="admAct('banUsr')">BAN / UNBAN</button>
-                    </div>
+                    <div style="display:flex; gap:10px; margin-bottom:15px;"><button class="btn" style="flex:1;" onclick="admAct('checkUsr')">INSPECT</button><button class="btn btn-warning" style="flex:1;" onclick="admAct('banUsr')">BAN / UNBAN</button></div>
                     <div id="chkUsrRes" class="result-box hidden"></div>
                 </div>
-
-                <!-- User Directory -->
                 <div class="admin-card">
-                    <div class="admin-card-title">
-                        ALL USERS DIRECTORY 
-                        <button style="margin-left:auto; background:var(--primary); color:#000; border:none; border-radius:5px; padding:4px 10px; font-weight:bold; cursor:pointer;" onclick="loadAdminTabs()">⟳ REFRESH</button>
-                    </div>
+                    <div class="admin-card-title">ALL USERS DIRECTORY <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:5px; padding:4px 10px; font-weight:bold; cursor:pointer;" onclick="loadAdminTabs()">⟳ REFRESH</button></div>
                     <div class="data-list" id="listUsrs" style="max-height:350px;"></div>
                 </div>
             </div>
@@ -557,26 +451,32 @@
             <div class="admin-content" id="adm-req">
                 <div class="admin-card" style="padding:15px;">
                     <div class="admin-card-title">PENDING UPI WITHDRAWALS</div>
-                    <div id="listReqs" class="data-list" style="max-height: 50vh;">
-                        <!-- Requests populated via JS -->
-                    </div>
+                    <div id="listReqs" class="data-list" style="max-height: 60vh;"></div>
+                </div>
+            </div>
+            
+            <!-- TAB 5: CHECK WD -->
+            <div class="admin-content" id="adm-wdchk">
+                <div class="admin-card">
+                    <div class="admin-card-title">CHECK WITHDRAWAL ID</div>
+                    <div class="input-group"><input type="text" class="form-control" id="admChkWdInp" style="text-transform:uppercase;" required><label class="form-label">Enter WID (e.g., WD123456)</label></div>
+                    <button class="btn btn-warning" onclick="admAct('checkWd')">INSPECT WID</button>
+                    <div id="chkWdRes" class="result-box hidden"></div>
                 </div>
             </div>
 
             <span class="link-text" style="margin-top:20px;" onclick="switchView('view-dashboard')">⬅ EXIT ADMIN COMMAND CENTER</span>
         </div>
-
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT SYSTEM LOGIC (FIREBASE V10 + TELEGRAM)
+         JAVASCRIPT LOGIC (FIREBASE, SFX, DEVICE FP, PWA)
          ======================================================================= -->
     <script type="module">
-        // --- 1. FIREBASE IMPORTS ---
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, doc, setDoc, getDoc, collection, addDoc, query, orderBy, where, getDocs, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // --- 2. CONFIGURATION SECRETS ---
+        // --- 1. FIREBASE SECRETS ---
         const fbConf = {
             apiKey: "AIzaSyB2fd1RdEq6NghpKR3uzYfmyJg2N7Uu8q4",
             authDomain: "kumarofficialtm.firebaseapp.com",
@@ -591,26 +491,64 @@
         const BOT_TOK = "8977358850:AAFDRfAuhxaU1br-UoqIvLLOFgMi9GpB8Sc";
         const ADM_ID = "7335163273";
         
-        let cUid = null;     // Current User ID
-        let gOtp = null;     // Generated OTP
-        let sysSets = {};    // System Settings Cache
+        let cUid = null, gOtp = null, sysSets = {};
 
-        // --- 3. UI UTILITIES ---
-        const el = id => document.getElementById(id);
+        // --- 2. PWA (INSTALL APP) LOGIC ---
+        const manifestBlob = new Blob([`{"name":"Ultra Pay Pro","short_name":"UltraPay","start_url":".","display":"standalone","background_color":"#05070f","theme_color":"#05070f","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/2933/2933116.png","sizes":"512x512","type":"image/png"}]}`], {type: 'application/json'});
+        document.getElementById('manifest-placeholder').setAttribute('href', URL.createObjectURL(manifestBlob));
         
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault(); deferredPrompt = e;
+            document.getElementById('installAppBtn').style.display = 'block';
+        });
+        window.installPWA = () => {
+            if(deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => { deferredPrompt = null; document.getElementById('installAppBtn').style.display = 'none'; });
+            }
+        };
+
+        // --- 3. SOUND EFFECTS (SFX) via Data URI ---
+        // Short tiny beep sounds generated for reliability without external links breaking
+        const sfxKaChing = new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"+Array(50).join("A")); // Dummy safe-fallback
+        const sfxSuccess = new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"+Array(50).join("B"));
+        const sfxError = new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"+Array(50).join("C"));
+        const playSfx = (type) => { 
+            try { 
+                // Since data uris above are dummy to save code size, we use standard beep approach
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator(); const gain = ctx.createGain();
+                osc.connect(gain); gain.connect(ctx.destination);
+                if(type==='success') { osc.type='sine'; osc.frequency.setValueAtTime(600, ctx.currentTime); osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime+0.2); }
+                else if(type==='kaching') { osc.type='square'; osc.frequency.setValueAtTime(800, ctx.currentTime); osc.frequency.setValueAtTime(1200, ctx.currentTime+0.1); }
+                else { osc.type='sawtooth'; osc.frequency.setValueAtTime(300, ctx.currentTime); osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime+0.3); }
+                osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 0.3); osc.stop(ctx.currentTime + 0.3);
+            } catch(e) {}
+        };
+
+        // --- 4. DEVICE FINGERPRINTING (One Device One User) ---
+        const getDevHash = () => {
+            let fp = localStorage.getItem('upay_dev_hash');
+            if(!fp) { fp = 'DEV_' + Math.random().toString(36).substr(2,10) + screen.width + navigator.hardwareConcurrency; localStorage.setItem('upay_dev_hash', fp); }
+            return fp;
+        };
+
+        // --- 5. UI UTILITIES ---
+        const el = id => document.getElementById(id);
+        const ts2Str = ts => ts ? ts.toDate().toLocaleString('en-IN') : 'Just now';
+        const genWID = () => `WD${new Date().getTime().toString().slice(-6)}${cUid?cUid.slice(-3):'000'}`;
+
         window.switchView = v => { 
-            document.querySelectorAll('.view-panel').forEach(p=>p.classList.remove('active')); 
-            el(v).classList.add('active'); 
-            
+            document.querySelectorAll('.view-panel').forEach(p=>p.classList.remove('active')); el(v).classList.add('active'); 
             if(v==='view-register') { el('reg-s1').classList.remove('hidden'); el('reg-s2').classList.add('hidden'); }
             if(v==='view-forgot') { el('for-s1').classList.remove('hidden'); el('for-s2').classList.add('hidden'); }
-            if(v==='view-dashboard') loadDash(); 
-            if(v==='view-admin') loadAdminTabs(); 
-            if(v==='view-profile') loadProf();
-            if(v==='view-history') loadFullHist();
+            if(v==='view-dashboard') loadDash(); if(v==='view-admin') loadAdminTabs(); 
+            if(v==='view-profile') loadProf(); if(v==='view-history') loadFullHist();
         };
 
         window.showToast = (msg, type='success') => { 
+            if(type==='success') playSfx('success'); else if(type==='error') playSfx('error');
             const c=el('toast-box'); const d=document.createElement('div'); d.className=`toast ${type}`; 
             d.innerHTML=`<div style="font-size:20px;">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</div><div>${msg}</div>`; 
             c.appendChild(d); setTimeout(()=>{ d.classList.add('fade-out'); setTimeout(()=>d.remove(), 400); }, 3500); 
@@ -618,108 +556,114 @@
 
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; };
         window.hideLoader = () => el('loader').style.display='none';
-        
-        const ts2Str = ts => ts ? ts.toDate().toLocaleString('en-IN') : 'Just now';
-        const genWID = () => `WD${new Date().getTime().toString().slice(-6)}${cUid?cUid.slice(-3):'000'}`;
 
-        // --- 4. TELEGRAM SENDER ---
-        const sendTg = async (chatId, text) => {
-            try { 
-                const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); 
-                return (await r.json()).ok; 
-            } catch(e) { return false; }
+        // --- 6. TELEGRAM SENDER ---
+        const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
+
+        // --- 7. SYSTEM CHECK (MAINTENANCE) ---
+        const checkSys = async () => {
+            const s=await getDoc(doc(db,"settings","sys")); 
+            if(s.exists()) { sysSets=s.data(); if(sysSets.isMaintenance) return true; } return false;
         };
 
-        // --- 5. AUTHENTICATION (LOGIN/REG/FORGOT) ---
+        // --- 8. AUTHENTICATION & FINGERPRINT LOGIC ---
         window.appAuth = async (act) => {
             showLoader();
             try {
+                const isMaint = await checkSys();
+                const dHash = getDevHash();
+                const devRef = doc(db, "devices", dHash);
+
                 if(act === 'login') {
                     const id=el('logId').value.trim(), p=el('logPass').value; if(!id||!p) throw "Provide ID & Password";
+                    if(isMaint && id !== ADM_ID) { el('maintenance-screen').style.display='flex'; hideLoader(); return; }
+                    
                     const d = await getDoc(doc(db, "users", id));
                     if(!d.exists() || d.data().password!==p) throw "Invalid Credentials";
                     if(d.data().isBanned) throw "Account Banned by Admin";
                     
+                    // Device Fingerprint Validation
+                    const devSnap = await getDoc(devRef);
+                    if(devSnap.exists() && devSnap.data().userId !== id && id !== ADM_ID) throw "SECURITY ALERT: Multiple Accounts on One Device Blocked!";
+                    if(!devSnap.exists()) await setDoc(devRef, { userId: id });
+                    
                     cUid=id; el('logId').value=""; el('logPass').value=""; 
                     showToast("Authentication Successful"); switchView('view-dashboard');
+                    
+                    // Login Alert
+                    sendTg(id, `🚨 *LOGIN ALERT*\n\nDevice logged into your Ultra Pay Pro account.\nTime: ${new Date().toLocaleString()}\nIf this wasn't you, contact admin immediately.`);
                 }
                 else if(act === 'reqReg') {
+                    if(isMaint) throw "System Maintenance Ongoing";
                     const id=el('regId').value.trim(), p=el('regPass').value; if(!id||!p) throw "Provide ID & Password";
                     if((await getDoc(doc(db,"users",id))).exists()) throw "ID already registered";
                     
+                    // Device Check before OTP
+                    if((await getDoc(devRef)).exists()) throw "SECURITY ALERT: Device already registered to an account!";
+                    
                     gOtp=Math.floor(100000+Math.random()*900000).toString();
-                    if(await sendTg(id, `🛡️ *ULTRA PAY OTP*\n\nYour Verification Code: \`${gOtp}\``)) { 
-                        el('reg-s1').classList.add('hidden'); el('reg-s2').classList.remove('hidden'); showToast("OTP Sent to Bot"); 
-                    } else throw "Please Start @SafeKey1_Bot first!";
+                    if(await sendTg(id, `🛡️ *ULTRA PAY OTP*\n\nYour Verification Code: \`${gOtp}\``)) { el('reg-s1').classList.add('hidden'); el('reg-s2').classList.remove('hidden'); showToast("OTP Sent to Bot"); } else throw "Start @SafeKey1_Bot First!";
                 }
                 else if(act === 'verifyReg') {
                     if(el('regOtp').value!==gOtp) throw "Invalid OTP";
                     const id=el('regId').value.trim();
                     await setDoc(doc(db,"users",id), { password: el('regPass').value, balance: 0, isBanned: false, createdAt: serverTimestamp() });
+                    await setDoc(devRef, { userId: id }); // Lock device to this user
                     showToast("Account Created!"); el('regId').value=""; el('regPass').value=""; el('regOtp').value=""; switchView('view-login');
                 }
                 else if(act === 'reqFor') {
-                    const id=el('forId').value.trim(); if(!id) throw "Enter Registered ID";
-                    const d=await getDoc(doc(db,"users",id)); if(!d.exists()||d.data().isBanned) throw "Invalid or Banned ID";
-                    
+                    const id=el('forId').value.trim(); if(!id) throw "Enter ID";
+                    const d=await getDoc(doc(db,"users",id)); if(!d.exists()||d.data().isBanned) throw "Invalid ID";
                     gOtp=Math.floor(100000+Math.random()*900000).toString();
-                    if(await sendTg(id, `🔑 *PASSWORD RESET*\n\nYour Reset OTP: \`${gOtp}\``)) { 
-                        el('for-s1').classList.add('hidden'); el('for-s2').classList.remove('hidden'); showToast("Reset OTP Sent"); 
-                    } else throw "Please Start Bot!";
+                    if(await sendTg(id, `🔑 *PASSWORD RESET*\n\nYour Reset OTP: \`${gOtp}\``)) { el('for-s1').classList.add('hidden'); el('for-s2').classList.remove('hidden'); showToast("Reset OTP Sent"); } else throw "Start Bot!";
                 }
                 else if(act === 'verifyFor') {
                     if(el('forOtp').value!==gOtp) throw "Invalid OTP";
-                    const id=el('forId').value.trim();
-                    await updateDoc(doc(db,"users",id), { password: el('forPass').value });
-                    showToast("System Key Updated!"); el('forId').value=""; el('forOtp').value=""; el('forPass').value=""; switchView('view-login');
+                    await updateDoc(doc(db,"users",el('forId').value), { password: el('forPass').value });
+                    showToast("Key Updated!"); el('forId').value=""; el('forOtp').value=""; el('forPass').value=""; switchView('view-login');
                 }
             } catch(e) { showToast(typeof e==='string'?e:"Network/Database Error", "error"); }
             hideLoader();
         };
 
-        // --- 6. DASHBOARD & PROFILE DATA ---
-        const fetchSysSets = async () => { const s=await getDoc(doc(db,"settings","sys")); if(s.exists()) sysSets=s.data(); };
-        
+        // --- 9. DASHBOARD & DATA FETCHING ---
         async function loadDash() {
-            if(!cUid) return; 
-            el('btnAdmin').classList.toggle('hidden', cUid!==ADM_ID);
+            if(!cUid) return; el('btnAdmin').classList.toggle('hidden', cUid!==ADM_ID);
+            
+            // Marquee Top Ticker
+            el('topTicker').style.display = 'block';
+            
+            // Mini Admin Dashboard Show/Hide
+            if(cUid === ADM_ID) {
+                el('adminMiniDash').style.display = 'block';
+                await checkSys();
+                el('miniLiqDisp').innerText = `₹${sysSets.liqAmt||0}`;
+                const qUpi = await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending")));
+                el('miniUpiReqs').innerText = qUpi.size;
+            } else { el('adminMiniDash').style.display = 'none'; }
+
             try {
                 const u=await getDoc(doc(db,"users",cUid)); 
                 if(!u.exists() || u.data().isBanned) { cUid=null; switchView('view-login'); return showToast("ACCOUNT BANNED", "error"); }
                 
-                el('dashBal').innerText=`₹${u.data().balance}`; 
-                el('dashId').innerText=`ID: ${cUid}`;
+                el('dashBal').innerText=`₹${u.data().balance}`; el('dashId').innerText=`ID: ${cUid}`;
                 
-                // Fetch Recent History (Limit to 5 for Dashboard)
                 const q=await getDocs(query(collection(db,"users",cUid,"history"), orderBy("timestamp","desc")));
                 let html="", count=0; 
                 q.forEach(d=>{ 
                     if(count >= 5) return;
                     const h=d.data(); 
-                    let cssClass = 'hist-credit', sign = '+';
-                    if(h.type==='WITHDRAWAL' || h.type==='ADMIN_CUT') { cssClass='hist-debit'; sign='-'; }
-                    else if(h.type==='PENDING') { cssClass='hist-pending'; sign=''; }
-                    
-                    html+=`<div class="hist-item ${cssClass}">
-                        <div class="hist-details"><div class="hist-title">${h.details}</div><div class="hist-date">${ts2Str(h.timestamp)}</div></div>
-                        <div class="hist-amount">${sign} ₹${h.amount}</div>
-                    </div>`; 
-                    count++;
+                    let css = 'hist-credit', s = '+';
+                    if(h.type==='WITHDRAWAL' || h.type==='ADMIN_CUT') { css='hist-debit'; s='-'; } else if(h.type==='PENDING') { css='hist-pending'; s=''; }
+                    html+=`<div class="hist-item ${css}"><div class="hist-details"><div class="hist-title">${h.details}</div><div class="hist-date">${ts2Str(h.timestamp)}</div></div><div class="hist-amount">${s} ₹${h.amount}</div></div>`; count++;
                 });
                 el('dashHistList').innerHTML = html || "<div style='text-align:center; color:#888; font-size:12px; padding:15px;'>No recent logs</div>";
-            } catch(e){ console.error(e); }
+            } catch(e){}
         }
 
         async function loadProf() {
-            if(!cUid) return;
-            const u=await getDoc(doc(db,"users",cUid)); 
-            el('profIdBadge').innerText=`ID: ${cUid}`; 
-            el('profDate').innerText=ts2Str(u.data().createdAt);
-            
-            let wdCount=0;
-            const q=await getDocs(collection(db,"users",cUid,"history"));
-            q.forEach(d=>{ if(d.data().type==='WITHDRAWAL') wdCount++; });
-            el('profWdCount').innerText=wdCount;
+            if(!cUid) return; const u=await getDoc(doc(db,"users",cUid)); el('profIdBadge').innerText=`ID: ${cUid}`; el('profDate').innerText=ts2Str(u.data().createdAt);
+            let wc=0; const q=await getDocs(collection(db,"users",cUid,"history")); q.forEach(d=>{ if(d.data().type==='WITHDRAWAL') wc++; }); el('profWdCount').innerText=wc;
         }
 
         async function loadFullHist() {
@@ -728,121 +672,89 @@
                 const q=await getDocs(query(collection(db,"users",cUid,"history"), orderBy("timestamp","desc")));
                 let html=""; 
                 q.forEach(d=>{ 
-                    const h=d.data(); 
-                    let cssClass = 'hist-credit', sign = '+';
-                    if(h.type==='WITHDRAWAL' || h.type==='ADMIN_CUT') { cssClass='hist-debit'; sign='-'; }
-                    else if(h.type==='PENDING') { cssClass='hist-pending'; sign=''; }
-                    
-                    html+=`<div class="hist-item ${cssClass}">
-                        <div class="hist-details"><div class="hist-title">${h.details}</div><div class="hist-date">${ts2Str(h.timestamp)}</div></div>
-                        <div class="hist-amount">${sign} ₹${h.amount}</div>
-                    </div>`; 
+                    const h=d.data(); let css = 'hist-credit', s = '+';
+                    if(h.type==='WITHDRAWAL' || h.type==='ADMIN_CUT') { css='hist-debit'; s='-'; } else if(h.type==='PENDING') { css='hist-pending'; s=''; }
+                    html+=`<div class="hist-item ${css}"><div class="hist-details"><div class="hist-title">${h.details}</div><div class="hist-date">${ts2Str(h.timestamp)}</div></div><div class="hist-amount">${s} ₹${h.amount}</div></div>`; 
                 });
-                el('fullHistList').innerHTML = html || "<div style='text-align:center; color:#888; font-size:13px; padding:20px;'>No transaction logs found in database.</div>";
+                el('fullHistList').innerHTML = html || "<div style='text-align:center; color:#888; font-size:13px; padding:20px;'>No logs found.</div>";
             } catch(e){} hideLoader();
         }
 
-        // --- 7. USER TRANSACTIONS (REDEEM & WITHDRAW) ---
+        // --- 10. USER TRANSACTIONS ---
         window.prepareWithdraw = async () => {
-            showLoader(); await fetchSysSets(); hideLoader();
-            if(!sysSets.isWdOn) { 
-                el('wd-select').classList.add('hidden'); el('wdClosedMsg').classList.remove('hidden'); 
-            } else { 
-                el('wd-select').classList.remove('hidden'); el('wdClosedMsg').classList.add('hidden'); 
-                el('btnUlt').style.display = sysSets.isUltOn ? 'block' : 'none'; 
-                el('btnUpi').style.display = sysSets.isUpiOn ? 'block' : 'none'; 
-            }
+            showLoader(); await checkSys(); hideLoader();
+            if(!sysSets.isWdOn) { el('wd-select').classList.add('hidden'); el('wdClosedMsg').classList.remove('hidden'); } 
+            else { el('wd-select').classList.remove('hidden'); el('wdClosedMsg').classList.add('hidden'); el('btnUlt').style.display = sysSets.isUltOn ? 'block' : 'none'; el('btnUpi').style.display = sysSets.isUpiOn ? 'block' : 'none'; }
             el('wd-form').classList.add('hidden'); switchView('view-withdraw');
         };
 
-        window.openWdForm = (method) => { 
-            el('wd-select').classList.add('hidden'); el('wd-form').classList.remove('hidden'); 
-            el('wdMethodBadge').innerText=method; 
-            el('lblWdTarget').innerText=method==='UPI'?'Enter UPI ID':'Ultra Pay Mobile Number'; 
-        };
+        window.openWdForm = (method) => { el('wd-select').classList.add('hidden'); el('wd-form').classList.remove('hidden'); el('wdMethodBadge').innerText=method; el('lblWdTarget').innerText=method==='UPI'?'Enter UPI ID':'Ultra Pay Mobile Number'; };
 
         window.userAction = async (act) => {
             showLoader("PROCESSING...");
             try {
-                // REDEEM GIFT
                 if(act === 'redeem') {
-                    const code = el('inGiftCode').value.trim().toUpperCase(); if(!code) throw "Enter code hash";
+                    const code = el('inGiftCode').value.trim().toUpperCase(); if(!code) throw "Enter code";
                     let amt=0, isExp=false;
-                    
                     await runTransaction(db, async t => {
                         const cd = await t.get(doc(db,"giftcodes",code)); 
                         if(!cd.exists() || cd.data().used || cd.data().usedCount >= cd.data().maxUsers) throw "CODE INVALID OR EXPIRED";
-                        if(cd.data().usedBy && cd.data().usedBy.includes(cUid)) throw "YOU ALREADY CLAIMED THIS";
-                        
+                        if(cd.data().usedBy && cd.data().usedBy.includes(cUid)) throw "ALREADY CLAIMED";
                         const ud = await t.get(doc(db,"users",cUid)); amt=cd.data().amount;
                         let newCount = (cd.data().usedCount||0)+1; isExp = (newCount >= cd.data().maxUsers);
                         let nList = cd.data().usedBy||[]; nList.push(cUid);
-                        
                         t.update(doc(db,"users",cUid), {balance: ud.data().balance+amt});
                         t.update(doc(db,"giftcodes",code), {usedCount: newCount, used: isExp, usedBy: nList});
                     });
-                    
                     await addDoc(collection(db,"users",cUid,"history"), {type:"GIFT_CODE", amount:amt, details:`Redeemed Code: ${code}`, timestamp:serverTimestamp()});
-                    showToast(`SUCCESS! ₹${amt} INJECTED`); el('inGiftCode').value=""; switchView('view-dashboard');
-                    
+                    playSfx('kaching'); showToast(`SUCCESS! ₹${amt} INJECTED`); el('inGiftCode').value=""; switchView('view-dashboard');
                     sendTg(ADM_ID, `🎁 *Gift Redeemed*\nUser: \`${cUid}\`\nAmount: ₹${amt}\nCode: \`${code}\`${isExp?'\n⚠️ *STATUS: CODE EXPIRED*':''}`);
                 }
                 
-                // WITHDRAWAL (ULTRAPAY OR UPI)
                 else if(act === 'withdraw') {
-                    await fetchSysSets(); if(!sysSets.isWdOn) throw "Withdrawals closed globally by Admin";
-                    
+                    await checkSys(); if(!sysSets.isWdOn) throw "Withdrawals closed by Admin";
                     const method = el('wdMethodBadge').innerText, target = el('inWdTarget').value.trim(), amt = parseInt(el('inWdAmt').value);
                     if(!target || isNaN(amt) || amt <= 0) throw "Invalid Parameters";
                     
                     const uRef=doc(db,"users",cUid); const uBal=(await getDoc(uRef)).data().balance;
                     if(uBal < amt) throw `Insufficient Balance. Max: ₹${uBal}`;
                     
-                    // Liquidity Check (Mini Wallet)
-                    if(amt > (sysSets.liqAmt||0)) throw `System Liquidity Low. Admin wallet has ₹${sysSets.liqAmt||0}. Try smaller amount.`;
-
                     const wId = genWID();
                     const logDetails = `\n👤 User: \`${cUid}\`\n💰 Amount: ₹${amt}\n🎯 Target: \`${target}\`\n🆔 WID: \`${wId}\``;
 
-                    // Deduct User & Admin Liquidity Immediately
-                    await updateDoc(uRef, {balance: uBal-amt});
-                    await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt-amt});
-
                     if(method === 'UPI') {
-                        // MANUAL UPI FLOW
+                        // UPI logic: ONLY deduct from USER, NOT from Admin Wallet
+                        await updateDoc(uRef, {balance: uBal-amt});
                         await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UPI', target, amount:amt, status:'Pending', timestamp:serverTimestamp()});
                         await addDoc(collection(db,"users",cUid,"history"), {type:"PENDING", amount:amt, details:`UPI Req: ${target} [WID:${wId}]`, timestamp:serverTimestamp()});
-                        
                         showToast(`UPI Request Sent! Pending Admin Approval.`); switchView('view-dashboard');
-                        sendTg(ADM_ID, `🔔 *NEW UPI REQUEST* (PENDING)`+logDetails);
+                        sendTg(ADM_ID, `🔔 *NEW UPI REQUEST* (PENDING)`+logDetails); // Admin Alert
                     } 
                     else {
-                        // AUTO ULTRAPAY FLOW
+                        // Ultra Pay logic: Deduct from User AND Admin Wallet
+                        if(amt > (sysSets.liqAmt||0)) throw `System Liquidity Low. Admin wallet has ₹${sysSets.liqAmt||0}.`;
+                        
+                        await updateDoc(uRef, {balance: uBal-amt});
+                        await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt-amt});
+
                         try {
                             const params = new URLSearchParams({token:sysSets.apiTok, key:sysSets.apiKey, paytoNumber:target, amount:amt.toString(), comment:`WD_${wId}`});
-                            // Fetch raw text to avoid single-quote json crashes from Ultra Pay
-                            const res = await fetch(`https://ultra-pay.store/APIs/api?${params}`); 
-                            const resText = await res.text();
-                            const lowerTxt = resText.toLowerCase();
+                            // Proxy & Raw Text to prevent single quote crash
+                            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent('https://ultra-pay.store/APIs/api?'+params)}`;
+                            const res = await fetch(proxyUrl); const proxyData = await res.json();
+                            const rawText = proxyData.contents ? proxyData.contents.toLowerCase() : "";
                             
-                            let isSuccess = false;
-                            if(lowerTxt.includes("'success'") || lowerTxt.includes('"success"') || lowerTxt.includes("payment successful") || lowerTxt.includes("ppt_200")) {
-                                isSuccess = true;
-                            }
-
-                            if(isSuccess) {
+                            if(rawText.includes("'success'") || rawText.includes('"success"') || rawText.includes("payment successful") || rawText.includes("ppt_200")) {
                                 await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UltraPay', target, amount:amt, status:'Success', timestamp:serverTimestamp()});
                                 await addDoc(collection(db,"users",cUid,"history"), {type:"WITHDRAWAL", amount:amt, details:`UltraPay to ${target} [WID:${wId}]`, timestamp:serverTimestamp()});
                                 showToast(`TRANSFER COMPLETE! ₹${amt} Sent.`); switchView('view-dashboard');
-                                sendTg(ADM_ID, `✅ *ULTRAPAY AUTO SUCCESS*`+logDetails);
-                            } else {
-                                throw "Gateway Rejected API Response";
-                            }
+                                sendTg(ADM_ID, `✅ *ULTRAPAY AUTO SUCCESS*`+logDetails); // Admin Alert Success
+                            } else { throw "Gateway Rejected API Response"; }
                         } catch(apiErr) {
-                            console.log("Ultra Pay Error:", apiErr);
-                            // Refund User & Admin Liquidity on Fail
-                            await updateDoc(uRef, {balance: uBal}); 
-                            await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt});
+                            // Refund User & Admin on Fail
+                            await updateDoc(uRef, {balance: uBal}); await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt});
+                            await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UltraPay', target, amount:amt, status:'Failed', timestamp:serverTimestamp()});
+                            sendTg(ADM_ID, `❌ *ULTRAPAY FAILED*`+logDetails + `\n⚠️ Status: Refunded`); // Admin Alert Failed
                             throw "API ERROR: Transfer Failed. Funds Refunded.";
                         }
                     }
@@ -852,114 +764,88 @@
             hideLoader();
         };
 
-        // --- 8. ADVANCED ADMIN CONTROLS (THE BEAST) ---
-        window.openAdmTab = tId => { 
-            document.querySelectorAll('.admin-tab').forEach(e=>e.classList.remove('active')); 
-            document.querySelectorAll('.admin-content').forEach(e=>e.classList.remove('active')); 
-            event.target.classList.add('active'); el(tId).classList.add('active'); 
-        };
+        // --- 11. ADVANCED ADMIN CONTROLS ---
+        window.openAdmTab = tId => { document.querySelectorAll('.admin-tab').forEach(e=>e.classList.remove('active')); document.querySelectorAll('.admin-content').forEach(e=>e.classList.remove('active')); event.target.classList.add('active'); el(tId).classList.add('active'); };
         
         async function loadAdminTabs() {
             if(cUid!==ADM_ID) switchView('view-dashboard');
-            await fetchSysSets();
+            await checkSys();
             
-            // Tab 1: Overview
-            el('dispLiq').innerText=`₹${sysSets.liqAmt||0}`; 
-            el('tgWd').checked=sysSets.isWdOn; el('tgUlt').checked=sysSets.isUltOn; el('tgUpi').checked=sysSets.isUpiOn; 
-            el('admApiTok').value=sysSets.apiTok||""; el('admApiKey').value=sysSets.apiKey||"";
+            el('dispLiq').innerText=`₹${sysSets.liqAmt||0}`; el('tgWd').checked=sysSets.isWdOn; el('tgUlt').checked=sysSets.isUltOn; el('tgUpi').checked=sysSets.isUpiOn; el('tgMaint').checked=sysSets.isMaintenance; el('admApiTok').value=sysSets.apiTok||""; el('admApiKey').value=sysSets.apiKey||"";
             
-            // Tab 3: Users List
-            const us=await getDocs(collection(db,"users")); let uh=""; 
-            us.forEach(d=>{ const u=d.data(); uh+=`<div class="user-row"><div><b>${d.id}</b></div><div style="color:var(--success); font-family:'Orbitron'; font-weight:bold;">₹${u.balance}</div><div>${u.isBanned?'<span style="background:var(--danger); padding:2px 8px; border-radius:5px; color:#fff;">BANNED</span>':'<span style="color:#aaa;">Active</span>'}</div></div>`; }); 
-            el('listUsrs').innerHTML=uh||"<div style='text-align:center;'>No Users</div>";
+            // Users
+            const us=await getDocs(collection(db,"users")); let uh=""; us.forEach(d=>{ const u=d.data(); uh+=`<div style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.4); border-left:3px solid var(--primary); margin-bottom:10px; border-radius:8px; font-size:13px; align-items:center;"><div><b>${d.id}</b></div><div style="color:var(--success); font-weight:bold;">₹${u.balance}</div><div>${u.isBanned?'<span style="background:var(--danger); padding:2px 8px; border-radius:5px; color:#fff;">BANNED</span>':'Active'}</div></div>`; }); el('listUsrs').innerHTML=uh||"<div style='text-align:center;'>No Users</div>";
 
-            // Tab 4: Requests (UPI)
+            // Requests
             const rq=await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending"))); let rh="";
-            rq.forEach(d=>{ 
-                const r=d.data(); 
-                rh+=`<div class="req-card">
-                    <div class="req-info">
-                        <b>WID:</b> <span style="color:var(--primary);">${r.wId}</span><br>
-                        <b>User:</b> ${r.userId}<br>
-                        <b>Amount:</b> <span style="font-family:'Orbitron'; color:var(--warning); font-size:16px; font-weight:bold;">₹${r.amount}</span><br>
-                        <b>UPI ID:</b> ${r.target}<br>
-                        <b>Time:</b> ${ts2Str(r.timestamp)}
-                    </div>
-                    <div class="req-actions">
-                        <button class="btn btn-success" style="padding:12px; font-size:12px; margin:0;" onclick="admAct('appReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">APPROVE</button>
-                        <button class="btn btn-danger" style="padding:12px; font-size:12px; margin:0;" onclick="admAct('rejReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">REJECT</button>
-                    </div>
-                </div>`; 
-            });
+            rq.forEach(d=>{ const r=d.data(); rh+=`<div style="background:rgba(0,0,0,0.5); border:1px solid var(--warning); padding:18px; border-radius:14px; margin-bottom:15px;"><div style="font-size:13px; color:#ccc; margin-bottom:15px; line-height:1.6;"><b>WID:</b> <span style="color:var(--primary);">${r.wId}</span><br><b>User:</b> ${r.userId}<br><b>Amount:</b> <span style="color:var(--warning); font-size:16px; font-weight:bold;">₹${r.amount}</span><br><b>UPI ID:</b> ${r.target}<br><b>Time:</b> ${ts2Str(r.timestamp)}</div><div style="display:flex; gap:10px;"><button class="btn btn-success" style="padding:12px; font-size:12px; margin:0;" onclick="admAct('appReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">APPROVE</button><button class="btn btn-danger" style="padding:12px; font-size:12px; margin:0;" onclick="admAct('rejReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">REJECT</button></div></div>`; });
             el('listReqs').innerHTML=rh||"<div style='color:#888; font-size:13px; text-align:center; padding:20px;'>No pending UPI requests</div>";
         }
 
         window.admAct = async (act, p1, p2, p3, p4) => {
-            if(cUid!==ADM_ID) return; showLoader("EXECUTING COMMAND...");
+            if(cUid!==ADM_ID) return; showLoader("EXECUTING...");
             try {
-                // Settings
-                if(act==='setLiq') { const a=parseInt(el('admLiqAmt').value); if(isNaN(a)||a<0) throw "Invalid Amount"; await setDoc(doc(db,"settings","sys"), {liqAmt:a},{merge:true}); el('dispLiq').innerText=`₹${a}`; el('admLiqAmt').value=""; showToast("Liquidity Wallet Updated"); }
+                if(act==='emergencyStop') { await setDoc(doc(db,"settings","sys"), {isWdOn:false},{merge:true}); showToast("EMERGENCY: WITHDRAWALS STOPPED", "error"); loadDash(); }
+                else if(act==='setLiq') { const a=parseInt(el('admLiqAmt').value); if(isNaN(a)||a<0) throw "Invalid Amount"; await setDoc(doc(db,"settings","sys"), {liqAmt:a},{merge:true}); el('dispLiq').innerText=`₹${a}`; el('admLiqAmt').value=""; showToast("Liquidity Updated"); }
                 else if(act==='tog') { await setDoc(doc(db,"settings","sys"), {[p1]:p2},{merge:true}); showToast("System Toggle Updated"); }
-                else if(act==='saveApi') { await setDoc(doc(db,"settings","sys"), {apiTok:el('admApiTok').value.trim(), apiKey:el('admApiKey').value.trim()},{merge:true}); showToast("Ultra Pay API Saved"); }
+                else if(act==='saveApi') { await setDoc(doc(db,"settings","sys"), {apiTok:el('admApiTok').value.trim(), apiKey:el('admApiKey').value.trim()},{merge:true}); showToast("API Saved"); }
                 
-                // Gift Codes
                 else if(act==='createCode') {
-                    const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value); if(isNaN(a)||isNaN(m)||a<=0||m<=0) throw "Invalid Values";
+                    const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value); if(isNaN(a)||isNaN(m)||a<=0||m<=0) throw "Invalid";
                     const c=`GIFT-${Math.random().toString(36).substring(2,9).toUpperCase()}`;
                     await setDoc(doc(db,"giftcodes",c), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], createdAt:serverTimestamp()});
                     el('newCodeTxt').innerText=c; el('newCodeBox').classList.remove('hidden'); el('admGiftAmt').value=""; el('admGiftMax').value=""; showToast("CODE GENERATED");
                 }
                 else if(act==='checkCode') {
                     const c=el('admChkCodeInp').value.trim().toUpperCase(); if(!c) throw "Enter Code";
-                    const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Code Hash Not Found in Database";
-                    const d=cd.data(); 
+                    const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); 
                     let uls=""; if(d.usedBy && d.usedBy.length>0) { uls="<div style='margin-top:10px; padding:10px; background:rgba(0,0,0,0.5); border-radius:8px;'><b>Claimed By IDs:</b><br><span style='color:var(--primary); font-family:monospace;'>" + d.usedBy.join("<br>") + "</span></div>"; }
-                    el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Value:</b> ₹${d.amount} (Per User)<br><b>Claims:</b> ${d.usedCount} / ${d.maxUsers}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger); font-weight:bold;">EXPIRED</span>':'<span style="color:var(--success); font-weight:bold;">ACTIVE</span>'}<br><b>Created:</b> ${ts2Str(d.createdAt)}${uls}`; 
-                    el('chkCodeRes').classList.remove('hidden'); showToast("Data Fetched"); el('admChkCodeInp').value="";
+                    el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Value:</b> ₹${d.amount} (Per User)<br><b>Claims:</b> ${d.usedCount} / ${d.maxUsers}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger); font-weight:bold;">EXPIRED</span>':'<span style="color:var(--success); font-weight:bold;">ACTIVE</span>'}<br><b>Created:</b> ${ts2Str(d.createdAt)}${uls}`; el('chkCodeRes').classList.remove('hidden'); showToast("Fetched"); el('admChkCodeInp').value="";
                 }
 
-                // User Manager
                 else if(act==='addBal'||act==='cutBal') {
-                    const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); if(!id||isNaN(a)||a<=0) throw "Invalid Inputs";
-                    const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User ID Not Found";
-                    if(act==='cutBal' && u.data().balance < a) throw `Cannot cut ₹${a}. User only has ₹${u.data().balance}`;
-                    
+                    const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); if(!id||isNaN(a)||a<=0) throw "Invalid";
+                    const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found";
+                    if(act==='cutBal' && u.data().balance < a) throw `Cannot cut ₹${a}. Only has ₹${u.data().balance}`;
                     const nb = act==='addBal'? u.data().balance+a : u.data().balance-a;
-                    await updateDoc(doc(db,"users",id), {balance:nb}); 
-                    await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Funds Injected by Admin':'Funds Deducted by Admin', timestamp:serverTimestamp()});
-                    showToast(`Success! New Balance: ₹${nb}`); el('admBalId').value=""; el('admBalAmt').value="";
-                    sendTg(id, `💰 *WALLET UPDATE*\nAdmin has ${act==='addBal'?'Added':'Deducted'} *₹${a}*.\nNew Balance: ₹${nb}`);
+                    await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Funds Injected':'Funds Deducted', timestamp:serverTimestamp()});
+                    showToast(`Success! New Balance: ₹${nb}`); el('admBalId').value=""; el('admBalAmt').value=""; sendTg(id, `💰 *WALLET UPDATE*\nAdmin has ${act==='addBal'?'Added':'Deducted'} *₹${a}*.\nNew Balance: ₹${nb}`);
                 }
                 else if(act==='checkUsr') {
-                    const id=el('admUsrId').value.trim(); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User ID Not Found";
-                    el('chkUsrRes').innerHTML=`<b>Telegram ID:</b> ${id}<br><b>Wallet Balance:</b> <span style="color:var(--success); font-weight:bold; font-family:'Orbitron';">₹${u.data().balance}</span><br><b>Account Status:</b> ${u.data().isBanned?'<span style="color:var(--danger); font-weight:bold;">BANNED ⛔</span>':'<span style="color:var(--success); font-weight:bold;">ACTIVE ✅</span>'}<br><b>Network Join Date:</b> ${ts2Str(u.data().createdAt)}`; 
-                    el('chkUsrRes').classList.remove('hidden');
+                    const id=el('admUsrId').value.trim(); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not Found";
+                    el('chkUsrRes').innerHTML=`<b>ID:</b> ${id}<br><b>Bal:</b> <span style="color:var(--success); font-weight:bold; font-family:'Orbitron';">₹${u.data().balance}</span><br><b>Status:</b> ${u.data().isBanned?'<span style="color:var(--danger); font-weight:bold;">BANNED</span>':'<span style="color:var(--success); font-weight:bold;">ACTIVE</span>'}<br><b>Joined:</b> ${ts2Str(u.data().createdAt)}`; el('chkUsrRes').classList.remove('hidden');
                 }
                 else if(act==='banUsr') {
-                    const id=el('admUsrId').value.trim(); if(!id||id===ADM_ID) throw "Cannot perform action on this ID";
-                    const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not found";
-                    const newStatus = !u.data().isBanned; 
-                    await updateDoc(doc(db,"users",id), {isBanned:newStatus}); 
-                    showToast(newStatus?"USER BANNED SUCCESSFULLY":"USER UNBANNED SUCCESSFULLY"); el('chkUsrRes').classList.add('hidden'); el('admUsrId').value="";
-                    sendTg(id, newStatus ? `⛔ *ACCOUNT BANNED*\nYour access to the network has been revoked by the Administrator.` : `✅ *ACCOUNT RESTORED*\nYour access has been restored. You may login.`);
+                    const id=el('admUsrId').value.trim(); if(!id||id===ADM_ID) throw "Invalid"; const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not found";
+                    const ns = !u.data().isBanned; await updateDoc(doc(db,"users",id), {isBanned:ns}); showToast(ns?"BANNED":"UNBANNED"); el('chkUsrRes').classList.add('hidden'); el('admUsrId').value=""; sendTg(id, ns ? `⛔ *ACCOUNT BANNED*\nAccess revoked by Admin.` : `✅ *ACCOUNT RESTORED*\nAccess restored.`);
                 }
 
-                // UPI Requests
+                // UPI Approvals
                 else if(act==='appReq') { 
-                    await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'});
-                    await addDoc(collection(db,"users",p2,"history"), {type:"GIFT_CODE", amount:p3, details:`Approved: WID ${p4}`, timestamp:serverTimestamp()});
-                    showToast("Request Approved!"); loadAdminTabs();
-                    sendTg(p2, `✅ *WITHDRAWAL APPROVED*\n\nYour UPI request for *₹${p3}* (WID: \`${p4}\`) has been processed successfully by the Administrator.`);
+                    await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved UPI: WID ${p4}`, timestamp:serverTimestamp()});
+                    showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ *WITHDRAWAL APPROVED*\n\nYour UPI request for *₹${p3}* (WID: \`${p4}\`) processed successfully.`);
                 }
                 else if(act==='rejReq') {
                     await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'});
-                    const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); // User Refund
-                    await fetchSysSets(); await updateDoc(doc(db,"settings","sys"), {liqAmt:sysSets.liqAmt+p3}); // Admin Refund
+                    const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); // Refund ONLY User
                     await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Rejected (Refund): WID ${p4}`, timestamp:serverTimestamp()});
-                    showToast("Request Rejected & Refunded!"); loadAdminTabs();
-                    sendTg(p2, `⛔ *WITHDRAWAL REJECTED*\n\nYour UPI request for *₹${p3}* (WID: \`${p4}\`) was rejected. Funds have been refunded to your wallet.`);
+                    showToast("Rejected & Refunded!"); loadAdminTabs(); sendTg(p2, `⛔ *WITHDRAWAL REJECTED*\n\nUPI request for *₹${p3}* (WID: \`${p4}\`) was rejected. Funds refunded.`);
                 }
-            } catch(e) { showToast(typeof e==='string'?e:"Command Execution Error", "error"); }
+                
+                // CHECK WITHDRAWAL ID
+                else if(act==='checkWd') {
+                    const wid=el('admChkWdInp').value.trim().toUpperCase(); if(!wid) throw "Enter WID";
+                    const q = await getDocs(query(collection(db,"withdrawals"), where("wId","==",wid)));
+                    if(q.empty) throw "WID Not Found";
+                    let wdHtml = "";
+                    q.forEach(d => {
+                        const w = d.data();
+                        let sColor = w.status==='Success'||w.status==='Approved' ? 'var(--success)' : w.status==='Pending' ? 'var(--warning)' : 'var(--danger)';
+                        wdHtml += `<b>WID:</b> ${w.wId}<br><b>User ID:</b> ${w.userId}<br><b>Amount:</b> ₹${w.amount}<br><b>Method:</b> ${w.method}<br><b>Target:</b> ${w.target}<br><b>Status:</b> <span style="color:${sColor}; font-weight:bold;">${w.status}</span><br><b>Time:</b> ${ts2Str(w.timestamp)}`;
+                    });
+                    el('chkWdRes').innerHTML = wdHtml; el('chkWdRes').classList.remove('hidden'); showToast("WID Data Fetched"); el('admChkWdInp').value="";
+                }
+            } catch(e) { showToast(typeof e==='string'?e:"Execution Error", "error"); }
             hideLoader();
         };
     </script>

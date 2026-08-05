@@ -38,7 +38,7 @@
         .cyber-grid { position: fixed; width: 200vw; height: 200vh; top: -50%; left: -50%; z-index: -1; background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; transform: perspective(700px) rotateX(60deg); animation: gridScroll 15s linear infinite; }
         @keyframes gridScroll { 100% { transform: perspective(700px) rotateX(60deg) translateY(50px); } }
 
-        .top-ticker { position: fixed; top: 0; left: 0; width: 100%; background: var(--primary); color: #000; font-size: 12px; font-weight: 700; padding: 5px 0; z-index: 100; overflow: hidden; white-space: nowrap; display: none; }
+        .top-ticker { position: fixed; top: 0; left: 0; width: 100%; background: var(--primary); color: #000; font-size: 13px; font-weight: 700; padding: 6px 0; z-index: 100; overflow: hidden; white-space: nowrap; display: none; }
         .top-ticker span { display: inline-block; padding-left: 100%; animation: marquee 15s linear infinite; }
         @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
@@ -63,6 +63,8 @@
         .form-control:focus ~ .input-icon { fill: var(--primary); }
         .form-label { position: absolute; top: 18px; left: 50px; color: var(--text-muted); font-size: 14px; pointer-events: none; transition: var(--transition); z-index: 1; }
         .form-control:focus ~ .form-label, .form-control:valid ~ .form-label { top: -10px; left: 15px; font-size: 11px; font-weight: 600; background: var(--bg-dark); padding: 0 8px; color: var(--primary); border: 1px solid var(--primary); border-radius: 6px; }
+        textarea.form-control { padding-left: 20px; min-height: 100px; resize: none; }
+        textarea.form-control ~ .form-label { left: 20px; }
 
         .btn { width: 100%; padding: 16px; border: none; border-radius: 14px; font-size: 15px; font-weight: 700; font-family: 'Orbitron', sans-serif; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: flex; justify-content: center; align-items: center; gap: 10px; transition: var(--transition); background: linear-gradient(135deg, var(--primary), var(--accent)); color: #000; box-shadow: var(--glow-primary); margin-bottom: 12px; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 243, 255, 0.6); }
@@ -92,7 +94,6 @@
         .action-box svg { width: 34px; height: 34px; fill: var(--primary); margin-bottom: 12px; filter: drop-shadow(0 0 5px var(--primary)); }
         .action-text { font-size: 13px; font-weight: 700; font-family: 'Orbitron', sans-serif; color: #fff; }
 
-        /* Profile & History */
         .profile-avatar { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 40px; box-shadow: var(--glow-primary); border: 3px solid rgba(255,255,255,0.2); }
         .info-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(0,0,0,0.4); border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
         .support-box { background: rgba(0, 243, 255, 0.05); border: 1px dashed var(--primary); padding: 20px; border-radius: 14px; text-align: center; margin-top: 25px; }
@@ -100,7 +101,7 @@
         .kumarkor-link:hover { text-shadow:var(--glow-primary); transform:scale(1.05); }
 
         .history-header { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-        .data-list { max-height: 350px; overflow-y: auto; padding-right: 5px; }
+        .data-list { max-height: 400px; overflow-y: auto; padding-right: 5px; }
         .hist-item { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.03); padding: 18px; border-radius: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
         .hist-item:hover { background: rgba(0,0,0,0.6); transform: translateX(5px); }
         .hist-credit { border-left: 4px solid var(--success); } .hist-debit { border-left: 4px solid var(--danger); } .hist-pending { border-left: 4px solid var(--warning); }
@@ -110,35 +111,41 @@
         /* =======================================================================
            6. ADVANCED ADMIN PANEL
            ======================================================================= */
-        .admin-nav { display: flex; overflow-x: auto; gap: 10px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .admin-nav::-webkit-scrollbar { height: 3px; }
-        .admin-tab { padding: 10px 18px; background: rgba(0,0,0,0.5); border-radius: 12px; font-size: 13px; font-weight: 600; white-space: nowrap; cursor: pointer; border: 1px solid transparent; color: var(--text-muted); transition: 0.2s; }
+        .admin-nav { display: flex; overflow-x: auto; gap: 8px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .admin-nav::-webkit-scrollbar { height: 4px; }
+        .admin-tab { padding: 10px 15px; background: rgba(0,0,0,0.5); border-radius: 12px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; border: 1px solid transparent; color: var(--text-muted); transition: 0.2s; }
         .admin-tab.active { background: var(--primary); color: #000; box-shadow: var(--glow-primary); }
         .admin-content { display: none; max-height: 65vh; overflow-y: auto; padding-right: 5px; }
         .admin-content.active { display: block; animation: slideUp 0.3s; }
         @keyframes slideUp { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
         
-        .admin-card { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,170,0,0.2); padding: 22px; border-radius: 18px; margin-bottom: 20px; }
-        .admin-card-title { font-family: 'Orbitron'; font-size: 14px; color: var(--warning); margin-bottom: 18px; border-bottom: 1px dashed rgba(255,170,0,0.3); padding-bottom: 8px; }
+        .admin-card { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,170,0,0.2); padding: 20px; border-radius: 16px; margin-bottom: 18px; }
+        .admin-card-title { font-family: 'Orbitron'; font-size: 14px; color: var(--warning); margin-bottom: 15px; border-bottom: 1px dashed rgba(255,170,0,0.3); padding-bottom: 8px; text-transform: uppercase;}
         
-        .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; background: rgba(0,0,0,0.5); border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.05); font-size: 14px; font-weight: 500; }
-        .switch { position: relative; display: inline-block; width: 46px; height: 26px; }
+        .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(0,0,0,0.5); border-radius: 10px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.05); font-size: 13px; font-weight: 500; }
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.1); transition: .4s; border-radius: 26px; }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.1); transition: .4s; border-radius: 24px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: var(--success); box-shadow: 0 0 10px var(--success); }
         input:checked + .slider:before { transform: translateX(20px); }
 
-        .result-box { background: rgba(0,0,0,0.6); padding: 18px; border-radius: 14px; margin-top: 15px; border: 1px dashed var(--primary); font-size: 13px; line-height: 1.6; }
-        .copy-box { background: rgba(0, 255, 136, 0.08); border: 1px dashed var(--success); padding: 20px; border-radius: 14px; text-align: center; margin-top: 20px; cursor: pointer; }
-        .copy-text { font-family: 'Orbitron'; font-size: 26px; font-weight: 800; color: var(--success); letter-spacing: 3px; margin-bottom: 5px; }
+        .result-box { background: rgba(0,0,0,0.6); padding: 15px; border-radius: 12px; margin-top: 15px; border: 1px dashed var(--primary); font-size: 13px; line-height: 1.6; word-break: break-all;}
+        .copy-box { background: rgba(0, 255, 136, 0.08); border: 1px dashed var(--success); padding: 20px; border-radius: 14px; text-align: center; margin-top: 15px; cursor: pointer; }
+        .copy-text { font-family: 'Orbitron'; font-size: 24px; font-weight: 800; color: var(--success); letter-spacing: 2px; margin-bottom: 5px; word-break: break-all; }
 
         /* =======================================================================
-           7. UTILITIES (MAINTENANCE, PWA, TOAST, LOADER)
+           7. UTILITIES (OVERLAYS, PWA, TOAST, LOADER)
            ======================================================================= */
-        #maintenance-screen { position: fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg-dark); z-index:99999; display:none; justify-content:center; align-items:center; flex-direction:column; text-align:center; padding:20px; }
+        #maintenance-screen, #version-screen { position: fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg-dark); z-index:99999; display:none; justify-content:center; align-items:center; flex-direction:column; text-align:center; padding:20px; }
+        
+        /* Simulated Smart Push Notification UI */
+        #push-notification { position:fixed; top:-100px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:rgba(0,0,0,0.9); border:1px solid var(--primary); border-radius:15px; padding:15px 20px; display:flex; align-items:center; gap:15px; z-index:100000; box-shadow:0 20px 40px rgba(0,243,255,0.3); transition:0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        #push-notification.show { top: 20px; }
+        .push-icon { width:40px; height:40px; background:var(--primary); border-radius:10px; display:flex; justify-content:center; align-items:center; font-size:20px; }
+        
         #toast-box { position: fixed; top: 35px; right: 25px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
-        .toast { min-width: 320px; padding: 18px 25px; border-radius: 14px; color: #fff; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 15px; backdrop-filter: blur(20px); box-shadow: 0 15px 35px rgba(0,0,0,0.6); transform: translateX(120%); animation: slideIn 0.4s forwards; }
+        .toast { min-width: 300px; padding: 16px 22px; border-radius: 14px; color: #fff; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 15px; backdrop-filter: blur(20px); box-shadow: 0 15px 35px rgba(0,0,0,0.6); transform: translateX(120%); animation: slideIn 0.4s forwards; }
         .toast.success { border-left: 5px solid var(--success); background: rgba(0, 255, 136, 0.15); }
         .toast.error { border-left: 5px solid var(--danger); background: rgba(255, 0, 85, 0.15); }
         .toast.info { border-left: 5px solid var(--primary); background: rgba(0, 243, 255, 0.15); }
@@ -158,21 +165,37 @@
 </head>
 <body>
 
-    <!-- PWA Install Button -->
+    <!-- OVERLAYS & ALERTS -->
     <button id="installAppBtn" onclick="installPWA()">⬇️ INSTALL APP</button>
-
-    <!-- OVERLAYS -->
     <div class="ambient-light"></div>
     <div class="cyber-grid"></div>
-    <div class="top-ticker" id="topTicker"><span>🔥 Welcome to Ultra Pay Pro - The most secure network! 🚀</span></div>
+    <div class="top-ticker" id="topTicker"><span id="tickerMsg">🔥 Welcome to Ultra Pay Pro - The most secure network! 🚀</span></div>
     
     <div id="toast-box"></div>
     <div id="loader"><div class="loader-ring"></div><div class="loader-txt" id="loaderText">INITIALIZING...</div></div>
     
+    <!-- Smart Push Notification Simulation -->
+    <div id="push-notification">
+        <div class="push-icon">🔔</div>
+        <div>
+            <div style="font-size:12px; color:var(--primary); font-weight:bold; margin-bottom:3px;">Ultra Pay Alert</div>
+            <div id="push-msg" style="font-size:13px; color:#fff;"></div>
+        </div>
+    </div>
+
+    <!-- Maintenance Screen -->
     <div id="maintenance-screen">
         <svg width="80" height="80" viewBox="0 0 24 24" fill="var(--warning)"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.61-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-        <h1 style="color:var(--warning); font-family:'Orbitron'; margin-top:20px;">SYSTEM UPDATING</h1>
-        <p style="color:var(--text-muted); margin-top:10px;">Please wait while we upgrade our servers. We will be back shortly!</p>
+        <h1 style="color:var(--warning); font-family:'Orbitron'; margin-top:20px;">SYSTEM MAINTENANCE</h1>
+        <p id="maint-text-display" style="color:var(--text-muted); margin-top:10px;">We will be back shortly!</p>
+    </div>
+
+    <!-- Version Block Screen -->
+    <div id="version-screen">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="var(--danger)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <h1 style="color:var(--danger); font-family:'Orbitron'; margin-top:20px;">UPDATE REQUIRED</h1>
+        <p style="color:var(--text-muted); margin-top:10px; margin-bottom:20px;">A new secure version of Ultra Pay Pro is available. You must refresh to continue.</p>
+        <button class="btn btn-danger" onclick="location.reload(true)" style="width:200px;">REFRESH APP</button>
     </div>
 
     <div class="app-container">
@@ -302,7 +325,6 @@
             
             <div class="support-box">
                 <div style="font-size:12px; color:var(--text-muted); margin-bottom:5px;">Need Help? Contact Support</div>
-                <!-- Telegram Clickable Link -->
                 <a href="https://t.me/kumarkor" target="_blank" class="kumarkor-link">@kumarkor</a>
             </div>
 
@@ -363,7 +385,7 @@
         </div>
 
         <!-- ==========================================================
-             VIEW 9: ADVANCED ADMIN PANEL
+             VIEW 9: ADVANCED ADMIN PANEL (10K MASTER LEVEL)
              ========================================================== -->
         <div class="view-panel" id="view-admin" style="padding: 20px 15px; width:100%; max-width:550px;">
             <h2 class="title" style="color:var(--warning); text-shadow:0 0 10px rgba(255,170,0,0.5); font-size:22px;">ADMIN CONTROL</h2>
@@ -373,33 +395,40 @@
                 <div class="admin-tab" onclick="openAdmTab('adm-code')">🎁 Codes</div>
                 <div class="admin-tab" onclick="openAdmTab('adm-usr')">👥 Users</div>
                 <div class="admin-tab" onclick="openAdmTab('adm-req')">💸 UPI</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-wdchk')">🔍 Check WD</div>
+                <div class="admin-tab" onclick="openAdmTab('adm-tools')">📡 Tools</div>
+                <div class="admin-tab" onclick="openAdmTab('adm-logs')">📋 API Logs</div>
             </div>
 
             <!-- TAB 1: OVERVIEW & CONFIG -->
             <div class="admin-content active" id="adm-ov">
-                <!-- Liquidity Wallet -->
                 <div class="admin-card" style="border-color:var(--success);">
                     <div class="admin-card-title" style="color:var(--success);">SYSTEM LIQUIDITY WALLET</div>
-                    <div style="font-size:12px; color:var(--text-muted); text-align:center; margin-bottom:10px;">(Deducted ONLY when Ultra Pay Auto is used)</div>
+                    <div style="font-size:12px; color:var(--text-muted); text-align:center; margin-bottom:10px;">(Deducted ONLY via Ultra Pay Auto)</div>
                     <div style="font-family:'Orbitron'; font-size:32px; text-align:center; color:var(--success); font-weight:bold; margin-bottom: 15px;" id="dispLiq">₹0</div>
                     <div class="input-group"><input type="number" class="form-control" id="admLiqAmt" required><label class="form-label">Set Balance Limit (₹)</label></div>
                     <button class="btn btn-success" onclick="admAct('setLiq')">UPDATE LIQUIDITY</button>
                 </div>
 
-                <!-- Toggles -->
                 <div class="admin-card">
                     <div class="admin-card-title">SYSTEM TOGGLES</div>
                     <div class="toggle-row"><span>Global Withdrawals</span> <label class="switch"><input type="checkbox" id="tgWd" onchange="admAct('tog', 'isWdOn', this.checked)"><span class="slider"></span></label></div>
                     <div class="toggle-row"><span>Ultra Pay (Auto)</span> <label class="switch"><input type="checkbox" id="tgUlt" onchange="admAct('tog', 'isUltOn', this.checked)"><span class="slider"></span></label></div>
                     <div class="toggle-row"><span>UPI Gateway (Manual)</span> <label class="switch"><input type="checkbox" id="tgUpi" onchange="admAct('tog', 'isUpiOn', this.checked)"><span class="slider"></span></label></div>
-                    <div class="toggle-row" style="border-color:var(--warning);">
-                        <span style="color:var(--warning);">Maintenance Mode</span> 
-                        <label class="switch"><input type="checkbox" id="tgMaint" onchange="admAct('tog', 'isMaintenance', this.checked)"><span class="slider"></span></label>
-                    </div>
+                    <div class="toggle-row" style="border-color:var(--warning);"><span style="color:var(--warning);">Maintenance Mode</span> <label class="switch"><input type="checkbox" id="tgMaint" onchange="admAct('tog', 'isMaintenance', this.checked)"><span class="slider"></span></label></div>
+                </div>
+                
+                <div class="admin-card">
+                    <div class="admin-card-title">MAINTENANCE EDITOR</div>
+                    <div class="input-group"><textarea class="form-control" id="admMaintMsg" placeholder="System Updating..."></textarea><label class="form-label">Custom Display Message</label></div>
+                    <button class="btn btn-warning" onclick="admAct('saveMaintMsg')">SAVE MSG</button>
+                </div>
+                
+                <div class="admin-card">
+                    <div class="admin-card-title">VERSION CONTROL</div>
+                    <div class="input-group"><input type="text" class="form-control" id="admVersion" required><label class="form-label">App Version (e.g., 2.0)</label></div>
+                    <button class="btn btn-danger" onclick="admAct('saveVersion')">FORCE UPDATE APP</button>
                 </div>
 
-                <!-- API Config -->
                 <div class="admin-card">
                     <div class="admin-card-title">ULTRA PAY API CONFIG</div>
                     <div class="input-group"><input type="text" class="form-control" id="admApiTok" required><label class="form-label">Ultra Pay Token</label></div>
@@ -408,15 +437,17 @@
                 </div>
             </div>
 
-            <!-- TAB 2: CODES TRACKER -->
+            <!-- TAB 2: CODES (BULK + INSPECT) -->
             <div class="admin-content" id="adm-code">
                 <div class="admin-card">
-                    <div class="admin-card-title">GENERATE NEW CODE</div>
-                    <div class="input-group"><input type="number" class="form-control" id="admGiftAmt" required><label class="form-label">Amount per User (₹)</label></div>
+                    <div class="admin-card-title">BULK CODE GENERATOR</div>
+                    <div class="input-group"><input type="number" class="form-control" id="admGiftAmt" required><label class="form-label">Amount per Code (₹)</label></div>
                     <div class="input-group"><input type="number" class="form-control" id="admGiftMax" required><label class="form-label">Max Users Can Claim</label></div>
-                    <button class="btn btn-warning" onclick="admAct('createCode')">CREATE CODE</button>
+                    <div class="input-group"><input type="number" class="form-control" id="admBulkCount" required><label class="form-label">How Many Codes to Generate?</label></div>
+                    <button class="btn btn-warning" onclick="admAct('bulkCode')">GENERATE BULK CODES</button>
                     <div id="newCodeBox" class="copy-box hidden" onclick="navigator.clipboard.writeText(document.getElementById('newCodeTxt').innerText); showToast('COPIED!');">
-                        <div class="copy-text" id="newCodeTxt"></div><div class="badge" style="background:var(--success); color:#000;">TAP TO COPY</div>
+                        <div class="copy-text" id="newCodeTxt" style="font-size:14px; text-align:left; max-height:150px; overflow-y:auto;"></div>
+                        <div class="badge" style="background:var(--success); color:#000;">TAP TO COPY ALL</div>
                     </div>
                 </div>
                 <div class="admin-card">
@@ -435,33 +466,63 @@
                     <div class="input-group"><input type="number" class="form-control" id="admBalAmt" required><label class="form-label">Amount (₹)</label></div>
                     <div style="display:flex; gap:10px;"><button class="btn btn-success" style="flex:1;" onclick="admAct('addBal')">ADD (+)</button><button class="btn btn-danger" style="flex:1;" onclick="admAct('cutBal')">CUT (-)</button></div>
                 </div>
+                
                 <div class="admin-card">
-                    <div class="admin-card-title">USER INSPECTION & BAN</div>
+                    <div class="admin-card-title">USER INSPECTION & CONTROLS</div>
                     <div class="input-group"><input type="number" class="form-control" id="admUsrId" required><label class="form-label">User ID</label></div>
-                    <div style="display:flex; gap:10px; margin-bottom:15px;"><button class="btn" style="flex:1;" onclick="admAct('checkUsr')">INSPECT</button><button class="btn btn-warning" style="flex:1;" onclick="admAct('banUsr')">BAN / UNBAN</button></div>
+                    <button class="btn" onclick="admAct('checkUsr')" style="margin-bottom:10px;">INSPECT (LAST SEEN)</button>
+                    <div style="display:flex; gap:10px; margin-bottom:10px;">
+                        <input type="text" class="form-control" id="admNewPass" placeholder="New Password" style="padding:10px; font-size:12px; margin-bottom:0;">
+                        <button class="btn btn-warning" style="margin-bottom:0; width:50%;" onclick="admAct('resetPass')">RESET PASS</button>
+                    </div>
+                    <button class="btn btn-danger" onclick="admAct('banDevice')">BAN ID + DEVICE</button>
                     <div id="chkUsrRes" class="result-box hidden"></div>
                 </div>
+                
                 <div class="admin-card">
                     <div class="admin-card-title">ALL USERS DIRECTORY <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:5px; padding:4px 10px; font-weight:bold; cursor:pointer;" onclick="loadAdminTabs()">⟳ REFRESH</button></div>
                     <div class="data-list" id="listUsrs" style="max-height:350px;"></div>
                 </div>
             </div>
 
-            <!-- TAB 4: UPI REQUESTS -->
+            <!-- TAB 4: UPI REQUESTS & WD CHECK -->
             <div class="admin-content" id="adm-req">
                 <div class="admin-card" style="padding:15px;">
                     <div class="admin-card-title">PENDING UPI WITHDRAWALS</div>
-                    <div id="listReqs" class="data-list" style="max-height: 60vh;"></div>
+                    <div id="listReqs" class="data-list" style="max-height: 40vh;"></div>
                 </div>
-            </div>
-            
-            <!-- TAB 5: CHECK WD -->
-            <div class="admin-content" id="adm-wdchk">
                 <div class="admin-card">
-                    <div class="admin-card-title">CHECK WITHDRAWAL ID</div>
+                    <div class="admin-card-title">CHECK WID</div>
                     <div class="input-group"><input type="text" class="form-control" id="admChkWdInp" style="text-transform:uppercase;" required><label class="form-label">Enter WID (e.g., WD123456)</label></div>
                     <button class="btn btn-warning" onclick="admAct('checkWd')">INSPECT WID</button>
                     <div id="chkWdRes" class="result-box hidden"></div>
+                </div>
+            </div>
+            
+            <!-- TAB 5: TOOLS (BROADCAST & PUSH) -->
+            <div class="admin-content" id="adm-tools">
+                <div class="admin-card">
+                    <div class="admin-card-title">SMART PUSH NOTIFICATION</div>
+                    <div class="input-group"><textarea class="form-control" id="admPushMsg" required></textarea><label class="form-label">Message (Appears in-app)</label></div>
+                    <button class="btn btn-success" onclick="admAct('sendPush')">🔔 SEND GLOBAL PUSH</button>
+                </div>
+                <div class="admin-card">
+                    <div class="admin-card-title">TELEGRAM BROADCAST</div>
+                    <div class="input-group"><textarea class="form-control" id="admTgMsg" required></textarea><label class="form-label">Telegram Bot Message</label></div>
+                    <button class="btn" style="background:#0088cc; color:#fff;" onclick="admAct('tgBroadcast')">🚀 BROADCAST TO ALL USERS</button>
+                </div>
+                <div class="admin-card">
+                    <div class="admin-card-title">MARQUEE TICKER</div>
+                    <div class="input-group"><input type="text" class="form-control" id="admTickerMsg" required><label class="form-label">Top News Ticker Text</label></div>
+                    <button class="btn btn-warning" onclick="admAct('saveTicker')">UPDATE TICKER</button>
+                </div>
+            </div>
+            
+            <!-- TAB 6: ULTRA PAY RAW LOGS -->
+            <div class="admin-content" id="adm-logs">
+                <div class="admin-card">
+                    <div class="admin-card-title">ULTRA PAY API RAW LOGS <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:5px; padding:4px 10px; font-weight:bold; cursor:pointer;" onclick="admAct('loadLogs')">⟳ LOAD</button></div>
+                    <div class="data-list" id="rawLogsList" style="max-height: 50vh;"></div>
                 </div>
             </div>
 
@@ -470,11 +531,12 @@
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT LOGIC (FIREBASE, SFX, DEVICE FP, PWA)
+         JAVASCRIPT LOGIC (FIREBASE V10)
          ======================================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, doc, setDoc, getDoc, collection, addDoc, query, orderBy, where, getDocs, updateDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, addDoc, query, orderBy, where, getDocs, updateDoc, runTransaction, serverTimestamp, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         // --- 1. FIREBASE SECRETS ---
         const fbConf = {
@@ -490,6 +552,7 @@
         
         const BOT_TOK = "8977358850:AAFDRfAuhxaU1br-UoqIvLLOFgMi9GpB8Sc";
         const ADM_ID = "7335163273";
+        const APP_VERSION = "2.0"; // Current Client Version
         
         let cUid = null, gOtp = null, sysSets = {};
 
@@ -498,27 +561,13 @@
         document.getElementById('manifest-placeholder').setAttribute('href', URL.createObjectURL(manifestBlob));
         
         let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault(); deferredPrompt = e;
-            document.getElementById('installAppBtn').style.display = 'block';
-        });
-        window.installPWA = () => {
-            if(deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(() => { deferredPrompt = null; document.getElementById('installAppBtn').style.display = 'none'; });
-            }
-        };
+        window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; document.getElementById('installAppBtn').style.display = 'block'; });
+        window.installPWA = () => { if(deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then(() => { deferredPrompt = null; document.getElementById('installAppBtn').style.display = 'none'; }); } };
 
-        // --- 3. SOUND EFFECTS (SFX) via Data URI ---
-        // Short tiny beep sounds generated for reliability without external links breaking
-        const sfxKaChing = new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"+Array(50).join("A")); // Dummy safe-fallback
-        const sfxSuccess = new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"+Array(50).join("B"));
-        const sfxError = new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"+Array(50).join("C"));
+        // --- 3. SOUND EFFECTS (SFX) ---
         const playSfx = (type) => { 
             try { 
-                // Since data uris above are dummy to save code size, we use standard beep approach
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = ctx.createOscillator(); const gain = ctx.createGain();
+                const ctx = new (window.AudioContext || window.webkitAudioContext)(); const osc = ctx.createOscillator(); const gain = ctx.createGain();
                 osc.connect(gain); gain.connect(ctx.destination);
                 if(type==='success') { osc.type='sine'; osc.frequency.setValueAtTime(600, ctx.currentTime); osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime+0.2); }
                 else if(type==='kaching') { osc.type='square'; osc.frequency.setValueAtTime(800, ctx.currentTime); osc.frequency.setValueAtTime(1200, ctx.currentTime+0.1); }
@@ -527,12 +576,8 @@
             } catch(e) {}
         };
 
-        // --- 4. DEVICE FINGERPRINTING (One Device One User) ---
-        const getDevHash = () => {
-            let fp = localStorage.getItem('upay_dev_hash');
-            if(!fp) { fp = 'DEV_' + Math.random().toString(36).substr(2,10) + screen.width + navigator.hardwareConcurrency; localStorage.setItem('upay_dev_hash', fp); }
-            return fp;
-        };
+        // --- 4. DEVICE FINGERPRINTING ---
+        const getDevHash = () => { let fp = localStorage.getItem('upay_dev_hash'); if(!fp) { fp = 'DEV_' + Math.random().toString(36).substr(2,10) + screen.width; localStorage.setItem('upay_dev_hash', fp); } return fp; };
 
         // --- 5. UI UTILITIES ---
         const el = id => document.getElementById(id);
@@ -557,205 +602,162 @@
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; };
         window.hideLoader = () => el('loader').style.display='none';
 
-        // --- 6. TELEGRAM SENDER ---
         const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
 
-        // --- 7. SYSTEM CHECK (MAINTENANCE) ---
-        const checkSys = async () => {
-            const s=await getDoc(doc(db,"settings","sys")); 
-            if(s.exists()) { sysSets=s.data(); if(sysSets.isMaintenance) return true; } return false;
-        };
+        // --- 6. REAL-TIME SYSTEM MONITORING (Version, Maint, Ticker, Push) ---
+        onSnapshot(doc(db, "settings", "sys"), (docSnap) => {
+            if (docSnap.exists()) {
+                sysSets = docSnap.data();
+                // 1. Version Control
+                if(sysSets.appVersion && sysSets.appVersion !== APP_VERSION) { el('version-screen').style.display='flex'; } else { el('version-screen').style.display='none'; }
+                // 2. Maintenance
+                if(sysSets.isMaintenance && cUid !== ADM_ID) { el('maint-text-display').innerText = sysSets.maintMsg || "We will be back shortly!"; el('maintenance-screen').style.display='flex'; } else { el('maintenance-screen').style.display='none'; }
+                // 3. Ticker
+                if(sysSets.tickerMsg) { el('tickerMsg').innerText = sysSets.tickerMsg; el('topTicker').style.display = 'block'; }
+                // 4. Smart Push (Simulated via global var change watcher)
+                if(sysSets.lastPush && sysSets.lastPushMsg && sysSets.lastPush !== localStorage.getItem('lastPushTs')) {
+                    el('push-msg').innerText = sysSets.lastPushMsg; el('push-notification').classList.add('show'); playSfx('success');
+                    localStorage.setItem('lastPushTs', sysSets.lastPush);
+                    setTimeout(() => el('push-notification').classList.remove('show'), 5000);
+                }
+            }
+        });
 
-        // --- 8. AUTHENTICATION & FINGERPRINT LOGIC ---
+        const updateLastSeen = async () => { if(cUid) await setDoc(doc(db,"users",cUid), {lastSeen: serverTimestamp()}, {merge:true}); };
+
+        // --- 7. AUTHENTICATION (Login, Reg, Device Limits) ---
         window.appAuth = async (act) => {
             showLoader();
             try {
-                const isMaint = await checkSys();
                 const dHash = getDevHash();
-                const devRef = doc(db, "devices", dHash);
+                const devRef = doc(db, "blacklisted_devices", dHash);
+                if((await getDoc(devRef)).exists()) throw "SECURITY ALERT: DEVICE PERMANENTLY BANNED!";
+
+                const dMapRef = doc(db, "device_map", dHash);
 
                 if(act === 'login') {
                     const id=el('logId').value.trim(), p=el('logPass').value; if(!id||!p) throw "Provide ID & Password";
-                    if(isMaint && id !== ADM_ID) { el('maintenance-screen').style.display='flex'; hideLoader(); return; }
-                    
                     const d = await getDoc(doc(db, "users", id));
                     if(!d.exists() || d.data().password!==p) throw "Invalid Credentials";
                     if(d.data().isBanned) throw "Account Banned by Admin";
                     
-                    // Device Fingerprint Validation
-                    const devSnap = await getDoc(devRef);
-                    if(devSnap.exists() && devSnap.data().userId !== id && id !== ADM_ID) throw "SECURITY ALERT: Multiple Accounts on One Device Blocked!";
-                    if(!devSnap.exists()) await setDoc(devRef, { userId: id });
+                    const devSnap = await getDoc(dMapRef);
+                    if(devSnap.exists() && devSnap.data().userId !== id && id !== ADM_ID) throw "SECURITY: Multiple Accounts on One Device Blocked!";
+                    if(!devSnap.exists()) await setDoc(dMapRef, { userId: id });
                     
-                    cUid=id; el('logId').value=""; el('logPass').value=""; 
+                    cUid=id; el('logId').value=""; el('logPass').value=""; updateLastSeen();
                     showToast("Authentication Successful"); switchView('view-dashboard');
-                    
-                    // Login Alert
-                    sendTg(id, `🚨 *LOGIN ALERT*\n\nDevice logged into your Ultra Pay Pro account.\nTime: ${new Date().toLocaleString()}\nIf this wasn't you, contact admin immediately.`);
+                    sendTg(id, `🚨 *LOGIN ALERT*\n\nDevice logged into your Ultra Pay Pro account.\nTime: ${new Date().toLocaleString()}`);
                 }
                 else if(act === 'reqReg') {
-                    if(isMaint) throw "System Maintenance Ongoing";
                     const id=el('regId').value.trim(), p=el('regPass').value; if(!id||!p) throw "Provide ID & Password";
                     if((await getDoc(doc(db,"users",id))).exists()) throw "ID already registered";
-                    
-                    // Device Check before OTP
-                    if((await getDoc(devRef)).exists()) throw "SECURITY ALERT: Device already registered to an account!";
+                    if((await getDoc(dMapRef)).exists()) throw "SECURITY: Device already registered to an account!";
                     
                     gOtp=Math.floor(100000+Math.random()*900000).toString();
-                    if(await sendTg(id, `🛡️ *ULTRA PAY OTP*\n\nYour Verification Code: \`${gOtp}\``)) { el('reg-s1').classList.add('hidden'); el('reg-s2').classList.remove('hidden'); showToast("OTP Sent to Bot"); } else throw "Start @SafeKey1_Bot First!";
+                    if(await sendTg(id, `🛡️ *ULTRA PAY OTP*\n\nVerification Code: \`${gOtp}\``)) { el('reg-s1').classList.add('hidden'); el('reg-s2').classList.remove('hidden'); showToast("OTP Sent"); } else throw "Start @SafeKey1_Bot First!";
                 }
                 else if(act === 'verifyReg') {
                     if(el('regOtp').value!==gOtp) throw "Invalid OTP";
                     const id=el('regId').value.trim();
-                    await setDoc(doc(db,"users",id), { password: el('regPass').value, balance: 0, isBanned: false, createdAt: serverTimestamp() });
-                    await setDoc(devRef, { userId: id }); // Lock device to this user
+                    await setDoc(doc(db,"users",id), { password: el('regPass').value, balance: 0, isBanned: false, createdAt: serverTimestamp(), lastSeen: serverTimestamp() });
+                    await setDoc(dMapRef, { userId: id }); 
                     showToast("Account Created!"); el('regId').value=""; el('regPass').value=""; el('regOtp').value=""; switchView('view-login');
                 }
                 else if(act === 'reqFor') {
                     const id=el('forId').value.trim(); if(!id) throw "Enter ID";
                     const d=await getDoc(doc(db,"users",id)); if(!d.exists()||d.data().isBanned) throw "Invalid ID";
                     gOtp=Math.floor(100000+Math.random()*900000).toString();
-                    if(await sendTg(id, `🔑 *PASSWORD RESET*\n\nYour Reset OTP: \`${gOtp}\``)) { el('for-s1').classList.add('hidden'); el('for-s2').classList.remove('hidden'); showToast("Reset OTP Sent"); } else throw "Start Bot!";
+                    if(await sendTg(id, `🔑 *PASSWORD RESET*\n\nReset OTP: \`${gOtp}\``)) { el('for-s1').classList.add('hidden'); el('for-s2').classList.remove('hidden'); showToast("Reset OTP Sent"); } else throw "Start Bot!";
                 }
                 else if(act === 'verifyFor') {
                     if(el('forOtp').value!==gOtp) throw "Invalid OTP";
-                    await updateDoc(doc(db,"users",el('forId').value), { password: el('forPass').value });
-                    showToast("Key Updated!"); el('forId').value=""; el('forOtp').value=""; el('forPass').value=""; switchView('view-login');
+                    await updateDoc(doc(db,"users",el('forId').value), { password: el('forPass').value }); showToast("Key Updated!"); el('forId').value=""; el('forOtp').value=""; el('forPass').value=""; switchView('view-login');
                 }
             } catch(e) { showToast(typeof e==='string'?e:"Network/Database Error", "error"); }
             hideLoader();
         };
 
-        // --- 9. DASHBOARD & DATA FETCHING ---
+        // --- 8. DASHBOARD & DATA FETCHING ---
         async function loadDash() {
-            if(!cUid) return; el('btnAdmin').classList.toggle('hidden', cUid!==ADM_ID);
-            
-            // Marquee Top Ticker
-            el('topTicker').style.display = 'block';
-            
-            // Mini Admin Dashboard Show/Hide
-            if(cUid === ADM_ID) {
-                el('adminMiniDash').style.display = 'block';
-                await checkSys();
-                el('miniLiqDisp').innerText = `₹${sysSets.liqAmt||0}`;
-                const qUpi = await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending")));
-                el('miniUpiReqs').innerText = qUpi.size;
-            } else { el('adminMiniDash').style.display = 'none'; }
-
+            if(!cUid) return; el('btnAdmin').classList.toggle('hidden', cUid!==ADM_ID); updateLastSeen();
+            if(cUid === ADM_ID) { el('adminMiniDash').style.display = 'block'; el('miniLiqDisp').innerText = `₹${sysSets.liqAmt||0}`; el('miniUpiReqs').innerText = (await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending")))).size; } else { el('adminMiniDash').style.display = 'none'; }
             try {
-                const u=await getDoc(doc(db,"users",cUid)); 
-                if(!u.exists() || u.data().isBanned) { cUid=null; switchView('view-login'); return showToast("ACCOUNT BANNED", "error"); }
-                
+                const u=await getDoc(doc(db,"users",cUid)); if(!u.exists() || u.data().isBanned) { cUid=null; switchView('view-login'); return showToast("BANNED", "error"); }
                 el('dashBal').innerText=`₹${u.data().balance}`; el('dashId').innerText=`ID: ${cUid}`;
-                
-                const q=await getDocs(query(collection(db,"users",cUid,"history"), orderBy("timestamp","desc")));
-                let html="", count=0; 
-                q.forEach(d=>{ 
-                    if(count >= 5) return;
-                    const h=d.data(); 
-                    let css = 'hist-credit', s = '+';
-                    if(h.type==='WITHDRAWAL' || h.type==='ADMIN_CUT') { css='hist-debit'; s='-'; } else if(h.type==='PENDING') { css='hist-pending'; s=''; }
-                    html+=`<div class="hist-item ${css}"><div class="hist-details"><div class="hist-title">${h.details}</div><div class="hist-date">${ts2Str(h.timestamp)}</div></div><div class="hist-amount">${s} ₹${h.amount}</div></div>`; count++;
-                });
+                const q=await getDocs(query(collection(db,"users",cUid,"history"), orderBy("timestamp","desc"), limit(5)));
+                let html=""; q.forEach(d=>{ const h=d.data(); let css='hist-credit', s='+'; if(h.type==='WITHDRAWAL'||h.type==='ADMIN_CUT'){css='hist-debit';s='-';}else if(h.type==='PENDING'){css='hist-pending';s='';} html+=`<div class="hist-item ${css}"><div class="hist-details"><div class="hist-title">${h.details}</div><div class="hist-date">${ts2Str(h.timestamp)}</div></div><div class="hist-amount">${s} ₹${h.amount}</div></div>`; });
                 el('dashHistList').innerHTML = html || "<div style='text-align:center; color:#888; font-size:12px; padding:15px;'>No recent logs</div>";
             } catch(e){}
         }
 
-        async function loadProf() {
-            if(!cUid) return; const u=await getDoc(doc(db,"users",cUid)); el('profIdBadge').innerText=`ID: ${cUid}`; el('profDate').innerText=ts2Str(u.data().createdAt);
-            let wc=0; const q=await getDocs(collection(db,"users",cUid,"history")); q.forEach(d=>{ if(d.data().type==='WITHDRAWAL') wc++; }); el('profWdCount').innerText=wc;
-        }
+        async function loadProf() { if(!cUid) return; const u=await getDoc(doc(db,"users",cUid)); el('profIdBadge').innerText=`ID: ${cUid}`; el('profDate').innerText=ts2Str(u.data().createdAt); let wc=0; const q=await getDocs(collection(db,"users",cUid,"history")); q.forEach(d=>{ if(d.data().type==='WITHDRAWAL') wc++; }); el('profWdCount').innerText=wc; }
+        async function loadFullHist() { if(!cUid) return; showLoader(); try { const q=await getDocs(query(collection(db,"users",cUid,"history"), orderBy("timestamp","desc"))); let html=""; q.forEach(d=>{ const h=d.data(); let css='hist-credit', s='+'; if(h.type==='WITHDRAWAL'||h.type==='ADMIN_CUT'){css='hist-debit';s='-';}else if(h.type==='PENDING'){css='hist-pending';s='';} html+=`<div class="hist-item ${css}"><div class="hist-details"><div class="hist-title">${h.details}</div><div class="hist-date">${ts2Str(h.timestamp)}</div></div><div class="hist-amount">${s} ₹${h.amount}</div></div>`; }); el('fullHistList').innerHTML = html || "<div style='text-align:center; color:#888; font-size:13px; padding:20px;'>No logs found.</div>"; } catch(e){} hideLoader(); }
 
-        async function loadFullHist() {
-            if(!cUid) return; showLoader("SYNCING LOGS...");
-            try {
-                const q=await getDocs(query(collection(db,"users",cUid,"history"), orderBy("timestamp","desc")));
-                let html=""; 
-                q.forEach(d=>{ 
-                    const h=d.data(); let css = 'hist-credit', s = '+';
-                    if(h.type==='WITHDRAWAL' || h.type==='ADMIN_CUT') { css='hist-debit'; s='-'; } else if(h.type==='PENDING') { css='hist-pending'; s=''; }
-                    html+=`<div class="hist-item ${css}"><div class="hist-details"><div class="hist-title">${h.details}</div><div class="hist-date">${ts2Str(h.timestamp)}</div></div><div class="hist-amount">${s} ₹${h.amount}</div></div>`; 
-                });
-                el('fullHistList').innerHTML = html || "<div style='text-align:center; color:#888; font-size:13px; padding:20px;'>No logs found.</div>";
-            } catch(e){} hideLoader();
-        }
-
-        // --- 10. USER TRANSACTIONS ---
-        window.prepareWithdraw = async () => {
-            showLoader(); await checkSys(); hideLoader();
-            if(!sysSets.isWdOn) { el('wd-select').classList.add('hidden'); el('wdClosedMsg').classList.remove('hidden'); } 
-            else { el('wd-select').classList.remove('hidden'); el('wdClosedMsg').classList.add('hidden'); el('btnUlt').style.display = sysSets.isUltOn ? 'block' : 'none'; el('btnUpi').style.display = sysSets.isUpiOn ? 'block' : 'none'; }
-            el('wd-form').classList.add('hidden'); switchView('view-withdraw');
-        };
-
+        window.prepareWithdraw = async () => { showLoader(); hideLoader(); if(!sysSets.isWdOn) { el('wd-select').classList.add('hidden'); el('wdClosedMsg').classList.remove('hidden'); } else { el('wd-select').classList.remove('hidden'); el('wdClosedMsg').classList.add('hidden'); el('btnUlt').style.display = sysSets.isUltOn ? 'block' : 'none'; el('btnUpi').style.display = sysSets.isUpiOn ? 'block' : 'none'; } el('wd-form').classList.add('hidden'); switchView('view-withdraw'); };
         window.openWdForm = (method) => { el('wd-select').classList.add('hidden'); el('wd-form').classList.remove('hidden'); el('wdMethodBadge').innerText=method; el('lblWdTarget').innerText=method==='UPI'?'Enter UPI ID':'Ultra Pay Mobile Number'; };
 
+        // --- 9. USER TRANSACTIONS (Redeem & Withdraw) ---
         window.userAction = async (act) => {
             showLoader("PROCESSING...");
             try {
                 if(act === 'redeem') {
                     const code = el('inGiftCode').value.trim().toUpperCase(); if(!code) throw "Enter code";
-                    let amt=0, isExp=false;
+                    let amt=0, isExp=false; const dHash = getDevHash();
                     await runTransaction(db, async t => {
                         const cd = await t.get(doc(db,"giftcodes",code)); 
                         if(!cd.exists() || cd.data().used || cd.data().usedCount >= cd.data().maxUsers) throw "CODE INVALID OR EXPIRED";
-                        if(cd.data().usedBy && cd.data().usedBy.includes(cUid)) throw "ALREADY CLAIMED";
+                        if(cd.data().usedBy && cd.data().usedBy.includes(cUid)) throw "YOU ALREADY CLAIMED THIS";
+                        if(cd.data().usedDevs && cd.data().usedDevs.includes(dHash)) throw "DEVICE LIMIT: Code already used on this phone!";
+                        
                         const ud = await t.get(doc(db,"users",cUid)); amt=cd.data().amount;
                         let newCount = (cd.data().usedCount||0)+1; isExp = (newCount >= cd.data().maxUsers);
                         let nList = cd.data().usedBy||[]; nList.push(cUid);
+                        let nDevs = cd.data().usedDevs||[]; nDevs.push(dHash);
+                        
                         t.update(doc(db,"users",cUid), {balance: ud.data().balance+amt});
-                        t.update(doc(db,"giftcodes",code), {usedCount: newCount, used: isExp, usedBy: nList});
+                        t.update(doc(db,"giftcodes",code), {usedCount: newCount, used: isExp, usedBy: nList, usedDevs: nDevs});
                     });
-                    await addDoc(collection(db,"users",cUid,"history"), {type:"GIFT_CODE", amount:amt, details:`Redeemed Code: ${code}`, timestamp:serverTimestamp()});
+                    await addDoc(collection(db,"users",cUid,"history"), {type:"GIFT_CODE", amount:amt, details:`Code: ${code}`, timestamp:serverTimestamp()});
                     playSfx('kaching'); showToast(`SUCCESS! ₹${amt} INJECTED`); el('inGiftCode').value=""; switchView('view-dashboard');
-                    sendTg(ADM_ID, `🎁 *Gift Redeemed*\nUser: \`${cUid}\`\nAmount: ₹${amt}\nCode: \`${code}\`${isExp?'\n⚠️ *STATUS: CODE EXPIRED*':''}`);
                 }
-                
                 else if(act === 'withdraw') {
-                    await checkSys(); if(!sysSets.isWdOn) throw "Withdrawals closed by Admin";
+                    if(!sysSets.isWdOn) throw "Withdrawals closed by Admin";
                     const method = el('wdMethodBadge').innerText, target = el('inWdTarget').value.trim(), amt = parseInt(el('inWdAmt').value);
                     if(!target || isNaN(amt) || amt <= 0) throw "Invalid Parameters";
                     
                     const uRef=doc(db,"users",cUid); const uBal=(await getDoc(uRef)).data().balance;
                     if(uBal < amt) throw `Insufficient Balance. Max: ₹${uBal}`;
-                    
-                    const wId = genWID();
-                    const logDetails = `\n👤 User: \`${cUid}\`\n💰 Amount: ₹${amt}\n🎯 Target: \`${target}\`\n🆔 WID: \`${wId}\``;
+                    const wId = genWID(); const logDet = `\n👤 User: \`${cUid}\`\n💰 Amt: ₹${amt}\n🎯 Tgt: \`${target}\`\n🆔 WID: \`${wId}\``;
 
                     if(method === 'UPI') {
-                        // UPI logic: ONLY deduct from USER, NOT from Admin Wallet
-                        await updateDoc(uRef, {balance: uBal-amt});
+                        await updateDoc(uRef, {balance: uBal-amt}); // Deduct user only
                         await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UPI', target, amount:amt, status:'Pending', timestamp:serverTimestamp()});
-                        await addDoc(collection(db,"users",cUid,"history"), {type:"PENDING", amount:amt, details:`UPI Req: ${target} [WID:${wId}]`, timestamp:serverTimestamp()});
-                        showToast(`UPI Request Sent! Pending Admin Approval.`); switchView('view-dashboard');
-                        sendTg(ADM_ID, `🔔 *NEW UPI REQUEST* (PENDING)`+logDetails); // Admin Alert
+                        await addDoc(collection(db,"users",cUid,"history"), {type:"PENDING", amount:amt, details:`UPI Req: ${target}`, timestamp:serverTimestamp()});
+                        showToast(`UPI Request Sent!`); switchView('view-dashboard'); sendTg(ADM_ID, `🔔 *NEW UPI REQUEST*`+logDet);
                     } 
                     else {
-                        // Ultra Pay logic: Deduct from User AND Admin Wallet
-                        if(amt > (sysSets.liqAmt||0)) throw `System Liquidity Low. Admin wallet has ₹${sysSets.liqAmt||0}.`;
-                        
-                        await updateDoc(uRef, {balance: uBal-amt});
-                        await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt-amt});
+                        if(amt > (sysSets.liqAmt||0)) throw `System Liquidity Low. Admin wallet: ₹${sysSets.liqAmt||0}.`;
+                        await updateDoc(uRef, {balance: uBal-amt}); await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt-amt}); // Deduct both
 
                         try {
                             const params = new URLSearchParams({token:sysSets.apiTok, key:sysSets.apiKey, paytoNumber:target, amount:amt.toString(), comment:`WD_${wId}`});
-                            // Proxy & Raw Text to prevent single quote crash
                             const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent('https://ultra-pay.store/APIs/api?'+params)}`;
                             const res = await fetch(proxyUrl); const proxyData = await res.json();
                             const rawText = proxyData.contents ? proxyData.contents.toLowerCase() : "";
                             
+                            // Save Raw Log
+                            await addDoc(collection(db,"api_logs"), { wId, userId: cUid, rawResponse: rawText, timestamp: serverTimestamp() });
+
                             if(rawText.includes("'success'") || rawText.includes('"success"') || rawText.includes("payment successful") || rawText.includes("ppt_200")) {
                                 await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UltraPay', target, amount:amt, status:'Success', timestamp:serverTimestamp()});
-                                await addDoc(collection(db,"users",cUid,"history"), {type:"WITHDRAWAL", amount:amt, details:`UltraPay to ${target} [WID:${wId}]`, timestamp:serverTimestamp()});
-                                showToast(`TRANSFER COMPLETE! ₹${amt} Sent.`); switchView('view-dashboard');
-                                sendTg(ADM_ID, `✅ *ULTRAPAY AUTO SUCCESS*`+logDetails); // Admin Alert Success
-                            } else { throw "Gateway Rejected API Response"; }
+                                await addDoc(collection(db,"users",cUid,"history"), {type:"WITHDRAWAL", amount:amt, details:`UltraPay to ${target}`, timestamp:serverTimestamp()});
+                                showToast(`TRANSFER COMPLETE!`); switchView('view-dashboard'); sendTg(ADM_ID, `✅ *ULTRAPAY SUCCESS*`+logDet);
+                            } else { throw "API Rejected: " + rawText.substring(0,30); }
                         } catch(apiErr) {
-                            // Refund User & Admin on Fail
-                            await updateDoc(uRef, {balance: uBal}); await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt});
+                            await updateDoc(uRef, {balance: uBal}); await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt}); // Refund
                             await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UltraPay', target, amount:amt, status:'Failed', timestamp:serverTimestamp()});
-                            sendTg(ADM_ID, `❌ *ULTRAPAY FAILED*`+logDetails + `\n⚠️ Status: Refunded`); // Admin Alert Failed
-                            throw "API ERROR: Transfer Failed. Funds Refunded.";
+                            sendTg(ADM_ID, `❌ *ULTRAPAY FAILED*`+logDet + `\n⚠️ Refunded`); throw "API ERROR: Transfer Failed. Refunded.";
                         }
                     }
                     el('inWdTarget').value=""; el('inWdAmt').value="";
@@ -764,88 +766,94 @@
             hideLoader();
         };
 
-        // --- 11. ADVANCED ADMIN CONTROLS ---
+        // --- 10. ADVANCED ADMIN CONTROLS (10K MASTER LEVEL) ---
         window.openAdmTab = tId => { document.querySelectorAll('.admin-tab').forEach(e=>e.classList.remove('active')); document.querySelectorAll('.admin-content').forEach(e=>e.classList.remove('active')); event.target.classList.add('active'); el(tId).classList.add('active'); };
         
         async function loadAdminTabs() {
             if(cUid!==ADM_ID) switchView('view-dashboard');
-            await checkSys();
+            el('dispLiq').innerText=`₹${sysSets.liqAmt||0}`; el('tgWd').checked=sysSets.isWdOn; el('tgUlt').checked=sysSets.isUltOn; el('tgUpi').checked=sysSets.isUpiOn; el('tgMaint').checked=sysSets.isMaintenance; el('admMaintMsg').value=sysSets.maintMsg||""; el('admVersion').value=sysSets.appVersion||APP_VERSION; el('admApiTok').value=sysSets.apiTok||""; el('admApiKey').value=sysSets.apiKey||""; el('admTickerMsg').value=sysSets.tickerMsg||"";
             
-            el('dispLiq').innerText=`₹${sysSets.liqAmt||0}`; el('tgWd').checked=sysSets.isWdOn; el('tgUlt').checked=sysSets.isUltOn; el('tgUpi').checked=sysSets.isUpiOn; el('tgMaint').checked=sysSets.isMaintenance; el('admApiTok').value=sysSets.apiTok||""; el('admApiKey').value=sysSets.apiKey||"";
-            
-            // Users
-            const us=await getDocs(collection(db,"users")); let uh=""; us.forEach(d=>{ const u=d.data(); uh+=`<div style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.4); border-left:3px solid var(--primary); margin-bottom:10px; border-radius:8px; font-size:13px; align-items:center;"><div><b>${d.id}</b></div><div style="color:var(--success); font-weight:bold;">₹${u.balance}</div><div>${u.isBanned?'<span style="background:var(--danger); padding:2px 8px; border-radius:5px; color:#fff;">BANNED</span>':'Active'}</div></div>`; }); el('listUsrs').innerHTML=uh||"<div style='text-align:center;'>No Users</div>";
-
-            // Requests
-            const rq=await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending"))); let rh="";
-            rq.forEach(d=>{ const r=d.data(); rh+=`<div style="background:rgba(0,0,0,0.5); border:1px solid var(--warning); padding:18px; border-radius:14px; margin-bottom:15px;"><div style="font-size:13px; color:#ccc; margin-bottom:15px; line-height:1.6;"><b>WID:</b> <span style="color:var(--primary);">${r.wId}</span><br><b>User:</b> ${r.userId}<br><b>Amount:</b> <span style="color:var(--warning); font-size:16px; font-weight:bold;">₹${r.amount}</span><br><b>UPI ID:</b> ${r.target}<br><b>Time:</b> ${ts2Str(r.timestamp)}</div><div style="display:flex; gap:10px;"><button class="btn btn-success" style="padding:12px; font-size:12px; margin:0;" onclick="admAct('appReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">APPROVE</button><button class="btn btn-danger" style="padding:12px; font-size:12px; margin:0;" onclick="admAct('rejReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">REJECT</button></div></div>`; });
-            el('listReqs').innerHTML=rh||"<div style='color:#888; font-size:13px; text-align:center; padding:20px;'>No pending UPI requests</div>";
+            const us=await getDocs(collection(db,"users")); let uh=""; us.forEach(d=>{ const u=d.data(); uh+=`<div style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.4); border-left:3px solid var(--primary); margin-bottom:10px; border-radius:8px; font-size:13px; align-items:center;"><div><b>${d.id}</b></div><div style="color:var(--success); font-weight:bold;">₹${u.balance}</div><div>${u.isBanned?'<span style="background:var(--danger); padding:2px 8px; border-radius:5px; color:#fff;">BANNED</span>':'Active'}</div></div>`; }); el('listUsrs').innerHTML=uh;
+            const rq=await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending"))); let rh=""; rq.forEach(d=>{ const r=d.data(); rh+=`<div style="background:rgba(0,0,0,0.5); border:1px solid var(--warning); padding:18px; border-radius:14px; margin-bottom:15px;"><div style="font-size:13px; color:#ccc; margin-bottom:15px; line-height:1.6;"><b>WID:</b> <span style="color:var(--primary);">${r.wId}</span><br><b>User:</b> ${r.userId}<br><b>Amt:</b> <span style="color:var(--warning); font-size:16px; font-weight:bold;">₹${r.amount}</span><br><b>UPI:</b> ${r.target}<br><b>Time:</b> ${ts2Str(r.timestamp)}</div><div style="display:flex; gap:10px;"><button class="btn btn-success" style="padding:12px; font-size:12px; margin:0;" onclick="admAct('appReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">APPROVE</button><button class="btn btn-danger" style="padding:12px; font-size:12px; margin:0;" onclick="admAct('rejReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">REJECT</button></div></div>`; }); el('listReqs').innerHTML=rh;
         }
 
         window.admAct = async (act, p1, p2, p3, p4) => {
             if(cUid!==ADM_ID) return; showLoader("EXECUTING...");
             try {
-                if(act==='emergencyStop') { await setDoc(doc(db,"settings","sys"), {isWdOn:false},{merge:true}); showToast("EMERGENCY: WITHDRAWALS STOPPED", "error"); loadDash(); }
-                else if(act==='setLiq') { const a=parseInt(el('admLiqAmt').value); if(isNaN(a)||a<0) throw "Invalid Amount"; await setDoc(doc(db,"settings","sys"), {liqAmt:a},{merge:true}); el('dispLiq').innerText=`₹${a}`; el('admLiqAmt').value=""; showToast("Liquidity Updated"); }
-                else if(act==='tog') { await setDoc(doc(db,"settings","sys"), {[p1]:p2},{merge:true}); showToast("System Toggle Updated"); }
+                // Configs
+                if(act==='emergencyStop') { await setDoc(doc(db,"settings","sys"), {isWdOn:false},{merge:true}); showToast("EMERGENCY STOP ON", "error"); loadDash(); }
+                else if(act==='setLiq') { const a=parseInt(el('admLiqAmt').value); await setDoc(doc(db,"settings","sys"), {liqAmt:a},{merge:true}); el('dispLiq').innerText=`₹${a}`; showToast("Updated"); }
+                else if(act==='tog') { await setDoc(doc(db,"settings","sys"), {[p1]:p2},{merge:true}); showToast("Toggle Updated"); }
+                else if(act==='saveMaintMsg') { await setDoc(doc(db,"settings","sys"), {maintMsg:el('admMaintMsg').value},{merge:true}); showToast("Message Saved"); }
+                else if(act==='saveVersion') { await setDoc(doc(db,"settings","sys"), {appVersion:el('admVersion').value},{merge:true}); showToast("Version Updated! Users will refresh."); }
                 else if(act==='saveApi') { await setDoc(doc(db,"settings","sys"), {apiTok:el('admApiTok').value.trim(), apiKey:el('admApiKey').value.trim()},{merge:true}); showToast("API Saved"); }
+                else if(act==='saveTicker') { await setDoc(doc(db,"settings","sys"), {tickerMsg:el('admTickerMsg').value},{merge:true}); showToast("Ticker Updated"); }
                 
-                else if(act==='createCode') {
-                    const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value); if(isNaN(a)||isNaN(m)||a<=0||m<=0) throw "Invalid";
-                    const c=`GIFT-${Math.random().toString(36).substring(2,9).toUpperCase()}`;
-                    await setDoc(doc(db,"giftcodes",c), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], createdAt:serverTimestamp()});
-                    el('newCodeTxt').innerText=c; el('newCodeBox').classList.remove('hidden'); el('admGiftAmt').value=""; el('admGiftMax').value=""; showToast("CODE GENERATED");
+                // Codes
+                else if(act==='bulkCode') {
+                    const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value), c=parseInt(el('admBulkCount').value);
+                    if(isNaN(a)||isNaN(m)||isNaN(c)||c>100) throw "Invalid limits (Max 100 at a time)";
+                    let codes = [];
+                    for(let i=0; i<c; i++){
+                        const cStr = `GIFT-${Math.random().toString(36).substring(2,8).toUpperCase()}`;
+                        await setDoc(doc(db,"giftcodes",cStr), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], usedDevs:[], createdAt:serverTimestamp()});
+                        codes.push(cStr);
+                    }
+                    el('newCodeTxt').innerText=codes.join("\n"); el('newCodeBox').classList.remove('hidden'); showToast(`${c} Codes Generated`);
                 }
                 else if(act==='checkCode') {
-                    const c=el('admChkCodeInp').value.trim().toUpperCase(); if(!c) throw "Enter Code";
-                    const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); 
-                    let uls=""; if(d.usedBy && d.usedBy.length>0) { uls="<div style='margin-top:10px; padding:10px; background:rgba(0,0,0,0.5); border-radius:8px;'><b>Claimed By IDs:</b><br><span style='color:var(--primary); font-family:monospace;'>" + d.usedBy.join("<br>") + "</span></div>"; }
-                    el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Value:</b> ₹${d.amount} (Per User)<br><b>Claims:</b> ${d.usedCount} / ${d.maxUsers}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger); font-weight:bold;">EXPIRED</span>':'<span style="color:var(--success); font-weight:bold;">ACTIVE</span>'}<br><b>Created:</b> ${ts2Str(d.createdAt)}${uls}`; el('chkCodeRes').classList.remove('hidden'); showToast("Fetched"); el('admChkCodeInp').value="";
+                    const c=el('admChkCodeInp').value.trim().toUpperCase(); const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); 
+                    let uls=""; if(d.usedBy&&d.usedBy.length>0) uls=`<br><b>Used By:</b><br><span style='color:var(--primary); font-family:monospace;'>${d.usedBy.join("<br>")}</span>`;
+                    el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Value:</b> ₹${d.amount}<br><b>Claims:</b> ${d.usedCount} / ${d.maxUsers}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger);">EXPIRED</span>':'<span style="color:var(--success);">ACTIVE</span>'}<br><b>Time:</b> ${ts2Str(d.createdAt)}${uls}`; el('chkCodeRes').classList.remove('hidden'); showToast("Fetched");
                 }
 
+                // Users
                 else if(act==='addBal'||act==='cutBal') {
-                    const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); if(!id||isNaN(a)||a<=0) throw "Invalid";
-                    const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found";
-                    if(act==='cutBal' && u.data().balance < a) throw `Cannot cut ₹${a}. Only has ₹${u.data().balance}`;
+                    const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found";
                     const nb = act==='addBal'? u.data().balance+a : u.data().balance-a;
-                    await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Funds Injected':'Funds Deducted', timestamp:serverTimestamp()});
-                    showToast(`Success! New Balance: ₹${nb}`); el('admBalId').value=""; el('admBalAmt').value=""; sendTg(id, `💰 *WALLET UPDATE*\nAdmin has ${act==='addBal'?'Added':'Deducted'} *₹${a}*.\nNew Balance: ₹${nb}`);
+                    await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Injected':'Deducted', timestamp:serverTimestamp()}); showToast(`New Bal: ₹${nb}`); sendTg(id, `💰 Admin ${act==='addBal'?'Added':'Deducted'} ₹${a}`);
                 }
                 else if(act==='checkUsr') {
                     const id=el('admUsrId').value.trim(); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not Found";
-                    el('chkUsrRes').innerHTML=`<b>ID:</b> ${id}<br><b>Bal:</b> <span style="color:var(--success); font-weight:bold; font-family:'Orbitron';">₹${u.data().balance}</span><br><b>Status:</b> ${u.data().isBanned?'<span style="color:var(--danger); font-weight:bold;">BANNED</span>':'<span style="color:var(--success); font-weight:bold;">ACTIVE</span>'}<br><b>Joined:</b> ${ts2Str(u.data().createdAt)}`; el('chkUsrRes').classList.remove('hidden');
+                    el('chkUsrRes').innerHTML=`<b>ID:</b> ${id}<br><b>Bal:</b> <span style="color:var(--success); font-weight:bold;">₹${u.data().balance}</span><br><b>Status:</b> ${u.data().isBanned?'BANNED':'ACTIVE'}<br><b>Joined:</b> ${ts2Str(u.data().createdAt)}<br><b>Last Seen:</b> ${ts2Str(u.data().lastSeen)}`; el('chkUsrRes').classList.remove('hidden');
                 }
-                else if(act==='banUsr') {
+                else if(act==='resetPass') {
+                    const id=el('admUsrId').value.trim(), np=el('admNewPass').value; if(!id||!np) throw "ID and New Pass required";
+                    if(!(await getDoc(doc(db,"users",id))).exists()) throw "Not found"; await updateDoc(doc(db,"users",id), {password:np}); showToast("Password Reset"); el('admNewPass').value="";
+                }
+                else if(act==='banDevice') {
                     const id=el('admUsrId').value.trim(); if(!id||id===ADM_ID) throw "Invalid"; const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not found";
-                    const ns = !u.data().isBanned; await updateDoc(doc(db,"users",id), {isBanned:ns}); showToast(ns?"BANNED":"UNBANNED"); el('chkUsrRes').classList.add('hidden'); el('admUsrId').value=""; sendTg(id, ns ? `⛔ *ACCOUNT BANNED*\nAccess revoked by Admin.` : `✅ *ACCOUNT RESTORED*\nAccess restored.`);
+                    await updateDoc(doc(db,"users",id), {isBanned:true}); 
+                    // To ban device, we must find the device hash mapped to this user. Since we don't have reverse lookup easily, we just ban the ID. For full device ban, admin relies on auto-blacklist or we'd query device_map. (Simplified here due to constraint).
+                    showToast("User Banned"); el('admUsrId').value="";
                 }
 
                 // UPI Approvals
-                else if(act==='appReq') { 
-                    await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved UPI: WID ${p4}`, timestamp:serverTimestamp()});
-                    showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ *WITHDRAWAL APPROVED*\n\nYour UPI request for *₹${p3}* (WID: \`${p4}\`) processed successfully.`);
+                else if(act==='appReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ UPI Approved for WID: ${p4}`); }
+                else if(act==='rejReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'}); const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Refund WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Rejected & Refunded!"); loadAdminTabs(); sendTg(p2, `⛔ UPI Rejected (Refunded) for WID: ${p4}`); }
+                else if(act==='checkWd') {
+                    const wid=el('admChkWdInp').value.trim().toUpperCase(); const q = await getDocs(query(collection(db,"withdrawals"), where("wId","==",wid))); if(q.empty) throw "WID Not Found";
+                    let wdHtml = ""; q.forEach(d => { const w = d.data(); wdHtml += `<b>WID:</b> ${w.wId}<br><b>User:</b> ${w.userId}<br><b>Amt:</b> ₹${w.amount}<br><b>Status:</b> ${w.status}<br><b>Time:</b> ${ts2Str(w.timestamp)}`; });
+                    el('chkWdRes').innerHTML = wdHtml; el('chkWdRes').classList.remove('hidden'); showToast("Fetched");
                 }
-                else if(act==='rejReq') {
-                    await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'});
-                    const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); // Refund ONLY User
-                    await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Rejected (Refund): WID ${p4}`, timestamp:serverTimestamp()});
-                    showToast("Rejected & Refunded!"); loadAdminTabs(); sendTg(p2, `⛔ *WITHDRAWAL REJECTED*\n\nUPI request for *₹${p3}* (WID: \`${p4}\`) was rejected. Funds refunded.`);
+
+                // Tools
+                else if(act==='sendPush') { await setDoc(doc(db,"settings","sys"), {lastPush: Date.now().toString(), lastPushMsg: el('admPushMsg').value},{merge:true}); showToast("Push Sent to All Users!"); }
+                else if(act==='tgBroadcast') {
+                    const msg = el('admTgMsg').value; if(!msg) throw "Enter message";
+                    const us=await getDocs(collection(db,"users")); let sent=0;
+                    us.forEach(async (d) => { await sendTg(d.id, msg); sent++; }); // Note: Parallel fetches. 
+                    showToast(`Broadcast initiated to ${us.size} users.`); el('admTgMsg').value="";
                 }
                 
-                // CHECK WITHDRAWAL ID
-                else if(act==='checkWd') {
-                    const wid=el('admChkWdInp').value.trim().toUpperCase(); if(!wid) throw "Enter WID";
-                    const q = await getDocs(query(collection(db,"withdrawals"), where("wId","==",wid)));
-                    if(q.empty) throw "WID Not Found";
-                    let wdHtml = "";
-                    q.forEach(d => {
-                        const w = d.data();
-                        let sColor = w.status==='Success'||w.status==='Approved' ? 'var(--success)' : w.status==='Pending' ? 'var(--warning)' : 'var(--danger)';
-                        wdHtml += `<b>WID:</b> ${w.wId}<br><b>User ID:</b> ${w.userId}<br><b>Amount:</b> ₹${w.amount}<br><b>Method:</b> ${w.method}<br><b>Target:</b> ${w.target}<br><b>Status:</b> <span style="color:${sColor}; font-weight:bold;">${w.status}</span><br><b>Time:</b> ${ts2Str(w.timestamp)}`;
-                    });
-                    el('chkWdRes').innerHTML = wdHtml; el('chkWdRes').classList.remove('hidden'); showToast("WID Data Fetched"); el('admChkWdInp').value="";
+                // Logs
+                else if(act==='loadLogs') {
+                    const q=await getDocs(query(collection(db,"api_logs"), orderBy("timestamp","desc"), limit(20))); let html="";
+                    q.forEach(d=>{ const l=d.data(); html+=`<div style="background:rgba(0,0,0,0.5); padding:10px; margin-bottom:10px; border-radius:8px; font-size:11px; word-break:break-all;"><b style="color:var(--primary)">WID:</b> ${l.wId}<br><b style="color:var(--warning)">RAW:</b> ${l.rawResponse}<br><b>Time:</b> ${ts2Str(l.timestamp)}</div>`; });
+                    el('rawLogsList').innerHTML = html || "No logs found"; showToast("Logs Loaded");
                 }
-            } catch(e) { showToast(typeof e==='string'?e:"Execution Error", "error"); }
+
+            } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); }
             hideLoader();
         };
     </script>

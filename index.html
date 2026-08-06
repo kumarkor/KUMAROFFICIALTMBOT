@@ -42,7 +42,6 @@
         .top-ticker span { display: inline-block; padding-left: 100%; animation: marquee 15s linear infinite; }
         @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-        /* Push Notification */
         #push-notification { position:fixed; top:-100px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:rgba(0,0,0,0.95); border:1px solid var(--primary); border-radius:15px; padding:15px; display:flex; align-items:center; gap:15px; z-index:100000; box-shadow:0 20px 40px rgba(0,243,255,0.4); transition:0.5s; }
         #push-notification.show { top: 20px; }
         .push-icon { width:40px; height:40px; background:var(--primary); border-radius:10px; display:flex; justify-content:center; align-items:center; font-size:20px; }
@@ -75,7 +74,7 @@
         .link-text:hover { color: var(--primary); }
 
         /* =======================================================================
-           4. DASHBOARD (Fixed Balance & History)
+           4. DASHBOARD
            ======================================================================= */
         .balance-card { background: linear-gradient(145deg, rgba(188, 19, 254, 0.15), rgba(0, 243, 255, 0.15)); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 35px 20px; text-align: center; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.6); }
         .bal-title { font-family: 'Orbitron'; font-size: 14px; color: var(--text-muted); letter-spacing: 3px; }
@@ -101,7 +100,7 @@
         .task-reward { font-family: 'Orbitron'; font-size: 14px; font-weight: bold; color: var(--success); }
 
         /* =======================================================================
-           5. ADVANCED ADMIN PANEL
+           5. ADMIN PANEL
            ======================================================================= */
         .admin-nav { display: flex; overflow-x: auto; gap: 8px; margin-bottom: 15px; padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .admin-nav::-webkit-scrollbar { height: 0px; }
@@ -124,22 +123,17 @@
         .copy-box { background: rgba(0, 255, 136, 0.08); border: 1px dashed var(--success); padding: 20px; border-radius: 14px; text-align: center; margin-top: 15px; cursor: pointer; }
 
         /* =======================================================================
-           6. OVERLAYS & MODALS (Admin Bypass, Task Submit, Offline)
+           6. OVERLAYS & MODALS (Snake & Doodle Games, Bypass, Task Submit)
            ======================================================================= */
         #maintenance-screen, #version-screen, #offline-screen { position: fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg-dark); z-index:99999; display:none; justify-content:center; align-items:center; flex-direction:column; text-align:center; padding:20px; }
         
-        /* Secret Bypass Target */
         #maint-bypass-target { position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: transparent; cursor: pointer; z-index: 100000; }
-        
-        /* Modals */
         .modal-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:100005; display:none; justify-content:center; align-items:center; backdrop-filter:blur(10px); }
         .modal-box { background:var(--panel-bg); border:1px solid var(--primary); border-radius:20px; padding:25px; width:90%; max-width:400px; box-shadow:0 15px 40px rgba(0,0,0,0.8); }
         
-        /* Offline Games UI */
-        .game-box { background: rgba(0,0,0,0.5); border: 1px solid var(--primary); border-radius: 15px; padding: 15px; width: 100%; max-width: 300px; margin-bottom: 15px; }
-        .tic-tac-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 10px 0; }
-        .tic-cell { height: 60px; background: var(--panel-bg); border: 1px solid var(--primary); display: flex; justify-content: center; align-items: center; font-size: 30px; font-family: 'Orbitron'; font-weight: bold; cursor: pointer; border-radius: 8px; color: #fff; }
-        .tap-btn { width: 100px; height: 100px; border-radius: 50%; background: var(--danger); border: none; font-size: 18px; font-weight: bold; color: #fff; cursor: pointer; box-shadow: var(--glow-danger); margin: 10px auto; display: block; }
+        /* Offline Games (Snake & Doodle Jump) */
+        .game-box { background: rgba(0,0,0,0.6); border: 1px solid var(--primary); border-radius: 15px; padding: 12px; width: 100%; max-width: 320px; margin-bottom: 12px; }
+        canvas { background: #000; display: block; margin: 5px auto; border-radius: 8px; border: 1px solid rgba(0,243,255,0.3); }
 
         /* Utilities */
         #toast-box { position: fixed; top: 35px; right: 20px; z-index: 100010; display: flex; flex-direction: column; gap: 10px; }
@@ -172,7 +166,7 @@
     <!-- Smart Push -->
     <div id="push-notification"><div class="push-icon">🔔</div><div><div style="font-size:11px; color:var(--primary); font-weight:bold;">Ultra Pay Alert</div><div id="push-msg" style="font-size:12px; color:#fff;"></div></div></div>
 
-    <!-- Maintenance Overlay (With Secret Double-Click Box) -->
+    <!-- Maintenance Overlay -->
     <div id="maintenance-screen">
         <div id="maint-bypass-target" ondblclick="openAdminBypass()"></div>
         <svg width="60" height="60" viewBox="0 0 24 24" fill="var(--warning)"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.61-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -203,12 +197,30 @@
         </div>
     </div>
 
-    <!-- Offline Screen -->
+    <!-- Offline Screen (Snake & Doodle Jump) -->
     <div id="offline-screen">
-        <h2 style="color:var(--danger); font-family:'Orbitron'; margin-bottom:10px;">NO INTERNET</h2>
-        <p style="color:var(--text-muted); font-size:12px; margin-bottom:20px;">Play while we reconnect...</p>
-        <div class="game-box"><h3 style="color:var(--primary); font-size:14px; text-align:center;">Tic-Tac-Toe</h3><div class="tic-tac-grid" id="ticGrid"><div class="tic-cell" onclick="playTic(0)"></div><div class="tic-cell" onclick="playTic(1)"></div><div class="tic-cell" onclick="playTic(2)"></div><div class="tic-cell" onclick="playTic(3)"></div><div class="tic-cell" onclick="playTic(4)"></div><div class="tic-cell" onclick="playTic(5)"></div><div class="tic-cell" onclick="playTic(6)"></div><div class="tic-cell" onclick="playTic(7)"></div><div class="tic-cell" onclick="playTic(8)"></div></div><button class="btn btn-outline" style="padding:8px; margin-top:5px; font-size:12px;" onclick="resetTic()">Reset Game</button></div>
-        <div class="game-box"><h3 style="color:var(--warning); font-size:14px; text-align:center;">Fast Tap Challenge</h3><p style="font-size:11px; text-align:center; color:#ccc;">Score: <span id="tapScore" style="color:var(--success); font-weight:bold;">0</span> | Time: <span id="tapTime">10</span>s</p><button class="tap-btn" id="tapBtnBtn" onclick="tapGameClick()">TAP!</button><button class="btn btn-outline" style="padding:8px; margin-top:5px; font-size:12px;" onclick="startTapGame()">Start Tap</button></div>
+        <h2 style="color:var(--danger); font-family:'Orbitron'; margin-bottom:5px; font-size:18px;">NO INTERNET</h2>
+        <p style="color:var(--text-muted); font-size:11px; margin-bottom:10px;">Play offline games while reconnecting...</p>
+        
+        <div class="game-box">
+            <h3 style="color:var(--primary); font-size:12px; text-align:center;">🐍 Snake Game</h3>
+            <canvas id="snakeCanvas" width="280" height="140"></canvas>
+            <div style="display:flex; justify-content:center; gap:10px; margin-top:5px;">
+                <button class="btn btn-outline" style="padding:5px 10px; font-size:10px; margin:0;" onclick="changeSnakeDir('LEFT')">◀</button>
+                <button class="btn btn-outline" style="padding:5px 10px; font-size:10px; margin:0;" onclick="changeSnakeDir('UP')">▲</button>
+                <button class="btn btn-outline" style="padding:5px 10px; font-size:10px; margin:0;" onclick="changeSnakeDir('DOWN')">▼</button>
+                <button class="btn btn-outline" style="padding:5px 10px; font-size:10px; margin:0;" onclick="changeSnakeDir('RIGHT')">▶</button>
+            </div>
+        </div>
+
+        <div class="game-box">
+            <h3 style="color:var(--success); font-size:12px; text-align:center;">🦘 Doodle Jump</h3>
+            <canvas id="doodleCanvas" width="280" height="140"></canvas>
+            <div style="display:flex; justify-content:center; gap:15px; margin-top:5px;">
+                <button class="btn btn-success" style="padding:5px 15px; font-size:10px; margin:0;" onclick="moveDoodle(-15)">◀ LEFT</button>
+                <button class="btn btn-success" style="padding:5px 15px; font-size:10px; margin:0;" onclick="moveDoodle(15)">RIGHT ▶</button>
+            </div>
+        </div>
     </div>
 
     <!-- Version Lock -->
@@ -263,16 +275,14 @@
             <span class="link-text" onclick="switchView('view-login')">⬅ ABORT</span>
         </div>
 
-        <!-- VIEW 4: DASHBOARD (History Added Back!) -->
+        <!-- VIEW 4: DASHBOARD -->
         <div class="view-panel" id="view-dashboard">
-            <!-- Balance Card -->
             <div class="balance-card">
                 <div class="bal-title">NETWORK BALANCE</div>
                 <div class="bal-amt" id="dashBal">₹0</div>
                 <span class="badge" id="dashId">ID: LOADING...</span>
             </div>
 
-            <!-- Action Grid -->
             <div class="action-grid">
                 <div class="action-box" onclick="switchView('view-gift')"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.97.54-2.5 1.35C11.97 2.54 11.05 2 10 2 8.34 2 7 3.34 7 5c0 .35.07.69.18 1H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM15 4c.55 0 1 .45 1 1s-.45 1-1 1h-2c0-1.1.89-2 2-2zM9 4c1.11 0 2 .89 2 2H9c-.55 0-1-.45-1-1s.45-1 1-1zm2 16H7v-8h4v8zm6 0h-4v-8h4v8zm2-10h-2h-4H9H5V8h14v2z"/></svg><div class="action-text">REDEEM</div></div>
                 <div class="action-box" onclick="prepareWithdraw()"><svg viewBox="0 0 24 24"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-2V9h2zM5 19V5h14v2h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2H5z"/></svg><div class="action-text">WITHDRAW</div></div>
@@ -280,7 +290,6 @@
                 <div class="action-box" onclick="switchView('view-profile')"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><div class="action-text">PROFILE</div></div>
             </div>
 
-            <!-- Recent History Restored -->
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:5px;">
                 <h3 style="font-size:14px; font-family:'Orbitron';">RECENT LOGS</h3>
                 <span style="font-size:11px; color:var(--primary); cursor:pointer;" onclick="switchView('view-history')">VIEW ALL</span>
@@ -334,7 +343,7 @@
             <span class="link-text" onclick="switchView('view-dashboard')">⬅ DASHBOARD</span>
         </div>
 
-        <!-- VIEW 9: TASKS (Fixed Buttons) -->
+        <!-- VIEW 9: TASKS -->
         <div class="view-panel" id="view-tasks">
             <h2 class="title" style="color:var(--success);">TASK CENTER</h2>
             <p class="subtitle">Complete Tasks & Upload Proof</p>
@@ -343,7 +352,7 @@
         </div>
 
         <!-- ==========================================================
-             VIEW 10: ADMIN PANEL (10K MASTER LEVEL)
+             VIEW 10: ADMIN PANEL
              ========================================================== -->
         <div class="view-panel" id="view-admin" style="padding: 20px 15px; width:100%; max-width:550px;">
             <h2 class="title" style="color:var(--warning); text-shadow:0 0 10px rgba(255,170,0,0.5); font-size:20px;">ADMIN COMMAND</h2>
@@ -407,7 +416,7 @@
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT LOGIC (FIREBASE V10 + OFFLINE + AUTO LOGIN + TASKS)
+         JAVASCRIPT LOGIC (FIREBASE V10 + OFFLINE GAMES + EXACT TG TEMPLATES)
          ======================================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -421,7 +430,7 @@
         const ADM_ID = "7335163273"; const APP_VERSION = "2.0"; 
         
         let cUid = null, gOtp = null, sysSets = {}, dHash = '';
-        let currentTaskPayload = null; // For Task Submissions
+        let currentTaskPayload = null;
 
         // --- PWA & Sounds ---
         const manifestBlob = new Blob([`{"name":"Ultra Pay Pro","short_name":"UltraPay","start_url":".","display":"standalone","background_color":"#05070f","theme_color":"#05070f","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/2933/2933116.png","sizes":"512x512","type":"image/png"}]}`], {type: 'application/json'});
@@ -439,19 +448,49 @@
         window.showToast = (msg, type='success') => { if(type==='success') playSfx('success'); else if(type==='error') playSfx('error'); const c=el('toast-box'); const d=document.createElement('div'); d.className=`toast ${type}`; d.innerHTML=`<div style="font-size:18px;">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</div><div>${msg}</div>`; c.appendChild(d); setTimeout(()=>{ d.classList.add('fade-out'); setTimeout(()=>d.remove(), 400); }, 3500); };
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; }; window.hideLoader = () => el('loader').style.display='none';
 
-        // --- Telegram & Logger ---
+        // --- Telegram & Exact Formatting Logger ---
         const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
         const adminLog = async (action, details) => { try { await addDoc(collection(db,"admin_logs"), {action, details, timestamp: serverTimestamp()}); sendTg(ADM_ID, `👑 *ADMIN ACTION*\nAction: ${action}\nDetails: ${details}`); } catch(e){} };
 
-        // --- Offline Games ---
-        window.addEventListener('offline', () => { el('offline-screen').style.display = 'flex'; });
+        // --- OFFLINE GAMES (Snake & Doodle Jump) ---
+        window.addEventListener('offline', () => { el('offline-screen').style.display = 'flex'; startSnakeGame(); startDoodleGame(); });
         window.addEventListener('online', () => { el('offline-screen').style.display = 'none'; showToast('Internet Restored!', 'success'); });
-        let ticB=['','','','','','','','',''], ticTurn='X';
-        window.playTic = (i) => { if(ticB[i]===''){ticB[i]=ticTurn; const cells=document.querySelectorAll('.tic-cell'); cells[i].innerText=ticTurn; ticTurn=ticTurn==='X'?'O':'X';} };
-        window.resetTic = () => { ticB=['','','','','','','','','']; ticTurn='X'; document.querySelectorAll('.tic-cell').forEach(c=>c.innerText=''); };
-        let tapS=0, tapT=10, tapInt=null;
-        window.startTapGame = () => { tapS=0; tapT=10; el('tapScore').innerText='0'; el('tapTime').innerText='10'; clearInterval(tapInt); tapInt = setInterval(()=>{ tapT--; el('tapTime').innerText=tapT; if(tapT<=0){clearInterval(tapInt); alert("Time Up! Score: "+tapS);} },1000); };
-        window.tapGameClick = () => { if(tapT>0 && tapT<10){ tapS++; el('tapScore').innerText=tapS; } else if(tapT===10){ startTapGame(); tapS++; el('tapScore').innerText=tapS; } };
+
+        // Snake Game Logic
+        let snakeTimer = null;
+        function startSnakeGame() {
+            const canvas = el('snakeCanvas'); const ctx = canvas.getContext('2d');
+            let snake = [{x: 10, y: 10}, {x: 9, y: 10}]; let food = {x: 5, y: 5}; let dx = 1, dy = 0;
+            clearInterval(snakeTimer);
+            snakeTimer = setInterval(() => {
+                let head = {x: snake[0].x + dx, y: snake[0].y + dy};
+                if(head.x < 0 || head.x >= 28 || head.y < 0 || head.y >= 14) { snake = [{x: 10, y: 10}]; dx=1; dy=0; return; }
+                snake.unshift(head);
+                if(head.x === food.x && head.y === food.y) { food = {x: Math.floor(Math.random()*28), y: Math.floor(Math.random()*14)}; } else { snake.pop(); }
+                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#00ff88"; snake.forEach(part => ctx.fillRect(part.x*10, part.y*10, 9, 9));
+                ctx.fillStyle = "#ff0055"; ctx.fillRect(food.x*10, food.y*10, 9, 9);
+            }, 120);
+        }
+        window.changeSnakeDir = (dir) => { if(dir==='LEFT') {dx=-1; dy=0;} if(dir==='RIGHT') {dx=1; dy=0;} if(dir==='UP') {dx=0; dy=-1;} if(dir==='DOWN') {dx=0; dy=1;} };
+
+        // Doodle Jump Logic
+        let doodleTimer = null;
+        function startDoodleGame() {
+            const canvas = el('doodleCanvas'); const ctx = canvas.getContext('2d');
+            let playerX = 130, playerY = 100, vy = 0;
+            let platforms = [{x: 100, y: 120}, {x: 50, y: 70}, {x: 180, y: 30}];
+            clearInterval(doodleTimer);
+            doodleTimer = setInterval(() => {
+                vy += 0.2; playerY += vy;
+                platforms.forEach(p => { if(playerY >= p.y && playerY <= p.y+8 && playerX >= p.x-10 && playerX <= p.x+35 && vy > 0) { vy = -5; } });
+                if(playerY > 140) { playerY = 20; playerX = Math.random()*240; }
+                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#00f3ff"; ctx.fillRect(playerX, playerY, 12, 12);
+                ctx.fillStyle = "#ffaa00"; platforms.forEach(p => ctx.fillRect(p.x, p.y, 40, 6));
+            }, 50);
+        }
+        window.moveDoodle = (val) => { playerX = Math.max(0, Math.min(260, playerX + val)); };
 
         // --- Init & Auto Login ---
         window.onload = async () => {
@@ -552,7 +591,7 @@
         window.prepareWithdraw = async () => { showLoader(); hideLoader(); if(!sysSets.isWdOn) { el('wd-select').classList.add('hidden'); el('wdClosedMsg').classList.remove('hidden'); } else { el('wd-select').classList.remove('hidden'); el('wdClosedMsg').classList.add('hidden'); el('btnUlt').style.display = sysSets.isUltOn ? 'block' : 'none'; el('btnUpi').style.display = sysSets.isUpiOn ? 'block' : 'none'; } el('wd-form').classList.add('hidden'); switchView('view-withdraw'); };
         window.openWdForm = (method) => { el('wd-select').classList.add('hidden'); el('wd-form').classList.remove('hidden'); el('wdMethodBadge').innerText=method; el('lblWdTarget').innerText=method==='UPI'?'Enter UPI ID':'Ultra Pay Mobile Number'; };
 
-        // --- ADVANCED TASK SYSTEM (USER) ---
+        // --- TASKS WITH EXACT FORMATTING ---
         window.loadTasks = async () => {
             showLoader(); switchView('view-tasks');
             try {
@@ -561,11 +600,15 @@
                 el('userTaskList').innerHTML = html || "<div style='text-align:center; font-size:12px; color:#888;'>No Active Tasks</div>";
             } catch(e) {} hideLoader();
         };
-        window.sendTaskBot = (tName, tAmt) => { showLoader(); sendTg(ADM_ID, `📝 *BOT TASK ALERT*\n\nUser ID: \`${cUid}\`\nTask: *${tName}*\nAmount: ₹${tAmt}`); setTimeout(()=>{ hideLoader(); showToast("Sent to Admin Bot!"); }, 1000); };
+
+        window.sendTaskBot = (tName, tAmt) => { 
+            showLoader(); 
+            sendTg(ADM_ID, `🌸 *${tName}* 🌸\n\n🤭 Amount >> ₹${tAmt}\n👤 User ID: \`${cUid}\`\n\n_Send Task Details via App._`); 
+            setTimeout(()=>{ hideLoader(); showToast("Sent to Admin Bot!"); }, 1000); 
+        };
         
         window.openTaskSubmit = (tId, tName, tAmt) => { currentTaskPayload = {id: tId, name: tName, amt: tAmt}; el('submit-task-name').innerText = tName; el('taskFile').value=""; el('taskText').value=""; el('task-submit-modal').style.display='flex'; };
         
-        // Image Compression for Firebase Limits
         const compressImage = (file) => {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader(); reader.readAsDataURL(file);
@@ -585,13 +628,16 @@
             try {
                 const base64Img = await compressImage(file);
                 await addDoc(collection(db,"task_submissions"), { taskId: currentTaskPayload.id, taskName: currentTaskPayload.name, amount: currentTaskPayload.amt, userId: cUid, text: txt, image: base64Img, status: 'Pending', timestamp: serverTimestamp() });
-                sendTg(ADM_ID, `📂 *NEW TASK SUBMISSION*\nUser: \`${cUid}\`\nTask: ${currentTaskPayload.name}\n_Check Admin Panel for Approval._`);
+                
+                // Exact Formatting for Submission Alert
+                sendTg(ADM_ID, `📂 *NEW TASK SUBMISSION*\n\nUser: \`${cUid}\`\nTask: *${currentTaskPayload.name}*\n🤭 Amount >> ₹${currentTaskPayload.amt}\n📝 Details: ${txt}\n\n_Check Admin Panel for Approval._`);
+                
                 el('task-submit-modal').style.display='none'; showToast("Task Submitted to Admin!"); switchView('view-dashboard');
             } catch(e) { showToast("Upload Failed", "error"); }
             hideLoader();
         };
 
-        // --- USER TRANSACTIONS ---
+        // --- TRANSACTIONS ---
         window.userAction = async (act) => {
             showLoader("PROCESSING...");
             try {
@@ -639,7 +685,7 @@
             hideLoader();
         };
 
-        // --- ADMIN PANEL CONTROLS (10K MASTER LEVEL) ---
+        // --- ADMIN PANEL ---
         window.openAdmTab = tId => { document.querySelectorAll('.admin-tab').forEach(e=>e.classList.remove('active')); document.querySelectorAll('.admin-content').forEach(e=>e.classList.remove('active')); event.target.classList.add('active'); el(tId).classList.add('active'); };
         
         async function loadAdminTabs() {
@@ -677,18 +723,32 @@
                 else if(act==='appReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ UPI Approved WID: ${p4}`); adminLog("Approve UPI", `WID: ${p4}`); }
                 else if(act==='rejReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'}); const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Refund WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Rejected!"); loadAdminTabs(); sendTg(p2, `⛔ UPI Rejected (Refund) WID: ${p4}`); adminLog("Reject UPI", `WID: ${p4}`); }
                 
-                else if(act==='createTask') { const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value); if(!n||isNaN(a)) throw "Invalid"; await addDoc(collection(db,"tasks"), {name:n, amount:a, createdAt:serverTimestamp()}); showToast("Task Created"); el('admTaskName').value=""; loadAdminTabs(); adminLog("Task Created", `${n}, ₹${a}`); }
+                else if(act==='createTask') { 
+                    const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value); if(!n||isNaN(a)) throw "Invalid"; 
+                    await addDoc(collection(db,"tasks"), {name:n, amount:a, createdAt:serverTimestamp()}); 
+                    showToast("Task Created"); el('admTaskName').value=""; loadAdminTabs(); 
+                    
+                    // Exact Formatting for Task Creation Alert
+                    sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\n\n_Task successfully live in app!_`);
+                    adminLog("Task Created", `${n}, ₹${a}`);
+                }
                 else if(act==='delTask') { await deleteDoc(doc(db,"tasks",p1)); showToast("Deleted"); loadAdminTabs(); }
 
-                // TASK APPROVALS
+                // TASK APPROVALS WITH EXACT FORMATTING
                 else if(act==='appTask') {
                     await updateDoc(doc(db,"task_submissions",p1), {status:'Approved'}); 
                     const ud = await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3});
                     await addDoc(collection(db,"users",p2,"history"), {type:"ADMIN_ADD", amount:p3, details:`Task Approved: ${p4}`, timestamp:serverTimestamp()});
-                    showToast("Task Approved!"); loadAdminTabs(); sendTg(p2, `✅ *TASK APPROVED*\nYour task "${p4}" was approved. ₹${p3} added.`); adminLog("Task App", `User: ${p2}, Task: ${p4}`);
+                    showToast("Task Approved!"); loadAdminTabs(); 
+                    
+                    // Exact Formatting for Task Approved Alert
+                    sendTg(p2, `✅ *TASK APPROVED*\n\nYour task "*${p4}*" was approved!\n🤭 Amount >> ₹${p3} added to wallet.`);
+                    adminLog("Task App", `User: ${p2}, Task: ${p4}`);
                 }
                 else if(act==='rejTask') {
-                    await updateDoc(doc(db,"task_submissions",p1), {status:'Rejected'}); showToast("Task Rejected"); loadAdminTabs(); sendTg(p2, `⛔ *TASK REJECTED*\nYour submission for "${p3}" was rejected by Admin.`); adminLog("Task Rej", `User: ${p2}, Task: ${p3}`);
+                    await updateDoc(doc(db,"task_submissions",p1), {status:'Rejected'}); showToast("Task Rejected"); loadAdminTabs(); 
+                    sendTg(p2, `⛔ *TASK REJECTED*\n\nYour submission for "*${p3}*" was rejected by Admin.`); 
+                    adminLog("Task Rej", `User: ${p2}, Task: ${p3}`);
                 }
 
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); }

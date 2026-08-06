@@ -14,15 +14,15 @@
     
     <style>
         /* =======================================================================
-           1. CORE THEME & VARIABLES
+           1. CORE THEME & VARIABLES (Modern Finetech UI)
            ======================================================================= */
         :root {
             --primary: #00f3ff; --secondary: #bc13fe; --accent: #0077ff;
             --danger: #ff0055; --success: #00ff88; --warning: #ffaa00;
-            --bg-dark: #05070f; --panel-bg: rgba(10, 14, 26, 0.85); --input-bg: rgba(0, 0, 0, 0.6);
+            --bg-dark: #05070f; --panel-bg: rgba(10, 14, 26, 0.9); --input-bg: rgba(0, 0, 0, 0.7);
             --text-main: #ffffff; --text-muted: #8b9bb4;
-            --glow-primary: 0 0 20px rgba(0, 243, 255, 0.4); --glow-danger: 0 0 20px rgba(255, 0, 85, 0.4);
-            --glow-success: 0 0 20px rgba(0, 255, 136, 0.4);
+            --glow-primary: 0 0 25px rgba(0, 243, 255, 0.4); --glow-danger: 0 0 25px rgba(255, 0, 85, 0.4);
+            --glow-success: 0 0 25px rgba(0, 255, 136, 0.4);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -50,7 +50,7 @@
            3. UI PANELS & BUTTONS
            ======================================================================= */
         .app-container { width: 100%; max-width: 500px; padding: 20px; z-index: 10; margin: auto; position: relative; padding-top: 40px; }
-        .view-panel { background: var(--panel-bg); backdrop-filter: blur(24px); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 24px; padding: 30px 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); display: none; opacity: 0; transform: translateY(30px) scale(0.98); }
+        .view-panel { background: var(--panel-bg); backdrop-filter: blur(25px); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 28px; padding: 30px 22px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); display: none; opacity: 0; transform: translateY(30px) scale(0.98); }
         .view-panel.active { display: block; animation: panelEntrance 0.4s forwards; }
         @keyframes panelEntrance { to { opacity: 1; transform: translateY(0) scale(1); } }
 
@@ -58,12 +58,12 @@
         p.subtitle { text-align: center; color: var(--text-muted); font-size: 12px; margin-bottom: 25px; }
 
         .input-group { position: relative; margin-bottom: 20px; }
-        .form-control { width: 100%; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); padding: 16px 20px; border-radius: 12px; font-size: 14px; outline: none; transition: 0.3s; }
-        .form-control:focus { border-color: var(--primary); background: rgba(0,0,0,0.8); box-shadow: var(--glow-primary); }
+        .form-control { width: 100%; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); padding: 16px 20px; border-radius: 14px; font-size: 14px; outline: none; transition: 0.3s; }
+        .form-control:focus { border-color: var(--primary); background: rgba(0,0,0,0.9); box-shadow: var(--glow-primary); }
         .form-label { position: absolute; top: 16px; left: 20px; color: var(--text-muted); font-size: 13px; pointer-events: none; transition: 0.3s; z-index: 1; }
         .form-control:focus ~ .form-label, .form-control:valid ~ .form-label { top: -10px; left: 15px; font-size: 11px; font-weight: 600; background: var(--bg-dark); padding: 0 8px; color: var(--primary); border: 1px solid var(--primary); border-radius: 6px; }
 
-        .btn { width: 100%; padding: 15px; border: none; border-radius: 12px; font-size: 14px; font-weight: 700; font-family: 'Orbitron', sans-serif; cursor: pointer; text-transform: uppercase; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; background: linear-gradient(135deg, var(--primary), var(--accent)); color: #000; box-shadow: var(--glow-primary); margin-bottom: 12px; }
+        .btn { width: 100%; padding: 15px; border: none; border-radius: 14px; font-size: 14px; font-weight: 700; font-family: 'Orbitron', sans-serif; cursor: pointer; text-transform: uppercase; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; background: linear-gradient(135deg, var(--primary), var(--accent)); color: #000; box-shadow: var(--glow-primary); margin-bottom: 12px; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 243, 255, 0.6); }
         .btn-danger { background: linear-gradient(135deg, var(--danger), #ff5e00); color: #fff; box-shadow: var(--glow-danger); }
         .btn-success { background: linear-gradient(135deg, var(--success), #00aa55); color: #000; box-shadow: var(--glow-success); }
@@ -74,21 +74,24 @@
         .link-text:hover { color: var(--primary); }
 
         /* =======================================================================
-           4. DASHBOARD
+           4. NEW MODERN MAIN MENU (Dashboard UI Upgrade)
            ======================================================================= */
-        .balance-card { background: linear-gradient(145deg, rgba(188, 19, 254, 0.15), rgba(0, 243, 255, 0.15)); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 35px 20px; text-align: center; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.6); }
-        .bal-title { font-family: 'Orbitron'; font-size: 14px; color: var(--text-muted); letter-spacing: 3px; }
-        .bal-amt { font-family: 'Orbitron'; font-size: 55px; font-weight: 900; color: #fff; text-shadow: var(--glow-primary); margin: 10px 0 20px; word-break: break-all; line-height:1; }
-        .badge { display: inline-block; background: rgba(0,0,0,0.7); padding: 5px 15px; border-radius: 15px; font-size: 11px; font-weight: 600; color: var(--primary); border: 1px solid var(--primary); letter-spacing: 1px; }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: rgba(0,0,0,0.4); padding: 12px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .dash-user-info { display: flex; align-items: center; gap: 10px; }
+        .dash-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; justify-content: center; align-items: center; font-size: 18px; font-weight: bold; }
+        
+        .modern-balance-card { background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(188, 19, 254, 0.15)); border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 22px; padding: 25px 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; overflow: hidden; }
+        .modern-bal-title { font-family: 'Orbitron'; font-size: 12px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+        .modern-bal-amt { font-family: 'Orbitron'; font-size: 42px; font-weight: 900; color: #fff; text-shadow: var(--glow-primary); margin: 8px 0; word-break: break-all; }
+        
+        .modern-menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+        .modern-menu-item { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 15px 5px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
+        .modern-menu-item:hover { border-color: var(--primary); background: rgba(0, 243, 255, 0.05); transform: translateY(-3px); }
+        .modern-menu-item svg { width: 24px; height: 24px; fill: var(--primary); margin-bottom: 8px; }
+        .modern-menu-text { font-size: 10px; font-weight: 700; font-family: 'Orbitron'; color: #fff; text-transform: uppercase; }
 
-        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
-        .action-box { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 15px; padding: 20px 10px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
-        .action-box:hover { border-color: var(--primary); box-shadow: var(--glow-primary); transform: translateY(-4px); }
-        .action-box svg { width: 30px; height: 30px; fill: var(--primary); margin-bottom: 10px; }
-        .action-text { font-size: 12px; font-weight: 700; font-family: 'Orbitron'; color: #fff; }
-
-        .data-list { max-height: 400px; overflow-y: auto; padding-right: 5px; margin-bottom:15px; }
-        .hist-item, .task-item { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .data-list { max-height: 350px; overflow-y: auto; padding-right: 5px; margin-bottom: 15px; }
+        .hist-item, .task-item { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.03); padding: 15px; border-radius: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
         .hist-item:hover, .task-item:hover { background: rgba(0,0,0,0.6); transform: translateX(3px); }
         .hist-credit { border-left: 4px solid var(--success); } .hist-debit { border-left: 4px solid var(--danger); } .hist-pending { border-left: 4px solid var(--warning); }
         .hist-title { font-size: 13px; font-weight: 600; color: #fff; } .hist-date { font-size: 10px; color: var(--text-muted); }
@@ -110,7 +113,7 @@
         .admin-content.active { display: block; animation: slideUp 0.3s; }
         @keyframes slideUp { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
         
-        .admin-card { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,170,0,0.2); padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        .admin-card { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,170,0,0.2); padding: 15px; border-radius: 14px; margin-bottom: 15px; }
         .admin-card-title { font-family: 'Orbitron'; font-size: 12px; color: var(--warning); margin-bottom: 12px; border-bottom: 1px dashed rgba(255,170,0,0.3); padding-bottom: 5px; text-transform: uppercase;}
         .result-box { background: rgba(0,0,0,0.6); padding: 12px; border-radius: 8px; margin-top: 10px; border: 1px dashed var(--primary); font-size: 12px; line-height: 1.5; word-break: break-all;}
         .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(0,0,0,0.5); border-radius: 10px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.05); font-size: 13px; font-weight: 500; }
@@ -123,17 +126,17 @@
         .copy-box { background: rgba(0, 255, 136, 0.08); border: 1px dashed var(--success); padding: 20px; border-radius: 14px; text-align: center; margin-top: 15px; cursor: pointer; }
 
         /* =======================================================================
-           6. OVERLAYS & MODALS (Snake & Doodle Games, Bypass, Task Submit)
+           6. OVERLAYS & WORKING OFFLINE GAMES (Snake & Doodle Jump Canvas Fixed)
            ======================================================================= */
-        #maintenance-screen, #version-screen, #offline-screen { position: fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg-dark); z-index:99999; display:none; justify-content:center; align-items:center; flex-direction:column; text-align:center; padding:20px; }
+        #maintenance-screen, #version-screen, #offline-screen { position: fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg-dark); z-index:99999; display:none; justify-content:center; align-items:center; flex-direction:column; text-align:center; padding:20px; overflow-y:auto; }
         
         #maint-bypass-target { position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: transparent; cursor: pointer; z-index: 100000; }
         .modal-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:100005; display:none; justify-content:center; align-items:center; backdrop-filter:blur(10px); }
         .modal-box { background:var(--panel-bg); border:1px solid var(--primary); border-radius:20px; padding:25px; width:90%; max-width:400px; box-shadow:0 15px 40px rgba(0,0,0,0.8); }
         
-        /* Offline Games (Snake & Doodle Jump) */
-        .game-box { background: rgba(0,0,0,0.6); border: 1px solid var(--primary); border-radius: 15px; padding: 12px; width: 100%; max-width: 320px; margin-bottom: 12px; }
-        canvas { background: #000; display: block; margin: 5px auto; border-radius: 8px; border: 1px solid rgba(0,243,255,0.3); }
+        /* Working Offline Canvas Games */
+        .game-box { background: rgba(0,0,0,0.7); border: 1px solid var(--primary); border-radius: 16px; padding: 12px; width: 100%; max-width: 320px; margin-bottom: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        canvas { background: #000; display: block; margin: 8px auto; border-radius: 10px; border: 1px solid rgba(0,243,255,0.4); box-shadow: inset 0 0 15px rgba(0,0,0,0.8); }
 
         /* Utilities */
         #toast-box { position: fixed; top: 35px; right: 20px; z-index: 100010; display: flex; flex-direction: column; gap: 10px; }
@@ -197,28 +200,28 @@
         </div>
     </div>
 
-    <!-- Offline Screen (Snake & Doodle Jump) -->
+    <!-- Offline Screen (Fixed Canvas Games) -->
     <div id="offline-screen">
         <h2 style="color:var(--danger); font-family:'Orbitron'; margin-bottom:5px; font-size:18px;">NO INTERNET</h2>
-        <p style="color:var(--text-muted); font-size:11px; margin-bottom:10px;">Play offline games while reconnecting...</p>
+        <p style="color:var(--text-muted); font-size:11px; margin-bottom:12px;">Play offline games while reconnecting...</p>
         
         <div class="game-box">
             <h3 style="color:var(--primary); font-size:12px; text-align:center;">🐍 Snake Game</h3>
-            <canvas id="snakeCanvas" width="280" height="140"></canvas>
-            <div style="display:flex; justify-content:center; gap:10px; margin-top:5px;">
-                <button class="btn btn-outline" style="padding:5px 10px; font-size:10px; margin:0;" onclick="changeSnakeDir('LEFT')">◀</button>
-                <button class="btn btn-outline" style="padding:5px 10px; font-size:10px; margin:0;" onclick="changeSnakeDir('UP')">▲</button>
-                <button class="btn btn-outline" style="padding:5px 10px; font-size:10px; margin:0;" onclick="changeSnakeDir('DOWN')">▼</button>
-                <button class="btn btn-outline" style="padding:5px 10px; font-size:10px; margin:0;" onclick="changeSnakeDir('RIGHT')">▶</button>
+            <canvas id="snakeCanvas" width="260" height="130"></canvas>
+            <div style="display:flex; justify-content:center; gap:8px; margin-top:5px;">
+                <button class="btn btn-outline" style="padding:6px 12px; font-size:11px; margin:0;" onclick="changeSnakeDir('LEFT')">◀</button>
+                <button class="btn btn-outline" style="padding:6px 12px; font-size:11px; margin:0;" onclick="changeSnakeDir('UP')">▲</button>
+                <button class="btn btn-outline" style="padding:6px 12px; font-size:11px; margin:0;" onclick="changeSnakeDir('DOWN')">▼</button>
+                <button class="btn btn-outline" style="padding:6px 12px; font-size:11px; margin:0;" onclick="changeSnakeDir('RIGHT')">▶</button>
             </div>
         </div>
 
         <div class="game-box">
             <h3 style="color:var(--success); font-size:12px; text-align:center;">🦘 Doodle Jump</h3>
-            <canvas id="doodleCanvas" width="280" height="140"></canvas>
+            <canvas id="doodleCanvas" width="260" height="130"></canvas>
             <div style="display:flex; justify-content:center; gap:15px; margin-top:5px;">
-                <button class="btn btn-success" style="padding:5px 15px; font-size:10px; margin:0;" onclick="moveDoodle(-15)">◀ LEFT</button>
-                <button class="btn btn-success" style="padding:5px 15px; font-size:10px; margin:0;" onclick="moveDoodle(15)">RIGHT ▶</button>
+                <button class="btn btn-success" style="padding:6px 18px; font-size:11px; margin:0;" onclick="moveDoodle(-15)">◀ LEFT</button>
+                <button class="btn btn-success" style="padding:6px 18px; font-size:11px; margin:0;" onclick="moveDoodle(15)">RIGHT ▶</button>
             </div>
         </div>
     </div>
@@ -275,38 +278,66 @@
             <span class="link-text" onclick="switchView('view-login')">⬅ ABORT</span>
         </div>
 
-        <!-- VIEW 4: DASHBOARD -->
+        <!-- VIEW 4: MODERN DASHBOARD (Brand New Main Menu Layout) -->
         <div class="view-panel" id="view-dashboard">
-            <div class="balance-card">
-                <div class="bal-title">NETWORK BALANCE</div>
-                <div class="bal-amt" id="dashBal">₹0</div>
-                <span class="badge" id="dashId">ID: LOADING...</span>
+            <!-- Header Profile -->
+            <div class="dash-header">
+                <div class="dash-user-info">
+                    <div class="dash-avatar">👤</div>
+                    <div>
+                        <div style="font-size:10px; color:var(--text-muted);">SECURE ID</div>
+                        <div id="dashId" style="font-family:'Orbitron'; font-size:12px; font-weight:bold; color:var(--primary);">--</div>
+                    </div>
+                </div>
+                <div class="badge" style="background:rgba(0,255,136,0.1); color:var(--success); border-color:var(--success);">SECURE</div>
             </div>
 
-            <div class="action-grid">
-                <div class="action-box" onclick="switchView('view-gift')"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.97.54-2.5 1.35C11.97 2.54 11.05 2 10 2 8.34 2 7 3.34 7 5c0 .35.07.69.18 1H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM15 4c.55 0 1 .45 1 1s-.45 1-1 1h-2c0-1.1.89-2 2-2zM9 4c1.11 0 2 .89 2 2H9c-.55 0-1-.45-1-1s.45-1 1-1zm2 16H7v-8h4v8zm6 0h-4v-8h4v8zm2-10h-2h-4H9H5V8h14v2z"/></svg><div class="action-text">REDEEM</div></div>
-                <div class="action-box" onclick="prepareWithdraw()"><svg viewBox="0 0 24 24"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-2V9h2zM5 19V5h14v2h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2H5z"/></svg><div class="action-text">WITHDRAW</div></div>
-                <div class="action-box" onclick="loadTasks()"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg><div class="action-text">TASKS</div></div>
-                <div class="action-box" onclick="switchView('view-profile')"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><div class="action-text">PROFILE</div></div>
+            <!-- Modern Balance Card -->
+            <div class="modern-balance-card">
+                <div class="modern-bal-title">Available Network Balance</div>
+                <div class="modern-bal-amt" id="dashBal">₹0</div>
+                <div style="font-size:11px; color:var(--text-muted);">Encrypted Finetech Wallet</div>
             </div>
 
+            <!-- 4 Grid Menu Options -->
+            <div class="modern-menu-grid">
+                <div class="modern-menu-item" onclick="switchView('view-gift')">
+                    <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.97.54-2.5 1.35C11.97 2.54 11.05 2 10 2 8.34 2 7 3.34 7 5c0 .35.07.69.18 1H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM15 4c.55 0 1 .45 1 1s-.45 1-1 1h-2c0-1.1.89-2 2-2zM9 4c1.11 0 2 .89 2 2H9c-.55 0-1-.45-1-1s.45-1 1-1zm2 16H7v-8h4v8zm6 0h-4v-8h4v8zm2-10h-2h-4H9H5V8h14v2z"/></svg>
+                    <span class="modern-menu-text">REDEEM</span>
+                </div>
+                <div class="modern-menu-item" onclick="prepareWithdraw()">
+                    <svg viewBox="0 0 24 24"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-2V9h2zM5 19V5h14v2h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2H5z"/></svg>
+                    <span class="modern-menu-text">WITHDRAW</span>
+                </div>
+                <div class="modern-menu-item" onclick="loadTasks()">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg>
+                    <span class="modern-menu-text">TASKS</span>
+                </div>
+                <div class="modern-menu-item" onclick="switchView('view-profile')">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <span class="modern-menu-text">PROFILE</span>
+                </div>
+            </div>
+
+            <!-- Recent History -->
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:5px;">
-                <h3 style="font-size:14px; font-family:'Orbitron';">RECENT LOGS</h3>
+                <h3 style="font-size:13px; font-family:'Orbitron';">RECENT LOGS</h3>
                 <span style="font-size:11px; color:var(--primary); cursor:pointer;" onclick="switchView('view-history')">VIEW ALL</span>
             </div>
-            <div class="data-list" id="dashHistList" style="max-height: 200px;"></div>
+            <div class="data-list" id="dashHistList" style="max-height: 160px;"></div>
 
-            <button id="btnAdmin" class="btn btn-warning hidden" onclick="switchView('view-admin')">👑 ADMIN PANEL</button>
-            <button class="btn btn-outline" onclick="logoutApp()">LOGOUT SECURELY</button>
+            <button id="btnAdmin" class="btn btn-warning hidden" onclick="switchView('view-admin')" style="margin-top:10px;">👑 ADMIN PANEL</button>
+            <button class="btn btn-outline" onclick="logoutApp()" style="margin-top:5px;">LOGOUT SECURELY</button>
         </div>
 
         <!-- VIEW 5: PROFILE -->
         <div class="view-panel" id="view-profile">
             <h2 class="title">MY PROFILE</h2>
-            <div class="profile-avatar">👤</div><div style="text-align:center; margin-bottom:15px;"><div class="badge" id="profIdBadge">ID: -----</div></div>
-            <div class="info-row"><span class="info-label">Status</span><span class="info-val" style="color:var(--success);">Active</span></div>
-            <div class="info-row"><span class="info-label">Join Date</span><span class="info-val" id="profDate">--</span></div>
-            <div class="support-box"><div style="font-size:11px; color:var(--text-muted); margin-bottom:5px;">Support</div><a href="https://t.me/kumarkor" target="_blank" class="kumarkor-link">@kumarkor</a></div>
+            <div class="profile-avatar" style="width:70px; height:70px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--secondary)); margin:0 auto 15px; display:flex; justify-content:center; align-items:center; font-size:30px;">👤</div>
+            <div style="text-align:center; margin-bottom:15px;"><div class="badge" id="profIdBadge">ID: -----</div></div>
+            <div class="info-row" style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.4); border-radius:10px; margin-bottom:10px; font-size:13px;"><span>Status</span><span style="color:var(--success);">Active</span></div>
+            <div class="info-row" style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.4); border-radius:10px; margin-bottom:15px; font-size:13px;"><span>Join Date</span><span id="profDate">--</span></div>
+            <div class="support-box" style="background:rgba(0,243,255,0.05); border:1px dashed var(--primary); padding:15px; border-radius:12px; text-align:center;"><div style="font-size:11px; color:var(--text-muted); margin-bottom:5px;">Support</div><a href="https://t.me/kumarkor" target="_blank" class="kumarkor-link" style="font-family:'Orbitron'; font-weight:700; color:var(--primary); text-decoration:none;">@kumarkor</a></div>
             <span class="link-text" onclick="switchView('view-dashboard')">⬅ DASHBOARD</span>
         </div>
 
@@ -416,7 +447,7 @@
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT LOGIC (FIREBASE V10 + OFFLINE GAMES + EXACT TG TEMPLATES)
+         JAVASCRIPT LOGIC (FIREBASE V10 + WORKING CANVAS GAMES + TEMPLATES)
          ======================================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -448,49 +479,50 @@
         window.showToast = (msg, type='success') => { if(type==='success') playSfx('success'); else if(type==='error') playSfx('error'); const c=el('toast-box'); const d=document.createElement('div'); d.className=`toast ${type}`; d.innerHTML=`<div style="font-size:18px;">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</div><div>${msg}</div>`; c.appendChild(d); setTimeout(()=>{ d.classList.add('fade-out'); setTimeout(()=>d.remove(), 400); }, 3500); };
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; }; window.hideLoader = () => el('loader').style.display='none';
 
-        // --- Telegram & Exact Formatting Logger ---
+        // --- Telegram & Logger ---
         const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
         const adminLog = async (action, details) => { try { await addDoc(collection(db,"admin_logs"), {action, details, timestamp: serverTimestamp()}); sendTg(ADM_ID, `👑 *ADMIN ACTION*\nAction: ${action}\nDetails: ${details}`); } catch(e){} };
 
-        // --- OFFLINE GAMES (Snake & Doodle Jump) ---
-        window.addEventListener('offline', () => { el('offline-screen').style.display = 'flex'; startSnakeGame(); startDoodleGame(); });
+        // --- WORKING OFFLINE GAMES (Snake & Doodle Jump) ---
+        window.addEventListener('offline', () => { el('offline-screen').style.display = 'flex'; initSnakeGame(); initDoodleGame(); });
         window.addEventListener('online', () => { el('offline-screen').style.display = 'none'; showToast('Internet Restored!', 'success'); });
 
-        // Snake Game Logic
-        let snakeTimer = null;
-        function startSnakeGame() {
-            const canvas = el('snakeCanvas'); const ctx = canvas.getContext('2d');
-            let snake = [{x: 10, y: 10}, {x: 9, y: 10}]; let food = {x: 5, y: 5}; let dx = 1, dy = 0;
-            clearInterval(snakeTimer);
-            snakeTimer = setInterval(() => {
-                let head = {x: snake[0].x + dx, y: snake[0].y + dy};
-                if(head.x < 0 || head.x >= 28 || head.y < 0 || head.y >= 14) { snake = [{x: 10, y: 10}]; dx=1; dy=0; return; }
-                snake.unshift(head);
-                if(head.x === food.x && head.y === food.y) { food = {x: Math.floor(Math.random()*28), y: Math.floor(Math.random()*14)}; } else { snake.pop(); }
-                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "#00ff88"; snake.forEach(part => ctx.fillRect(part.x*10, part.y*10, 9, 9));
-                ctx.fillStyle = "#ff0055"; ctx.fillRect(food.x*10, food.y*10, 9, 9);
-            }, 120);
-        }
-        window.changeSnakeDir = (dir) => { if(dir==='LEFT') {dx=-1; dy=0;} if(dir==='RIGHT') {dx=1; dy=0;} if(dir==='UP') {dx=0; dy=-1;} if(dir==='DOWN') {dx=0; dy=1;} };
+        let snakeInterval = null, doodleInterval = null;
+        let snakeDir = 'RIGHT';
 
-        // Doodle Jump Logic
-        let doodleTimer = null;
-        function startDoodleGame() {
-            const canvas = el('doodleCanvas'); const ctx = canvas.getContext('2d');
-            let playerX = 130, playerY = 100, vy = 0;
-            let platforms = [{x: 100, y: 120}, {x: 50, y: 70}, {x: 180, y: 30}];
-            clearInterval(doodleTimer);
-            doodleTimer = setInterval(() => {
-                vy += 0.2; playerY += vy;
-                platforms.forEach(p => { if(playerY >= p.y && playerY <= p.y+8 && playerX >= p.x-10 && playerX <= p.x+35 && vy > 0) { vy = -5; } });
-                if(playerY > 140) { playerY = 20; playerX = Math.random()*240; }
+        function initSnakeGame() {
+            const canvas = el('snakeCanvas'); if(!canvas) return; const ctx = canvas.getContext('2d');
+            let snake = [{x: 10, y: 10}, {x: 9, y: 10}]; let food = {x: 5, y: 5};
+            clearInterval(snakeInterval);
+            snakeInterval = setInterval(() => {
+                let head = {x: snake[0].x, y: snake[0].y};
+                if(snakeDir === 'LEFT') head.x--; if(snakeDir === 'RIGHT') head.x++;
+                if(snakeDir === 'UP') head.y--; if(snakeDir === 'DOWN') head.y++;
+                if(head.x < 0 || head.x >= 26 || head.y < 0 || head.y >= 13) { snake = [{x: 10, y: 10}, {x: 9, y: 10}]; snakeDir = 'RIGHT'; return; }
+                snake.unshift(head);
+                if(head.x === food.x && head.y === food.y) { food = {x: Math.floor(Math.random()*26), y: Math.floor(Math.random()*13)}; } else { snake.pop(); }
                 ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "#00f3ff"; ctx.fillRect(playerX, playerY, 12, 12);
-                ctx.fillStyle = "#ffaa00"; platforms.forEach(p => ctx.fillRect(p.x, p.y, 40, 6));
+                ctx.fillStyle = "#00ff88"; snake.forEach(p => ctx.fillRect(p.x*10, p.y*10, 9, 9));
+                ctx.fillStyle = "#ff0055"; ctx.fillRect(food.x*10, food.y*10, 9, 9);
+            }, 130);
+        }
+        window.changeSnakeDir = (d) => { if((d==='LEFT'&&snakeDir!=='RIGHT')||(d==='RIGHT'&&snakeDir!=='LEFT')||(d==='UP'&&snakeDir!=='DOWN')||(d==='DOWN'&&snakeDir!=='UP')) snakeDir = d; };
+
+        let doodleX = 110, doodleY = 90, doodleVy = 0;
+        function initDoodleGame() {
+            const canvas = el('doodleCanvas'); if(!canvas) return; const ctx = canvas.getContext('2d');
+            let plats = [{x: 90, y: 110}, {x: 30, y: 70}, {x: 160, y: 30}];
+            clearInterval(doodleInterval);
+            doodleInterval = setInterval(() => {
+                doodleVy += 0.25; doodleY += doodleVy;
+                plats.forEach(p => { if(doodleY >= p.y && doodleY <= p.y+8 && doodleX >= p.x-10 && doodleX <= p.x+40 && doodleVy > 0) { doodleVy = -5; } });
+                if(doodleY > 130) { doodleY = 10; doodleX = Math.random()*220; }
+                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#00f3ff"; ctx.fillRect(doodleX, doodleY, 12, 12);
+                ctx.fillStyle = "#ffaa00"; plats.forEach(p => ctx.fillRect(p.x, p.y, 40, 6));
             }, 50);
         }
-        window.moveDoodle = (val) => { playerX = Math.max(0, Math.min(260, playerX + val)); };
+        window.moveDoodle = (v) => { doodleX = Math.max(0, Math.min(240, doodleX + v)); };
 
         // --- Init & Auto Login ---
         window.onload = async () => {
@@ -629,7 +661,6 @@
                 const base64Img = await compressImage(file);
                 await addDoc(collection(db,"task_submissions"), { taskId: currentTaskPayload.id, taskName: currentTaskPayload.name, amount: currentTaskPayload.amt, userId: cUid, text: txt, image: base64Img, status: 'Pending', timestamp: serverTimestamp() });
                 
-                // Exact Formatting for Submission Alert
                 sendTg(ADM_ID, `📂 *NEW TASK SUBMISSION*\n\nUser: \`${cUid}\`\nTask: *${currentTaskPayload.name}*\n🤭 Amount >> ₹${currentTaskPayload.amt}\n📝 Details: ${txt}\n\n_Check Admin Panel for Approval._`);
                 
                 el('task-submit-modal').style.display='none'; showToast("Task Submitted to Admin!"); switchView('view-dashboard');
@@ -728,20 +759,17 @@
                     await addDoc(collection(db,"tasks"), {name:n, amount:a, createdAt:serverTimestamp()}); 
                     showToast("Task Created"); el('admTaskName').value=""; loadAdminTabs(); 
                     
-                    // Exact Formatting for Task Creation Alert
                     sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\n\n_Task successfully live in app!_`);
                     adminLog("Task Created", `${n}, ₹${a}`);
                 }
                 else if(act==='delTask') { await deleteDoc(doc(db,"tasks",p1)); showToast("Deleted"); loadAdminTabs(); }
 
-                // TASK APPROVALS WITH EXACT FORMATTING
                 else if(act==='appTask') {
                     await updateDoc(doc(db,"task_submissions",p1), {status:'Approved'}); 
                     const ud = await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3});
                     await addDoc(collection(db,"users",p2,"history"), {type:"ADMIN_ADD", amount:p3, details:`Task Approved: ${p4}`, timestamp:serverTimestamp()});
                     showToast("Task Approved!"); loadAdminTabs(); 
                     
-                    // Exact Formatting for Task Approved Alert
                     sendTg(p2, `✅ *TASK APPROVED*\n\nYour task "*${p4}*" was approved!\n🤭 Amount >> ₹${p3} added to wallet.`);
                     adminLog("Task App", `User: ${p2}, Task: ${p4}`);
                 }

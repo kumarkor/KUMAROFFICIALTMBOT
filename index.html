@@ -14,7 +14,7 @@
     
     <style>
         /* =======================================================================
-           1. CORE THEME & VARIABLES (Modern Finetech UI)
+           1. CORE THEME & VARIABLES
            ======================================================================= */
         :root {
             --primary: #00f3ff; --secondary: #bc13fe; --accent: #0077ff;
@@ -54,11 +54,12 @@
         .view-panel.active { display: block; animation: panelEntrance 0.4s forwards; }
         @keyframes panelEntrance { to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        h2.title { font-family: 'Orbitron', sans-serif; font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2.title { font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         p.subtitle { text-align: center; color: var(--text-muted); font-size: 12px; margin-bottom: 25px; }
 
         .input-group { position: relative; margin-bottom: 20px; }
         .form-control { width: 100%; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); padding: 16px 20px; border-radius: 14px; font-size: 14px; outline: none; transition: 0.3s; }
+        textarea.form-control { resize: vertical; min-height: 80px; }
         .form-control:focus { border-color: var(--primary); background: rgba(0,0,0,0.9); box-shadow: var(--glow-primary); }
         .form-label { position: absolute; top: 16px; left: 20px; color: var(--text-muted); font-size: 13px; pointer-events: none; transition: 0.3s; z-index: 1; }
         .form-control:focus ~ .form-label, .form-control:valid ~ .form-label { top: -10px; left: 15px; font-size: 11px; font-weight: 600; background: var(--bg-dark); padding: 0 8px; color: var(--primary); border: 1px solid var(--primary); border-radius: 6px; }
@@ -74,7 +75,7 @@
         .link-text:hover { color: var(--primary); }
 
         /* =======================================================================
-           4. NEW MODERN MAIN MENU (Dashboard UI Upgrade)
+           4. NEW 6-GRID MAIN MENU & DASHBOARD
            ======================================================================= */
         .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: rgba(0,0,0,0.4); padding: 12px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
         .dash-user-info { display: flex; align-items: center; gap: 10px; }
@@ -84,23 +85,24 @@
         .modern-bal-title { font-family: 'Orbitron'; font-size: 12px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
         .modern-bal-amt { font-family: 'Orbitron'; font-size: 42px; font-weight: 900; color: #fff; text-shadow: var(--glow-primary); margin: 8px 0; word-break: break-all; }
         
-        .modern-menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+        .modern-menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
         .modern-menu-item { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 15px 5px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
-        .modern-menu-item:hover { border-color: var(--primary); background: rgba(0, 243, 255, 0.05); transform: translateY(-3px); }
-        .modern-menu-item svg { width: 24px; height: 24px; fill: var(--primary); margin-bottom: 8px; }
+        .modern-menu-item:hover { border-color: var(--primary); background: rgba(0, 243, 255, 0.05); transform: translateY(-3px); box-shadow: var(--glow-primary); }
+        .modern-menu-item svg { width: 26px; height: 26px; fill: var(--primary); margin-bottom: 8px; filter: drop-shadow(0 0 5px var(--primary)); }
         .modern-menu-text { font-size: 10px; font-weight: 700; font-family: 'Orbitron'; color: #fff; text-transform: uppercase; }
 
         .data-list { max-height: 350px; overflow-y: auto; padding-right: 5px; margin-bottom: 15px; }
-        .hist-item, .task-item { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.03); padding: 15px; border-radius: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
-        .hist-item:hover, .task-item:hover { background: rgba(0,0,0,0.6); transform: translateX(3px); }
+        .hist-item { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.03); padding: 15px; border-radius: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .hist-item:hover { background: rgba(0,0,0,0.6); transform: translateX(3px); }
         .hist-credit { border-left: 4px solid var(--success); } .hist-debit { border-left: 4px solid var(--danger); } .hist-pending { border-left: 4px solid var(--warning); }
         .hist-title { font-size: 13px; font-weight: 600; color: #fff; } .hist-date { font-size: 10px; color: var(--text-muted); }
         .hist-amount { font-family: 'Orbitron'; font-size: 16px; font-weight: 700; }
 
-        .task-item { flex-direction: column; align-items: flex-start; border-left: 4px solid var(--primary); }
-        .task-header { display: flex; justify-content: space-between; width: 100%; margin-bottom: 10px; }
-        .task-name { font-size: 14px; font-weight: bold; color: var(--primary); }
-        .task-reward { font-family: 'Orbitron'; font-size: 14px; font-weight: bold; color: var(--success); }
+        .task-item { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; margin-bottom: 15px; display: flex; flex-direction: column; align-items: flex-start; border-left: 4px solid var(--primary); }
+        .task-header { display: flex; justify-content: space-between; width: 100%; margin-bottom: 8px; }
+        .task-name { font-size: 16px; font-weight: bold; color: var(--primary); }
+        .task-reward { font-family: 'Orbitron'; font-size: 16px; font-weight: bold; color: var(--success); background:rgba(0,255,136,0.1); padding:2px 8px; border-radius:5px; border:1px solid var(--success); }
+        .task-desc { font-size: 12px; color: #ccc; margin-bottom: 12px; line-height: 1.5; width:100%; }
 
         /* =======================================================================
            5. ADMIN PANEL
@@ -126,17 +128,19 @@
         .copy-box { background: rgba(0, 255, 136, 0.08); border: 1px dashed var(--success); padding: 20px; border-radius: 14px; text-align: center; margin-top: 15px; cursor: pointer; }
 
         /* =======================================================================
-           6. OVERLAYS & WORKING OFFLINE GAMES (Snake & Doodle Jump Canvas Fixed)
+           6. OVERLAYS, MODALS & WORKING OFFLINE GAMES (Buttons Fixed!)
            ======================================================================= */
         #maintenance-screen, #version-screen, #offline-screen { position: fixed; top:0; left:0; width:100vw; height:100vh; background:var(--bg-dark); z-index:99999; display:none; justify-content:center; align-items:center; flex-direction:column; text-align:center; padding:20px; overflow-y:auto; }
         
-        #maint-bypass-target { position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: transparent; cursor: pointer; z-index: 100000; }
+        #maint-bypass-target { position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: transparent; cursor: pointer; z-index: 100000; }
         .modal-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:100005; display:none; justify-content:center; align-items:center; backdrop-filter:blur(10px); }
         .modal-box { background:var(--panel-bg); border:1px solid var(--primary); border-radius:20px; padding:25px; width:90%; max-width:400px; box-shadow:0 15px 40px rgba(0,0,0,0.8); }
         
-        /* Working Offline Canvas Games */
-        .game-box { background: rgba(0,0,0,0.7); border: 1px solid var(--primary); border-radius: 16px; padding: 12px; width: 100%; max-width: 320px; margin-bottom: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        canvas { background: #000; display: block; margin: 8px auto; border-radius: 10px; border: 1px solid rgba(0,243,255,0.4); box-shadow: inset 0 0 15px rgba(0,0,0,0.8); }
+        /* Working Offline Canvas Games (Fixed Touch Buttons) */
+        .game-box { background: rgba(0,0,0,0.8); border: 1px solid var(--primary); border-radius: 16px; padding: 15px; width: 100%; max-width: 320px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); position: relative; z-index:100001; }
+        canvas { background: #000; display: block; margin: 10px auto; border-radius: 10px; border: 1px solid rgba(0,243,255,0.4); box-shadow: inset 0 0 15px rgba(0,0,0,0.8); width: 280px; height: 140px; }
+        .game-btn { background: var(--panel-bg); border: 1px solid var(--primary); color: var(--primary); padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; position: relative; z-index: 100002; transition:0.2s; }
+        .game-btn:active { background: var(--primary); color: #000; }
 
         /* Utilities */
         #toast-box { position: fixed; top: 35px; right: 20px; z-index: 100010; display: flex; flex-direction: column; gap: 10px; }
@@ -169,7 +173,7 @@
     <!-- Smart Push -->
     <div id="push-notification"><div class="push-icon">🔔</div><div><div style="font-size:11px; color:var(--primary); font-weight:bold;">Ultra Pay Alert</div><div id="push-msg" style="font-size:12px; color:#fff;"></div></div></div>
 
-    <!-- Maintenance Overlay -->
+    <!-- Maintenance Overlay (With Secret Login Box Bypass) -->
     <div id="maintenance-screen">
         <div id="maint-bypass-target" ondblclick="openAdminBypass()"></div>
         <svg width="60" height="60" viewBox="0 0 24 24" fill="var(--warning)"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.61-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -177,7 +181,7 @@
         <p id="maint-text-display" style="color:var(--text-muted); font-size:13px; margin-top:10px;">We will be back shortly!</p>
     </div>
 
-    <!-- Admin Secret Login Modal -->
+    <!-- Admin Secret Login Modal (Bypass) -->
     <div id="admin-bypass-modal" class="modal-overlay">
         <div class="modal-box">
             <h2 class="title" style="font-size:18px; color:var(--danger);">ADMIN OVERRIDE</h2>
@@ -194,34 +198,34 @@
             <h2 class="title" style="font-size:18px; color:var(--success);">SUBMIT TASK</h2>
             <p id="submit-task-name" style="text-align:center; color:var(--primary); font-weight:bold; margin-bottom:15px;"></p>
             <div class="input-group"><input type="file" class="form-control" id="taskFile" accept="image/*" style="padding:10px;"><label class="form-label" style="top:-10px; background:var(--bg-dark);">Upload Photo</label></div>
-            <div class="input-group"><textarea class="form-control" id="taskText" style="min-height:80px;" placeholder="Enter details..."></textarea><label class="form-label" style="top:-10px; background:var(--bg-dark);">Task Details</label></div>
-            <button class="btn btn-success" onclick="confirmTaskSubmit()">UPLOAD TASK</button>
+            <div class="input-group"><textarea class="form-control" id="taskText" style="min-height:80px;" placeholder="Enter your text / details..."></textarea><label class="form-label" style="top:-10px; background:var(--bg-dark);">Task Details</label></div>
+            <button class="btn btn-success" onclick="confirmTaskSubmit()">SUBMIT PROOF</button>
             <span class="link-text" onclick="document.getElementById('task-submit-modal').style.display='none'">Cancel</span>
         </div>
     </div>
 
-    <!-- Offline Screen (Fixed Canvas Games) -->
+    <!-- Offline Screen (Fixed Canvas Games & Buttons) -->
     <div id="offline-screen">
         <h2 style="color:var(--danger); font-family:'Orbitron'; margin-bottom:5px; font-size:18px;">NO INTERNET</h2>
-        <p style="color:var(--text-muted); font-size:11px; margin-bottom:12px;">Play offline games while reconnecting...</p>
+        <p style="color:var(--text-muted); font-size:11px; margin-bottom:15px;">Play offline games while reconnecting...</p>
         
         <div class="game-box">
-            <h3 style="color:var(--primary); font-size:12px; text-align:center;">🐍 Snake Game</h3>
-            <canvas id="snakeCanvas" width="260" height="130"></canvas>
-            <div style="display:flex; justify-content:center; gap:8px; margin-top:5px;">
-                <button class="btn btn-outline" style="padding:6px 12px; font-size:11px; margin:0;" onclick="changeSnakeDir('LEFT')">◀</button>
-                <button class="btn btn-outline" style="padding:6px 12px; font-size:11px; margin:0;" onclick="changeSnakeDir('UP')">▲</button>
-                <button class="btn btn-outline" style="padding:6px 12px; font-size:11px; margin:0;" onclick="changeSnakeDir('DOWN')">▼</button>
-                <button class="btn btn-outline" style="padding:6px 12px; font-size:11px; margin:0;" onclick="changeSnakeDir('RIGHT')">▶</button>
+            <h3 style="color:var(--primary); font-size:14px; text-align:center;">🐍 Snake Game</h3>
+            <canvas id="snakeCanvas" width="280" height="140"></canvas>
+            <div style="display:flex; justify-content:center; gap:10px; margin-top:10px;">
+                <button class="game-btn" onclick="userSetSnakeDir('LEFT')">◀</button>
+                <button class="game-btn" onclick="userSetSnakeDir('UP')">▲</button>
+                <button class="game-btn" onclick="userSetSnakeDir('DOWN')">▼</button>
+                <button class="game-btn" onclick="userSetSnakeDir('RIGHT')">▶</button>
             </div>
         </div>
 
         <div class="game-box">
-            <h3 style="color:var(--success); font-size:12px; text-align:center;">🦘 Doodle Jump</h3>
-            <canvas id="doodleCanvas" width="260" height="130"></canvas>
-            <div style="display:flex; justify-content:center; gap:15px; margin-top:5px;">
-                <button class="btn btn-success" style="padding:6px 18px; font-size:11px; margin:0;" onclick="moveDoodle(-15)">◀ LEFT</button>
-                <button class="btn btn-success" style="padding:6px 18px; font-size:11px; margin:0;" onclick="moveDoodle(15)">RIGHT ▶</button>
+            <h3 style="color:var(--success); font-size:14px; text-align:center;">🦘 Doodle Jump</h3>
+            <canvas id="doodleCanvas" width="280" height="140"></canvas>
+            <div style="display:flex; justify-content:center; gap:20px; margin-top:10px;">
+                <button class="game-btn" style="color:var(--success); border-color:var(--success);" onclick="userMoveDoodle(-25)">◀ LEFT</button>
+                <button class="game-btn" style="color:var(--success); border-color:var(--success);" onclick="userMoveDoodle(25)">RIGHT ▶</button>
             </div>
         </div>
     </div>
@@ -278,53 +282,33 @@
             <span class="link-text" onclick="switchView('view-login')">⬅ ABORT</span>
         </div>
 
-        <!-- VIEW 4: MODERN DASHBOARD (Brand New Main Menu Layout) -->
+        <!-- VIEW 4: MODERN DASHBOARD (6 Grid Menu) -->
         <div class="view-panel" id="view-dashboard">
-            <!-- Header Profile -->
             <div class="dash-header">
-                <div class="dash-user-info">
-                    <div class="dash-avatar">👤</div>
-                    <div>
-                        <div style="font-size:10px; color:var(--text-muted);">SECURE ID</div>
-                        <div id="dashId" style="font-family:'Orbitron'; font-size:12px; font-weight:bold; color:var(--primary);">--</div>
-                    </div>
-                </div>
-                <div class="badge" style="background:rgba(0,255,136,0.1); color:var(--success); border-color:var(--success);">SECURE</div>
+                <div class="dash-user-info"><div class="dash-avatar">👤</div><div><div style="font-size:10px; color:var(--text-muted);">SECURE ID</div><div id="dashId" style="font-family:'Orbitron'; font-size:12px; font-weight:bold; color:var(--primary);">--</div></div></div>
+                <div class="badge" style="background:rgba(0,255,136,0.1); color:var(--success); border-color:var(--success);">ACTIVE</div>
             </div>
 
-            <!-- Modern Balance Card -->
             <div class="modern-balance-card">
-                <div class="modern-bal-title">Available Network Balance</div>
+                <div class="modern-bal-title">NETWORK BALANCE</div>
                 <div class="modern-bal-amt" id="dashBal">₹0</div>
-                <div style="font-size:11px; color:var(--text-muted);">Encrypted Finetech Wallet</div>
+                <div style="font-size:11px; color:var(--text-muted);">Encrypted Wallet</div>
             </div>
 
-            <!-- 4 Grid Menu Options -->
+            <!-- 6 Grid Items: Redeem, Withdraw, Tasks, History, Report, Profile -->
             <div class="modern-menu-grid">
-                <div class="modern-menu-item" onclick="switchView('view-gift')">
-                    <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.97.54-2.5 1.35C11.97 2.54 11.05 2 10 2 8.34 2 7 3.34 7 5c0 .35.07.69.18 1H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM15 4c.55 0 1 .45 1 1s-.45 1-1 1h-2c0-1.1.89-2 2-2zM9 4c1.11 0 2 .89 2 2H9c-.55 0-1-.45-1-1s.45-1 1-1zm2 16H7v-8h4v8zm6 0h-4v-8h4v8zm2-10h-2h-4H9H5V8h14v2z"/></svg>
-                    <span class="modern-menu-text">REDEEM</span>
-                </div>
-                <div class="modern-menu-item" onclick="prepareWithdraw()">
-                    <svg viewBox="0 0 24 24"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-2V9h2zM5 19V5h14v2h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2H5z"/></svg>
-                    <span class="modern-menu-text">WITHDRAW</span>
-                </div>
-                <div class="modern-menu-item" onclick="loadTasks()">
-                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg>
-                    <span class="modern-menu-text">TASKS</span>
-                </div>
-                <div class="modern-menu-item" onclick="switchView('view-profile')">
-                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    <span class="modern-menu-text">PROFILE</span>
-                </div>
+                <div class="modern-menu-item" onclick="switchView('view-gift')"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.97.54-2.5 1.35C11.97 2.54 11.05 2 10 2 8.34 2 7 3.34 7 5c0 .35.07.69.18 1H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM15 4c.55 0 1 .45 1 1s-.45 1-1 1h-2c0-1.1.89-2 2-2zM9 4c1.11 0 2 .89 2 2H9c-.55 0-1-.45-1-1s.45-1 1-1zm2 16H7v-8h4v8zm6 0h-4v-8h4v8zm2-10h-2h-4H9H5V8h14v2z"/></svg><span class="modern-menu-text">REDEEM</span></div>
+                <div class="modern-menu-item" onclick="prepareWithdraw()"><svg viewBox="0 0 24 24"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-2V9h2zM5 19V5h14v2h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2H5z"/></svg><span class="modern-menu-text">WITHDRAW</span></div>
+                <div class="modern-menu-item" onclick="loadTasks()"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg><span class="modern-menu-text">TASKS</span></div>
+                <div class="modern-menu-item" onclick="switchView('view-history')"><svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg><span class="modern-menu-text">HISTORY</span></div>
+                <div class="modern-menu-item" onclick="switchView('view-report')"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg><span class="modern-menu-text">SUPPORT</span></div>
+                <div class="modern-menu-item" onclick="switchView('view-profile')"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span class="modern-menu-text">PROFILE</span></div>
             </div>
 
-            <!-- Recent History -->
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:5px;">
                 <h3 style="font-size:13px; font-family:'Orbitron';">RECENT LOGS</h3>
-                <span style="font-size:11px; color:var(--primary); cursor:pointer;" onclick="switchView('view-history')">VIEW ALL</span>
             </div>
-            <div class="data-list" id="dashHistList" style="max-height: 160px;"></div>
+            <div class="data-list" id="dashHistList" style="max-height: 140px;"></div>
 
             <button id="btnAdmin" class="btn btn-warning hidden" onclick="switchView('view-admin')" style="margin-top:10px;">👑 ADMIN PANEL</button>
             <button class="btn btn-outline" onclick="logoutApp()" style="margin-top:5px;">LOGOUT SECURELY</button>
@@ -337,7 +321,6 @@
             <div style="text-align:center; margin-bottom:15px;"><div class="badge" id="profIdBadge">ID: -----</div></div>
             <div class="info-row" style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.4); border-radius:10px; margin-bottom:10px; font-size:13px;"><span>Status</span><span style="color:var(--success);">Active</span></div>
             <div class="info-row" style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.4); border-radius:10px; margin-bottom:15px; font-size:13px;"><span>Join Date</span><span id="profDate">--</span></div>
-            <div class="support-box" style="background:rgba(0,243,255,0.05); border:1px dashed var(--primary); padding:15px; border-radius:12px; text-align:center;"><div style="font-size:11px; color:var(--text-muted); margin-bottom:5px;">Support</div><a href="https://t.me/kumarkor" target="_blank" class="kumarkor-link" style="font-family:'Orbitron'; font-weight:700; color:var(--primary); text-decoration:none;">@kumarkor</a></div>
             <span class="link-text" onclick="switchView('view-dashboard')">⬅ DASHBOARD</span>
         </div>
 
@@ -345,6 +328,15 @@
         <div class="view-panel" id="view-history">
             <h2 class="title">ALL LOGS</h2>
             <div class="data-list" id="fullHistList" style="max-height: 60vh;"></div>
+            <span class="link-text" onclick="switchView('view-dashboard')">⬅ DASHBOARD</span>
+        </div>
+        
+        <!-- VIEW REPORT (SUPPORT) -->
+        <div class="view-panel" id="view-report">
+            <h2 class="title" style="color:var(--warning);">REPORT ADMIN</h2>
+            <p class="subtitle">Send message directly to Admin Panel</p>
+            <div class="input-group"><textarea class="form-control" id="userReportText" style="min-height:100px;" placeholder="Describe your issue..."></textarea><label class="form-label">Message</label></div>
+            <button class="btn btn-warning" onclick="userAction('report')">SEND REPORT</button>
             <span class="link-text" onclick="switchView('view-dashboard')">⬅ DASHBOARD</span>
         </div>
 
@@ -374,7 +366,7 @@
             <span class="link-text" onclick="switchView('view-dashboard')">⬅ DASHBOARD</span>
         </div>
 
-        <!-- VIEW 9: TASKS -->
+        <!-- VIEW 9: NEW ADVANCED TASKS -->
         <div class="view-panel" id="view-tasks">
             <h2 class="title" style="color:var(--success);">TASK CENTER</h2>
             <p class="subtitle">Complete Tasks & Upload Proof</p>
@@ -383,7 +375,7 @@
         </div>
 
         <!-- ==========================================================
-             VIEW 10: ADMIN PANEL
+             VIEW 10: ADMIN PANEL (Upgraded with 4 Task Inputs & Reports)
              ========================================================== -->
         <div class="view-panel" id="view-admin" style="padding: 20px 15px; width:100%; max-width:550px;">
             <h2 class="title" style="color:var(--warning); text-shadow:0 0 10px rgba(255,170,0,0.5); font-size:20px;">ADMIN COMMAND</h2>
@@ -396,6 +388,7 @@
                 <div class="admin-tab" onclick="openAdmTab('adm-req')">UPI</div>
                 <div class="admin-tab" onclick="openAdmTab('adm-task')">Tasks</div>
                 <div class="admin-tab" onclick="openAdmTab('adm-approve-task')">Approvals</div>
+                <div class="admin-tab" onclick="openAdmTab('adm-reports')">Reports</div>
             </div>
 
             <!-- TAB 1: OVERVIEW -->
@@ -431,9 +424,16 @@
                 <div class="admin-card"><div class="admin-card-title">CHECK WID</div><div class="input-group"><input type="text" class="form-control" id="admChkWdInp" style="text-transform:uppercase;"><label class="form-label">WID</label></div><button class="btn btn-warning" onclick="admAct('checkWd')">INSPECT</button><div id="chkWdRes" class="result-box hidden"></div></div>
             </div>
 
-            <!-- TAB 6: TASK MANAGER -->
+            <!-- TAB 6: NEW TASK CREATOR (4 Fields) -->
             <div class="admin-content" id="adm-task">
-                <div class="admin-card"><div class="admin-card-title">CREATE TASK</div><div class="input-group"><input type="text" class="form-control" id="admTaskName" required><label class="form-label">Task Name</label></div><div class="input-group"><input type="number" class="form-control" id="admTaskAmt" required><label class="form-label">Reward (₹)</label></div><button class="btn btn-primary" style="background:var(--primary); color:#000;" onclick="admAct('createTask')">ADD TASK</button></div>
+                <div class="admin-card">
+                    <div class="admin-card-title">CREATE NEW TASK</div>
+                    <div class="input-group"><input type="text" class="form-control" id="admTaskName" required><label class="form-label">Task Name</label></div>
+                    <div class="input-group"><input type="number" class="form-control" id="admTaskAmt" required><label class="form-label">Reward Amount (₹)</label></div>
+                    <div class="input-group"><input type="text" class="form-control" id="admTaskLink" required><label class="form-label">Link (URL)</label></div>
+                    <div class="input-group"><textarea class="form-control" id="admTaskDesc" style="min-height:70px;" required></textarea><label class="form-label">Description / Steps</label></div>
+                    <button class="btn btn-primary" style="background:var(--primary); color:#000;" onclick="admAct('createTask')">ADD TASK</button>
+                </div>
                 <div class="admin-card"><div class="admin-card-title">ACTIVE TASKS</div><div class="data-list" id="admTaskList" style="max-height: 30vh;"></div></div>
             </div>
 
@@ -442,12 +442,17 @@
                 <div class="admin-card"><div class="admin-card-title">PENDING SUBMISSIONS <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:5px; padding:2px 8px; font-weight:bold; cursor:pointer;" onclick="loadAdminTabs()">⟳</button></div><div class="data-list" id="admSubList" style="max-height: 50vh;"></div></div>
             </div>
 
+            <!-- TAB 8: USER REPORTS -->
+            <div class="admin-content" id="adm-reports">
+                <div class="admin-card"><div class="admin-card-title">USER SUPPORT REPORTS <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:5px; padding:2px 8px; font-weight:bold; cursor:pointer;" onclick="loadAdminTabs()">⟳</button></div><div class="data-list" id="admReportList" style="max-height: 50vh;"></div></div>
+            </div>
+
             <span class="link-text" style="margin-top:20px;" onclick="switchView('view-dashboard')">⬅ EXIT ADMIN</span>
         </div>
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT LOGIC (FIREBASE V10 + WORKING CANVAS GAMES + TEMPLATES)
+         JAVASCRIPT LOGIC (FIREBASE V10 + FULL WORKING GAMES + FORMATTING)
          ======================================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -479,50 +484,46 @@
         window.showToast = (msg, type='success') => { if(type==='success') playSfx('success'); else if(type==='error') playSfx('error'); const c=el('toast-box'); const d=document.createElement('div'); d.className=`toast ${type}`; d.innerHTML=`<div style="font-size:18px;">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</div><div>${msg}</div>`; c.appendChild(d); setTimeout(()=>{ d.classList.add('fade-out'); setTimeout(()=>d.remove(), 400); }, 3500); };
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; }; window.hideLoader = () => el('loader').style.display='none';
 
-        // --- Telegram & Logger ---
         const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
-        const adminLog = async (action, details) => { try { await addDoc(collection(db,"admin_logs"), {action, details, timestamp: serverTimestamp()}); sendTg(ADM_ID, `👑 *ADMIN ACTION*\nAction: ${action}\nDetails: ${details}`); } catch(e){} };
 
-        // --- WORKING OFFLINE GAMES (Snake & Doodle Jump) ---
+        // --- OFFLINE GAMES (Fixed Logic) ---
         window.addEventListener('offline', () => { el('offline-screen').style.display = 'flex'; initSnakeGame(); initDoodleGame(); });
         window.addEventListener('online', () => { el('offline-screen').style.display = 'none'; showToast('Internet Restored!', 'success'); });
 
-        let snakeInterval = null, doodleInterval = null;
-        let snakeDir = 'RIGHT';
-
+        window.snakeDir = 'RIGHT'; window.snakeInt = null;
         function initSnakeGame() {
-            const canvas = el('snakeCanvas'); if(!canvas) return; const ctx = canvas.getContext('2d');
-            let snake = [{x: 10, y: 10}, {x: 9, y: 10}]; let food = {x: 5, y: 5};
-            clearInterval(snakeInterval);
-            snakeInterval = setInterval(() => {
-                let head = {x: snake[0].x, y: snake[0].y};
-                if(snakeDir === 'LEFT') head.x--; if(snakeDir === 'RIGHT') head.x++;
-                if(snakeDir === 'UP') head.y--; if(snakeDir === 'DOWN') head.y++;
-                if(head.x < 0 || head.x >= 26 || head.y < 0 || head.y >= 13) { snake = [{x: 10, y: 10}, {x: 9, y: 10}]; snakeDir = 'RIGHT'; return; }
-                snake.unshift(head);
-                if(head.x === food.x && head.y === food.y) { food = {x: Math.floor(Math.random()*26), y: Math.floor(Math.random()*13)}; } else { snake.pop(); }
-                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "#00ff88"; snake.forEach(p => ctx.fillRect(p.x*10, p.y*10, 9, 9));
-                ctx.fillStyle = "#ff0055"; ctx.fillRect(food.x*10, food.y*10, 9, 9);
-            }, 130);
+            const cvs = el('snakeCanvas'); if(!cvs) return; const ctx = cvs.getContext('2d');
+            let snk = [{x: 10, y: 10}]; let fd = {x: 5, y: 5}; window.snakeDir = 'RIGHT';
+            clearInterval(window.snakeInt);
+            window.snakeInt = setInterval(() => {
+                let h = {x: snk[0].x, y: snk[0].y};
+                if(window.snakeDir === 'LEFT') h.x--; if(window.snakeDir === 'RIGHT') h.x++;
+                if(window.snakeDir === 'UP') h.y--; if(window.snakeDir === 'DOWN') h.y++;
+                if(h.x < 0 || h.x >= 28 || h.y < 0 || h.y >= 14) { snk = [{x: 10, y: 10}]; window.snakeDir = 'RIGHT'; return; }
+                snk.unshift(h);
+                if(h.x === fd.x && h.y === fd.y) { fd = {x: Math.floor(Math.random()*28), y: Math.floor(Math.random()*14)}; } else { snk.pop(); }
+                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, cvs.width, cvs.height);
+                ctx.fillStyle = "#00ff88"; snk.forEach(p => ctx.fillRect(p.x*10, p.y*10, 9, 9));
+                ctx.fillStyle = "#ff0055"; ctx.fillRect(fd.x*10, fd.y*10, 9, 9);
+            }, 150);
         }
-        window.changeSnakeDir = (d) => { if((d==='LEFT'&&snakeDir!=='RIGHT')||(d==='RIGHT'&&snakeDir!=='LEFT')||(d==='UP'&&snakeDir!=='DOWN')||(d==='DOWN'&&snakeDir!=='UP')) snakeDir = d; };
+        window.userSetSnakeDir = (d) => { window.snakeDir = d; };
 
-        let doodleX = 110, doodleY = 90, doodleVy = 0;
+        window.doodleX = 130; window.doodleY = 90; window.doodleVy = 0; window.doodleInt = null;
         function initDoodleGame() {
-            const canvas = el('doodleCanvas'); if(!canvas) return; const ctx = canvas.getContext('2d');
-            let plats = [{x: 90, y: 110}, {x: 30, y: 70}, {x: 160, y: 30}];
-            clearInterval(doodleInterval);
-            doodleInterval = setInterval(() => {
-                doodleVy += 0.25; doodleY += doodleVy;
-                plats.forEach(p => { if(doodleY >= p.y && doodleY <= p.y+8 && doodleX >= p.x-10 && doodleX <= p.x+40 && doodleVy > 0) { doodleVy = -5; } });
-                if(doodleY > 130) { doodleY = 10; doodleX = Math.random()*220; }
-                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "#00f3ff"; ctx.fillRect(doodleX, doodleY, 12, 12);
-                ctx.fillStyle = "#ffaa00"; plats.forEach(p => ctx.fillRect(p.x, p.y, 40, 6));
-            }, 50);
+            const cvs = el('doodleCanvas'); if(!cvs) return; const ctx = cvs.getContext('2d');
+            let plts = [{x: 100, y: 120}, {x: 50, y: 70}, {x: 180, y: 30}]; window.doodleVy = 0; window.doodleY = 90;
+            clearInterval(window.doodleInt);
+            window.doodleInt = setInterval(() => {
+                window.doodleVy += 0.25; window.doodleY += window.doodleVy;
+                plts.forEach(p => { if(window.doodleY >= p.y && window.doodleY <= p.y+8 && window.doodleX >= p.x-10 && window.doodleX <= p.x+40 && window.doodleVy > 0) { window.doodleVy = -5.5; } });
+                if(window.doodleY > 140) { window.doodleY = 20; window.doodleX = Math.random()*240; }
+                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, cvs.width, cvs.height);
+                ctx.fillStyle = "#00f3ff"; ctx.fillRect(window.doodleX, window.doodleY, 12, 12);
+                ctx.fillStyle = "#ffaa00"; plts.forEach(p => ctx.fillRect(p.x, p.y, 40, 6));
+            }, 40);
         }
-        window.moveDoodle = (v) => { doodleX = Math.max(0, Math.min(240, doodleX + v)); };
+        window.userMoveDoodle = (v) => { window.doodleX = Math.max(0, Math.min(268, window.doodleX + v)); };
 
         // --- Init & Auto Login ---
         window.onload = async () => {
@@ -532,7 +533,7 @@
         };
         window.logoutApp = () => { cUid=null; localStorage.removeItem('upay_uid'); localStorage.removeItem('upay_pass'); el('logId').value=""; el('logPass').value=""; switchView('view-login'); showToast('Logged Out', 'info'); };
 
-        // --- System Snapshots & Bypass ---
+        // --- System Snapshots & Bypass Modal ---
         let isBypassed = false;
         window.openAdminBypass = () => { el('admin-bypass-modal').style.display='flex'; };
         window.verifyAdminBypass = async () => {
@@ -612,7 +613,7 @@
             if(!cUid) return; el('btnAdmin').classList.toggle('hidden', cUid!==ADM_ID); await setDoc(doc(db,"users",cUid), {lastSeen: serverTimestamp()}, {merge:true});
             try {
                 const u=await getDoc(doc(db,"users",cUid)); if(!u.exists() || u.data().isBanned) { logoutApp(); return showToast("BANNED", "error"); }
-                el('dashBal').innerText=`₹${u.data().balance}`; el('dashId').innerText=`ID: ${cUid}`;
+                el('dashBal').innerText=`₹${u.data().balance}`; el('dashId').innerText=`${cUid}`;
                 const q=await getDocs(query(collection(db,"users",cUid,"history"), orderBy("timestamp","desc"), limit(4))); let html=""; q.forEach(d=>{ const h=d.data(); let css='hist-credit', s='+'; if(h.type==='WITHDRAWAL'||h.type==='ADMIN_CUT'){css='hist-debit';s='-';}else if(h.type==='PENDING'){css='hist-pending';s='';} html+=`<div class="hist-item ${css}"><div class="hist-details"><div class="hist-title">${h.details}</div><div class="hist-date">${ts2Str(h.timestamp)}</div></div><div class="hist-amount">${s} ₹${h.amount}</div></div>`; }); el('dashHistList').innerHTML = html || "<div style='text-align:center; color:#888; font-size:12px;'>No logs</div>";
             } catch(e){}
         }
@@ -623,19 +624,19 @@
         window.prepareWithdraw = async () => { showLoader(); hideLoader(); if(!sysSets.isWdOn) { el('wd-select').classList.add('hidden'); el('wdClosedMsg').classList.remove('hidden'); } else { el('wd-select').classList.remove('hidden'); el('wdClosedMsg').classList.add('hidden'); el('btnUlt').style.display = sysSets.isUltOn ? 'block' : 'none'; el('btnUpi').style.display = sysSets.isUpiOn ? 'block' : 'none'; } el('wd-form').classList.add('hidden'); switchView('view-withdraw'); };
         window.openWdForm = (method) => { el('wd-select').classList.add('hidden'); el('wd-form').classList.remove('hidden'); el('wdMethodBadge').innerText=method; el('lblWdTarget').innerText=method==='UPI'?'Enter UPI ID':'Ultra Pay Mobile Number'; };
 
-        // --- TASKS WITH EXACT FORMATTING ---
+        // --- TASKS WITH NEW FORMAT (Name, Amt, Link, Desc) ---
         window.loadTasks = async () => {
             showLoader(); switchView('view-tasks');
             try {
                 const q = await getDocs(query(collection(db,"tasks"), orderBy("createdAt","desc"))); let html = "";
-                q.forEach(d => { const t = d.data(); html += `<div class="task-item"><div class="task-header"><span class="task-name">${t.name}</span><span class="task-reward">₹${t.amount}</span></div><div style="display:flex; gap:10px; width:100%;"><button class="btn btn-telegram" style="margin:0; padding:10px; font-size:10px; flex:1;" onclick="sendTaskBot('${t.name}', ${t.amount})">SEND BOT</button><button class="btn btn-success" style="margin:0; padding:10px; font-size:10px; flex:1;" onclick="openTaskSubmit('${d.id}', '${t.name}', ${t.amount})">SUBMIT TASK</button></div></div>`; });
+                q.forEach(d => { const t = d.data(); html += `<div class="task-item"><div class="task-header"><span class="task-name">${t.name}</span><span class="task-reward">₹${t.amount}</span></div><div class="task-desc">${t.desc}</div><button class="btn" style="padding:10px; font-size:11px; margin-bottom:15px; background:linear-gradient(135deg,var(--secondary),var(--primary));" onclick="window.open('${t.link}', '_blank')">🔗 OPEN LINK</button><div style="display:flex; gap:10px; width:100%;"><button class="btn btn-telegram" style="margin:0; padding:10px; font-size:10px; flex:1;" onclick="sendTaskBot('${t.name}', ${t.amount}, '${t.link}')">SEND BOT</button><button class="btn btn-success" style="margin:0; padding:10px; font-size:10px; flex:1;" onclick="openTaskSubmit('${d.id}', '${t.name}', ${t.amount})">SUBMIT TASK</button></div></div>`; });
                 el('userTaskList').innerHTML = html || "<div style='text-align:center; font-size:12px; color:#888;'>No Active Tasks</div>";
             } catch(e) {} hideLoader();
         };
 
-        window.sendTaskBot = (tName, tAmt) => { 
+        window.sendTaskBot = (tName, tAmt, tLink) => { 
             showLoader(); 
-            sendTg(ADM_ID, `🌸 *${tName}* 🌸\n\n🤭 Amount >> ₹${tAmt}\n👤 User ID: \`${cUid}\`\n\n_Send Task Details via App._`); 
+            sendTg(ADM_ID, `🌸 *${tName}* 🌸\n\n🤭 Amount >> ₹${tAmt}\nLink >> ${tLink}\n\n👤 User ID: \`${cUid}\`\n_Send Proof via App._`); 
             setTimeout(()=>{ hideLoader(); showToast("Sent to Admin Bot!"); }, 1000); 
         };
         
@@ -661,18 +662,24 @@
                 const base64Img = await compressImage(file);
                 await addDoc(collection(db,"task_submissions"), { taskId: currentTaskPayload.id, taskName: currentTaskPayload.name, amount: currentTaskPayload.amt, userId: cUid, text: txt, image: base64Img, status: 'Pending', timestamp: serverTimestamp() });
                 
-                sendTg(ADM_ID, `📂 *NEW TASK SUBMISSION*\n\nUser: \`${cUid}\`\nTask: *${currentTaskPayload.name}*\n🤭 Amount >> ₹${currentTaskPayload.amt}\n📝 Details: ${txt}\n\n_Check Admin Panel for Approval._`);
+                sendTg(ADM_ID, `📂 *NEW TASK SUBMISSION*\nUser: \`${cUid}\`\nTask: 🌸 *${currentTaskPayload.name}* 🌸\n🤭 Amount >> ₹${currentTaskPayload.amt}\n📝 Details: ${txt}\n\n_Check Admin Panel for Approval._`);
                 
                 el('task-submit-modal').style.display='none'; showToast("Task Submitted to Admin!"); switchView('view-dashboard');
             } catch(e) { showToast("Upload Failed", "error"); }
             hideLoader();
         };
 
-        // --- TRANSACTIONS ---
+        // --- TRANSACTIONS & REPORT ---
         window.userAction = async (act) => {
             showLoader("PROCESSING...");
             try {
-                if(act === 'redeem') {
+                if(act === 'report') {
+                    const txt = el('userReportText').value.trim(); if(!txt) throw "Enter message";
+                    await addDoc(collection(db,"reports"), {userId: cUid, text: txt, timestamp: serverTimestamp()});
+                    sendTg(ADM_ID, `⚠️ *NEW USER REPORT*\nUser: \`${cUid}\`\nMessage: ${txt}`);
+                    showToast("Report Sent to Admin!"); el('userReportText').value=""; switchView('view-dashboard');
+                }
+                else if(act === 'redeem') {
                     const code = el('inGiftCode').value.trim().toUpperCase(); if(!code) throw "Enter code";
                     let amt=0, isExp=false, finalUsedBy=[];
                     await runTransaction(db, async t => {
@@ -716,7 +723,7 @@
             hideLoader();
         };
 
-        // --- ADMIN PANEL ---
+        // --- ADMIN PANEL CONTROLS ---
         window.openAdmTab = tId => { document.querySelectorAll('.admin-tab').forEach(e=>e.classList.remove('active')); document.querySelectorAll('.admin-content').forEach(e=>e.classList.remove('active')); event.target.classList.add('active'); el(tId).classList.add('active'); };
         
         async function loadAdminTabs() {
@@ -724,43 +731,43 @@
             el('dispLiq').innerText=`₹${sysSets.liqAmt||0}`; el('tgWd').checked=sysSets.isWdOn; el('tgUlt').checked=sysSets.isUltOn; el('tgUpi').checked=sysSets.isUpiOn; el('tgMaint').checked=sysSets.isMaintenance; el('admVersion').value=sysSets.appVersion||APP_VERSION; 
             const us=await getDocs(collection(db,"users")); let uh=""; us.forEach(d=>{ const u=d.data(); uh+=`<div style="display:flex; justify-content:space-between; padding:10px; background:rgba(0,0,0,0.4); border-left:3px solid var(--primary); margin-bottom:8px; border-radius:8px; font-size:11px; align-items:center;"><div><b>${d.id}</b></div><div style="color:var(--success); font-weight:bold;">₹${u.balance}</div><div>${u.isBanned?'<span style="color:var(--danger);">BANNED</span>':'Active'}</div></div>`; }); el('listUsrs').innerHTML=uh;
             const rq=await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending"))); let rh=""; rq.forEach(d=>{ const r=d.data(); rh+=`<div style="background:rgba(0,0,0,0.5); border:1px solid var(--warning); padding:12px; border-radius:10px; margin-bottom:12px; font-size:11px;"><b style="color:var(--primary);">${r.wId}</b><br>User: ${r.userId} | UPI: ${r.target}<br>Amt: <b style="color:var(--warning); font-size:14px;">₹${r.amount}</b><br><div style="display:flex; gap:10px; margin-top:10px;"><button class="btn btn-success" style="padding:8px; font-size:10px; margin:0;" onclick="admAct('appReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">APP</button><button class="btn btn-danger" style="padding:8px; font-size:10px; margin:0;" onclick="admAct('rejReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">REJ</button></div></div>`; }); el('listReqs').innerHTML=rh;
-            const tq = await getDocs(query(collection(db,"tasks"), orderBy("createdAt","desc"))); let th=""; tq.forEach(d=>{ const t=d.data(); th+=`<div style="background:rgba(0,0,0,0.5); padding:10px; margin-bottom:8px; border-radius:8px; font-size:11px; display:flex; justify-content:space-between;"><div><b>${t.name}</b><br>₹${t.amount}</div><button class="btn btn-danger" style="width:auto; padding:5px 10px; font-size:10px;" onclick="admAct('delTask','${d.id}')">DEL</button></div>`; }); el('admTaskList').innerHTML=th||"No tasks";
+            const tq = await getDocs(query(collection(db,"tasks"), orderBy("createdAt","desc"))); let th=""; tq.forEach(d=>{ const t=d.data(); th+=`<div style="background:rgba(0,0,0,0.5); padding:10px; margin-bottom:8px; border-radius:8px; font-size:11px; display:flex; justify-content:space-between;"><div><b style="color:var(--primary);">${t.name}</b><br>₹${t.amount}</div><button class="btn btn-danger" style="width:auto; padding:5px 10px; font-size:10px;" onclick="admAct('delTask','${d.id}')">DEL</button></div>`; }); el('admTaskList').innerHTML=th||"No tasks";
             const sq = await getDocs(query(collection(db,"task_submissions"), where("status","==","Pending"))); let sh=""; sq.forEach(d=>{ const s=d.data(); sh+=`<div style="background:rgba(0,0,0,0.5); border:1px solid var(--primary); padding:12px; border-radius:10px; margin-bottom:12px; font-size:11px;"><b style="color:var(--primary);">${s.taskName}</b><br>User: ${s.userId} | Amt: ₹${s.amount}<br>Text: ${s.text}<br><img src="${s.image}" style="width:100%; max-height:200px; object-fit:contain; margin-top:10px; border-radius:5px;"><div style="display:flex; gap:10px; margin-top:10px;"><button class="btn btn-success" style="padding:8px; font-size:10px; margin:0;" onclick="admAct('appTask','${d.id}','${s.userId}',${s.amount},'${s.taskName}')">APPROVE</button><button class="btn btn-danger" style="padding:8px; font-size:10px; margin:0;" onclick="admAct('rejTask','${d.id}','${s.userId}','${s.taskName}')">REJECT</button></div></div>`; }); el('admSubList').innerHTML=sh||"<div style='text-align:center;'>No Pending Submissions</div>";
+            const rp = await getDocs(query(collection(db,"reports"), orderBy("timestamp","desc"), limit(20))); let rph=""; rp.forEach(d=>{ const r=d.data(); rph+=`<div style="background:rgba(0,0,0,0.5); border-left:3px solid var(--warning); padding:10px; margin-bottom:8px; border-radius:6px; font-size:11px;"><b>User: ${r.userId}</b><br>${r.text}<br><span style="color:#888;">${ts2Str(r.timestamp)}</span></div>`; }); el('admReportList').innerHTML=rph||"No reports";
         }
 
         window.admAct = async (act, p1, p2, p3, p4) => {
             if(cUid!==ADM_ID) return; showLoader("EXECUTING...");
             try {
-                if(act==='setLiq') { const a=parseInt(el('admLiqAmt').value); await setDoc(doc(db,"settings","sys"), {liqAmt:a},{merge:true}); el('dispLiq').innerText=`₹${a}`; showToast("Updated"); adminLog("Set Liq", `₹${a}`); }
-                else if(act==='tog') { await setDoc(doc(db,"settings","sys"), {[p1]:p2},{merge:true}); showToast("Toggle Updated"); adminLog("Toggle", `${p1} = ${p2}`); }
+                if(act==='setLiq') { const a=parseInt(el('admLiqAmt').value); await setDoc(doc(db,"settings","sys"), {liqAmt:a},{merge:true}); el('dispLiq').innerText=`₹${a}`; showToast("Updated"); }
+                else if(act==='tog') { await setDoc(doc(db,"settings","sys"), {[p1]:p2},{merge:true}); showToast("Toggle Updated"); }
                 else if(act==='saveVersion') { await setDoc(doc(db,"settings","sys"), {appVersion:el('admVersion').value},{merge:true}); showToast("Version Updated!"); }
-                else if(act==='sendPush') { await setDoc(doc(db,"settings","sys"), {lastPush: Date.now().toString(), lastPushMsg: el('admPushMsg').value},{merge:true}); showToast("Push Sent!"); adminLog("Push", el('admPushMsg').value); }
-                else if(act==='tgBroadcast') { const msg = el('admTgMsg').value; if(!msg) throw "Enter message"; const us=await getDocs(collection(db,"users")); us.forEach(async (d) => { await sendTg(d.id, msg); }); showToast("Broadcast Sent"); adminLog("TG Broadcast", msg); }
+                else if(act==='sendPush') { await setDoc(doc(db,"settings","sys"), {lastPush: Date.now().toString(), lastPushMsg: el('admPushMsg').value},{merge:true}); showToast("Push Sent!"); }
+                else if(act==='tgBroadcast') { const msg = el('admTgMsg').value; if(!msg) throw "Enter message"; const us=await getDocs(collection(db,"users")); us.forEach(async (d) => { await sendTg(d.id, msg); }); showToast("Broadcast Sent"); }
                 
                 else if(act==='bulkCode') {
                     const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value), c=parseInt(el('admBulkCount').value); if(isNaN(a)||isNaN(m)||isNaN(c)) throw "Invalid data"; let codes = [];
                     for(let i=0; i<c; i++){ const cStr = `GIFT-${Math.random().toString(36).substring(2,8).toUpperCase()}`; await setDoc(doc(db,"giftcodes",cStr), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], usedDevs:[], createdAt:serverTimestamp()}); codes.push(cStr); }
-                    el('newCodeTxt').innerText=codes.join("\n"); el('newCodeBox').classList.remove('hidden'); showToast(`${c} Codes Generated`); adminLog("Bulk Code", `Gen: ${c} Codes, Amt: ₹${a}`); sendTg(ADM_ID, `🎁 *NEW CODES CREATED*\nGenerated ${c} codes of ₹${a} each.`);
+                    el('newCodeTxt').innerText=codes.join("\n"); el('newCodeBox').classList.remove('hidden'); showToast(`${c} Codes Generated`); sendTg(ADM_ID, `🎁 *NEW CODES CREATED*\nGenerated ${c} codes of ₹${a} each.`);
                 }
                 else if(act==='checkCode') { const c=el('admChkCodeInp').value.trim().toUpperCase(); const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); let uls=""; if(d.usedBy&&d.usedBy.length>0) uls=`<br><b>Used By:</b><br><span style='color:var(--primary); font-family:monospace;'>${d.usedBy.join("<br>")}</span>`; el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Amt:</b> ₹${d.amount}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger);">EXPIRED</span>':'<span style="color:var(--success);">ACTIVE</span>'}${uls}`; el('chkCodeRes').classList.remove('hidden'); }
 
-                else if(act==='addBal'||act==='cutBal') { const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found"; const nb = act==='addBal'? u.data().balance+a : u.data().balance-a; await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Injected':'Deducted', timestamp:serverTimestamp()}); showToast(`New Bal: ₹${nb}`); sendTg(id, `💰 Admin ${act==='addBal'?'Added':'Deducted'} ₹${a}`); adminLog("Bal", `${act} ₹${a} ID: ${id}`); }
+                else if(act==='addBal'||act==='cutBal') { const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found"; const nb = act==='addBal'? u.data().balance+a : u.data().balance-a; await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Injected':'Deducted', timestamp:serverTimestamp()}); showToast(`New Bal: ₹${nb}`); sendTg(id, `💰 Admin ${act==='addBal'?'Added':'Deducted'} ₹${a}`); }
                 else if(act==='checkUsr') { const id=el('admUsrId').value.trim(); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not Found"; el('chkUsrRes').innerHTML=`<b>ID:</b> ${id}<br><b>Bal:</b> <span style="color:var(--success); font-weight:bold;">₹${u.data().balance}</span><br><b>Status:</b> ${u.data().isBanned?'BANNED':'ACTIVE'}<br><b>Last Seen:</b> ${ts2Str(u.data().lastSeen)}`; el('chkUsrRes').classList.remove('hidden'); }
-                else if(act==='resetPass') { const id=el('admUsrId').value.trim(), np=el('admNewPass').value; if(!id||!np) throw "Missing fields"; await updateDoc(doc(db,"users",id), {password:np}); showToast("Password Reset"); adminLog("Pass Reset", `ID: ${id}`); }
+                else if(act==='resetPass') { const id=el('admUsrId').value.trim(), np=el('admNewPass').value; if(!id||!np) throw "Missing fields"; await updateDoc(doc(db,"users",id), {password:np}); showToast("Password Reset"); }
                 
-                else if(act==='banUid') { const id=el('admBanUid').value.trim(); if(!id||id===ADM_ID) throw "Invalid ID"; await updateDoc(doc(db,"users",id), {isBanned:p1}); showToast(p1?"User Banned":"User Unbanned"); adminLog(p1?"Ban UID":"Unban UID", id); }
-                else if(act==='banDev') { const dh=el('admBanDev').value.trim(); if(!dh) throw "Invalid Hash"; if(p1){ await setDoc(doc(db,"blacklisted_devices",dh),{banned:true, ts:serverTimestamp()}); }else{ await deleteDoc(doc(db,"blacklisted_devices",dh)); } showToast(p1?"Device Banned":"Device Unbanned"); adminLog(p1?"Ban Dev":"Unban Dev", dh); }
+                else if(act==='banUid') { const id=el('admBanUid').value.trim(); if(!id||id===ADM_ID) throw "Invalid ID"; await updateDoc(doc(db,"users",id), {isBanned:p1}); showToast(p1?"User Banned":"User Unbanned"); }
+                else if(act==='banDev') { const dh=el('admBanDev').value.trim(); if(!dh) throw "Invalid Hash"; if(p1){ await setDoc(doc(db,"blacklisted_devices",dh),{banned:true, ts:serverTimestamp()}); }else{ await deleteDoc(doc(db,"blacklisted_devices",dh)); } showToast(p1?"Device Banned":"Device Unbanned"); }
 
-                else if(act==='appReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ UPI Approved WID: ${p4}`); adminLog("Approve UPI", `WID: ${p4}`); }
-                else if(act==='rejReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'}); const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Refund WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Rejected!"); loadAdminTabs(); sendTg(p2, `⛔ UPI Rejected (Refund) WID: ${p4}`); adminLog("Reject UPI", `WID: ${p4}`); }
+                else if(act==='appReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ UPI Approved WID: ${p4}`); }
+                else if(act==='rejReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'}); const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Refund WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Rejected!"); loadAdminTabs(); sendTg(p2, `⛔ UPI Rejected (Refund) WID: ${p4}`); }
                 
                 else if(act==='createTask') { 
-                    const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value); if(!n||isNaN(a)) throw "Invalid"; 
-                    await addDoc(collection(db,"tasks"), {name:n, amount:a, createdAt:serverTimestamp()}); 
-                    showToast("Task Created"); el('admTaskName').value=""; loadAdminTabs(); 
-                    
-                    sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\n\n_Task successfully live in app!_`);
-                    adminLog("Task Created", `${n}, ₹${a}`);
+                    const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value), l=el('admTaskLink').value.trim(), d=el('admTaskDesc').value.trim(); 
+                    if(!n||isNaN(a)||!l||!d) throw "Fill all 4 fields!"; 
+                    await addDoc(collection(db,"tasks"), {name:n, amount:a, link:l, desc:d, createdAt:serverTimestamp()}); 
+                    showToast("Task Created"); el('admTaskName').value=""; el('admTaskAmt').value=""; el('admTaskLink').value=""; el('admTaskDesc').value=""; loadAdminTabs(); 
+                    sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\nLink >> ${l}\n\n_Task successfully live in app!_`);
                 }
                 else if(act==='delTask') { await deleteDoc(doc(db,"tasks",p1)); showToast("Deleted"); loadAdminTabs(); }
 
@@ -769,14 +776,11 @@
                     const ud = await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3});
                     await addDoc(collection(db,"users",p2,"history"), {type:"ADMIN_ADD", amount:p3, details:`Task Approved: ${p4}`, timestamp:serverTimestamp()});
                     showToast("Task Approved!"); loadAdminTabs(); 
-                    
-                    sendTg(p2, `✅ *TASK APPROVED*\n\nYour task "*${p4}*" was approved!\n🤭 Amount >> ₹${p3} added to wallet.`);
-                    adminLog("Task App", `User: ${p2}, Task: ${p4}`);
+                    sendTg(p2, `✅ *TASK APPROVED*\n\nYour task "🌸 *${p4}* 🌸" was approved!\n🤭 Amount >> ₹${p3} added to wallet.`);
                 }
                 else if(act==='rejTask') {
                     await updateDoc(doc(db,"task_submissions",p1), {status:'Rejected'}); showToast("Task Rejected"); loadAdminTabs(); 
                     sendTg(p2, `⛔ *TASK REJECTED*\n\nYour submission for "*${p3}*" was rejected by Admin.`); 
-                    adminLog("Task Rej", `User: ${p2}, Task: ${p3}`);
                 }
 
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); }

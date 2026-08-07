@@ -6,9 +6,8 @@
     <meta name="theme-color" content="#03040a">
     <title>Ultra Pay Pro | Premium Secure Network</title>
     
-    <!-- Meta Tags For Google & Link Sharing Preview -->
     <meta name="description" content="Join Ultra Pay Pro to complete tasks, redeem gift codes, and earn instant rewards!">
-    <meta property="og:title" content="Ultra Pay Pro | Earning Network">
+    <meta property="og:title" content="Ultra Pay Pro | API Network">
     <meta property="og:description" content="Withdraw instantly via UPI or integrate our Payment API into your bots. Join now!">
     <meta property="og:type" content="website">
     
@@ -18,17 +17,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* =======================================================================
-           1. CORE THEME & VARIABLES
-           ======================================================================= */
         :root { --primary: #00f3ff; --secondary: #bc13fe; --accent: #0055ff; --danger: #ff0055; --success: #00ff88; --warning: #ffaa00; --bg-dark: #03040a; --panel-bg: rgba(12, 16, 28, 0.85); --input-bg: rgba(0, 0, 0, 0.6); --text-main: #ffffff; --text-muted: #8b9bb4; --glow-primary: 0 0 25px rgba(0, 243, 255, 0.4); --glow-danger: 0 0 25px rgba(255, 0, 85, 0.4); --glow-success: 0 0 25px rgba(0, 255, 136, 0.4); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; overflow-x: hidden; display: flex; justify-content: center; align-items: center; position: relative; }
         ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: rgba(0,0,0,0.5); } ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary), var(--secondary)); border-radius: 10px; }
 
-        /* =======================================================================
-           2. BACKGROUND & AMBIENT ANIMATIONS
-           ======================================================================= */
         .ambient-light { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: -2; background: radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.08) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(188, 19, 254, 0.08) 0%, transparent 45%); animation: pulseBg 12s infinite alternate ease-in-out; }
         @keyframes pulseBg { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
         .cyber-grid { position: fixed; width: 200vw; height: 200vh; top: -50%; left: -50%; z-index: -1; background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; transform: perspective(800px) rotateX(60deg); animation: gridScroll 15s linear infinite; }
@@ -42,9 +35,6 @@
         #push-notification.show { top: 25px; }
         .push-icon { width:45px; height:45px; background:linear-gradient(135deg, var(--primary), var(--accent)); border-radius:12px; display:flex; justify-content:center; align-items:center; font-size:22px; box-shadow: var(--glow-primary); }
 
-        /* =======================================================================
-           3. UI PANELS & BUTTONS
-           ======================================================================= */
         .app-container { width: 100%; max-width: 480px; padding: 15px; z-index: 10; margin: auto; position: relative; padding-top: 50px; }
         .view-panel { background: var(--panel-bg); backdrop-filter: blur(30px); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 30px; padding: 35px 25px; box-shadow: 0 35px 70px rgba(0,0,0,0.9); display: none; opacity: 0; transform: translateY(30px) scale(0.97); }
         .view-panel.active { display: block; animation: panelEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
@@ -71,9 +61,6 @@
         .link-text { display: block; text-align: center; margin-top: 15px; color: var(--text-muted); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
         .link-text:hover { color: var(--primary); }
 
-        /* =======================================================================
-           4. DASHBOARD, TOP BUTTONS & MENUS
-           ======================================================================= */
         .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: rgba(0,0,0,0.5); padding: 15px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); }
         .dash-user-info { display: flex; align-items: center; gap: 12px; }
         .dash-avatar { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; box-shadow: var(--glow-primary); }
@@ -104,9 +91,6 @@
         .task-reward { font-family: 'Orbitron'; font-size: 18px; font-weight: 900; color: var(--success); background:rgba(0,255,136,0.15); padding:4px 12px; border-radius:8px; border:1px solid var(--success); }
         .task-desc { font-size: 13px; color: #d1d9e6; margin-bottom: 15px; line-height: 1.6; width:100%; background:rgba(0,0,0,0.4); padding:10px; border-radius:10px; }
 
-        /* =======================================================================
-           5. ADMIN PANEL & MODALS
-           ======================================================================= */
         .admin-nav { display: flex; overflow-x: auto; gap: 10px; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .admin-nav::-webkit-scrollbar { height: 0px; }
         .admin-tab { padding: 10px 15px; background: rgba(0,0,0,0.6); border-radius: 10px; font-size: 12px; font-weight: 700; white-space: nowrap; cursor: pointer; color: var(--text-muted); transition: 0.3s; }
@@ -131,7 +115,6 @@
         .modal-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:100005; display:none; justify-content:center; align-items:center; backdrop-filter:blur(12px); }
         .modal-box { background:var(--panel-bg); border:1px solid var(--primary); border-radius:24px; padding:30px; width:90%; max-width:420px; box-shadow:0 20px 50px rgba(0,0,0,0.9); }
 
-        /* Offline Game UI */
         .game-box { background: rgba(0,0,0,0.8); border: 1px solid var(--primary); border-radius: 20px; padding: 15px; width: 100%; max-width: 320px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,243,255,0.15); z-index:100001; }
         canvas { background: #000; display: block; margin: 10px auto; border-radius: 12px; border: 2px solid rgba(0,243,255,0.4); box-shadow: inset 0 0 20px rgba(0,0,0,0.9); }
         .game-ctrl-btn { background: rgba(255,255,255,0.1); border: 1px solid var(--primary); color: #fff; padding: 12px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size:16px; display:flex; justify-content:center; align-items:center; }
@@ -151,13 +134,16 @@
         .loader-txt { margin-top: 25px; font-family: 'Orbitron'; font-size: 16px; font-weight: 800; color: var(--primary); letter-spacing: 4px; animation: blink 1.5s infinite; text-shadow: var(--glow-primary); }
         @keyframes blink { 50% { opacity: 0.4; } }
         .hidden { display: none !important; }
-        .lang-btn { background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 5px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; cursor: pointer; float: right; }
+        .lang-btn { background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 5px 10px; border-radius: 5px; font-size: 10px; font-weight: bold; cursor: pointer; float: right; transition: 0.2s; }
+        .lang-btn:hover { background: var(--primary); color: #000; }
+        .copy-btn { background: rgba(0, 243, 255, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
+        .copy-btn:hover { background: var(--primary); color: #000; }
     </style>
 </head>
 <body>
 
-    <!-- INVISIBLE API GATEWAY: Processes links like ?token=X&key=Y&paytoNumber=Z&amount=50 -->
-    <div id="api-processing-screen" style="display:none; position:fixed; z-index:9999999; top:0; left:0; width:100%; height:100%; background:#000; color:#00ff88; font-family:monospace; padding:20px; align-items:center; justify-content:center; word-break:break-all; flex-direction:column;">
+    <!-- INVISIBLE API GATEWAY -->
+    <div id="api-processing-screen" style="display:none; position:fixed; z-index:9999999; top:0; left:0; width:100%; height:100%; background:#000; color:#00ff88; font-family:monospace; padding:20px; align-items:center; justify-content:center; flex-direction:column; word-break:break-all;">
         <h3 id="api-status-text" style="font-size:24px;">Processing API Request...</h3>
         <pre id="api-json-result" style="background:#111; padding:20px; border-radius:10px; width:100%; max-width:500px; overflow-x:auto; margin-top:20px; font-size:14px; border:1px solid #333;"></pre>
     </div>
@@ -169,7 +155,7 @@
     <div id="loader"><div class="loader-ring"></div><div class="loader-txt" id="loaderText">PROCESSING...</div></div>
     <div id="push-notification"><div class="push-icon">🔔</div><div><div style="font-size:12px; color:var(--primary); font-weight:800;">Ultra Pay Alert</div><div id="push-msg" style="font-size:13px; color:#fff;"></div></div></div>
 
-    <!-- MAINTENANCE SCREEN (FIXED: Clean Screen, No Iframe Error) -->
+    <!-- MAINTENANCE SCREEN -->
     <div id="maintenance-screen">
         <div id="maint-bypass-target" ondblclick="openAdminBypass()"></div>
         <svg width="70" height="70" viewBox="0 0 24 24" fill="var(--warning)"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.61-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -334,26 +320,40 @@
             <button class="btn btn-outline" onclick="logoutApp()" style="margin-top:10px;" data-i18n="logout">LOGOUT SECURELY</button>
         </div>
 
-        <!-- VIEW: API SETTINGS (FIXED URL) -->
+        <!-- VIEW: API SETTINGS (DYNAMIC AUTO-UPDATED) -->
         <div class="view-panel" id="view-api-settings">
             <h2 class="title" data-i18n="apiSet">API CONFIG</h2>
             <p class="subtitle" data-i18n="apiDesc">Set your API to send money to other users instantly.</p>
-            <div class="input-group"><input type="text" class="form-control" id="userApiToken" readonly><label class="form-label" style="top:-12px;">Your API Token</label></div>
-            <div class="input-group"><input type="text" class="form-control" id="userApiKey" readonly><label class="form-label" style="top:-12px;">Your Secret Key</label></div>
-            <button class="btn btn-warning" onclick="generateNewApi()" data-i18n="genApi">🔄 GENERATE NEW API</button>
             
-            <div style="margin-top:20px; font-size:12px; color:#888;">
-                <h3 style="color:var(--primary); margin-bottom:5px;">Your API URL Format:</h3>
-                <div style="background:#111; padding:10px; border-radius:5px; word-break:break-all; font-family:monospace; color:#fff;">
-                    <!-- HARDCODED URL FIX -->
-                    <span id="demoApiUrl">https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token=<b>{token}</b>&key=<b>{key}</b>&paytoNumber=<b>{userid}</b>&amount=<b>{amount}</b></span>
+            <div class="input-group">
+                <input type="text" class="form-control" id="userApiToken" readonly>
+                <label class="form-label" style="top:-12px;">Your API Token</label>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="userApiKey" readonly>
+                <label class="form-label" style="top:-12px;">Your Secret Key</label>
+            </div>
+            
+            <button class="btn btn-warning" onclick="generateNewApi()" data-i18n="genApi">🔄 GENERATE NEW API</button>
+            <button class="btn btn-success" onclick="saveUserApi()" data-i18n="saveConfig">SAVE CONFIG</button>
+            
+            <div style="margin-top:25px; font-size:12px; color:#888;">
+                <!-- Auto-updating API URL -->
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <h3 style="color:var(--primary); margin:0;">Your API URL:</h3>
+                    <button class="copy-btn" onclick="copyApiText('demoApiUrl')">📋 COPY</button>
                 </div>
-                <h3 style="color:var(--success); margin-top:15px; margin-bottom:5px;">Code Example (JavaScript):</h3>
-                <pre style="background:#111; padding:10px; border-radius:5px; overflow-x:auto; color:#00ff88; font-family:monospace;">
-// Use headless browser/iframe to execute JS
-fetch('https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token=TK-123&key=XYZ&paytoNumber=TARGET_ID&amount=50')
-  .then(res => res.json())
-  .then(data => console.log(data));
+                <div style="background:#111; padding:12px; border-radius:8px; word-break:break-all; font-family:monospace; color:#fff; border:1px solid #333;" id="demoApiUrl">
+                    https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token={token}&key={key}&paytoNumber={userid}&amount={amount}
+                </div>
+                
+                <!-- Auto-updating JS Code -->
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; margin-bottom:8px;">
+                    <h3 style="color:var(--success); margin:0;">Code Example (JS):</h3>
+                    <button class="copy-btn" onclick="copyApiText('demoApiJs')">📋 COPY</button>
+                </div>
+                <pre id="demoApiJs" style="background:#111; padding:12px; border-radius:8px; overflow-x:auto; color:#00ff88; font-family:monospace; margin:0; border:1px solid #333;">
+// Generate API to see code here
                 </pre>
             </div>
             
@@ -487,7 +487,7 @@ fetch('https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token=TK-123&key=XYZ&payto
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT LOGIC (Firebase V10 + Perfect API Gateway Logic)
+         JAVASCRIPT LOGIC (Firebase V10 + Perfect API Gateway Logic + Fixed URL)
          ======================================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -498,16 +498,15 @@ fetch('https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token=TK-123&key=XYZ&payto
         const app = initializeApp(fbConf); const db = getFirestore(app);
         
         // -------------------------------------------------------------------------
-        // 🔥 INVISIBLE API GATEWAY LOGIC (YOUR WEBSITE AS AN API PROVIDER) 🔥
+        // 🔥 INVISIBLE API GATEWAY LOGIC 🔥
         // -------------------------------------------------------------------------
         const urlParams = new URLSearchParams(window.location.search);
         const apiT = urlParams.get('token');
         const apiK = urlParams.get('key');
-        const apiN = urlParams.get('paytoNumber'); // The receiver's User ID
+        const apiN = urlParams.get('paytoNumber'); 
         const apiA = parseInt(urlParams.get('amount'));
 
         if(apiT && apiK && apiN && apiA) {
-            // STOP UI initialization and handle API request in background
             document.getElementById('main-app-ui').style.display = 'none';
             document.getElementById('api-processing-screen').style.display = 'flex';
             
@@ -548,29 +547,70 @@ fetch('https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token=TK-123&key=XYZ&payto
                 }
             }
             processApiTransfer();
-            throw new Error("API Execution Mode Started"); // Stops regular app load
+            throw new Error("API Execution Mode Started");
         }
         // -------------------------------------------------------------------------
 
         const BOT_TOK = "8977358850:AAFDRfAuhxaU1br-UoqIvLLOFgMi9GpB8Sc"; const ADM_ID = "7335163273"; const APP_VERSION = "2.0"; 
         let cUid = null, gOtp = null, sysSets = {}, dHash = '', currentTaskPayload = null;
 
-        const i18n = {
-            'EN': { 'redeem': 'REDEEM', 'withdraw': 'WITHDRAW', 'tasks': 'TASKS', 'history': 'HISTORY', 'support': 'SUPPORT', 'profile': 'PROFILE', 'networkBal': 'NETWORK BALANCE', 'encWallet': 'Encrypted FinTech Wallet', 'recentLogs': 'RECENT LOGS', 'viewAll': 'VIEW ALL', 'logout': 'LOGOUT SECURELY', 'allMembers': 'ALL MEMBERS', 'backDash': '⬅ DASHBOARD', 'status': 'Status', 'joinDate': 'Join Date', 'delAcc': 'DELETE ACCOUNT', 'allLogs': 'ALL LOGS', 'reportAdmin': 'REPORT ADMIN', 'sendReport': 'SEND REPORT', 'redeemFunds': 'REDEEM FUNDS', 'claimFunds': 'CLAIM FUNDS NOW', 'execTransfer': 'EXECUTE TRANSFER', 'taskCenter': 'TASK CENTER', 'members': 'MEMBERS', 'payUser': 'PAY USER', 'apiSet': 'API Config', 'apiDesc': 'Set your API to send money to other users instantly.', 'saveConfig': 'SAVE CONFIG', 'genApi': '🔄 GENERATE NEW API', 'sendMoney': 'SEND MONEY', 'payDesc': 'Send money directly using your API.' },
-            'HI': { 'redeem': 'रिडीम करें', 'withdraw': 'निकासी', 'tasks': 'टास्क', 'history': 'इतिहास', 'support': 'सहायता', 'profile': 'प्रोफ़ाइल', 'networkBal': 'नेटवर्क बैलेंस', 'encWallet': 'सुरक्षित वॉलेट', 'recentLogs': 'हाल के लेन-देन', 'viewAll': 'सभी देखें', 'logout': 'लॉगआउट करें', 'allMembers': 'सभी सदस्य', 'backDash': '⬅ डैशबोर्ड', 'status': 'स्थिति', 'joinDate': 'शामिल होने की तिथि', 'delAcc': 'खाता हटाएं', 'allLogs': 'सभी रिकॉर्ड', 'reportAdmin': 'एडमिन रिपोर्ट', 'sendReport': 'मैसेज भेजें', 'redeemFunds': 'गिफ्ट कोड डालें', 'claimFunds': 'पैसे प्राप्त करें', 'execTransfer': 'ट्रांसफर करें', 'taskCenter': 'टास्क सेंटर', 'members': 'सदस्य', 'payUser': 'पैसे भेजें', 'apiSet': 'एपीआई सेटिंग', 'apiDesc': 'दूसरे यूजर को पैसे भेजने के लिए API सेट करें.', 'saveConfig': 'सेटिंग सेव करें', 'genApi': '🔄 नई एपीआई बनाएं', 'sendMoney': 'पैसे भेजें', 'payDesc': 'अपनी API से सीधा पैसा भेजें.' }
-        };
-        let currentLang = localStorage.getItem('upay_lang') || 'EN';
-        window.toggleLanguage = () => { currentLang = currentLang === 'EN' ? 'HI' : 'EN'; localStorage.setItem('upay_lang', currentLang); applyLanguage(); };
-        function applyLanguage() { el('langBtnTxt').innerText = currentLang === 'EN' ? 'HI / EN' : 'EN / HI'; document.querySelectorAll('[data-i18n]').forEach(e => { let key = e.getAttribute('data-i18n'); if(i18n[currentLang] && i18n[currentLang][key]) e.innerText = i18n[currentLang][key]; }); }
-
+        // UI & Utils
         const playSfx = (t) => { try { const ctx = new (window.AudioContext || window.webkitAudioContext)(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.connect(gain); gain.connect(ctx.destination); if(t==='success'){osc.type='sine';osc.frequency.setValueAtTime(600,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(1200,ctx.currentTime+0.2);}else if(t==='kaching'){osc.type='square';osc.frequency.setValueAtTime(800,ctx.currentTime);osc.frequency.setValueAtTime(1200,ctx.currentTime+0.1);}else{osc.type='sawtooth';osc.frequency.setValueAtTime(300,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(150,ctx.currentTime+0.3);} osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001,ctx.currentTime+0.3); osc.stop(ctx.currentTime+0.3); } catch(e){} };
         const el = id => document.getElementById(id); const ts2Str = ts => ts ? ts.toDate().toLocaleString('en-IN') : 'Just now'; const genWID = () => `WD${new Date().getTime().toString().slice(-6)}${cUid?cUid.slice(-3):'000'}`;
         window.switchView = v => { document.querySelectorAll('.view-panel').forEach(p=>p.classList.remove('active')); el(v).classList.add('active'); if(v==='view-register') { el('reg-s1').classList.remove('hidden'); el('reg-s2').classList.add('hidden'); } if(v==='view-forgot') { el('for-s1').classList.remove('hidden'); el('for-s2').classList.add('hidden'); } if(v==='view-dashboard') loadDash(); if(v==='view-admin') loadAdminTabs(); if(v==='view-profile') loadProf(); if(v==='view-history') loadFullHist(); if(v==='view-api-settings') loadUserApi(); };
         window.showToast = (msg, type='success') => { const c=el('toast-box'); const d=document.createElement('div'); d.className=`toast ${type}`; d.innerHTML=`<div style="font-size:20px;">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</div><div>${msg}</div>`; c.appendChild(d); setTimeout(()=>{ d.classList.add('fade-out'); setTimeout(()=>d.remove(), 400); }, 3500); };
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; }; window.hideLoader = () => el('loader').style.display='none';
+        
+        // Copy to clipboard function
+        window.copyApiText = (elementId) => {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Copied to clipboard!", "success");
+            }).catch(err => {
+                showToast("Copy failed", "error");
+            });
+        };
+
         const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
         const adminLog = async (action, details) => { try { await addDoc(collection(db,"admin_logs"), {action, details, timestamp: serverTimestamp()}); sendTg(ADM_ID, `👑 *ADMIN ACTION*\nAction: ${action}\nDetails: ${details}`); } catch(e){} };
 
+        // Auto Updating Display Function for API
+        const updateApiDisplay = (t, k) => {
+            const token = t || "{token}";
+            const key = k || "{key}";
+            
+            // Hardcoded Safe URL
+            const apiUrl = 'https://kumarkor.github.io/KUMAROFFICIALTMBOT/';
+            
+            // Update URL HTML
+            el('demoApiUrl').innerHTML = `${apiUrl}?token=<b>${token}</b>&key=<b>${key}</b>&paytoNumber=<b>{userid}</b>&amount=<b>{amount}</b>`;
+            
+            // Update JS Example Code
+            el('demoApiJs').innerText = `async function makePayment() {
+    const apiUrl = '${apiUrl}';
+    const params = new URLSearchParams({
+        token: '${token}',
+        key: '${key}',
+        paytoNumber: 'TARGET_USER_ID',
+        amount: '500'
+    });
+
+    try {
+        const response = await fetch(\`\${apiUrl}?\${params}\`);
+        const data = await response.json();
+        
+        if (data.status === 'success') {
+            console.log('Payment successful:', data);
+        } else {
+            console.error('Payment failed:', data.message);
+        }
+    } catch (error) {
+        console.error('API Error:', error);
+    }
+}`;
+        };
+
+        // Offline Games
         window.trfInt = null; let trfCarX = 120, trfObs = [], trfScore = 0, trfOver = false;
         function initTrafficGame() {
             const cvs = el('trafficCanvas'); if(!cvs) return; const ctx = cvs.getContext('2d'); trfCarX = 120; trfObs = []; trfScore = 0; trfOver = false; clearInterval(window.trfInt);
@@ -600,8 +640,11 @@ fetch('https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token=TK-123&key=XYZ&payto
         window.addEventListener('offline', () => { el('offline-screen').style.display = 'flex'; initSnakeGame(); initTrafficGame(); });
         window.addEventListener('online', () => { el('offline-screen').style.display = 'none'; showToast('Internet Restored!', 'success'); clearInterval(window.snakeInt); clearInterval(window.trfInt); });
 
+        // --- INIT ---
         window.onload = async () => {
             applyLanguage();
+            updateApiDisplay("", ""); // Initialize with placeholders
+            
             dHash = localStorage.getItem('upay_dev_hash'); if(!dHash) { dHash = 'DEV_' + Math.random().toString(36).substr(2,10); localStorage.setItem('upay_dev_hash', dHash); }
             
             const gCodeParam = urlParams.get('giftcode'); if(gCodeParam) sessionStorage.setItem('pendingGift', gCodeParam);
@@ -643,10 +686,41 @@ fetch('https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token=TK-123&key=XYZ&payto
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); } hideLoader();
         };
 
-        // --- NEW API CONFIG & DIRECT PAYMENT ---
-        window.loadUserApi = async () => { showLoader(); try { const u = await getDoc(doc(db, "users", cUid)); if(u.exists()) { el('userApiToken').value = u.data().apiToken || ""; el('userApiKey').value = u.data().apiKey || ""; } } catch(e){} hideLoader(); };
-        window.generateNewApi = async () => { const newKey = Math.random().toString(36).substring(2, 20); const newToken = "TK-" + Math.random().toString(36).substring(2, 15).toUpperCase(); el('userApiToken').value = newToken; el('userApiKey').value = newKey; showToast("New API Generated! Press Save."); };
-        window.saveUserApi = async () => { showLoader(); try { const t = el('userApiToken').value.trim(); const k = el('userApiKey').value.trim(); await updateDoc(doc(db, "users", cUid), { apiToken: t, apiKey: k }); showToast("API Configuration Saved!"); } catch(e) { showToast("Error saving", "error"); } hideLoader(); };
+        // --- USER API LOGIC & TRANSFER ---
+        window.loadUserApi = async () => { 
+            showLoader(); 
+            try { 
+                const u = await getDoc(doc(db, "users", cUid)); 
+                if(u.exists()) { 
+                    const t = u.data().apiToken || "";
+                    const k = u.data().apiKey || "";
+                    el('userApiToken').value = t; 
+                    el('userApiKey').value = k; 
+                    updateApiDisplay(t, k);
+                } 
+            } catch(e){} 
+            hideLoader(); 
+        };
+        
+        window.generateNewApi = async () => { 
+            const newKey = Math.random().toString(36).substring(2, 20); 
+            const newToken = "TK-" + Math.random().toString(36).substring(2, 15).toUpperCase(); 
+            el('userApiToken').value = newToken; 
+            el('userApiKey').value = newKey; 
+            updateApiDisplay(newToken, newKey);
+            showToast("New API Generated! Press Save."); 
+        };
+        
+        window.saveUserApi = async () => { 
+            showLoader(); 
+            try { 
+                const t = el('userApiToken').value.trim(); 
+                const k = el('userApiKey').value.trim(); 
+                await updateDoc(doc(db, "users", cUid), { apiToken: t, apiKey: k }); 
+                showToast("API Configuration Saved!"); 
+            } catch(e) { showToast("Error saving", "error"); } 
+            hideLoader(); 
+        };
         
         window.executeUserPayment = async () => {
             const number = el('payNumber').value.trim(); const amount = parseInt(el('payAmount').value);
@@ -657,27 +731,19 @@ fetch('https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token=TK-123&key=XYZ&payto
                 const token = u.data().apiToken; const key = u.data().apiKey;
                 if(!token || !key) throw "Set API Config first from Top Menu!";
                 
-                // Directly processing the transfer internally using Firebase
-                const q = query(collection(db, "users"), where("apiToken", "==", token), where("apiKey", "==", key));
-                const snap = await getDocs(q);
-                if(snap.empty) throw "Invalid API Token or Key";
+                const baseUri = 'https://kumarkor.github.io/KUMAROFFICIALTMBOT/';
+                const params = new URLSearchParams({ token: token, key: key, paytoNumber: number, amount: amount });
                 
-                const senderId = snap.docs[0].id;
-                if(senderId === number) throw "Cannot send money to yourself";
+                const response = await fetch(`${baseUri}?${params}`);
+                const textResult = await response.text();
                 
-                await runTransaction(db, async (t) => {
-                    const sRef = doc(db, "users", senderId); const rRef = doc(db, "users", number);
-                    const sData = await t.get(sRef); const rData = await t.get(rRef);
-                    if(!rData.exists()) throw "Target User not found";
-                    if(sData.data().balance < amount) throw "Insufficient Balance";
-                    t.update(sRef, { balance: sData.data().balance - amount });
-                    t.update(rRef, { balance: rData.data().balance + amount });
-                });
-                
-                await addDoc(collection(db, "users", senderId, "history"), {type:"API_SENT", amount:amount, details:`Transfer to ${number}`, timestamp:serverTimestamp()});
-                await addDoc(collection(db, "users", number, "history"), {type:"API_RECEIVED", amount:amount, details:`Received from ${senderId}`, timestamp:serverTimestamp()});
-                
-                showToast("Payment Successful!"); el('payNumber').value=""; el('payAmount').value=""; switchView('view-dashboard');
+                try {
+                    const data = JSON.parse(textResult);
+                    if (data.status === 'success') { showToast("Payment Successful!"); el('payNumber').value=""; el('payAmount').value=""; switchView('view-dashboard'); } 
+                    else { throw data.message || "Payment Failed"; }
+                } catch(parseErr) {
+                    throw "API connection error. Check limits.";
+                }
             } catch(e) { showToast(typeof e==='string'?e:"API Error", "error"); } hideLoader();
         };
 
@@ -730,24 +796,21 @@ fetch('https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token=TK-123&key=XYZ&payto
                 else if(act==='saveVersion') { await setDoc(doc(db,"settings","sys"), {appVersion:el('admVersion').value},{merge:true}); showToast("Version Updated!"); }
                 else if(act==='sendPush') { await setDoc(doc(db,"settings","sys"), {lastPush: Date.now().toString(), lastPushMsg: el('admPushMsg').value},{merge:true}); showToast("Push Sent!"); adminLog("Push", el('admPushMsg').value); }
                 else if(act==='tgBroadcast') { const msg = el('admTgMsg').value; if(!msg) throw "Enter message"; const us=await getDocs(collection(db,"users")); us.forEach(async (d) => { await sendTg(d.id, msg); }); showToast("Broadcast Sent"); adminLog("TG Broadcast", msg); }
-                
                 else if(act==='genBypass') { const sec = Math.random().toString(36).substring(2,15); await setDoc(doc(db,"settings","sys"), {bypassSecret:sec},{merge:true}); const link = "https://kumarkor.github.io/KUMAROFFICIALTMBOT/?bypass=true&key=" + sec; el('bypassLinkBox').innerText = link; el('bypassLinkBox').classList.remove('hidden'); showToast("Bypass Generated!"); }
+                else if(act==='updateMaintUrl') { const u = el('maintUrlInp').value.trim(); await setDoc(doc(db,"settings","sys"), {maintUrl: u},{merge:true}); showToast("URL Updated!"); }
                 else if(act==='bulkCode') { const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value), c=parseInt(el('admBulkCount').value); if(isNaN(a)||isNaN(m)||isNaN(c)) throw "Invalid data"; let codes = []; for(let i=0; i<c; i++){ const cStr = `GIFT-${Math.random().toString(36).substring(2,8).toUpperCase()}`; await setDoc(doc(db,"giftcodes",cStr), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], usedDevs:[], createdAt:serverTimestamp()}); codes.push(cStr); } el('newCodeTxt').innerText=codes.join("\n"); el('newCodeBox').classList.remove('hidden'); showToast(`${c} Codes Generated`); sendTg(ADM_ID, `🎁 *NEW CODES CREATED*\nGenerated ${c} codes of ₹${a} each.`); }
-                
+                else if(act==='checkCode') { const c=el('admChkCodeInp').value.trim().toUpperCase(); const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); let uls=""; if(d.usedBy&&d.usedBy.length>0) uls=`<br><b>Used By:</b><br><span style='color:var(--primary); font-family:monospace;'>${d.usedBy.join("<br>")}</span>`; el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Amt:</b> ₹${d.amount}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger);">EXPIRED</span>':'<span style="color:var(--success);">ACTIVE</span>'}${uls}`; el('chkCodeRes').classList.remove('hidden'); }
+                else if(act==='checkWd') { const w=el('admChkWdInp').value.trim().toUpperCase(); const wq=await getDocs(query(collection(db,"withdrawals"), where("wId", "==", w))); if(wq.empty) throw "WID Not Found"; let wd = wq.docs[0].data(); el('chkWdRes').innerHTML = `<b>WID:</b> ${wd.wId}<br><b>User:</b> ${wd.userId}<br><b>Amt:</b> ₹${wd.amount}<br><b>Target:</b> ${wd.target}<br><b>Method:</b> ${wd.method}<br><b>Status:</b> ${wd.status}`; el('chkWdRes').classList.remove('hidden'); }
                 else if(act==='addBal'||act==='cutBal') { const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found"; const nb = act==='addBal'? u.data().balance+a : u.data().balance-a; await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Injected':'Deducted', timestamp:serverTimestamp()}); showToast(`New Bal: ₹${nb}`); sendTg(id, `💰 Admin ${act==='addBal'?'Added':'Deducted'} ₹${a}`); adminLog("Bal", `${act} ₹${a} ID: ${id}`); }
                 else if(act==='checkUsr') { const id=el('admUsrId').value.trim(); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not Found"; el('chkUsrRes').innerHTML=`<b>ID:</b> ${id}<br><b>Name:</b> ${u.data().name||'User'}<br><b>Bal:</b> <span style="color:var(--success); font-weight:bold;">₹${u.data().balance}</span><br><b>Status:</b> ${u.data().isBanned?'BANNED':'ACTIVE'}<br><b>Last Seen:</b> ${ts2Str(u.data().lastSeen)}`; el('chkUsrRes').classList.remove('hidden'); }
                 else if(act==='resetPass') { const id=el('admUsrId').value.trim(), np=el('admNewPass').value; if(!id||!np) throw "Missing fields"; await updateDoc(doc(db,"users",id), {password:np}); showToast("Password Reset"); adminLog("Pass Reset", `ID: ${id}`); }
                 else if(act==='banUser') { const tgt=el('admBanTarget').value.trim(); if(!tgt||tgt===ADM_ID) throw "Invalid Target"; if(tgt.startsWith("DEV_")) { if(p1){ await setDoc(doc(db,"blacklisted_devices",tgt),{banned:true, ts:serverTimestamp()}); }else{ await deleteDoc(doc(db,"blacklisted_devices",tgt)); } showToast(p1?"Device Banned":"Device Unbanned"); adminLog(p1?"Ban Dev":"Unban Dev", tgt); } else { await updateDoc(doc(db,"users",tgt), {isBanned:p1}); showToast(p1?"User Banned":"User Unbanned"); adminLog(p1?"Ban UID":"Unban UID", tgt); } }
-
                 else if(act==='appReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ Request Approved WID: ${p4}`); adminLog("Approve WID", `WID: ${p4}`); }
                 else if(act==='rejReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'}); const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Refund WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Rejected!"); loadAdminTabs(); sendTg(p2, `⛔ Request Rejected (Refund) WID: ${p4}`); adminLog("Reject WID", `WID: ${p4}`); }
-                
                 else if(act==='createTask') { const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value), l=el('admTaskLink').value.trim(), d=el('admTaskDesc').value.trim(); if(!n||isNaN(a)||!l||!d) throw "Fill all fields!"; await addDoc(collection(db,"tasks"), {name:n, amount:a, link:l, desc:d, createdAt:serverTimestamp()}); showToast("Task Created"); el('admTaskName').value=""; el('admTaskAmt').value=""; el('admTaskLink').value=""; el('admTaskDesc').value=""; loadAdminTabs(); sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\nLink >> ${l}\n\n_Task successfully live in app!_`); adminLog("Task Created", `${n}, ₹${a}`); }
                 else if(act==='delTask') { await deleteDoc(doc(db,"tasks",p1)); showToast("Deleted"); loadAdminTabs(); }
-
                 else if(act==='appTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Approved'}); const ud = await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"ADMIN_ADD", amount:p3, details:`Task Approved: ${p4}`, timestamp:serverTimestamp()}); showToast("Task Approved!"); loadAdminTabs(); sendTg(p2, `✅ *TASK APPROVED*\n\nYour task "🌸 *${p4}* 🌸" was approved!\n🤭 Amount >> ₹${p3} added to wallet.`); adminLog("Task App", `User: ${p2}, Task: ${p4}`); }
                 else if(act==='rejTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Rejected'}); showToast("Task Rejected"); loadAdminTabs(); sendTg(p2, `⛔ *TASK REJECTED*\n\nYour submission for "*${p3}*" was rejected by Admin.`); adminLog("Task Rej", `User: ${p2}, Task: ${p3}`); }
-                
                 else if(act==='replyReport') { const rMsg = el(`repReply_${p1}`).value.trim(); if(!rMsg) throw "Enter reply msg"; await updateDoc(doc(db,"reports",p1), {status:'Replied'}); sendTg(p2, `💬 *ADMIN SUPPORT REPLY*\n\nAdmin has replied to your report:\n"${rMsg}"`); showToast("Reply Sent!"); loadAdminTabs(); adminLog("Report Reply", `User: ${p2}`); }
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); } hideLoader();
         };

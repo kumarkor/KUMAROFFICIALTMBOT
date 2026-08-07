@@ -6,6 +6,12 @@
     <meta name="theme-color" content="#03040a">
     <title>Ultra Pay Pro | Premium Secure Network</title>
     
+    <!-- Meta Tags For Google & Link Sharing Preview -->
+    <meta name="description" content="Join Ultra Pay Pro to complete tasks, redeem gift codes, and earn instant rewards!">
+    <meta property="og:title" content="Ultra Pay Pro | Earning Network">
+    <meta property="og:description" content="Complete simple tasks and withdraw instantly via UltraPay or UPI. Join now!">
+    <meta property="og:type" content="website">
+    
     <link rel="manifest" id="manifest-placeholder">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +21,16 @@
         /* =======================================================================
            1. CORE THEME & VARIABLES
            ======================================================================= */
-        :root { --primary: #00f3ff; --secondary: #bc13fe; --accent: #0055ff; --danger: #ff0055; --success: #00ff88; --warning: #ffaa00; --bg-dark: #03040a; --panel-bg: rgba(12, 16, 28, 0.85); --input-bg: rgba(0, 0, 0, 0.6); --text-main: #ffffff; --text-muted: #8b9bb4; --glow-primary: 0 0 25px rgba(0, 243, 255, 0.4); --glow-danger: 0 0 25px rgba(255, 0, 85, 0.4); --glow-success: 0 0 25px rgba(0, 255, 136, 0.4); }
+        :root {
+            --primary: #00f3ff; --secondary: #bc13fe; --accent: #0055ff;
+            --danger: #ff0055; --success: #00ff88; --warning: #ffaa00;
+            --bg-dark: #03040a; --panel-bg: rgba(12, 16, 28, 0.85); --input-bg: rgba(0, 0, 0, 0.6);
+            --text-main: #ffffff; --text-muted: #8b9bb4;
+            --glow-primary: 0 0 25px rgba(0, 243, 255, 0.4); --glow-danger: 0 0 25px rgba(255, 0, 85, 0.4);
+            --glow-success: 0 0 25px rgba(0, 255, 136, 0.4);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; overflow-x: hidden; display: flex; justify-content: center; align-items: center; position: relative; }
         ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: rgba(0,0,0,0.5); } ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary), var(--secondary)); border-radius: 10px; }
@@ -25,6 +40,7 @@
            ======================================================================= */
         .ambient-light { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: -2; background: radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.08) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(188, 19, 254, 0.08) 0%, transparent 45%); animation: pulseBg 12s infinite alternate ease-in-out; }
         @keyframes pulseBg { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
+        
         .cyber-grid { position: fixed; width: 200vw; height: 200vh; top: -50%; left: -50%; z-index: -1; background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; transform: perspective(800px) rotateX(60deg); animation: gridScroll 15s linear infinite; }
         @keyframes gridScroll { 100% { transform: perspective(800px) rotateX(60deg) translateY(40px); } }
 
@@ -71,9 +87,11 @@
         .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: rgba(0,0,0,0.5); padding: 15px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); }
         .dash-user-info { display: flex; align-items: center; gap: 12px; }
         .dash-avatar { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; box-shadow: var(--glow-primary); }
+        
         .modern-balance-card { background: linear-gradient(145deg, rgba(0, 243, 255, 0.15), rgba(188, 19, 254, 0.1)); border: 1px solid rgba(0, 243, 255, 0.4); border-radius: 26px; padding: 30px 20px; text-align: center; margin-bottom: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); position: relative; overflow: hidden; }
         .modern-bal-title { font-family: 'Orbitron'; font-size: 13px; color: var(--text-muted); font-weight: 700; }
         .modern-bal-amt { font-family: 'Orbitron'; font-size: 48px; font-weight: 900; color: #fff; text-shadow: var(--glow-primary); margin: 10px 0; word-break: break-all; }
+        
         .modern-menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
         .modern-menu-item { background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 15px 5px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
         .modern-menu-item:hover { border-color: var(--primary); background: rgba(0, 243, 255, 0.08); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,243,255,0.2); }
@@ -119,7 +137,7 @@
         .modal-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:100005; display:none; justify-content:center; align-items:center; backdrop-filter:blur(12px); }
         .modal-box { background:var(--panel-bg); border:1px solid var(--primary); border-radius:24px; padding:30px; width:90%; max-width:420px; box-shadow:0 20px 50px rgba(0,0,0,0.9); }
 
-        /* Offline Games UI */
+        /* Offline Game UI */
         .game-box { background: rgba(0,0,0,0.8); border: 1px solid var(--primary); border-radius: 20px; padding: 15px; width: 100%; max-width: 320px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,243,255,0.15); z-index:100001; }
         canvas { background: #000; display: block; margin: 10px auto; border-radius: 12px; border: 2px solid rgba(0,243,255,0.4); box-shadow: inset 0 0 20px rgba(0,0,0,0.9); }
         .game-ctrl-btn { background: rgba(255,255,255,0.1); border: 1px solid var(--primary); color: #fff; padding: 12px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size:16px; display:flex; justify-content:center; align-items:center; }
@@ -151,17 +169,12 @@
     <div id="loader"><div class="loader-ring"></div><div class="loader-txt" id="loaderText">PROCESSING...</div></div>
     <div id="push-notification"><div class="push-icon">🔔</div><div><div style="font-size:12px; color:var(--primary); font-weight:800;">Ultra Pay Alert</div><div id="push-msg" style="font-size:13px; color:#fff;"></div></div></div>
 
-    <!-- MAINTENANCE SCREEN (FIXED: NO IFRAME FOR YOUTUBE) -->
+    <!-- MAINTENANCE SCREEN (FIXED: NO YOUTUBE LINK, JUST CLEAN SCREEN) -->
     <div id="maintenance-screen">
         <div id="maint-bypass-target" ondblclick="openAdminBypass()"></div>
         <svg width="70" height="70" viewBox="0 0 24 24" fill="var(--warning)"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.61-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
         <h1 style="color:var(--warning); font-family:'Orbitron'; margin-top:20px; font-size:24px;">SYSTEM MAINTENANCE</h1>
         <p id="maint-text-display" style="color:var(--text-muted); font-size:14px; margin-top:10px;">We will be back shortly!</p>
-        
-        <!-- FIXED: Button instead of Iframe to prevent refuse to connect error -->
-        <div id="maint-link-container" style="margin-top: 20px; display: none;">
-            <a id="maint-link-btn" href="#" target="_blank" class="btn btn-warning" style="width:auto; padding:12px 25px; display:inline-flex;">WATCH UPDATE VIDEO 🔗</a>
-        </div>
     </div>
 
     <!-- Modals -->
@@ -192,8 +205,8 @@
         <button class="btn btn-danger" onclick="location.reload(true)">REFRESH APP</button>
     </div>
 
-    <!-- OFFLINE GAMES (Snake & Traffic Run) -->
-    <div id="offline-screen">
+    <!-- OFFLINE GAMES (Snake - Always Visible when offline) -->
+    <div id="offline-screen" style="z-index: 999999;">
         <h2 style="color:var(--danger); font-family:'Orbitron'; margin-bottom:5px; font-size:22px;">NO INTERNET</h2>
         <p style="color:var(--text-muted); font-size:13px; margin-bottom:20px;">Play offline while we reconnect...</p>
         
@@ -206,16 +219,6 @@
                 <button class="game-ctrl-btn" style="padding:5px; background:var(--danger); border-color:var(--danger);" onclick="resetSnake()">R</button>
                 <button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('RIGHT')">▶</button>
                 <div></div><button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('DOWN')">▼</button><div></div>
-            </div>
-        </div>
-
-        <div class="game-box">
-            <h3 style="color:var(--warning); font-size:15px; text-align:center; font-family:'Orbitron'; margin-bottom:8px;">🚗 Traffic Run</h3>
-            <canvas id="trafficCanvas" width="280" height="140"></canvas>
-            <div style="display:flex; justify-content:space-between; gap:10px; margin-top:10px;">
-                <button class="game-ctrl-btn" style="flex:1;" onclick="moveTrafficCar(-1)">◀ L</button>
-                <button class="game-ctrl-btn" style="flex:1; background:var(--danger); border-color:var(--danger);" onclick="resetTraffic()">Restart</button>
-                <button class="game-ctrl-btn" style="flex:1;" onclick="moveTrafficCar(1)">R ▶</button>
             </div>
         </div>
     </div>
@@ -285,7 +288,8 @@
                         <div id="dashId" style="font-family:'Orbitron'; font-size:10px; color:var(--primary);">--</div>
                     </div>
                 </div>
-                <button class="lang-btn" onclick="toggleLanguage()" id="langBtnTxt">MR / EN</button>
+                <!-- FIXED: HI / EN Language Toggle -->
+                <button class="lang-btn" onclick="toggleLanguage()" id="langBtnTxt">HI / EN</button>
             </div>
 
             <div class="modern-balance-card">
@@ -384,7 +388,7 @@
         </div>
 
         <!-- ==========================================================
-             VIEW 10: ADMIN PANEL (Upgraded)
+             VIEW 10: ADMIN PANEL (FIXED ULTRAPAY KEY & WID/CODE INSPECT)
              ========================================================== -->
         <div class="view-panel" id="view-admin" style="padding: 25px 15px; width:100%; max-width:600px;">
             <h2 class="title" style="color:var(--warning); text-shadow:0 0 15px rgba(255,170,0,0.6); font-size:22px;">ADMIN COMMAND</h2>
@@ -399,40 +403,71 @@
                 <div class="admin-tab" onclick="openAdmTab('adm-adv')">Advanced</div>
             </div>
 
+            <!-- STATS TAB -->
             <div class="admin-content active" id="adm-ov">
                 <div class="admin-card" style="border-color:var(--success);"><div class="admin-card-title" style="color:var(--success);">LIQUIDITY</div><div style="font-family:'Orbitron'; font-size:30px; text-align:center; color:var(--success); font-weight:bold; margin-bottom:15px;" id="dispLiq">₹0</div><div class="input-group"><input type="number" class="form-control" id="admLiqAmt"><label class="form-label" style="top:-10px;">Set Limit (₹)</label></div><button class="btn btn-success" onclick="admAct('setLiq')">UPDATE</button></div>
                 <div class="admin-card"><div class="admin-card-title">SYSTEM TOGGLES</div><div class="toggle-row"><span>Global Withdraw</span> <label class="switch"><input type="checkbox" id="tgWd" onchange="admAct('tog', 'isWdOn', this.checked)"><span class="slider"></span></label></div><div class="toggle-row"><span>Ultra Pay (Auto)</span> <label class="switch"><input type="checkbox" id="tgUlt" onchange="admAct('tog', 'isUltOn', this.checked)"><span class="slider"></span></label></div><div class="toggle-row"><span>UPI (Manual)</span> <label class="switch"><input type="checkbox" id="tgUpi" onchange="admAct('tog', 'isUpiOn', this.checked)"><span class="slider"></span></label></div><div class="toggle-row" style="border-color:var(--warning);"><span style="color:var(--warning);">Maintenance Mode</span> <label class="switch"><input type="checkbox" id="tgMaint" onchange="admAct('tog', 'isMaintenance', this.checked)"><span class="slider"></span></label></div></div>
                 <div class="admin-card"><div class="admin-card-title">MESSAGES & PUSH</div><div class="input-group" style="margin-bottom:15px;"><input type="text" class="form-control" id="admPushMsg" placeholder="Push Alert"><button class="btn btn-success" style="padding:12px; margin:8px 0;" onclick="admAct('sendPush')">SEND PUSH</button></div><div class="input-group" style="margin-bottom:15px;"><input type="text" class="form-control" id="admTgMsg" placeholder="Telegram Broadcast"><button class="btn btn-telegram" style="padding:12px; margin:8px 0;" onclick="admAct('tgBroadcast')">BROADCAST</button></div></div>
             </div>
 
+            <!-- CODES TAB (Includes Inspect Code) -->
             <div class="admin-content" id="adm-code">
                 <div class="admin-card"><div class="admin-card-title">BULK GENERATOR</div><div class="input-group"><input type="number" class="form-control" id="admGiftAmt"><label class="form-label" style="top:-10px;">Amt (₹)</label></div><div class="input-group"><input type="number" class="form-control" id="admGiftMax"><label class="form-label" style="top:-10px;">Max Users</label></div><div class="input-group"><input type="number" class="form-control" id="admBulkCount"><label class="form-label" style="top:-10px;">How Many Codes?</label></div><button class="btn btn-warning" onclick="admAct('bulkCode')">GENERATE</button><div id="newCodeBox" class="copy-box hidden" onclick="navigator.clipboard.writeText(document.getElementById('newCodeTxt').innerText); showToast('COPIED!');"><div class="copy-text" id="newCodeTxt" style="font-size:13px; text-align:left; max-height:120px; overflow-y:auto;"></div><div class="badge" style="background:var(--success); color:#000; margin-top:10px;">TAP TO COPY</div></div></div>
+                
+                <!-- FIXED: Inspect Gift Code -->
+                <div class="admin-card">
+                    <div class="admin-card-title">INSPECT GIFT CODE</div>
+                    <div class="input-group"><input type="text" class="form-control" id="admChkCodeInp" style="text-transform:uppercase;"><label class="form-label" style="top:-10px;">Enter Code (GIFT-XXXX)</label></div>
+                    <button class="btn" onclick="admAct('checkCode')">CHECK CODE</button>
+                    <div id="chkCodeRes" class="result-box hidden"></div>
+                </div>
             </div>
 
+            <!-- USERS TAB -->
             <div class="admin-content" id="adm-usr">
                 <div class="admin-card"><div class="admin-card-title">BALANCE & RESET</div><div class="input-group"><input type="number" class="form-control" id="admUsrId"><label class="form-label" style="top:-10px;">User ID</label></div><button class="btn" onclick="admAct('checkUsr')" style="margin-bottom:10px;">INSPECT</button><div id="chkUsrRes" class="result-box hidden" style="margin-bottom:10px;"></div><div style="display:flex; gap:10px;"><input type="number" class="form-control" id="admBalAmt" placeholder="Amt" style="padding:10px;"><button class="btn btn-success" style="padding:10px; margin:0;" onclick="admAct('addBal')">ADD</button><button class="btn btn-danger" style="padding:10px; margin:0;" onclick="admAct('cutBal')">CUT</button></div><div style="display:flex; gap:10px; margin-top:10px;"><input type="text" class="form-control" id="admNewPass" placeholder="New Pass" style="padding:10px;"><button class="btn btn-warning" style="padding:10px; margin:0;" onclick="admAct('resetPass')">RESET</button></div></div>
                 <div class="admin-card"><div class="admin-card-title">BAN SYSTEM</div><div class="input-group"><input type="text" class="form-control" id="admBanTarget" placeholder="UID or DEV_Hash"></div><div style="display:flex; gap:10px;"><button class="btn btn-danger" onclick="admAct('banUser', true)">BAN</button><button class="btn btn-success" onclick="admAct('banUser', false)">UNBAN</button></div></div>
                 <div class="admin-card"><div class="admin-card-title">DIRECTORY <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:6px; padding:4px 10px; cursor:pointer;" onclick="loadAdminTabs()">⟳</button></div><div class="data-list" id="listUsrs" style="max-height:200px;"></div></div>
             </div>
 
+            <!-- WITHDRAWS TAB (Includes Inspect WID) -->
             <div class="admin-content" id="adm-req">
                 <div class="admin-card"><div class="admin-card-title">PENDING REQUESTS</div><div id="listReqs" class="data-list" style="max-height: 40vh;"></div></div>
+                
+                <!-- FIXED: Inspect WID -->
+                <div class="admin-card">
+                    <div class="admin-card-title">CHECK WITHDRAWAL (WID)</div>
+                    <div class="input-group"><input type="text" class="form-control" id="admChkWdInp" style="text-transform:uppercase;"><label class="form-label" style="top:-10px;">Enter WID (WDXXXXXX)</label></div>
+                    <button class="btn btn-warning" onclick="admAct('checkWd')">INSPECT WID</button>
+                    <div id="chkWdRes" class="result-box hidden"></div>
+                </div>
             </div>
 
+            <!-- TASKS TAB -->
             <div class="admin-content" id="adm-task">
                 <div class="admin-card"><div class="admin-card-title">CREATE TASK</div><div class="input-group"><input type="text" class="form-control" id="admTaskName" required><label class="form-label" style="top:-10px;">Task Name</label></div><div class="input-group"><input type="number" class="form-control" id="admTaskAmt" required><label class="form-label" style="top:-10px;">Reward (₹)</label></div><div class="input-group"><input type="text" class="form-control" id="admTaskLink" required><label class="form-label" style="top:-10px;">Link (URL)</label></div><div class="input-group"><textarea class="form-control" id="admTaskDesc" style="min-height:90px;" required></textarea><label class="form-label" style="top:-10px;">Steps</label></div><button class="btn btn-primary" onclick="admAct('createTask')">ADD TASK</button></div>
                 <div class="admin-card"><div class="admin-card-title">PENDING SUBMISSIONS</div><div class="data-list" id="admSubList" style="max-height: 35vh;"></div></div>
                 <div class="admin-card"><div class="admin-card-title">ACTIVE TASKS</div><div class="data-list" id="admTaskList" style="max-height: 25vh;"></div></div>
             </div>
 
+            <!-- REPORTS TAB -->
             <div class="admin-content" id="adm-reports">
                 <div class="admin-card"><div class="admin-card-title">USER REPORTS <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:6px; padding:4px 10px; cursor:pointer;" onclick="loadAdminTabs()">⟳</button></div><div class="data-list" id="admReportList" style="max-height: 55vh;"></div></div>
             </div>
 
+            <!-- ADVANCED TAB (FIXED: Added ULTRAPAY API SETUP) -->
             <div class="admin-content" id="adm-adv">
+                <!-- FIXED: UltraPay Key & Token Setup -->
+                <div class="admin-card" style="border-color:var(--success);">
+                    <div class="admin-card-title" style="color:var(--success);">ULTRAPAY API SETUP</div>
+                    <div class="input-group"><input type="text" class="form-control" id="admApiTok"><label class="form-label" style="top:-10px;">API Token</label></div>
+                    <div class="input-group"><input type="text" class="form-control" id="admApiKey"><label class="form-label" style="top:-10px;">Secret Key</label></div>
+                    <button class="btn btn-success" onclick="admAct('saveApi')">SAVE API</button>
+                </div>
+
                 <div class="admin-card" style="border-color:var(--primary);"><div class="admin-card-title" style="color:var(--primary);">BYPASS GENERATOR</div><button class="btn btn-primary" onclick="admAct('genBypass')">GENERATE LINK</button><div id="bypassLinkBox" class="result-box hidden" onclick="navigator.clipboard.writeText(this.innerText); showToast('Link Copied!');"></div></div>
                 <div class="admin-card"><div class="admin-card-title">CUSTOM PAYMENT METHODS</div><div class="input-group"><input type="text" class="form-control" id="newPayMethod"><label class="form-label" style="top:-10px;">Method Name (e.g. Paytm)</label></div><button class="btn btn-success" onclick="admAct('addPayMethod')">ADD METHOD</button><div class="data-list" id="listPayMethods" style="margin-top:10px; max-height:150px;"></div></div>
-                <div class="admin-card"><div class="admin-card-title">CUSTOM MAINTENANCE PAGE</div><div class="input-group"><input type="text" class="form-control" id="maintUrlInp" placeholder="https://youtube.com/..."></div><button class="btn btn-warning" onclick="admAct('updateMaintUrl')">UPDATE URL</button></div>
+                <div class="admin-card"><div class="admin-card-title">VERSION CONTROL</div><div class="input-group"><input type="text" class="form-control" id="admVersion"><label class="form-label" style="top:-10px;">App Version</label></div><button class="btn btn-danger" onclick="admAct('saveVersion')">FORCE UPDATE</button></div>
             </div>
 
             <span class="link-text" style="margin-top:25px;" onclick="switchView('view-dashboard')">⬅ EXIT ADMIN</span>
@@ -440,7 +475,7 @@
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT LOGIC (Firebase V10 + Perfect Bug-Free Features + Fixes)
+         JAVASCRIPT LOGIC (Firebase V10 + All Fixes + Auto Gift Claim)
          ======================================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -456,15 +491,15 @@
         let cUid = null, gOtp = null, sysSets = {}, dHash = '';
         let currentTaskPayload = null;
 
-        // MULTI-LANGUAGE DICTIONARY
+        // FIXED: MULTI-LANGUAGE DICTIONARY (EN & Hindi)
         const i18n = {
             'EN': { 'redeem': 'REDEEM', 'withdraw': 'WITHDRAW', 'tasks': 'TASKS', 'history': 'HISTORY', 'support': 'SUPPORT', 'profile': 'PROFILE', 'networkBal': 'NETWORK BALANCE', 'encWallet': 'Encrypted FinTech Wallet', 'recentLogs': 'RECENT LOGS', 'viewAll': 'VIEW ALL', 'logout': 'LOGOUT SECURELY', 'allMembers': 'ALL MEMBERS', 'backDash': '⬅ DASHBOARD', 'status': 'Status', 'joinDate': 'Join Date', 'delAcc': 'DELETE ACCOUNT', 'allLogs': 'ALL LOGS', 'reportAdmin': 'REPORT ADMIN', 'sendReport': 'SEND REPORT', 'redeemFunds': 'REDEEM FUNDS', 'claimFunds': 'CLAIM FUNDS NOW', 'execTransfer': 'EXECUTE TRANSFER', 'taskCenter': 'TASK CENTER', 'members': 'MEMBERS' },
-            'MR': { 'redeem': 'पैसे मिळवा', 'withdraw': 'विथड्रॉल', 'tasks': 'टास्क (कामे)', 'history': 'इतिहास', 'support': 'मदत (सपोर्ट)', 'profile': 'प्रोफाईल', 'networkBal': 'तुमचा बॅलन्स', 'encWallet': 'सुरक्षित वॉलेट', 'recentLogs': 'नवीन व्यवहार', 'viewAll': 'सर्व बघा', 'logout': 'लॉगआउट करा', 'allMembers': 'सर्व युझर्स', 'backDash': '⬅ डॅशबोर्ड', 'status': 'स्थिती', 'joinDate': 'जॉईन तारीख', 'delAcc': 'खाते कायमचे हटवा', 'allLogs': 'सर्व माहिती', 'reportAdmin': 'ॲडमिनला सांगा', 'sendReport': 'मेसेज पाठवा', 'redeemFunds': 'गिफ्ट कोड टाका', 'claimFunds': 'पैसे खात्यात घ्या', 'execTransfer': 'पैसे काढा', 'taskCenter': 'टास्क सेंटर', 'members': 'सदस्य' }
+            'HI': { 'redeem': 'पैसे रिडीम करें', 'withdraw': 'निकासी (Withdraw)', 'tasks': 'टास्क (Tasks)', 'history': 'इतिहास (History)', 'support': 'सहायता (Support)', 'profile': 'प्रोफ़ाइल (Profile)', 'networkBal': 'नेटवर्क बैलेंस', 'encWallet': 'सुरक्षित वॉलेट', 'recentLogs': 'हाल के लेन-देन', 'viewAll': 'सभी देखें', 'logout': 'लॉगआउट करें', 'allMembers': 'सभी सदस्य', 'backDash': '⬅ डैशबोर्ड', 'status': 'स्थिति', 'joinDate': 'शामिल होने की तिथि', 'delAcc': 'खाता हटाएं', 'allLogs': 'सभी रिकॉर्ड', 'reportAdmin': 'एडमिन को रिपोर्ट करें', 'sendReport': 'मैसेज भेजें', 'redeemFunds': 'गिफ्ट कोड डालें', 'claimFunds': 'पैसे प्राप्त करें', 'execTransfer': 'ट्रांसफर करें', 'taskCenter': 'टास्क सेंटर', 'members': 'सदस्य' }
         };
         let currentLang = localStorage.getItem('upay_lang') || 'EN';
         
-        window.toggleLanguage = () => { currentLang = currentLang === 'EN' ? 'MR' : 'EN'; localStorage.setItem('upay_lang', currentLang); applyLanguage(); };
-        function applyLanguage() { el('langBtnTxt').innerText = currentLang === 'EN' ? 'MR / EN' : 'EN / MR'; document.querySelectorAll('[data-i18n]').forEach(e => { let key = e.getAttribute('data-i18n'); if(i18n[currentLang] && i18n[currentLang][key]) e.innerText = i18n[currentLang][key]; }); }
+        window.toggleLanguage = () => { currentLang = currentLang === 'EN' ? 'HI' : 'EN'; localStorage.setItem('upay_lang', currentLang); applyLanguage(); };
+        function applyLanguage() { el('langBtnTxt').innerText = currentLang === 'EN' ? 'HI / EN' : 'EN / HI'; document.querySelectorAll('[data-i18n]').forEach(e => { let key = e.getAttribute('data-i18n'); if(i18n[currentLang] && i18n[currentLang][key]) e.innerText = i18n[currentLang][key]; }); }
 
         const playSfx = (t) => { try { const ctx = new (window.AudioContext || window.webkitAudioContext)(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.connect(gain); gain.connect(ctx.destination); if(t==='success'){osc.type='sine';osc.frequency.setValueAtTime(600,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(1200,ctx.currentTime+0.2);}else if(t==='kaching'){osc.type='square';osc.frequency.setValueAtTime(800,ctx.currentTime);osc.frequency.setValueAtTime(1200,ctx.currentTime+0.1);}else{osc.type='sawtooth';osc.frequency.setValueAtTime(300,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(150,ctx.currentTime+0.3);} osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001,ctx.currentTime+0.3); osc.stop(ctx.currentTime+0.3); } catch(e){} };
         const el = id => document.getElementById(id); const ts2Str = ts => ts ? ts.toDate().toLocaleString('en-IN') : 'Just now'; const genWID = () => `WD${new Date().getTime().toString().slice(-6)}${cUid?cUid.slice(-3):'000'}`;
@@ -475,14 +510,41 @@
         const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
         const adminLog = async (action, details) => { try { await addDoc(collection(db,"admin_logs"), {action, details, timestamp: serverTimestamp()}); sendTg(ADM_ID, `👑 *ADMIN ACTION*\nAction: ${action}\nDetails: ${details}`); } catch(e){} };
 
-        // --- INIT & LOGIC ---
+        // --- OFFLINE GAME (Snake) ---
+        window.addEventListener('offline', () => { el('offline-screen').style.display = 'flex'; initSnakeGame(); });
+        window.addEventListener('online', () => { el('offline-screen').style.display = 'none'; showToast('Internet Restored!', 'success'); clearInterval(window.snakeInt); });
+
+        window.snakeDir = 'RIGHT'; window.snakeInt = null;
+        function initSnakeGame() {
+            const cvs = el('snakeCanvas'); if(!cvs) return; const ctx = cvs.getContext('2d');
+            let snk = [{x: 10, y: 7}]; let fd = {x: 20, y: 7}; window.snakeDir = 'RIGHT'; let sScore = 0;
+            clearInterval(window.snakeInt);
+            window.snakeInt = setInterval(() => {
+                let h = {x: snk[0].x, y: snk[0].y};
+                if(window.snakeDir === 'LEFT') h.x--; if(window.snakeDir === 'RIGHT') h.x++;
+                if(window.snakeDir === 'UP') h.y--; if(window.snakeDir === 'DOWN') h.y++;
+                if(h.x < 0 || h.x >= 28 || h.y < 0 || h.y >= 14) { ctx.fillStyle="rgba(0,0,0,0.8)"; ctx.fillRect(0,0,cvs.width,cvs.height); ctx.fillStyle="#ff0055"; ctx.font="bold 16px Orbitron"; ctx.fillText("CRASHED! Score: "+sScore, 40, 80); clearInterval(window.snakeInt); return; }
+                snk.unshift(h);
+                if(h.x === fd.x && h.y === fd.y) { sScore++; fd = {x: Math.floor(Math.random()*28), y: Math.floor(Math.random()*14)}; } else { snk.pop(); }
+                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, cvs.width, cvs.height);
+                ctx.fillStyle = "#00ff88"; snk.forEach(p => ctx.fillRect(p.x*10, p.y*10, 9, 9));
+                ctx.fillStyle = "#ff0055"; ctx.fillRect(fd.x*10, fd.y*10, 9, 9);
+            }, 120);
+        }
+        window.userSetSnakeDir = (d) => { if((d==='LEFT'&&window.snakeDir!=='RIGHT')||(d==='RIGHT'&&window.snakeDir!=='LEFT')||(d==='UP'&&window.snakeDir!=='DOWN')||(d==='DOWN'&&window.snakeDir!=='UP')) window.snakeDir = d; };
+        window.resetSnake = () => { initSnakeGame(); };
+
+        // --- DIRECT GIFT CODE & INIT ---
         window.onload = async () => {
             applyLanguage();
             dHash = localStorage.getItem('upay_dev_hash'); if(!dHash) { dHash = 'DEV_' + Math.random().toString(36).substr(2,10); localStorage.setItem('upay_dev_hash', dHash); }
-            const urlParams = new URLSearchParams(window.location.search); const gCodeParam = urlParams.get('giftcode'); if(gCodeParam) sessionStorage.setItem('pendingGift', gCodeParam);
+            const urlParams = new URLSearchParams(window.location.search); 
+            const gCodeParam = urlParams.get('giftcode'); if(gCodeParam) sessionStorage.setItem('pendingGift', gCodeParam);
             const isByp = urlParams.get('bypass'); const bKey = urlParams.get('key');
             const savedUid = localStorage.getItem('upay_uid'), savedPass = localStorage.getItem('upay_pass');
-            if(savedUid && savedPass) { el('logId').value = savedUid; el('logPass').value = savedPass; if(isByp && bKey) window.tempBypassKey = bKey; appAuth('login'); } else { if(isByp && bKey) { window.tempBypassKey = bKey; showToast("Bypass Key Detected. Please Login."); } }
+            
+            if(savedUid && savedPass) { el('logId').value = savedUid; el('logPass').value = savedPass; if(isByp && bKey) window.tempBypassKey = bKey; appAuth('login'); } 
+            else { if(isByp && bKey) { window.tempBypassKey = bKey; showToast("Bypass Key Detected. Please Login."); } }
         };
 
         window.logoutApp = () => { cUid=null; localStorage.removeItem('upay_uid'); localStorage.removeItem('upay_pass'); el('logId').value=""; el('logPass').value=""; switchView('view-login'); showToast('Logged Out', 'info'); };
@@ -496,12 +558,10 @@
             if (docSnap.exists()) {
                 sysSets = docSnap.data();
                 
-                // FIXED Maintenance URL LOGIC: No iframe, just an external link button to prevent refusal
-                if(sysSets.maintUrl && sysSets.maintUrl.length > 5) {
-                    el('maint-link-btn').href = sysSets.maintUrl;
-                    el('maint-link-container').style.display = 'block';
-                } else {
-                    el('maint-link-container').style.display = 'none';
+                // Populating Admin API Fields visually if Admin
+                if(cUid === ADM_ID) {
+                    if(sysSets.apiTok && !el('admApiTok').value) el('admApiTok').value = sysSets.apiTok;
+                    if(sysSets.apiKey && !el('admApiKey').value) el('admApiKey').value = sysSets.apiKey;
                 }
 
                 if(window.tempBypassKey && window.tempBypassKey === sysSets.bypassSecret) { isBypassed = true; window.tempBypassKey = null; showToast("Link Bypass Active!"); }
@@ -512,7 +572,25 @@
             }
         });
 
-        async function checkNameAndGo() { const u = await getDoc(doc(db, "users", cUid)); if(u.exists() && u.data().name) { let pGift = sessionStorage.getItem('pendingGift'); if(pGift) { el('inGiftCode').value = pGift; sessionStorage.removeItem('pendingGift'); switchView('view-gift'); showToast("Code Applied! Claim Now.", "info"); } else { switchView('view-dashboard'); } } else { switchView('view-name-update'); } }
+        // --- FIXED DIRECT GIFT CLAIM LOGIC ---
+        async function checkNameAndGo() { 
+            const u = await getDoc(doc(db, "users", cUid)); 
+            if(u.exists() && u.data().name) { 
+                let pGift = sessionStorage.getItem('pendingGift'); 
+                if(pGift) { 
+                    el('inGiftCode').value = pGift; 
+                    sessionStorage.removeItem('pendingGift'); 
+                    switchView('view-gift'); 
+                    showToast("Code Auto-Applying...", "info");
+                    setTimeout(() => { userAction('redeem'); }, 1000); // AUTO CLAIM
+                } else { 
+                    switchView('view-dashboard'); 
+                } 
+            } else { 
+                switchView('view-name-update'); 
+            } 
+        }
+        
         window.saveUpdatedName = async () => { showLoader(); try { const n = el('updNameInp').value.trim(); if(!n) throw "Please enter your full name."; await updateDoc(doc(db, "users", cUid), {name: n}); showToast("Profile Updated!"); checkNameAndGo(); } catch(e) { showToast(e, "error"); } hideLoader(); };
 
         window.appAuth = async (act) => {
@@ -547,12 +625,44 @@
             try {
                 if(act === 'report') { const txt = el('userReportText').value.trim(); if(!txt) throw "Enter message"; await addDoc(collection(db,"reports"), {userId: cUid, text: txt, status: 'Pending', timestamp: serverTimestamp()}); sendTg(ADM_ID, `⚠️ *NEW USER REPORT*\nUser: \`${cUid}\`\nMessage: ${txt}`); showToast("Report Sent!"); el('userReportText').value=""; switchView('view-dashboard'); }
                 else if(act === 'redeem') { const code = el('inGiftCode').value.trim().toUpperCase(); if(!code) throw "Enter code"; let amt=0, isExp=false, finalUsedBy=[]; await runTransaction(db, async t => { const cd = await t.get(doc(db,"giftcodes",code)); if(!cd.exists() || cd.data().used || cd.data().usedCount >= cd.data().maxUsers) throw "CODE EXPIRED OR INVALID"; if(cd.data().usedBy && cd.data().usedBy.includes(cUid)) throw "ALREADY CLAIMED"; if(cd.data().usedDevs && cd.data().usedDevs.includes(dHash)) throw "DEVICE LIMIT: Code used on this phone!"; const ud = await t.get(doc(db,"users",cUid)); amt=cd.data().amount; let newCount = (cd.data().usedCount||0)+1; isExp = (newCount >= cd.data().maxUsers); let nList = cd.data().usedBy||[]; nList.push(cUid); finalUsedBy = nList; let nDevs = cd.data().usedDevs||[]; nDevs.push(dHash); t.update(doc(db,"users",cUid), {balance: ud.data().balance+amt}); t.update(doc(db,"giftcodes",code), {usedCount: newCount, used: isExp, usedBy: nList, usedDevs: nDevs}); }); await addDoc(collection(db,"users",cUid,"history"), {type:"GIFT_CODE", amount:amt, details:`Code: ${code}`, timestamp:serverTimestamp()}); playSfx('kaching'); showToast(`SUCCESS! ₹${amt} INJECTED`); el('inGiftCode').value=""; switchView('view-dashboard'); if(isExp) sendTg(ADM_ID, `⚠️ *CODE EXPIRED*\nCode: ${code}\nMax: ${finalUsedBy.length}\n*Claimers:* \n\`${finalUsedBy.join("`\n`")}\``); }
-                else if(act === 'withdraw') { if(!sysSets.isWdOn) throw "Withdrawals closed"; const method = el('wdMethodBadge').innerText, target = el('inWdTarget').value.trim(), amt = parseInt(el('inWdAmt').value); if(!target || isNaN(amt) || amt <= 0) throw "Invalid Parameters"; const uRef=doc(db,"users",cUid); const uBal=(await getDoc(uRef)).data().balance; if(uBal < amt) throw `Insufficient Balance`; const wId = genWID(); const logDet = `\n👤 User: \`${cUid}\`\n💰 Amt: ₹${amt}\n🎯 Tgt: \`${target}\`\n🆔 WID: \`${wId}\`\nMethod: ${method}`; if(method === 'UltraPay') { if(amt > (sysSets.liqAmt||0)) throw `System Liquidity Low.`; await updateDoc(uRef, {balance: uBal-amt}); await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt-amt}); try { const params = new URLSearchParams({token:sysSets.apiTok, key:sysSets.apiKey, paytoNumber:target, amount:amt.toString(), comment:`WD_${wId}`}); const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent('https://ultra-pay.store/APIs/api?'+params)}`; const res = await fetch(proxyUrl); const proxyData = await res.json(); const rawText = proxyData.contents ? proxyData.contents.toLowerCase() : ""; if(rawText.includes("'success'") || rawText.includes("ppt_200")) { await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UltraPay', target, amount:amt, status:'Success', timestamp:serverTimestamp()}); await addDoc(collection(db,"users",cUid,"history"), {type:"WITHDRAWAL", amount:amt, details:`UltraPay to ${target}`, timestamp:serverTimestamp()}); showToast(`TRANSFER COMPLETE!`); switchView('view-dashboard'); sendTg(ADM_ID, `✅ *ULTRAPAY SUCCESS*`+logDet); } else { throw "API Rejected: " + rawText.substring(0,30); } } catch(apiErr) { await updateDoc(uRef, {balance: uBal}); await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt}); await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UltraPay', target, amount:amt, status:'Failed', timestamp:serverTimestamp()}); sendTg(ADM_ID, `❌ *ULTRAPAY FAILED*`+logDet + `\n⚠️ Refunded`); throw "API ERROR: Refunded."; } } else { await updateDoc(uRef, {balance: uBal-amt}); await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:method, target, amount:amt, status:'Pending', timestamp:serverTimestamp()}); await addDoc(collection(db,"users",cUid,"history"), {type:"PENDING", amount:amt, details:`${method} Req: ${target}`, timestamp:serverTimestamp()}); showToast(`${method} Request Sent!`); switchView('view-dashboard'); sendTg(ADM_ID, `🔔 *NEW ${method} REQUEST*`+logDet); } el('inWdTarget').value=""; el('inWdAmt').value=""; }
+                else if(act === 'withdraw') {
+                    if(!sysSets.isWdOn) throw "Withdrawals closed"; const method = el('wdMethodBadge').innerText, target = el('inWdTarget').value.trim(), amt = parseInt(el('inWdAmt').value); if(!target || isNaN(amt) || amt <= 0) throw "Invalid Parameters";
+                    const uRef=doc(db,"users",cUid); const uBal=(await getDoc(uRef)).data().balance; if(uBal < amt) throw `Insufficient Balance`;
+                    const wId = genWID(); const logDet = `\n👤 User: \`${cUid}\`\n💰 Amt: ₹${amt}\n🎯 Tgt: \`${target}\`\n🆔 WID: \`${wId}\`\nMethod: ${method}`;
+                    
+                    if(method === 'UltraPay') {
+                        if(amt > (sysSets.liqAmt||0)) throw `System Liquidity Low.`; await updateDoc(uRef, {balance: uBal-amt}); await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt-amt}); 
+                        try {
+                            const params = new URLSearchParams({token:sysSets.apiTok, key:sysSets.apiKey, paytoNumber:target, amount:amt.toString(), comment:`WD_${wId}`});
+                            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent('https://ultra-pay.store/APIs/api?'+params)}`;
+                            const res = await fetch(proxyUrl); const proxyData = await res.json(); const rawText = proxyData.contents ? proxyData.contents.toLowerCase() : "";
+                            
+                            if(rawText.includes("'success'") || rawText.includes("ppt_200")) {
+                                await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UltraPay', target, amount:amt, status:'Success', timestamp:serverTimestamp()}); await addDoc(collection(db,"users",cUid,"history"), {type:"WITHDRAWAL", amount:amt, details:`UltraPay to ${target}`, timestamp:serverTimestamp()}); showToast(`TRANSFER COMPLETE!`); switchView('view-dashboard'); sendTg(ADM_ID, `✅ *ULTRAPAY SUCCESS*`+logDet);
+                            } else { throw "API Rejected: " + rawText.substring(0,30); }
+                        } catch(apiErr) { await updateDoc(uRef, {balance: uBal}); await updateDoc(doc(db,"settings","sys"), {liqAmt: sysSets.liqAmt}); await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:'UltraPay', target, amount:amt, status:'Failed', timestamp:serverTimestamp()}); sendTg(ADM_ID, `❌ *ULTRAPAY FAILED*`+logDet + `\n⚠️ Refunded`); throw "API ERROR: Refunded."; }
+                    } else {
+                        await updateDoc(uRef, {balance: uBal-amt}); await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:method, target, amount:amt, status:'Pending', timestamp:serverTimestamp()}); await addDoc(collection(db,"users",cUid,"history"), {type:"PENDING", amount:amt, details:`${method} Req: ${target}`, timestamp:serverTimestamp()}); showToast(`${method} Request Sent!`); switchView('view-dashboard'); sendTg(ADM_ID, `🔔 *NEW ${method} REQUEST*`+logDet);
+                    }
+                    el('inWdTarget').value=""; el('inWdAmt').value="";
+                }
             } catch(e) { showToast(typeof e==='string'?e:"Transaction Failed", "error"); } hideLoader();
         };
 
         window.openAdmTab = tId => { document.querySelectorAll('.admin-tab').forEach(e=>e.classList.remove('active')); document.querySelectorAll('.admin-content').forEach(e=>e.classList.remove('active')); event.target.classList.add('active'); el(tId).classList.add('active'); };
-        async function loadAdminTabs() { if(cUid!==ADM_ID) switchView('view-dashboard'); el('dispLiq').innerText=`₹${sysSets.liqAmt||0}`; el('tgWd').checked=sysSets.isWdOn; el('tgUlt').checked=sysSets.isUltOn; el('tgUpi').checked=sysSets.isUpiOn; el('tgMaint').checked=sysSets.isMaintenance; el('admVersion').value=sysSets.appVersion||APP_VERSION; let pmh = ""; if(sysSets.payMethods) { sysSets.payMethods.forEach(m => { pmh += `<div style="display:flex; justify-content:space-between; padding:8px; background:rgba(0,0,0,0.5); margin-bottom:5px; border-radius:5px;"><span>${m}</span><button style="background:var(--danger); color:#fff; border:none; padding:3px 8px; border-radius:4px; cursor:pointer;" onclick="admAct('delPayMethod', '${m}')">X</button></div>`; }); } el('listPayMethods').innerHTML = pmh || "<div style='font-size:10px; color:#888;'>No custom methods</div>"; const us=await getDocs(collection(db,"users")); let uh=""; us.forEach(d=>{ const u=d.data(); uh+=`<div style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.5); border-left:4px solid var(--primary); margin-bottom:10px; border-radius:10px; font-size:12px; align-items:center;"><div><b>${u.name||'User'}</b><br><span style="color:#888;">${d.id}</span></div><div style="color:var(--success); font-weight:bold;">₹${u.balance}</div><div>${u.isBanned?'<span style="color:var(--danger);">BANNED</span>':'Active'}</div></div>`; }); el('listUsrs').innerHTML=uh; const rq=await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending"))); let rh=""; rq.forEach(d=>{ const r=d.data(); rh+=`<div style="background:rgba(0,0,0,0.6); border:1px solid var(--warning); padding:15px; border-radius:12px; margin-bottom:15px; font-size:12px;"><b style="color:var(--primary);">${r.wId}</b> (${r.method})<br>User: ${r.userId} | Tgt: ${r.target}<br>Amt: <b style="color:var(--warning); font-size:16px;">₹${r.amount}</b><br><div style="display:flex; gap:12px; margin-top:12px;"><button class="btn btn-success" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('appReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">APPROVE</button><button class="btn btn-danger" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('rejReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">REJECT</button></div></div>`; }); el('listReqs').innerHTML=rh; const tq = await getDocs(query(collection(db,"tasks"), orderBy("createdAt","desc"))); let th=""; tq.forEach(d=>{ const t=d.data(); th+=`<div style="background:rgba(0,0,0,0.6); padding:15px; margin-bottom:10px; border-radius:12px; font-size:12px; display:flex; justify-content:space-between; border-left: 3px solid var(--primary);"><div><b style="color:var(--primary); font-size:14px;">${t.name}</b><br>₹${t.amount}</div><button class="btn btn-danger" style="width:auto; padding:8px 15px; font-size:11px; margin:0;" onclick="admAct('delTask','${d.id}')">DEL</button></div>`; }); el('admTaskList').innerHTML=th||"No tasks"; const sq = await getDocs(query(collection(db,"task_submissions"), where("status","==","Pending"))); let sh=""; sq.forEach(d=>{ const s=d.data(); sh+=`<div style="background:rgba(0,0,0,0.6); border:1px solid var(--primary); padding:15px; border-radius:12px; margin-bottom:15px; font-size:12px;"><b style="color:var(--primary); font-size:14px;">${s.taskName}</b><br>User: ${s.userId} | Amt: ₹${s.amount}<br>Text: ${s.text}<br><img src="${s.image}" style="width:100%; max-height:250px; object-fit:contain; margin-top:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);"><div style="display:flex; gap:12px; margin-top:15px;"><button class="btn btn-success" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('appTask','${d.id}','${s.userId}',${s.amount},'${s.taskName}')">APPROVE</button><button class="btn btn-danger" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('rejTask','${d.id}','${s.userId}','${s.taskName}')">REJECT</button></div></div>`; }); el('admSubList').innerHTML=sh||"<div style='text-align:center;'>No Pending Submissions</div>"; const rp = await getDocs(query(collection(db,"reports"), orderBy("timestamp","desc"), limit(20))); let rph=""; rp.forEach(d=>{ const r=d.data(); rph+=`<div style="background:rgba(0,0,0,0.6); border-left:4px solid var(--warning); padding:15px; margin-bottom:12px; border-radius:10px; font-size:12px;"><b>User: ${r.userId}</b><br>${r.text}<br><span style="color:#888; font-size:10px;">${ts2Str(r.timestamp)}</span><div style="display:flex; gap:10px; margin-top:10px;"><input type="text" id="repReply_${d.id}" placeholder="Type reply..." style="flex:1; padding:8px; font-size:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.8); color:#fff;"><button class="btn btn-success" style="padding:8px 15px; font-size:11px; margin:0; width:auto;" onclick="admAct('replyReport', '${d.id}', '${r.userId}')">REPLY</button></div></div>`; }); el('admReportList').innerHTML=rph||"No reports"; }
+        
+        async function loadAdminTabs() {
+            if(cUid!==ADM_ID) switchView('view-dashboard');
+            el('dispLiq').innerText=`₹${sysSets.liqAmt||0}`; el('tgWd').checked=sysSets.isWdOn; el('tgUlt').checked=sysSets.isUltOn; el('tgUpi').checked=sysSets.isUpiOn; el('tgMaint').checked=sysSets.isMaintenance; el('admVersion').value=sysSets.appVersion||APP_VERSION; 
+            
+            let pmh = ""; if(sysSets.payMethods) { sysSets.payMethods.forEach(m => { pmh += `<div style="display:flex; justify-content:space-between; padding:8px; background:rgba(0,0,0,0.5); margin-bottom:5px; border-radius:5px;"><span>${m}</span><button style="background:var(--danger); color:#fff; border:none; padding:3px 8px; border-radius:4px; cursor:pointer;" onclick="admAct('delPayMethod', '${m}')">X</button></div>`; }); } el('listPayMethods').innerHTML = pmh || "<div style='font-size:10px; color:#888;'>No custom methods</div>";
+
+            const us=await getDocs(collection(db,"users")); let uh=""; us.forEach(d=>{ const u=d.data(); uh+=`<div style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.5); border-left:4px solid var(--primary); margin-bottom:10px; border-radius:10px; font-size:12px; align-items:center;"><div><b>${u.name||'User'}</b><br><span style="color:#888;">${d.id}</span></div><div style="color:var(--success); font-weight:bold;">₹${u.balance}</div><div>${u.isBanned?'<span style="color:var(--danger);">BANNED</span>':'Active'}</div></div>`; }); el('listUsrs').innerHTML=uh;
+            const rq=await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending"))); let rh=""; rq.forEach(d=>{ const r=d.data(); rh+=`<div style="background:rgba(0,0,0,0.6); border:1px solid var(--warning); padding:15px; border-radius:12px; margin-bottom:15px; font-size:12px;"><b style="color:var(--primary);">${r.wId}</b> (${r.method})<br>User: ${r.userId} | Tgt: ${r.target}<br>Amt: <b style="color:var(--warning); font-size:16px;">₹${r.amount}</b><br><div style="display:flex; gap:12px; margin-top:12px;"><button class="btn btn-success" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('appReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">APPROVE</button><button class="btn btn-danger" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('rejReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">REJECT</button></div></div>`; }); el('listReqs').innerHTML=rh;
+            const tq = await getDocs(query(collection(db,"tasks"), orderBy("createdAt","desc"))); let th=""; tq.forEach(d=>{ const t=d.data(); th+=`<div style="background:rgba(0,0,0,0.6); padding:15px; margin-bottom:10px; border-radius:12px; font-size:12px; display:flex; justify-content:space-between; border-left: 3px solid var(--primary);"><div><b style="color:var(--primary); font-size:14px;">${t.name}</b><br>₹${t.amount}</div><button class="btn btn-danger" style="width:auto; padding:8px 15px; font-size:11px; margin:0;" onclick="admAct('delTask','${d.id}')">DEL</button></div>`; }); el('admTaskList').innerHTML=th||"No tasks";
+            const sq = await getDocs(query(collection(db,"task_submissions"), where("status","==","Pending"))); let sh=""; sq.forEach(d=>{ const s=d.data(); sh+=`<div style="background:rgba(0,0,0,0.6); border:1px solid var(--primary); padding:15px; border-radius:12px; margin-bottom:15px; font-size:12px;"><b style="color:var(--primary); font-size:14px;">${s.taskName}</b><br>User: ${s.userId} | Amt: ₹${s.amount}<br>Text: ${s.text}<br><img src="${s.image}" style="width:100%; max-height:250px; object-fit:contain; margin-top:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);"><div style="display:flex; gap:12px; margin-top:15px;"><button class="btn btn-success" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('appTask','${d.id}','${s.userId}',${s.amount},'${s.taskName}')">APPROVE</button><button class="btn btn-danger" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('rejTask','${d.id}','${s.userId}','${s.taskName}')">REJECT</button></div></div>`; }); el('admSubList').innerHTML=sh||"<div style='text-align:center;'>No Pending Submissions</div>";
+            const rp = await getDocs(query(collection(db,"reports"), orderBy("timestamp","desc"), limit(20))); let rph=""; rp.forEach(d=>{ const r=d.data(); rph+=`<div style="background:rgba(0,0,0,0.6); border-left:4px solid var(--warning); padding:15px; margin-bottom:12px; border-radius:10px; font-size:12px;"><b>User: ${r.userId}</b><br>${r.text}<br><span style="color:#888; font-size:10px;">${ts2Str(r.timestamp)}</span><div style="display:flex; gap:10px; margin-top:10px;"><input type="text" id="repReply_${d.id}" placeholder="Type reply..." style="flex:1; padding:8px; font-size:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.8); color:#fff;"><button class="btn btn-success" style="padding:8px 15px; font-size:11px; margin:0; width:auto;" onclick="admAct('replyReport', '${d.id}', '${r.userId}')">REPLY</button></div></div>`; }); el('admReportList').innerHTML=rph||"No reports";
+        }
 
         window.admAct = async (act, p1, p2, p3, p4) => {
             if(cUid!==ADM_ID) return; showLoader("EXECUTING...");
@@ -562,22 +672,34 @@
                 else if(act==='saveVersion') { await setDoc(doc(db,"settings","sys"), {appVersion:el('admVersion').value},{merge:true}); showToast("Version Updated!"); }
                 else if(act==='sendPush') { await setDoc(doc(db,"settings","sys"), {lastPush: Date.now().toString(), lastPushMsg: el('admPushMsg').value},{merge:true}); showToast("Push Sent!"); adminLog("Push", el('admPushMsg').value); }
                 else if(act==='tgBroadcast') { const msg = el('admTgMsg').value; if(!msg) throw "Enter message"; const us=await getDocs(collection(db,"users")); us.forEach(async (d) => { await sendTg(d.id, msg); }); showToast("Broadcast Sent"); adminLog("TG Broadcast", msg); }
+                
+                // FIXED: Advanced Tab Setup
+                else if(act==='saveApi') { const at = el('admApiTok').value.trim(), ak = el('admApiKey').value.trim(); await setDoc(doc(db,"settings","sys"), {apiTok:at, apiKey:ak},{merge:true}); showToast("API Saved!"); }
                 else if(act==='genBypass') { const sec = Math.random().toString(36).substring(2,15); await setDoc(doc(db,"settings","sys"), {bypassSecret:sec},{merge:true}); const link = window.location.origin + window.location.pathname + "?bypass=true&key=" + sec; el('bypassLinkBox').innerText = link; el('bypassLinkBox').classList.remove('hidden'); showToast("Bypass Generated!"); }
                 else if(act==='addPayMethod') { const m = el('newPayMethod').value.trim(); if(!m) throw "Enter method name"; let methods = sysSets.payMethods || []; if(!methods.includes(m)) methods.push(m); await setDoc(doc(db,"settings","sys"), {payMethods: methods},{merge:true}); el('newPayMethod').value=""; showToast("Added!"); loadAdminTabs(); }
                 else if(act==='delPayMethod') { let methods = sysSets.payMethods || []; methods = methods.filter(e => e !== p1); await setDoc(doc(db,"settings","sys"), {payMethods: methods},{merge:true}); showToast("Deleted!"); loadAdminTabs(); }
-                else if(act==='updateMaintUrl') { const u = el('maintUrlInp').value.trim(); await setDoc(doc(db,"settings","sys"), {maintUrl: u},{merge:true}); showToast("URL Updated!"); }
+                
                 else if(act==='bulkCode') { const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value), c=parseInt(el('admBulkCount').value); if(isNaN(a)||isNaN(m)||isNaN(c)) throw "Invalid data"; let codes = []; for(let i=0; i<c; i++){ const cStr = `GIFT-${Math.random().toString(36).substring(2,8).toUpperCase()}`; await setDoc(doc(db,"giftcodes",cStr), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], usedDevs:[], createdAt:serverTimestamp()}); codes.push(cStr); } el('newCodeTxt').innerText=codes.join("\n"); el('newCodeBox').classList.remove('hidden'); showToast(`${c} Codes Generated`); sendTg(ADM_ID, `🎁 *NEW CODES CREATED*\nGenerated ${c} codes of ₹${a} each.`); }
+                
+                // FIXED: Check Code & Check WID Logic Restored
                 else if(act==='checkCode') { const c=el('admChkCodeInp').value.trim().toUpperCase(); const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); let uls=""; if(d.usedBy&&d.usedBy.length>0) uls=`<br><b>Used By:</b><br><span style='color:var(--primary); font-family:monospace;'>${d.usedBy.join("<br>")}</span>`; el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Amt:</b> ₹${d.amount}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger);">EXPIRED</span>':'<span style="color:var(--success);">ACTIVE</span>'}${uls}`; el('chkCodeRes').classList.remove('hidden'); }
+                else if(act==='checkWd') { const w=el('admChkWdInp').value.trim().toUpperCase(); const wq=await getDocs(query(collection(db,"withdrawals"), where("wId", "==", w))); if(wq.empty) throw "WID Not Found"; let wd = wq.docs[0].data(); el('chkWdRes').innerHTML = `<b>WID:</b> ${wd.wId}<br><b>User:</b> ${wd.userId}<br><b>Amt:</b> ₹${wd.amount}<br><b>Target:</b> ${wd.target}<br><b>Method:</b> ${wd.method}<br><b>Status:</b> ${wd.status}`; el('chkWdRes').classList.remove('hidden'); }
+
                 else if(act==='addBal'||act==='cutBal') { const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found"; const nb = act==='addBal'? u.data().balance+a : u.data().balance-a; await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Injected':'Deducted', timestamp:serverTimestamp()}); showToast(`New Bal: ₹${nb}`); sendTg(id, `💰 Admin ${act==='addBal'?'Added':'Deducted'} ₹${a}`); adminLog("Bal", `${act} ₹${a} ID: ${id}`); }
                 else if(act==='checkUsr') { const id=el('admUsrId').value.trim(); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not Found"; el('chkUsrRes').innerHTML=`<b>ID:</b> ${id}<br><b>Name:</b> ${u.data().name||'User'}<br><b>Bal:</b> <span style="color:var(--success); font-weight:bold;">₹${u.data().balance}</span><br><b>Status:</b> ${u.data().isBanned?'BANNED':'ACTIVE'}<br><b>Last Seen:</b> ${ts2Str(u.data().lastSeen)}`; el('chkUsrRes').classList.remove('hidden'); }
                 else if(act==='resetPass') { const id=el('admUsrId').value.trim(), np=el('admNewPass').value; if(!id||!np) throw "Missing fields"; await updateDoc(doc(db,"users",id), {password:np}); showToast("Password Reset"); adminLog("Pass Reset", `ID: ${id}`); }
+                
                 else if(act==='banUser') { const tgt=el('admBanTarget').value.trim(); if(!tgt||tgt===ADM_ID) throw "Invalid Target"; if(tgt.startsWith("DEV_")) { if(p1){ await setDoc(doc(db,"blacklisted_devices",tgt),{banned:true, ts:serverTimestamp()}); }else{ await deleteDoc(doc(db,"blacklisted_devices",tgt)); } showToast(p1?"Device Banned":"Device Unbanned"); adminLog(p1?"Ban Dev":"Unban Dev", tgt); } else { await updateDoc(doc(db,"users",tgt), {isBanned:p1}); showToast(p1?"User Banned":"User Unbanned"); adminLog(p1?"Ban UID":"Unban UID", tgt); } }
+
                 else if(act==='appReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ Request Approved WID: ${p4}`); adminLog("Approve WID", `WID: ${p4}`); }
                 else if(act==='rejReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'}); const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Refund WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Rejected!"); loadAdminTabs(); sendTg(p2, `⛔ Request Rejected (Refund) WID: ${p4}`); adminLog("Reject WID", `WID: ${p4}`); }
-                else if(act==='createTask') { const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value), l=el('admTaskLink').value.trim(), d=el('admTaskDesc').value.trim(); if(!n||isNaN(a)||!l||!d) throw "Fill all 4 fields!"; await addDoc(collection(db,"tasks"), {name:n, amount:a, link:l, desc:d, createdAt:serverTimestamp()}); showToast("Task Created"); el('admTaskName').value=""; el('admTaskAmt').value=""; el('admTaskLink').value=""; el('admTaskDesc').value=""; loadAdminTabs(); sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\nLink >> ${l}\n\n_Task successfully live in app!_`); adminLog("Task Created", `${n}, ₹${a}`); }
+                
+                else if(act==='createTask') { const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value), l=el('admTaskLink').value.trim(), d=el('admTaskDesc').value.trim(); if(!n||isNaN(a)||!l||!d) throw "Fill all fields!"; await addDoc(collection(db,"tasks"), {name:n, amount:a, link:l, desc:d, createdAt:serverTimestamp()}); showToast("Task Created"); el('admTaskName').value=""; el('admTaskAmt').value=""; el('admTaskLink').value=""; el('admTaskDesc').value=""; loadAdminTabs(); sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\nLink >> ${l}\n\n_Task successfully live in app!_`); adminLog("Task Created", `${n}, ₹${a}`); }
                 else if(act==='delTask') { await deleteDoc(doc(db,"tasks",p1)); showToast("Deleted"); loadAdminTabs(); }
+
                 else if(act==='appTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Approved'}); const ud = await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"ADMIN_ADD", amount:p3, details:`Task Approved: ${p4}`, timestamp:serverTimestamp()}); showToast("Task Approved!"); loadAdminTabs(); sendTg(p2, `✅ *TASK APPROVED*\n\nYour task "🌸 *${p4}* 🌸" was approved!\n🤭 Amount >> ₹${p3} added to wallet.`); adminLog("Task App", `User: ${p2}, Task: ${p4}`); }
                 else if(act==='rejTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Rejected'}); showToast("Task Rejected"); loadAdminTabs(); sendTg(p2, `⛔ *TASK REJECTED*\n\nYour submission for "*${p3}*" was rejected by Admin.`); adminLog("Task Rej", `User: ${p2}, Task: ${p3}`); }
+                
                 else if(act==='replyReport') { const rMsg = el(`repReply_${p1}`).value.trim(); if(!rMsg) throw "Enter reply msg"; await updateDoc(doc(db,"reports",p1), {status:'Replied'}); sendTg(p2, `💬 *ADMIN SUPPORT REPLY*\n\nAdmin has replied to your report:\n"${rMsg}"`); showToast("Reply Sent!"); loadAdminTabs(); adminLog("Report Reply", `User: ${p2}`); }
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); } hideLoader();
         };

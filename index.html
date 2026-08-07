@@ -4,31 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#03040a">
-    <title>Ultra Pay Pro | Premium API Network</title>
+    <title>Ultra Pay Pro | Premium Secure Network</title>
     
-    <!-- Meta Tags For Preview -->
-    <meta name="description" content="Join Ultra Pay Pro API Network. Complete tasks, earn rewards, and transfer money instantly via API!">
-    <meta property="og:title" content="Ultra Pay Pro | API Network">
+    <!-- Meta Tags -->
+    <meta name="description" content="Join Ultra Pay Pro to complete tasks, redeem gift codes, and earn instant rewards!">
+    <meta property="og:title" content="Ultra Pay Pro | Earning Network">
     <meta property="og:description" content="Withdraw instantly via UPI or integrate our Payment API into your bots. Join now!">
     <meta property="og:type" content="website">
     
     <link rel="manifest" id="manifest-placeholder">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* =======================================================================
-           1. CORE THEME & VARIABLES
-           ======================================================================= */
         :root { --primary: #00f3ff; --secondary: #bc13fe; --accent: #0055ff; --danger: #ff0055; --success: #00ff88; --warning: #ffaa00; --bg-dark: #03040a; --panel-bg: rgba(12, 16, 28, 0.85); --input-bg: rgba(0, 0, 0, 0.6); --text-main: #ffffff; --text-muted: #8b9bb4; --glow-primary: 0 0 25px rgba(0, 243, 255, 0.4); --glow-danger: 0 0 25px rgba(255, 0, 85, 0.4); --glow-success: 0 0 25px rgba(0, 255, 136, 0.4); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; overflow-x: hidden; display: flex; justify-content: center; align-items: center; position: relative; }
         ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: rgba(0,0,0,0.5); } ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary), var(--secondary)); border-radius: 10px; }
 
-        /* =======================================================================
-           2. BACKGROUND ANIMATIONS
-           ======================================================================= */
         .ambient-light { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: -2; background: radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.08) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(188, 19, 254, 0.08) 0%, transparent 45%); animation: pulseBg 12s infinite alternate ease-in-out; }
         @keyframes pulseBg { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
         .cyber-grid { position: fixed; width: 200vw; height: 200vh; top: -50%; left: -50%; z-index: -1; background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; transform: perspective(800px) rotateX(60deg); animation: gridScroll 15s linear infinite; }
@@ -42,9 +34,6 @@
         #push-notification.show { top: 25px; }
         .push-icon { width:45px; height:45px; background:linear-gradient(135deg, var(--primary), var(--accent)); border-radius:12px; display:flex; justify-content:center; align-items:center; font-size:22px; box-shadow: var(--glow-primary); }
 
-        /* =======================================================================
-           3. UI PANELS & BUTTONS
-           ======================================================================= */
         .app-container { width: 100%; max-width: 480px; padding: 15px; z-index: 10; margin: auto; position: relative; padding-top: 50px; }
         .view-panel { background: var(--panel-bg); backdrop-filter: blur(30px); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 30px; padding: 35px 25px; box-shadow: 0 35px 70px rgba(0,0,0,0.9); display: none; opacity: 0; transform: translateY(30px) scale(0.97); }
         .view-panel.active { display: block; animation: panelEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
@@ -71,9 +60,6 @@
         .link-text { display: block; text-align: center; margin-top: 15px; color: var(--text-muted); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
         .link-text:hover { color: var(--primary); }
 
-        /* =======================================================================
-           4. DASHBOARD, TOP BUTTONS & MENUS
-           ======================================================================= */
         .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: rgba(0,0,0,0.5); padding: 15px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); }
         .dash-user-info { display: flex; align-items: center; gap: 12px; }
         .dash-avatar { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; box-shadow: var(--glow-primary); }
@@ -104,9 +90,6 @@
         .task-reward { font-family: 'Orbitron'; font-size: 18px; font-weight: 900; color: var(--success); background:rgba(0,255,136,0.15); padding:4px 12px; border-radius:8px; border:1px solid var(--success); }
         .task-desc { font-size: 13px; color: #d1d9e6; margin-bottom: 15px; line-height: 1.6; width:100%; background:rgba(0,0,0,0.4); padding:10px; border-radius:10px; }
 
-        /* =======================================================================
-           5. ADMIN PANEL & MODALS
-           ======================================================================= */
         .admin-nav { display: flex; overflow-x: auto; gap: 10px; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .admin-nav::-webkit-scrollbar { height: 0px; }
         .admin-tab { padding: 10px 15px; background: rgba(0,0,0,0.6); border-radius: 10px; font-size: 12px; font-weight: 700; white-space: nowrap; cursor: pointer; color: var(--text-muted); transition: 0.3s; }
@@ -131,7 +114,6 @@
         .modal-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:100005; display:none; justify-content:center; align-items:center; backdrop-filter:blur(12px); }
         .modal-box { background:var(--panel-bg); border:1px solid var(--primary); border-radius:24px; padding:30px; width:90%; max-width:420px; box-shadow:0 20px 50px rgba(0,0,0,0.9); }
 
-        /* Offline Game UI */
         .game-box { background: rgba(0,0,0,0.8); border: 1px solid var(--primary); border-radius: 20px; padding: 15px; width: 100%; max-width: 320px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,243,255,0.15); z-index:100001; }
         canvas { background: #000; display: block; margin: 10px auto; border-radius: 12px; border: 2px solid rgba(0,243,255,0.4); box-shadow: inset 0 0 20px rgba(0,0,0,0.9); }
         .game-ctrl-btn { background: rgba(255,255,255,0.1); border: 1px solid var(--primary); color: #fff; padding: 12px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size:16px; display:flex; justify-content:center; align-items:center; }
@@ -156,14 +138,13 @@
 </head>
 <body>
 
-    <!-- Invisible API Processing Overlay -->
+    <!-- INVISIBLE API GATEWAY: Processes links like ?token=X&key=Y&paytoNumber=Z&amount=50 -->
     <div id="api-processing-screen" style="display:none; position:fixed; z-index:9999999; top:0; left:0; width:100%; height:100%; background:#000; color:#00ff88; font-family:monospace; padding:20px; align-items:center; justify-content:center; word-break:break-all; flex-direction:column;">
         <h3 id="api-status-text" style="font-size:24px;">Processing API Request...</h3>
         <pre id="api-json-result" style="background:#111; padding:20px; border-radius:10px; width:100%; max-width:500px; overflow-x:auto; margin-top:20px; font-size:14px; border:1px solid #333;"></pre>
     </div>
 
     <button id="installAppBtn" onclick="installPWA()" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg, var(--success), #00aa55); color:#000; padding:14px 28px; border-radius:30px; font-weight:900; font-family:'Orbitron'; z-index:1000; box-shadow:var(--glow-success); border:none; cursor:pointer;">⬇️ INSTALL APP</button>
-    
     <div class="ambient-light"></div><div class="cyber-grid"></div>
     <div class="top-ticker" id="topTicker"><span id="tickerMsg">🔥 Welcome to Ultra Pay Pro! 🚀</span></div>
     <div id="toast-box"></div>
@@ -321,6 +302,7 @@
                 <div class="modern-menu-item" onclick="loadTasks()"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg><span class="modern-menu-text" data-i18n="tasks">TASKS</span></div>
                 <div class="modern-menu-item" onclick="loadAllMembers()"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg><span class="modern-menu-text" data-i18n="members">MEMBERS</span></div>
                 <div class="modern-menu-item" onclick="switchView('view-report')"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg><span class="modern-menu-text" data-i18n="support">SUPPORT</span></div>
+                <!-- Pay User Button -->
                 <div class="modern-menu-item" onclick="switchView('view-pay-user')" style="border-color:var(--success);"><svg viewBox="0 0 24 24" style="fill:var(--success);"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg><span class="modern-menu-text" style="color:var(--success);" data-i18n="payUser">PAY USER</span></div>
             </div>
 
@@ -337,7 +319,7 @@
         <!-- VIEW: API SETTINGS -->
         <div class="view-panel" id="view-api-settings">
             <h2 class="title" data-i18n="apiSet">API CONFIG</h2>
-            <p class="subtitle" data-i18n="apiDesc">Set your UltraPay API to send money to other users instantly.</p>
+            <p class="subtitle" data-i18n="apiDesc">Set your API to send money to other users instantly.</p>
             <div class="input-group"><input type="text" class="form-control" id="userApiToken" readonly><label class="form-label" style="top:-12px;">Your API Token</label></div>
             <div class="input-group"><input type="text" class="form-control" id="userApiKey" readonly><label class="form-label" style="top:-12px;">Your Secret Key</label></div>
             <button class="btn btn-warning" onclick="generateNewApi()" data-i18n="genApi">🔄 GENERATE NEW API</button>
@@ -347,19 +329,11 @@
                 <div style="background:#111; padding:10px; border-radius:5px; word-break:break-all; font-family:monospace; color:#fff;">
                     <span id="demoApiUrl">https://yourdomain.com/?token=<b>{token}</b>&key=<b>{key}</b>&paytoNumber=<b>{userid}</b>&amount=<b>{amount}</b></span>
                 </div>
-                
                 <h3 style="color:var(--success); margin-top:15px; margin-bottom:5px;">Code Example (JavaScript):</h3>
                 <pre style="background:#111; padding:10px; border-radius:5px; overflow-x:auto; color:#00ff88; font-family:monospace;">
 fetch('https://yourdomain.com/?token=TK-123&key=XYZ&paytoNumber=TARGET_ID&amount=50')
   .then(res => res.json())
   .then(data => console.log(data));
-                </pre>
-                
-                <h3 style="color:var(--success); margin-top:15px; margin-bottom:5px;">Code Example (PHP):</h3>
-                <pre style="background:#111; padding:10px; border-radius:5px; overflow-x:auto; color:#00ff88; font-family:monospace;">
-$url = "https://yourdomain.com/?token=TK-123&key=XYZ&paytoNumber=TARGET_ID&amount=50";
-$response = file_get_contents($url);
-$data = json_decode($response, true);
                 </pre>
             </div>
             
@@ -420,7 +394,7 @@ $data = json_decode($response, true);
             <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
         </div>
 
-        <!-- VIEW: WITHDRAWAL (ONLY UPI REMAINING) -->
+        <!-- VIEW: WITHDRAWAL -->
         <div class="view-panel" id="view-withdraw">
             <h2 class="title" data-i18n="withdraw">WITHDRAW</h2>
             <div id="wd-select">
@@ -445,7 +419,7 @@ $data = json_decode($response, true);
         </div>
 
         <!-- ==========================================================
-             VIEW 10: ADMIN PANEL (Removed UltraPay Setup)
+             VIEW 10: ADMIN PANEL (Cleaned Up UltraPay)
              ========================================================== -->
         <div class="view-panel" id="view-admin" style="padding: 25px 15px; width:100%; max-width:600px;">
             <h2 class="title" style="color:var(--warning); text-shadow:0 0 15px rgba(255,170,0,0.6); font-size:22px;">ADMIN COMMAND</h2>
@@ -554,8 +528,7 @@ $data = json_decode($response, true);
                 }
             }
             processApiTransfer();
-            // Exit script so normal app doesn't load
-            throw new Error("API Execution Mode Started"); 
+            throw new Error("API Execution Mode Started"); // Stops regular app load
         }
         // -------------------------------------------------------------------------
 
@@ -652,7 +625,7 @@ $data = json_decode($response, true);
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); } hideLoader();
         };
 
-        // --- NEW API CONFIG & PAYMENT (PAY USER) LOGIC ---
+        // --- NEW API CONFIG & PAYMENT LOGIC ---
         window.loadUserApi = async () => { showLoader(); try { const u = await getDoc(doc(db, "users", cUid)); if(u.exists()) { el('userApiToken').value = u.data().apiToken || ""; el('userApiKey').value = u.data().apiKey || ""; } } catch(e){} hideLoader(); };
         window.generateNewApi = async () => { const newKey = Math.random().toString(36).substring(2, 20); const newToken = "TK-" + Math.random().toString(36).substring(2, 15).toUpperCase(); el('userApiToken').value = newToken; el('userApiKey').value = newKey; showToast("New API Generated! Press Save."); };
         window.saveUserApi = async () => { showLoader(); try { const t = el('userApiToken').value.trim(); const k = el('userApiKey').value.trim(); await updateDoc(doc(db, "users", cUid), { apiToken: t, apiKey: k }); showToast("API Configuration Saved!"); } catch(e) { showToast("Error saving", "error"); } hideLoader(); };
@@ -669,12 +642,17 @@ $data = json_decode($response, true);
                 const baseUri = window.location.href.split('?')[0];
                 const params = new URLSearchParams({ token: token, key: key, paytoNumber: number, amount: amount });
                 
-                // Calling your own API Gateway internally
+                // Fetching the user's own site as API Gateway
                 const response = await fetch(`${baseUri}?${params}`);
-                const data = await response.json();
+                const textResult = await response.text();
                 
-                if (data.status === 'success') { showToast("Payment Successful!"); el('payNumber').value=""; el('payAmount').value=""; switchView('view-dashboard'); } 
-                else { throw data.message || "Payment Failed"; }
+                try {
+                    const data = JSON.parse(textResult);
+                    if (data.status === 'success') { showToast("Payment Successful!"); el('payNumber').value=""; el('payAmount').value=""; switchView('view-dashboard'); } 
+                    else { throw data.message || "Payment Failed"; }
+                } catch(parseErr) {
+                    throw "API connection error. Check limits.";
+                }
             } catch(e) { showToast(typeof e==='string'?e:"API Error", "error"); } hideLoader();
         };
 
@@ -701,7 +679,6 @@ $data = json_decode($response, true);
                     if(!sysSets.isWdOn) throw "Withdrawals closed"; const method = el('wdMethodBadge').innerText, target = el('inWdTarget').value.trim(), amt = parseInt(el('inWdAmt').value); if(!target || isNaN(amt) || amt <= 0) throw "Invalid Parameters";
                     const uRef=doc(db,"users",cUid); const uBal=(await getDoc(uRef)).data().balance; if(uBal < amt) throw `Insufficient Balance`;
                     const wId = genWID(); const logDet = `\n👤 User: \`${cUid}\`\n💰 Amt: ₹${amt}\n🎯 Tgt: \`${target}\`\n🆔 WID: \`${wId}\`\nMethod: ${method}`;
-                    
                     await updateDoc(uRef, {balance: uBal-amt}); await addDoc(collection(db,"withdrawals"), {wId, userId:cUid, method:method, target, amount:amt, status:'Pending', timestamp:serverTimestamp()}); await addDoc(collection(db,"users",cUid,"history"), {type:"PENDING", amount:amt, details:`${method} Req: ${target}`, timestamp:serverTimestamp()}); showToast(`${method} Request Sent!`); switchView('view-dashboard'); sendTg(ADM_ID, `🔔 *NEW ${method} REQUEST*`+logDet);
                     el('inWdTarget').value=""; el('inWdAmt').value="";
                 }

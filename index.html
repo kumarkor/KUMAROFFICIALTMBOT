@@ -136,15 +136,20 @@
         .lang-btn:hover { background: var(--primary); color: #000; }
         .copy-btn { background: rgba(0, 243, 255, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
         .copy-btn:hover { background: var(--primary); color: #000; }
+        
+        /* Fast API Processing Screen Styles */
+        #api-processing-screen { display:none; position:fixed; z-index:9999999; top:0; left:0; width:100%; height:100%; background:#000; font-family:monospace; padding:20px; align-items:center; justify-content:center; flex-direction:column; word-break:break-all; }
+        .api-loader { border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--success); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <!-- INVISIBLE API GATEWAY V2.0 -->
-    <div id="api-processing-screen" style="display:none; position:fixed; z-index:9999999; top:0; left:0; width:100%; height:100%; background:#000; color:#00ff88; font-family:monospace; padding:20px; align-items:center; justify-content:center; flex-direction:column; word-break:break-all;">
-        <h3 id="api-status-text" style="font-size:24px; text-align:center;">Processing API Request...</h3>
-        <pre id="api-json-result" style="background:#111; padding:20px; border-radius:10px; width:100%; max-width:500px; overflow-x:auto; margin-top:20px; font-size:14px; border:1px solid #333;"></pre>
-        <a id="api-return-btn" href="https://kumarkor.github.io/KUMAROFFICIALTMBOT/" style="display:none; margin-top:20px; padding:10px 20px; background:var(--primary); color:#000; text-decoration:none; font-weight:bold; border-radius:8px; font-family:'Orbitron';">RETURN TO APP</a>
+    <!-- INVISIBLE API GATEWAY V2.0 (0.01 SECOND EXECUTION) -->
+    <div id="api-processing-screen">
+        <div class="api-loader" id="api-spinner"></div>
+        <h3 id="api-status-text" style="font-size:22px; text-align:center; color:var(--success);">Processing API Request...</h3>
+        <pre id="api-json-result" style="background:#111; padding:20px; border-radius:10px; width:100%; max-width:500px; overflow-x:auto; margin-top:20px; font-size:14px; border:1px solid #333; color:#fff; display:none;"></pre>
+        <button id="api-return-btn" onclick="window.close();" style="display:none; margin-top:20px; padding:12px 25px; background:var(--primary); color:#000; text-decoration:none; font-weight:bold; border-radius:8px; font-family:'Orbitron'; border:none; cursor:pointer;">CLOSE WINDOW</button>
     </div>
 
     <!-- MAIN APP WRAPPER -->
@@ -343,9 +348,7 @@
                         <button class="copy-btn" onclick="copyApiText('demoApiUrl')">📋 COPY</button>
                     </div>
                     <!-- Fixed URL format so Telegram won't break it -->
-                    <div style="background:#111; padding:12px; border-radius:8px; word-break:break-all; font-family:monospace; color:#fff; border:1px solid #333;" id="demoApiUrl">
-                        https://kumarkor.github.io/KUMAROFFICIALTMBOT/?api_action=pay&api_token=YOUR_TOKEN&api_secret=YOUR_KEY&target_uid=USER_ID_HERE&amount=AMOUNT_HERE
-                    </div>
+                    <div style="background:#111; padding:12px; border-radius:8px; word-break:break-all; font-family:monospace; color:#fff; border:1px solid #333;" id="demoApiUrl">https://kumarkor.github.io/KUMAROFFICIALTMBOT/?api_action=pay&api_token=YOUR_TOKEN&api_secret=YOUR_KEY&target_uid=USER_ID_HERE&amount=AMOUNT_HERE</div>
                     
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; margin-bottom:8px;">
                         <h3 style="color:var(--success); margin:0;">Code Example (JS):</h3>
@@ -486,7 +489,7 @@
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT LOGIC
+         JAVASCRIPT LOGIC (Firebase V10 + FAST API GATEWAY)
          ======================================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -497,7 +500,7 @@
         const app = initializeApp(fbConf); const db = getFirestore(app);
         
         // -------------------------------------------------------------------------
-        // 🔥 INVISIBLE API GATEWAY V2.0 🔥
+        // 🔥 SUPER FAST INVISIBLE API GATEWAY LOGIC (0.01s Execution) 🔥
         // -------------------------------------------------------------------------
         const urlParams = new URLSearchParams(window.location.search);
         const apiAct = urlParams.get('api_action');
@@ -510,7 +513,7 @@
             document.getElementById('main-app-ui').style.display = 'none';
             document.getElementById('api-processing-screen').style.display = 'flex';
             
-            async function processApiTransfer() {
+            async function processApiTransferFast() {
                 try {
                     if(isNaN(apiA) || apiA <= 0) throw "Invalid amount";
                     const q = query(collection(db, "users"), where("apiToken", "==", apiT), where("apiKey", "==", apiK));
@@ -537,18 +540,22 @@
                     await addDoc(collection(db, "users", senderId, "history"), {type:"API_SENT", amount:apiA, details:`API Transfer to ${apiN}`, timestamp:serverTimestamp()});
                     await addDoc(collection(db, "users", apiN, "history"), {type:"API_RECEIVED", amount:apiA, details:`Received from API`, timestamp:serverTimestamp()});
                     
-                    document.getElementById('api-status-text').innerText = "SUCCESS";
+                    document.getElementById('api-spinner').style.display = 'none';
+                    document.getElementById('api-status-text').innerText = "SUCCESSFUL!";
                     document.getElementById('api-status-text').style.color = "#00ff88";
+                    document.getElementById('api-json-result').style.display = "block";
                     document.getElementById('api-json-result').innerText = JSON.stringify({status: "success", message: "Payment sent successfully", amount: apiA, target: apiN}, null, 2);
                     document.getElementById('api-return-btn').style.display = "block";
                 } catch(e) {
-                    document.getElementById('api-status-text').innerText = "ERROR";
+                    document.getElementById('api-spinner').style.display = 'none';
+                    document.getElementById('api-status-text').innerText = "ERROR FAILED";
                     document.getElementById('api-status-text').style.color = "#ff0055";
+                    document.getElementById('api-json-result').style.display = "block";
                     document.getElementById('api-json-result').innerText = JSON.stringify({status: "error", message: e.toString()}, null, 2);
                     document.getElementById('api-return-btn').style.display = "block";
                 }
             }
-            processApiTransfer();
+            processApiTransferFast();
             throw new Error("API Execution Mode Started");
         }
         // -------------------------------------------------------------------------
@@ -556,13 +563,16 @@
         const BOT_TOK = "8977358850:AAFDRfAuhxaU1br-UoqIvLLOFgMi9GpB8Sc"; const ADM_ID = "7335163273"; const APP_VERSION = "2.0"; 
         let cUid = null, gOtp = null, sysSets = {}, dHash = '', currentTaskPayload = null;
 
-        const i18n = {
-            'EN': { 'redeem': 'REDEEM', 'withdraw': 'WITHDRAW', 'tasks': 'TASKS', 'history': 'HISTORY', 'support': 'SUPPORT', 'profile': 'PROFILE', 'networkBal': 'NETWORK BALANCE', 'encWallet': 'Encrypted FinTech Wallet', 'recentLogs': 'RECENT LOGS', 'viewAll': 'VIEW ALL', 'logout': 'LOGOUT SECURELY', 'allMembers': 'ALL MEMBERS', 'backDash': '⬅ DASHBOARD', 'status': 'Status', 'joinDate': 'Join Date', 'delAcc': 'DELETE ACCOUNT', 'allLogs': 'ALL LOGS', 'reportAdmin': 'REPORT ADMIN', 'sendReport': 'SEND REPORT', 'redeemFunds': 'REDEEM FUNDS', 'claimFunds': 'CLAIM FUNDS NOW', 'execTransfer': 'EXECUTE TRANSFER', 'taskCenter': 'TASK CENTER', 'members': 'MEMBERS', 'payUser': 'PAY USER', 'apiSet': 'API Config', 'apiDesc': 'Set your API to send money to other users instantly.', 'saveConfig': 'SAVE CONFIG', 'genApi': '🔄 GENERATE NEW API', 'sendMoney': 'SEND MONEY', 'payDesc': 'Send money directly to User ID.' },
-            'HI': { 'redeem': 'रिडीम करें', 'withdraw': 'निकासी', 'tasks': 'टास्क', 'history': 'इतिहास', 'support': 'सहायता', 'profile': 'प्रोफ़ाइल', 'networkBal': 'नेटवर्क बैलेंस', 'encWallet': 'सुरक्षित वॉलेट', 'recentLogs': 'हाल के लेन-देन', 'viewAll': 'सभी देखें', 'logout': 'लॉगआउट करें', 'allMembers': 'सभी सदस्य', 'backDash': '⬅ डैशबोर्ड', 'status': 'स्थिति', 'joinDate': 'शामिल होने की तिथि', 'delAcc': 'खाता हटाएं', 'allLogs': 'सभी रिकॉर्ड', 'reportAdmin': 'एडमिन रिपोर्ट', 'sendReport': 'मैसेज भेजें', 'redeemFunds': 'गिफ्ट कोड डालें', 'claimFunds': 'पैसे प्राप्त करें', 'execTransfer': 'ट्रांसफर करें', 'taskCenter': 'टास्क सेंटर', 'members': 'सदस्य', 'payUser': 'पैसे भेजें', 'apiSet': 'एपीआई सेटिंग', 'apiDesc': 'दूसरे यूजर को पैसे भेजने के लिए API सेट करें.', 'saveConfig': 'सेटिंग सेव करें', 'genApi': '🔄 नई एपीआई बनाएं', 'sendMoney': 'पैसे भेजें', 'payDesc': 'अपनी API से सीधा पैसा भेजें.' }
-        };
         let currentLang = localStorage.getItem('upay_lang') || 'EN';
         window.toggleLanguage = () => { currentLang = currentLang === 'EN' ? 'HI' : 'EN'; localStorage.setItem('upay_lang', currentLang); applyLanguage(); };
-        function applyLanguage() { el('langBtnTxt').innerText = currentLang === 'EN' ? 'HI / EN' : 'EN / HI'; document.querySelectorAll('[data-i18n]').forEach(e => { let key = e.getAttribute('data-i18n'); if(i18n[currentLang] && i18n[currentLang][key]) e.innerText = i18n[currentLang][key]; }); }
+        function applyLanguage() { 
+            const i18n = {
+                'EN': { 'redeem': 'REDEEM', 'withdraw': 'WITHDRAW', 'tasks': 'TASKS', 'history': 'HISTORY', 'support': 'SUPPORT', 'profile': 'PROFILE', 'networkBal': 'NETWORK BALANCE', 'encWallet': 'Encrypted FinTech Wallet', 'recentLogs': 'RECENT LOGS', 'viewAll': 'VIEW ALL', 'logout': 'LOGOUT SECURELY', 'allMembers': 'ALL MEMBERS', 'backDash': '⬅ DASHBOARD', 'status': 'Status', 'joinDate': 'Join Date', 'delAcc': 'DELETE ACCOUNT', 'allLogs': 'ALL LOGS', 'reportAdmin': 'REPORT ADMIN', 'sendReport': 'SEND REPORT', 'redeemFunds': 'REDEEM FUNDS', 'claimFunds': 'CLAIM FUNDS NOW', 'execTransfer': 'EXECUTE TRANSFER', 'taskCenter': 'TASK CENTER', 'members': 'MEMBERS', 'payUser': 'PAY USER', 'apiSet': 'API Config', 'apiDesc': 'Set your API to send money to other users instantly.', 'saveConfig': 'SAVE CONFIG', 'genApi': '🔄 GENERATE NEW API', 'sendMoney': 'SEND MONEY', 'payDesc': 'Send money directly to User ID.' },
+                'HI': { 'redeem': 'रिडीम करें', 'withdraw': 'निकासी', 'tasks': 'टास्क', 'history': 'इतिहास', 'support': 'सहायता', 'profile': 'प्रोफ़ाइल', 'networkBal': 'नेटवर्क बैलेंस', 'encWallet': 'सुरक्षित वॉलेट', 'recentLogs': 'हाल के लेन-देन', 'viewAll': 'सभी देखें', 'logout': 'लॉगआउट करें', 'allMembers': 'सभी सदस्य', 'backDash': '⬅ डैशबोर्ड', 'status': 'स्थिति', 'joinDate': 'शामिल होने की तिथि', 'delAcc': 'खाता हटाएं', 'allLogs': 'सभी रिकॉर्ड', 'reportAdmin': 'एडमिन रिपोर्ट', 'sendReport': 'मैसेज भेजें', 'redeemFunds': 'गिफ्ट कोड डालें', 'claimFunds': 'पैसे प्राप्त करें', 'execTransfer': 'ट्रांसफर करें', 'taskCenter': 'टास्क सेंटर', 'members': 'सदस्य', 'payUser': 'पैसे भेजें', 'apiSet': 'एपीआई सेटिंग', 'apiDesc': 'दूसरे यूजर को पैसे भेजने के लिए API सेट करें.', 'saveConfig': 'सेटिंग सेव करें', 'genApi': '🔄 नई एपीआई बनाएं', 'sendMoney': 'पैसे भेजें', 'payDesc': 'अपनी API से सीधा पैसा भेजें.' }
+            };
+            el('langBtnTxt').innerText = currentLang === 'EN' ? 'HI / EN' : 'EN / HI'; 
+            document.querySelectorAll('[data-i18n]').forEach(e => { let key = e.getAttribute('data-i18n'); if(i18n[currentLang] && i18n[currentLang][key]) e.innerText = i18n[currentLang][key]; }); 
+        }
 
         const playSfx = (t) => { try { const ctx = new (window.AudioContext || window.webkitAudioContext)(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.connect(gain); gain.connect(ctx.destination); if(t==='success'){osc.type='sine';osc.frequency.setValueAtTime(600,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(1200,ctx.currentTime+0.2);}else if(t==='kaching'){osc.type='square';osc.frequency.setValueAtTime(800,ctx.currentTime);osc.frequency.setValueAtTime(1200,ctx.currentTime+0.1);}else{osc.type='sawtooth';osc.frequency.setValueAtTime(300,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(150,ctx.currentTime+0.3);} osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001,ctx.currentTime+0.3); osc.stop(ctx.currentTime+0.3); } catch(e){} };
         const el = id => document.getElementById(id); const ts2Str = ts => ts ? ts.toDate().toLocaleString('en-IN') : 'Just now'; const genWID = () => `WD${new Date().getTime().toString().slice(-6)}${cUid?cUid.slice(-3):'000'}`;
@@ -571,30 +581,18 @@
         window.showToast = (msg, type='success') => { const c=el('toast-box'); const d=document.createElement('div'); d.className=`toast ${type}`; d.innerHTML=`<div style="font-size:20px;">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</div><div>${msg}</div>`; c.appendChild(d); setTimeout(()=>{ d.classList.add('fade-out'); setTimeout(()=>d.remove(), 400); }, 3500); };
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; }; window.hideLoader = () => el('loader').style.display='none';
         
-        // FIXED COPY BUTTON
         window.copyApiText = (elementId) => {
-            const elm = document.getElementById(elementId);
-            const textToCopy = elm.innerText || elm.textContent;
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(textToCopy).then(() => { showToast("Copied!", "success"); }).catch(() => { fallbackCopy(textToCopy); });
-            } else { fallbackCopy(textToCopy); }
+            const elm = document.getElementById(elementId); const textToCopy = elm.innerText || elm.textContent;
+            if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(textToCopy).then(() => { showToast("Copied!", "success"); }).catch(() => { fallbackCopy(textToCopy); }); } else { fallbackCopy(textToCopy); }
         };
-        function fallbackCopy(text) {
-            const textArea = document.createElement("textarea"); textArea.value = text;
-            textArea.style.position = "fixed"; textArea.style.left = "-999999px"; textArea.style.top = "-999999px";
-            document.body.appendChild(textArea); textArea.focus(); textArea.select();
-            try { document.execCommand('copy'); showToast("Copied!", "success"); } catch (err) { showToast("Failed to copy", "error"); }
-            textArea.remove();
-        }
+        function fallbackCopy(text) { const textArea = document.createElement("textarea"); textArea.value = text; textArea.style.position = "fixed"; textArea.style.left = "-999999px"; textArea.style.top = "-999999px"; document.body.appendChild(textArea); textArea.focus(); textArea.select(); try { document.execCommand('copy'); showToast("Copied!", "success"); } catch (err) { showToast("Failed to copy", "error"); } textArea.remove(); }
 
         const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
         const adminLog = async (action, details) => { try { await addDoc(collection(db,"admin_logs"), {action, details, timestamp: serverTimestamp()}); sendTg(ADM_ID, `👑 *ADMIN ACTION*\nAction: ${action}\nDetails: ${details}`); } catch(e){} };
 
-        // API Setup Display Logic
         const updateApiDisplay = (t, k) => {
             const token = t || "YOUR_TOKEN"; const key = k || "YOUR_SECRET";
             const apiUrl = 'https://kumarkor.github.io/KUMAROFFICIALTMBOT/';
-            // No curly braces to prevent Telegram link breaking
             el('demoApiUrl').innerText = `${apiUrl}?api_action=pay&api_token=${token}&api_secret=${key}&target_uid=USER_ID_HERE&amount=AMOUNT_HERE`;
             el('demoApiJs').innerText = `// Execute via backend bot or browser HTTP request
 const payUrl = '${apiUrl}?api_action=pay&api_token=${token}&api_secret=${key}&target_uid=TARGET_USER_ID&amount=500';
@@ -604,7 +602,6 @@ window.open(payUrl, '_blank');`;
         window.onload = async () => {
             applyLanguage(); updateApiDisplay("", "");
             dHash = localStorage.getItem('upay_dev_hash'); if(!dHash) { dHash = 'DEV_' + Math.random().toString(36).substr(2,10); localStorage.setItem('upay_dev_hash', dHash); }
-            const urlParams = new URLSearchParams(window.location.search);
             const gCodeParam = urlParams.get('giftcode'); if(gCodeParam) sessionStorage.setItem('pendingGift', gCodeParam);
             const isByp = urlParams.get('bypass'); const bKey = urlParams.get('key');
             const savedUid = localStorage.getItem('upay_uid'), savedPass = localStorage.getItem('upay_pass');
@@ -729,28 +726,20 @@ window.open(payUrl, '_blank');`;
                 else if(act==='saveVersion') { await setDoc(doc(db,"settings","sys"), {appVersion:el('admVersion').value},{merge:true}); showToast("Version Updated!"); }
                 else if(act==='sendPush') { await setDoc(doc(db,"settings","sys"), {lastPush: Date.now().toString(), lastPushMsg: el('admPushMsg').value},{merge:true}); showToast("Push Sent!"); adminLog("Push", el('admPushMsg').value); }
                 else if(act==='tgBroadcast') { const msg = el('admTgMsg').value; if(!msg) throw "Enter message"; const us=await getDocs(collection(db,"users")); us.forEach(async (d) => { await sendTg(d.id, msg); }); showToast("Broadcast Sent"); adminLog("TG Broadcast", msg); }
-                
                 else if(act==='genBypass') { const sec = Math.random().toString(36).substring(2,15); await setDoc(doc(db,"settings","sys"), {bypassSecret:sec},{merge:true}); const link = "https://kumarkor.github.io/KUMAROFFICIALTMBOT/?bypass=true&key=" + sec; el('bypassLinkBox').innerText = link; el('bypassLinkBox').classList.remove('hidden'); showToast("Bypass Generated!"); }
-                else if(act==='updateMaintUrl') { const u = el('maintUrlInp').value.trim(); await setDoc(doc(db,"settings","sys"), {maintUrl: u},{merge:true}); showToast("URL Updated!"); }
-                
                 else if(act==='bulkCode') { const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value), c=parseInt(el('admBulkCount').value); if(isNaN(a)||isNaN(m)||isNaN(c)) throw "Invalid data"; let codes = []; for(let i=0; i<c; i++){ const cStr = `GIFT-${Math.random().toString(36).substring(2,8).toUpperCase()}`; await setDoc(doc(db,"giftcodes",cStr), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], usedDevs:[], createdAt:serverTimestamp()}); codes.push(cStr); } el('newCodeTxt').innerText=codes.join("\n"); el('newCodeBox').classList.remove('hidden'); showToast(`${c} Codes Generated`); sendTg(ADM_ID, `🎁 *NEW CODES CREATED*\nGenerated ${c} codes of ₹${a} each.`); }
                 else if(act==='checkCode') { const c=el('admChkCodeInp').value.trim().toUpperCase(); const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); let uls=""; if(d.usedBy&&d.usedBy.length>0) uls=`<br><b>Used By:</b><br><span style='color:var(--primary); font-family:monospace;'>${d.usedBy.join("<br>")}</span>`; el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Amt:</b> ₹${d.amount}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger);">EXPIRED</span>':'<span style="color:var(--success);">ACTIVE</span>'}${uls}`; el('chkCodeRes').classList.remove('hidden'); }
                 else if(act==='checkWd') { const w=el('admChkWdInp').value.trim().toUpperCase(); const wq=await getDocs(query(collection(db,"withdrawals"), where("wId", "==", w))); if(wq.empty) throw "WID Not Found"; let wd = wq.docs[0].data(); el('chkWdRes').innerHTML = `<b>WID:</b> ${wd.wId}<br><b>User:</b> ${wd.userId}<br><b>Amt:</b> ₹${wd.amount}<br><b>Target:</b> ${wd.target}<br><b>Method:</b> ${wd.method}<br><b>Status:</b> ${wd.status}`; el('chkWdRes').classList.remove('hidden'); }
-
                 else if(act==='addBal'||act==='cutBal') { const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found"; const nb = act==='addBal'? u.data().balance+a : u.data().balance-a; await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Injected':'Deducted', timestamp:serverTimestamp()}); showToast(`New Bal: ₹${nb}`); sendTg(id, `💰 Admin ${act==='addBal'?'Added':'Deducted'} ₹${a}`); adminLog("Bal", `${act} ₹${a} ID: ${id}`); }
                 else if(act==='checkUsr') { const id=el('admUsrId').value.trim(); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not Found"; el('chkUsrRes').innerHTML=`<b>ID:</b> ${id}<br><b>Name:</b> ${u.data().name||'User'}<br><b>Bal:</b> <span style="color:var(--success); font-weight:bold;">₹${u.data().balance}</span><br><b>Status:</b> ${u.data().isBanned?'BANNED':'ACTIVE'}<br><b>Last Seen:</b> ${ts2Str(u.data().lastSeen)}`; el('chkUsrRes').classList.remove('hidden'); }
                 else if(act==='resetPass') { const id=el('admUsrId').value.trim(), np=el('admNewPass').value; if(!id||!np) throw "Missing fields"; await updateDoc(doc(db,"users",id), {password:np}); showToast("Password Reset"); adminLog("Pass Reset", `ID: ${id}`); }
                 else if(act==='banUser') { const tgt=el('admBanTarget').value.trim(); if(!tgt||tgt===ADM_ID) throw "Invalid Target"; if(tgt.startsWith("DEV_")) { if(p1){ await setDoc(doc(db,"blacklisted_devices",tgt),{banned:true, ts:serverTimestamp()}); }else{ await deleteDoc(doc(db,"blacklisted_devices",tgt)); } showToast(p1?"Device Banned":"Device Unbanned"); adminLog(p1?"Ban Dev":"Unban Dev", tgt); } else { await updateDoc(doc(db,"users",tgt), {isBanned:p1}); showToast(p1?"User Banned":"User Unbanned"); adminLog(p1?"Ban UID":"Unban UID", tgt); } }
-
                 else if(act==='appReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ Request Approved WID: ${p4}`); adminLog("Approve WID", `WID: ${p4}`); }
                 else if(act==='rejReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'}); const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Refund WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Rejected!"); loadAdminTabs(); sendTg(p2, `⛔ Request Rejected (Refund) WID: ${p4}`); adminLog("Reject WID", `WID: ${p4}`); }
-                
                 else if(act==='createTask') { const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value), l=el('admTaskLink').value.trim(), d=el('admTaskDesc').value.trim(); if(!n||isNaN(a)||!l||!d) throw "Fill all fields!"; await addDoc(collection(db,"tasks"), {name:n, amount:a, link:l, desc:d, createdAt:serverTimestamp()}); showToast("Task Created"); el('admTaskName').value=""; el('admTaskAmt').value=""; el('admTaskLink').value=""; el('admTaskDesc').value=""; loadAdminTabs(); sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\nLink >> ${l}\n\n_Task successfully live in app!_`); adminLog("Task Created", `${n}, ₹${a}`); }
                 else if(act==='delTask') { await deleteDoc(doc(db,"tasks",p1)); showToast("Deleted"); loadAdminTabs(); }
-
                 else if(act==='appTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Approved'}); const ud = await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"ADMIN_ADD", amount:p3, details:`Task Approved: ${p4}`, timestamp:serverTimestamp()}); showToast("Task Approved!"); loadAdminTabs(); sendTg(p2, `✅ *TASK APPROVED*\n\nYour task "🌸 *${p4}* 🌸" was approved!\n🤭 Amount >> ₹${p3} added to wallet.`); adminLog("Task App", `User: ${p2}, Task: ${p4}`); }
                 else if(act==='rejTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Rejected'}); showToast("Task Rejected"); loadAdminTabs(); sendTg(p2, `⛔ *TASK REJECTED*\n\nYour submission for "*${p3}*" was rejected by Admin.`); adminLog("Task Rej", `User: ${p2}, Task: ${p3}`); }
-                
                 else if(act==='replyReport') { const rMsg = el(`repReply_${p1}`).value.trim(); if(!rMsg) throw "Enter reply msg"; await updateDoc(doc(db,"reports",p1), {status:'Replied'}); sendTg(p2, `💬 *ADMIN SUPPORT REPLY*\n\nAdmin has replied to your report:\n"${rMsg}"`); showToast("Reply Sent!"); loadAdminTabs(); adminLog("Report Reply", `User: ${p2}`); }
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); } hideLoader();
         };

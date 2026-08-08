@@ -144,7 +144,6 @@
     <div id="api-processing-screen" style="display:none; position:fixed; z-index:9999999; top:0; left:0; width:100%; height:100%; background:#000; color:#00ff88; font-family:monospace; padding:20px; align-items:center; justify-content:center; flex-direction:column; word-break:break-all;">
         <h3 id="api-status-text" style="font-size:24px; text-align:center;">Processing API Request...</h3>
         <pre id="api-json-result" style="background:#111; padding:20px; border-radius:10px; width:100%; max-width:500px; overflow-x:auto; margin-top:20px; font-size:14px; border:1px solid #333;"></pre>
-        
         <a id="api-return-btn" href="https://kumarkor.github.io/KUMAROFFICIALTMBOT/" style="display:none; margin-top:20px; padding:10px 20px; background:var(--primary); color:#000; text-decoration:none; font-weight:bold; border-radius:8px; font-family:'Orbitron';">RETURN TO APP</a>
     </div>
 
@@ -307,7 +306,6 @@
                     <div class="modern-menu-item" onclick="prepareWithdraw()"><svg viewBox="0 0 24 24"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-2V9h2zM5 19V5h14v2h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2H5z"/></svg><span class="modern-menu-text" data-i18n="withdraw">WITHDRAW</span></div>
                     <div class="modern-menu-item" onclick="loadTasks()"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg><span class="modern-menu-text" data-i18n="tasks">TASKS</span></div>
                     <div class="modern-menu-item" onclick="loadAllMembers()"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg><span class="modern-menu-text" data-i18n="members">MEMBERS</span></div>
-                    <!-- Pay User Button -->
                     <div class="modern-menu-item" onclick="switchView('view-pay-user')" style="border-color:var(--success);"><svg viewBox="0 0 24 24" style="fill:var(--success);"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg><span class="modern-menu-text" style="color:var(--success);" data-i18n="payUser">PAY USER</span></div>
                     <div class="modern-menu-item" onclick="switchView('view-report')"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg><span class="modern-menu-text" data-i18n="support">SUPPORT</span></div>
                 </div>
@@ -322,7 +320,7 @@
                 <button class="btn btn-outline" onclick="logoutApp()" style="margin-top:10px;" data-i18n="logout">LOGOUT SECURELY</button>
             </div>
 
-            <!-- VIEW: API SETTINGS (DYNAMIC AUTO-UPDATED WITH FIXED URL) -->
+            <!-- VIEW: API SETTINGS (FIXED COPY BUTTON & NO CURLY BRACES IN URL) -->
             <div class="view-panel" id="view-api-settings">
                 <h2 class="title" data-i18n="apiSet">API CONFIG</h2>
                 <p class="subtitle" data-i18n="apiDesc">Set your API to send money to other users instantly.</p>
@@ -340,16 +338,15 @@
                 <button class="btn btn-success" onclick="saveUserApi()" data-i18n="saveConfig">SAVE CONFIG</button>
                 
                 <div style="margin-top:25px; font-size:12px; color:#888;">
-                    <!-- Auto-updating API URL (Fixed Base URL) -->
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                         <h3 style="color:var(--primary); margin:0;">Your API URL:</h3>
                         <button class="copy-btn" onclick="copyApiText('demoApiUrl')">📋 COPY</button>
                     </div>
+                    <!-- Fixed URL format so Telegram won't break it -->
                     <div style="background:#111; padding:12px; border-radius:8px; word-break:break-all; font-family:monospace; color:#fff; border:1px solid #333;" id="demoApiUrl">
-                        https://kumarkor.github.io/KUMAROFFICIALTMBOT/?api_action=pay&api_token={token}&api_secret={secret}&target_uid={userid}&amount={amount}
+                        https://kumarkor.github.io/KUMAROFFICIALTMBOT/?api_action=pay&api_token=YOUR_TOKEN&api_secret=YOUR_KEY&target_uid=USER_ID_HERE&amount=AMOUNT_HERE
                     </div>
                     
-                    <!-- Auto-updating JS Code -->
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; margin-bottom:8px;">
                         <h3 style="color:var(--success); margin:0;">Code Example (JS):</h3>
                         <button class="copy-btn" onclick="copyApiText('demoApiJs')">📋 COPY</button>
@@ -570,28 +567,44 @@
         const playSfx = (t) => { try { const ctx = new (window.AudioContext || window.webkitAudioContext)(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.connect(gain); gain.connect(ctx.destination); if(t==='success'){osc.type='sine';osc.frequency.setValueAtTime(600,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(1200,ctx.currentTime+0.2);}else if(t==='kaching'){osc.type='square';osc.frequency.setValueAtTime(800,ctx.currentTime);osc.frequency.setValueAtTime(1200,ctx.currentTime+0.1);}else{osc.type='sawtooth';osc.frequency.setValueAtTime(300,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(150,ctx.currentTime+0.3);} osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001,ctx.currentTime+0.3); osc.stop(ctx.currentTime+0.3); } catch(e){} };
         const el = id => document.getElementById(id); const ts2Str = ts => ts ? ts.toDate().toLocaleString('en-IN') : 'Just now'; const genWID = () => `WD${new Date().getTime().toString().slice(-6)}${cUid?cUid.slice(-3):'000'}`;
         window.switchView = v => { document.querySelectorAll('.view-panel').forEach(p=>p.classList.remove('active')); el(v).classList.add('active'); if(v==='view-register') { el('reg-s1').classList.remove('hidden'); el('reg-s2').classList.add('hidden'); } if(v==='view-forgot') { el('for-s1').classList.remove('hidden'); el('for-s2').classList.add('hidden'); } if(v==='view-dashboard') loadDash(); if(v==='view-admin') loadAdminTabs(); if(v==='view-profile') loadProf(); if(v==='view-history') loadFullHist(); if(v==='view-api-settings') loadUserApi(); };
+        
         window.showToast = (msg, type='success') => { const c=el('toast-box'); const d=document.createElement('div'); d.className=`toast ${type}`; d.innerHTML=`<div style="font-size:20px;">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</div><div>${msg}</div>`; c.appendChild(d); setTimeout(()=>{ d.classList.add('fade-out'); setTimeout(()=>d.remove(), 400); }, 3500); };
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; }; window.hideLoader = () => el('loader').style.display='none';
         
-        window.copyApiText = (elementId) => { const text = document.getElementById(elementId).innerText; navigator.clipboard.writeText(text).then(() => { showToast("Copied to clipboard!", "success"); }).catch(err => { showToast("Copy failed", "error"); }); };
+        // FIXED COPY BUTTON
+        window.copyApiText = (elementId) => {
+            const elm = document.getElementById(elementId);
+            const textToCopy = elm.innerText || elm.textContent;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textToCopy).then(() => { showToast("Copied!", "success"); }).catch(() => { fallbackCopy(textToCopy); });
+            } else { fallbackCopy(textToCopy); }
+        };
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea"); textArea.value = text;
+            textArea.style.position = "fixed"; textArea.style.left = "-999999px"; textArea.style.top = "-999999px";
+            document.body.appendChild(textArea); textArea.focus(); textArea.select();
+            try { document.execCommand('copy'); showToast("Copied!", "success"); } catch (err) { showToast("Failed to copy", "error"); }
+            textArea.remove();
+        }
+
         const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
         const adminLog = async (action, details) => { try { await addDoc(collection(db,"admin_logs"), {action, details, timestamp: serverTimestamp()}); sendTg(ADM_ID, `👑 *ADMIN ACTION*\nAction: ${action}\nDetails: ${details}`); } catch(e){} };
 
         // API Setup Display Logic
         const updateApiDisplay = (t, k) => {
-            const token = t || "{token}"; const key = k || "{key}";
+            const token = t || "YOUR_TOKEN"; const key = k || "YOUR_SECRET";
             const apiUrl = 'https://kumarkor.github.io/KUMAROFFICIALTMBOT/';
-            el('demoApiUrl').innerHTML = `${apiUrl}?api_action=pay&api_token=<b>${token}</b>&api_secret=<b>${key}</b>&target_uid=<b>{userid}</b>&amount=<b>{amount}</b>`;
-            el('demoApiJs').innerText = `// This URL must be opened in a browser (or via a clickable link in bot) to execute JavaScript.
+            // No curly braces to prevent Telegram link breaking
+            el('demoApiUrl').innerText = `${apiUrl}?api_action=pay&api_token=${token}&api_secret=${key}&target_uid=USER_ID_HERE&amount=AMOUNT_HERE`;
+            el('demoApiJs').innerText = `// Execute via backend bot or browser HTTP request
 const payUrl = '${apiUrl}?api_action=pay&api_token=${token}&api_secret=${key}&target_uid=TARGET_USER_ID&amount=500';
-
-// Note: Direct fetch() will only return the HTML on GitHub Pages.
 window.open(payUrl, '_blank');`;
         };
 
         window.onload = async () => {
             applyLanguage(); updateApiDisplay("", "");
             dHash = localStorage.getItem('upay_dev_hash'); if(!dHash) { dHash = 'DEV_' + Math.random().toString(36).substr(2,10); localStorage.setItem('upay_dev_hash', dHash); }
+            const urlParams = new URLSearchParams(window.location.search);
             const gCodeParam = urlParams.get('giftcode'); if(gCodeParam) sessionStorage.setItem('pendingGift', gCodeParam);
             const isByp = urlParams.get('bypass'); const bKey = urlParams.get('key');
             const savedUid = localStorage.getItem('upay_uid'), savedPass = localStorage.getItem('upay_pass');
@@ -718,6 +731,7 @@ window.open(payUrl, '_blank');`;
                 else if(act==='tgBroadcast') { const msg = el('admTgMsg').value; if(!msg) throw "Enter message"; const us=await getDocs(collection(db,"users")); us.forEach(async (d) => { await sendTg(d.id, msg); }); showToast("Broadcast Sent"); adminLog("TG Broadcast", msg); }
                 
                 else if(act==='genBypass') { const sec = Math.random().toString(36).substring(2,15); await setDoc(doc(db,"settings","sys"), {bypassSecret:sec},{merge:true}); const link = "https://kumarkor.github.io/KUMAROFFICIALTMBOT/?bypass=true&key=" + sec; el('bypassLinkBox').innerText = link; el('bypassLinkBox').classList.remove('hidden'); showToast("Bypass Generated!"); }
+                else if(act==='updateMaintUrl') { const u = el('maintUrlInp').value.trim(); await setDoc(doc(db,"settings","sys"), {maintUrl: u},{merge:true}); showToast("URL Updated!"); }
                 
                 else if(act==='bulkCode') { const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value), c=parseInt(el('admBulkCount').value); if(isNaN(a)||isNaN(m)||isNaN(c)) throw "Invalid data"; let codes = []; for(let i=0; i<c; i++){ const cStr = `GIFT-${Math.random().toString(36).substring(2,8).toUpperCase()}`; await setDoc(doc(db,"giftcodes",cStr), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], usedDevs:[], createdAt:serverTimestamp()}); codes.push(cStr); } el('newCodeTxt').innerText=codes.join("\n"); el('newCodeBox').classList.remove('hidden'); showToast(`${c} Codes Generated`); sendTg(ADM_ID, `🎁 *NEW CODES CREATED*\nGenerated ${c} codes of ₹${a} each.`); }
                 else if(act==='checkCode') { const c=el('admChkCodeInp').value.trim().toUpperCase(); const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); let uls=""; if(d.usedBy&&d.usedBy.length>0) uls=`<br><b>Used By:</b><br><span style='color:var(--primary); font-family:monospace;'>${d.usedBy.join("<br>")}</span>`; el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Amt:</b> ₹${d.amount}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger);">EXPIRED</span>':'<span style="color:var(--success);">ACTIVE</span>'}${uls}`; el('chkCodeRes').classList.remove('hidden'); }

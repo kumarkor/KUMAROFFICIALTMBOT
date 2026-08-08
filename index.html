@@ -23,6 +23,9 @@
         body { background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; overflow-x: hidden; display: flex; justify-content: center; align-items: center; position: relative; }
         ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: rgba(0,0,0,0.5); } ::-webkit-scrollbar-thumb { background: linear-gradient(var(--primary), var(--secondary)); border-radius: 10px; }
 
+        /* =======================================================================
+           2. BACKGROUND ANIMATIONS
+           ======================================================================= */
         .ambient-light { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: -2; background: radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.08) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(188, 19, 254, 0.08) 0%, transparent 45%); animation: pulseBg 12s infinite alternate ease-in-out; }
         @keyframes pulseBg { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
         .cyber-grid { position: fixed; width: 200vw; height: 200vh; top: -50%; left: -50%; z-index: -1; background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; transform: perspective(800px) rotateX(60deg); animation: gridScroll 15s linear infinite; }
@@ -36,6 +39,9 @@
         #push-notification.show { top: 25px; }
         .push-icon { width:45px; height:45px; background:linear-gradient(135deg, var(--primary), var(--accent)); border-radius:12px; display:flex; justify-content:center; align-items:center; font-size:22px; box-shadow: var(--glow-primary); }
 
+        /* =======================================================================
+           3. UI PANELS & BUTTONS
+           ======================================================================= */
         .app-container { width: 100%; max-width: 480px; padding: 15px; z-index: 10; margin: auto; position: relative; padding-top: 50px; }
         .view-panel { background: var(--panel-bg); backdrop-filter: blur(30px); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 30px; padding: 35px 25px; box-shadow: 0 35px 70px rgba(0,0,0,0.9); display: none; opacity: 0; transform: translateY(30px) scale(0.97); }
         .view-panel.active { display: block; animation: panelEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
@@ -62,6 +68,9 @@
         .link-text { display: block; text-align: center; margin-top: 15px; color: var(--text-muted); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
         .link-text:hover { color: var(--primary); }
 
+        /* =======================================================================
+           4. DASHBOARD & MENUS (NEW NEON COLORS)
+           ======================================================================= */
         .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: rgba(0,0,0,0.5); padding: 15px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); }
         .dash-user-info { display: flex; align-items: center; gap: 12px; }
         .dash-avatar { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; box-shadow: var(--glow-primary); }
@@ -74,20 +83,19 @@
         .modern-bal-title { font-family: 'Orbitron'; font-size: 13px; color: var(--text-muted); font-weight: 700; }
         .modern-bal-amt { font-family: 'Orbitron'; font-size: 48px; font-weight: 900; color: #fff; text-shadow: var(--glow-primary); margin: 10px 0; word-break: break-all; }
         
-        /* MULTI-COLORED MAIN MENU BUTTONS */
-        .modern-menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
-        .modern-menu-item { background: rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 15px 5px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; }
-        .modern-menu-item:hover { transform: translateY(-3px); }
-        .modern-menu-item svg { width: 26px; height: 26px; margin-bottom: 8px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
+        .modern-menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 25px; }
+        .modern-menu-item { background: rgba(0,0,0,0.7); border-radius: 16px; padding: 16px 5px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; }
+        .modern-menu-item:hover { transform: translateY(-4px); }
+        .modern-menu-item svg { width: 28px; height: 28px; margin-bottom: 10px; }
         .modern-menu-text { font-size: 10px; font-weight: 900; font-family: 'Orbitron'; text-transform: uppercase; }
-        
-        /* Colors for different buttons */
-        .btn-color-1 { border-top: 3px solid #00f3ff; } .btn-color-1 svg { fill: #00f3ff; } .btn-color-1 .modern-menu-text { color: #00f3ff; } .btn-color-1:hover { box-shadow: 0 8px 15px rgba(0,243,255,0.2); background: rgba(0,243,255,0.05); }
-        .btn-color-2 { border-top: 3px solid #ff0055; } .btn-color-2 svg { fill: #ff0055; } .btn-color-2 .modern-menu-text { color: #ff0055; } .btn-color-2:hover { box-shadow: 0 8px 15px rgba(255,0,85,0.2); background: rgba(255,0,85,0.05); }
-        .btn-color-3 { border-top: 3px solid #00ff88; } .btn-color-3 svg { fill: #00ff88; } .btn-color-3 .modern-menu-text { color: #00ff88; } .btn-color-3:hover { box-shadow: 0 8px 15px rgba(0,255,136,0.2); background: rgba(0,255,136,0.05); }
-        .btn-color-4 { border-top: 3px solid #ffaa00; } .btn-color-4 svg { fill: #ffaa00; } .btn-color-4 .modern-menu-text { color: #ffaa00; } .btn-color-4:hover { box-shadow: 0 8px 15px rgba(255,170,0,0.2); background: rgba(255,170,0,0.05); }
-        .btn-color-5 { border-top: 3px solid #bc13fe; } .btn-color-5 svg { fill: #bc13fe; } .btn-color-5 .modern-menu-text { color: #bc13fe; } .btn-color-5:hover { box-shadow: 0 8px 15px rgba(188,19,254,0.2); background: rgba(188,19,254,0.05); }
-        .btn-color-6 { border-top: 3px solid #ffffff; } .btn-color-6 svg { fill: #ffffff; } .btn-color-6 .modern-menu-text { color: #ffffff; } .btn-color-6:hover { box-shadow: 0 8px 15px rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); }
+
+        /* MULTI-COLORS FOR MAIN MENU BUTTONS */
+        .btn-color-1 { border: 1px solid #00f3ff; background: rgba(0,243,255,0.08); box-shadow: inset 0 0 10px rgba(0,243,255,0.1); } .btn-color-1 svg{ fill:#00f3ff; filter: drop-shadow(0 0 5px #00f3ff);} .btn-color-1 .modern-menu-text{ color:#00f3ff; } .btn-color-1:hover { box-shadow: 0 5px 20px rgba(0,243,255,0.3); background: rgba(0,243,255,0.15); }
+        .btn-color-2 { border: 1px solid #ff0055; background: rgba(255,0,85,0.08); box-shadow: inset 0 0 10px rgba(255,0,85,0.1); } .btn-color-2 svg{ fill:#ff0055; filter: drop-shadow(0 0 5px #ff0055);} .btn-color-2 .modern-menu-text{ color:#ff0055; } .btn-color-2:hover { box-shadow: 0 5px 20px rgba(255,0,85,0.3); background: rgba(255,0,85,0.15); }
+        .btn-color-3 { border: 1px solid #00ff88; background: rgba(0,255,136,0.08); box-shadow: inset 0 0 10px rgba(0,255,136,0.1); } .btn-color-3 svg{ fill:#00ff88; filter: drop-shadow(0 0 5px #00ff88);} .btn-color-3 .modern-menu-text{ color:#00ff88; } .btn-color-3:hover { box-shadow: 0 5px 20px rgba(0,255,136,0.3); background: rgba(0,255,136,0.15); }
+        .btn-color-4 { border: 1px solid #ffaa00; background: rgba(255,170,0,0.08); box-shadow: inset 0 0 10px rgba(255,170,0,0.1); } .btn-color-4 svg{ fill:#ffaa00; filter: drop-shadow(0 0 5px #ffaa00);} .btn-color-4 .modern-menu-text{ color:#ffaa00; } .btn-color-4:hover { box-shadow: 0 5px 20px rgba(255,170,0,0.3); background: rgba(255,170,0,0.15); }
+        .btn-color-5 { border: 1px solid #bc13fe; background: rgba(188,19,254,0.08); box-shadow: inset 0 0 10px rgba(188,19,254,0.1); } .btn-color-5 svg{ fill:#bc13fe; filter: drop-shadow(0 0 5px #bc13fe);} .btn-color-5 .modern-menu-text{ color:#bc13fe; } .btn-color-5:hover { box-shadow: 0 5px 20px rgba(188,19,254,0.3); background: rgba(188,19,254,0.15); }
+        .btn-color-6 { border: 1px solid #ffffff; background: rgba(255,255,255,0.08); box-shadow: inset 0 0 10px rgba(255,255,255,0.1); } .btn-color-6 svg{ fill:#ffffff; filter: drop-shadow(0 0 5px #ffffff);} .btn-color-6 .modern-menu-text{ color:#ffffff; } .btn-color-6:hover { box-shadow: 0 5px 20px rgba(255,255,255,0.3); background: rgba(255,255,255,0.15); }
 
         .data-list { max-height: 350px; overflow-y: auto; padding-right: 5px; margin-bottom: 15px; }
         .hist-item { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
@@ -102,25 +110,26 @@
         .task-desc { font-size: 13px; color: #d1d9e6; margin-bottom: 15px; line-height: 1.6; width:100%; background:rgba(0,0,0,0.4); padding:10px; border-radius:10px; }
 
         /* =======================================================================
-           5. RGB ADMIN PANEL (Animated Background)
+           5. ADMIN PANEL & ANIMATIONS (GRID LAYOUT + RGB)
            ======================================================================= */
         @keyframes adminRgbBg {
-            0% { border-color: rgba(255,0,85,0.5); box-shadow: 0 0 40px rgba(255,0,85,0.2) inset, 0 0 30px rgba(255,0,85,0.4); }
-            33% { border-color: rgba(0,255,136,0.5); box-shadow: 0 0 40px rgba(0,255,136,0.2) inset, 0 0 30px rgba(0,255,136,0.4); }
-            66% { border-color: rgba(0,243,255,0.5); box-shadow: 0 0 40px rgba(0,243,255,0.2) inset, 0 0 30px rgba(0,243,255,0.4); }
-            100% { border-color: rgba(255,0,85,0.5); box-shadow: 0 0 40px rgba(255,0,85,0.2) inset, 0 0 30px rgba(255,0,85,0.4); }
+            0% { border-color: #ff0055; box-shadow: 0 0 30px rgba(255,0,85,0.3) inset, 0 0 20px rgba(255,0,85,0.4); }
+            33% { border-color: #00ff88; box-shadow: 0 0 30px rgba(0,255,136,0.3) inset, 0 0 20px rgba(0,255,136,0.4); }
+            66% { border-color: #00f3ff; box-shadow: 0 0 30px rgba(0,243,255,0.3) inset, 0 0 20px rgba(0,243,255,0.4); }
+            100% { border-color: #ff0055; box-shadow: 0 0 30px rgba(255,0,85,0.3) inset, 0 0 20px rgba(255,0,85,0.4); }
         }
         .admin-rgb-mode {
-            animation: adminRgbBg 1.5s infinite;
+            animation: adminRgbBg 2s infinite !important;
             border-width: 2px !important;
             border-style: solid;
         }
 
-        .admin-nav { display: flex; overflow-x: auto; gap: 10px; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .admin-nav::-webkit-scrollbar { height: 0px; }
-        .admin-tab { padding: 10px 15px; background: rgba(0,0,0,0.6); border-radius: 10px; font-size: 12px; font-weight: 700; white-space: nowrap; cursor: pointer; color: var(--text-muted); transition: 0.3s; }
-        .admin-tab.active { background: var(--primary); color: #000; box-shadow: var(--glow-primary); }
-        .admin-content { display: none; max-height: 65vh; overflow-y: auto; padding-right: 5px; }
+        /* GRID ADMIN TABS (Line Design) */
+        .admin-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .admin-tab { padding: 12px; background: rgba(0,0,0,0.6); border-radius: 10px; font-size: 13px; font-weight: 700; text-align: center; cursor: pointer; color: var(--text-muted); transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .admin-tab.active { background: var(--primary); color: #000; box-shadow: var(--glow-primary); border-color: var(--primary); }
+        
+        .admin-content { display: none; max-height: 60vh; overflow-y: auto; padding-right: 5px; }
         .admin-content.active { display: block; animation: slideUp 0.4s; }
         @keyframes slideUp { from{opacity:0; transform:translateY(15px);} to{opacity:1; transform:translateY(0);} }
         
@@ -140,6 +149,7 @@
         .modal-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:100005; display:none; justify-content:center; align-items:center; backdrop-filter:blur(12px); }
         .modal-box { background:var(--panel-bg); border:1px solid var(--primary); border-radius:24px; padding:30px; width:90%; max-width:420px; box-shadow:0 20px 50px rgba(0,0,0,0.9); }
 
+        /* Offline Game UI */
         .game-box { background: rgba(0,0,0,0.8); border: 1px solid var(--primary); border-radius: 20px; padding: 15px; width: 100%; max-width: 320px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,243,255,0.15); z-index:100001; }
         canvas { background: #000; display: block; margin: 10px auto; border-radius: 12px; border: 2px solid rgba(0,243,255,0.4); box-shadow: inset 0 0 20px rgba(0,0,0,0.9); }
         .game-ctrl-btn { background: rgba(255,255,255,0.1); border: 1px solid var(--primary); color: #fff; padding: 12px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size:16px; display:flex; justify-content:center; align-items:center; }
@@ -178,9 +188,7 @@
         <button id="api-return-btn" onclick="window.close();" style="display:none; margin-top:20px; padding:12px 25px; background:var(--primary); color:#000; text-decoration:none; font-weight:bold; border-radius:8px; font-family:'Orbitron'; border:none; cursor:pointer;">CLOSE WINDOW</button>
     </div>
 
-    <!-- AUDIO FOR ADMIN PANEL -->
-    <audio id="adminBgm" loop src="https://www.soundjay.com/free-music/sounds/midnight-ride-01a.mp3" preload="auto"></audio>
-
+    <!-- MAIN APP WRAPPER -->
     <div id="main-app-ui">
         <button id="installAppBtn" onclick="installPWA()" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg, var(--success), #00aa55); color:#000; padding:14px 28px; border-radius:30px; font-weight:900; font-family:'Orbitron'; z-index:1000; box-shadow:var(--glow-success); border:none; cursor:pointer;">⬇️ INSTALL APP</button>
         <div class="ambient-light"></div><div class="cyber-grid"></div>
@@ -331,7 +339,6 @@
                 <div class="modern-balance-card">
                     <div class="modern-bal-title" data-i18n="networkBal">NETWORK BALANCE</div>
                     <div class="modern-bal-amt" id="dashBal">₹0</div>
-                    <div style="font-size:12px; color:var(--text-muted); font-weight:500;" data-i18n="encWallet">Encrypted FinTech Wallet</div>
                 </div>
 
                 <!-- COLORED MAIN MENU -->
@@ -354,7 +361,7 @@
                 <button class="btn btn-outline" onclick="logoutApp()" style="margin-top:10px;" data-i18n="logout">LOGOUT SECURELY</button>
             </div>
 
-            <!-- VIEW: API SETTINGS (NO BRACKETS IN URL) -->
+            <!-- VIEW: API SETTINGS -->
             <div class="view-panel" id="view-api-settings">
                 <h2 class="title" data-i18n="apiSet">API CONFIG</h2>
                 <p class="subtitle" data-i18n="apiDesc">Set your API to send money to other users instantly.</p>
@@ -392,22 +399,13 @@
                 <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
             </div>
 
-            <!-- VIEW: PAY USER (WITH LIVE CHECKING) -->
+            <!-- VIEW: PAY USER -->
             <div class="view-panel" id="view-pay-user">
                 <h2 class="title" style="color:var(--success);" data-i18n="payUser">PAY USER</h2>
                 <p class="subtitle" data-i18n="payDesc">Send money directly to User ID.</p>
-                
-                <!-- LIVE USER CHECKING DIV -->
                 <div id="payTargetName" style="color:var(--warning); font-size:13px; font-weight:bold; margin-bottom:10px; text-align:center; min-height:20px;"></div>
-                
-                <div class="input-group">
-                    <input type="text" class="form-control" id="payNumber" placeholder="Target User ID" oninput="checkPayUser()" required>
-                    <label class="form-label" style="top:-12px;">Target User ID</label>
-                </div>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="payAmount" placeholder="Amount (₹)" required>
-                    <label class="form-label" style="top:-12px;">Amount (₹)</label>
-                </div>
+                <div class="input-group"><input type="text" class="form-control" id="payNumber" placeholder="Target User ID" oninput="checkPayUser()" required><label class="form-label" style="top:-12px;">Target User ID</label></div>
+                <div class="input-group"><input type="number" class="form-control" id="payAmount" placeholder="Amount (₹)" required><label class="form-label" style="top:-12px;">Amount (₹)</label></div>
                 <button class="btn btn-success" onclick="executeUserPayment()" data-i18n="sendMoney">SEND MONEY</button>
                 <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
             </div>
@@ -429,7 +427,6 @@
                 </div>
                 <div class="info-row" style="display:flex; justify-content:space-between; padding:15px; background:rgba(0,0,0,0.5); border-radius:12px; margin-bottom:12px; font-size:14px; font-weight:600;"><span data-i18n="status">Status</span><span style="color:var(--success);">Active</span></div>
                 <div class="info-row" style="display:flex; justify-content:space-between; padding:15px; background:rgba(0,0,0,0.5); border-radius:12px; margin-bottom:20px; font-size:14px; font-weight:600;"><span data-i18n="joinDate">Join Date</span><span id="profDate">--</span></div>
-                
                 <button class="btn btn-outline" style="border-color:var(--danger); color:var(--danger);" onclick="deleteMyAccount()" data-i18n="delAcc">DELETE ACCOUNT</button>
                 <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
             </div>
@@ -482,14 +479,13 @@
             </div>
 
             <!-- ==========================================================
-                 VIEW 10: ADMIN PANEL (RGB MODE, NO WALLET, UNDELETE)
+                 VIEW 10: ADMIN PANEL (GRID LAYOUT + RGB)
                  ========================================================== -->
             <div class="view-panel" id="view-admin" style="padding: 25px 15px; width:100%; max-width:600px;">
                 <h2 class="title" style="color:var(--warning); text-shadow:0 0 15px rgba(255,170,0,0.6); font-size:22px;">ADMIN COMMAND</h2>
                 
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                     <span style="font-size:11px; color:#888;">Super Admin Mode Active</span>
-                    <button id="adminMusicBtn" onclick="toggleAdminMusic()" style="background:rgba(0,255,136,0.1); border:1px solid var(--success); color:var(--success); padding:5px 10px; border-radius:5px; font-weight:bold; cursor:pointer;">🎵 Music: OFF</button>
                 </div>
 
                 <div class="admin-nav">
@@ -539,7 +535,7 @@
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT LOGIC (Firebase V10 + FAST API GATEWAY)
+         JAVASCRIPT LOGIC
          ======================================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -548,6 +544,25 @@
 
         const fbConf = { apiKey: "AIzaSyB2fd1RdEq6NghpKR3uzYfmyJg2N7Uu8q4", authDomain: "kumarofficialtm.firebaseapp.com", projectId: "kumarofficialtm", storageBucket: "kumarofficialtm.firebasestorage.app", messagingSenderId: "746982907771", appId: "1:746982907771:web:548c3f76e6c4aedef367de" };
         const app = initializeApp(fbConf); const db = getFirestore(app);
+        
+        // --- BUTTON CLICK SOUND (ALL BUTTONS) ---
+        const playClickSound = () => { 
+            try { 
+                const ctx = new (window.AudioContext || window.webkitAudioContext)(); 
+                const osc = ctx.createOscillator(); 
+                const gain = ctx.createGain(); 
+                osc.connect(gain); gain.connect(ctx.destination); 
+                osc.type='square'; osc.frequency.setValueAtTime(400,ctx.currentTime); 
+                osc.frequency.exponentialRampToValueAtTime(800,ctx.currentTime+0.05); 
+                osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001,ctx.currentTime+0.05); 
+                osc.stop(ctx.currentTime+0.05); 
+            } catch(e){} 
+        };
+        document.addEventListener('click', (e) => {
+            if(e.target.closest('button') || e.target.closest('.btn') || e.target.closest('.modern-menu-item') || e.target.closest('.admin-tab') || e.target.closest('.top-btn') || e.target.closest('.link-text') || e.target.closest('.copy-btn')) {
+                playClickSound();
+            }
+        });
         
         // -------------------------------------------------------------------------
         // 🔥 INVISIBLE API GATEWAY LOGIC (0.01s Execution) 🔥
@@ -624,23 +639,18 @@
             document.querySelectorAll('[data-i18n]').forEach(e => { let key = e.getAttribute('data-i18n'); if(i18n[currentLang] && i18n[currentLang][key]) e.innerText = i18n[currentLang][key]; }); 
         }
 
-        const playSfx = (t) => { try { const ctx = new (window.AudioContext || window.webkitAudioContext)(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.connect(gain); gain.connect(ctx.destination); if(t==='success'){osc.type='sine';osc.frequency.setValueAtTime(600,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(1200,ctx.currentTime+0.2);}else if(t==='kaching'){osc.type='square';osc.frequency.setValueAtTime(800,ctx.currentTime);osc.frequency.setValueAtTime(1200,ctx.currentTime+0.1);}else{osc.type='sawtooth';osc.frequency.setValueAtTime(300,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(150,ctx.currentTime+0.3);} osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001,ctx.currentTime+0.3); osc.stop(ctx.currentTime+0.3); } catch(e){} };
         const el = id => document.getElementById(id); const ts2Str = ts => ts ? ts.toDate().toLocaleString('en-IN') : 'Just now'; const genWID = () => `WD${new Date().getTime().toString().slice(-6)}${cUid?cUid.slice(-3):'000'}`;
         
         window.switchView = v => { 
             document.querySelectorAll('.view-panel').forEach(p=>p.classList.remove('active')); el(v).classList.add('active'); 
             if(v==='view-register') { el('reg-s1').classList.remove('hidden'); el('reg-s2').classList.add('hidden'); } 
             if(v==='view-forgot') { el('for-s1').classList.remove('hidden'); el('for-s2').classList.add('hidden'); } 
-            if(v==='view-dashboard') loadDash(); if(v==='view-admin') { loadAdminTabs(); el('view-admin').classList.add('admin-rgb-mode'); } 
+            if(v==='view-dashboard') loadDash(); 
+            if(v==='view-admin') { loadAdminTabs(); el('view-admin').classList.add('admin-rgb-mode'); } 
             if(v==='view-profile') loadProf(); if(v==='view-history') loadFullHist(); if(v==='view-api-settings') loadUserApi(); 
         };
         
-        window.closeAdmin = () => { el('view-admin').classList.remove('admin-rgb-mode'); el('adminBgm').pause(); el('adminMusicBtn').innerText="🎵 Music: OFF"; switchView('view-dashboard'); };
-        
-        window.toggleAdminMusic = () => {
-            let m = el('adminBgm'); let btn = el('adminMusicBtn');
-            if(m.paused) { m.play(); btn.innerText = "🎵 Music: ON"; } else { m.pause(); btn.innerText = "🎵 Music: OFF"; }
-        };
+        window.closeAdmin = () => { el('view-admin').classList.remove('admin-rgb-mode'); switchView('view-dashboard'); };
 
         window.showToast = (msg, type='success') => { const c=el('toast-box'); const d=document.createElement('div'); d.className=`toast ${type}`; d.innerHTML=`<div style="font-size:20px;">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</div><div>${msg}</div>`; c.appendChild(d); setTimeout(()=>{ d.classList.add('fade-out'); setTimeout(()=>d.remove(), 400); }, 3500); };
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; }; window.hideLoader = () => el('loader').style.display='none';
@@ -667,7 +677,8 @@
             const token = t || "YOUR_TOKEN"; const key = k || "YOUR_SECRET";
             const apiUrl = 'https://kumarkor.github.io/KUMAROFFICIALTMBOT/';
             el('demoApiUrl').innerText = `${apiUrl}?api_action=pay&api_token=${token}&api_secret=${key}&target_uid=USER_ID_HERE&amount=AMOUNT_HERE`;
-            el('demoApiJs').innerText = `const payUrl = '${apiUrl}?api_action=pay&api_token=${token}&api_secret=${key}&target_uid=TARGET_USER_ID&amount=500';
+            el('demoApiJs').innerText = `// Execute via backend bot or browser HTTP request
+const payUrl = '${apiUrl}?api_action=pay&api_token=${token}&api_secret=${key}&target_uid=TARGET_USER_ID&amount=500';
 window.open(payUrl, '_blank');`;
         };
 
@@ -724,7 +735,7 @@ window.open(payUrl, '_blank');`;
                     if(d.data().isDeleted) throw "Account Deleted! Contact Support.";
                     
                     const devSnap = await getDoc(dMapRef); 
-                    // ADMIN DEVICE BYPASS: If Admin is logging in, don't check device limit.
+                    // ADMIN DEVICE BYPASS: Admin is immune to multiple accounts block
                     if(devSnap.exists() && devSnap.data().userId !== id && id !== ADM_ID && !isBypassed) throw "Multiple Accounts Blocked!"; 
                     if(!devSnap.exists() && id !== ADM_ID) await setDoc(dMapRef, { userId: id }); 
                     
@@ -743,7 +754,6 @@ window.open(payUrl, '_blank');`;
         window.generateNewApi = async () => { const newKey = Math.random().toString(36).substring(2, 20); const newToken = "TK-" + Math.random().toString(36).substring(2, 15).toUpperCase(); el('userApiToken').value = newToken; el('userApiKey').value = newKey; updateApiDisplay(newToken, newKey); showToast("New API Generated! Press Save."); };
         window.saveUserApi = async () => { showLoader(); try { const t = el('userApiToken').value.trim(); const k = el('userApiKey').value.trim(); await updateDoc(doc(db, "users", cUid), { apiToken: t, apiKey: k }); showToast("API Configuration Saved!"); } catch(e) { showToast("Error saving", "error"); } hideLoader(); };
         
-        // LIVE PAY TO USER VERIFICATION
         let payTimeout;
         window.checkPayUser = () => {
             clearTimeout(payTimeout);
@@ -767,7 +777,6 @@ window.open(payUrl, '_blank');`;
             const number = el('payNumber').value.trim(); const amount = parseInt(el('payAmount').value);
             if(!number || !amount) return showToast("Enter Number and Amount", "error");
             
-            // Re-verify before paying
             const resTxt = el('payTargetName').innerText;
             if(resTxt.includes("not found")) return showToast("User not valid!", "error");
 
@@ -808,7 +817,7 @@ window.open(payUrl, '_blank');`;
         window.prepareWithdraw = async () => { showLoader(); hideLoader(); if(!sysSets.isWdOn) { el('wd-select').classList.add('hidden'); el('wdClosedMsg').classList.remove('hidden'); } else { el('wd-select').classList.remove('hidden'); el('wdClosedMsg').classList.add('hidden'); el('btnUpi').style.display = sysSets.isUpiOn ? 'block' : 'none'; } el('wd-form').classList.add('hidden'); switchView('view-withdraw'); };
         window.openWdForm = (method) => { el('wd-select').classList.add('hidden'); el('wd-form').classList.remove('hidden'); el('wdMethodBadge').innerText=method; el('lblWdTarget').innerText='Enter ' + method + ' Details'; };
 
-        window.loadTasks = async () => { showLoader(); switchView('view-tasks'); try { const q = await getDocs(query(collection(db,"tasks"), orderBy("createdAt","desc"))); let html = ""; q.forEach(d => { const t = d.data(); html += `<div class="task-item"><div class="task-header"><span class="task-name">${t.name}</span><span class="task-reward">₹${t.amount}</span></div><div class="task-desc">${t.desc}</div><button class="btn" style="padding:12px; font-size:12px; margin-bottom:15px; background:linear-gradient(135deg,var(--secondary),var(--primary));" onclick="window.open('${t.link}', '_blank')">🔗 OPEN LINK</button><div style="display:flex; gap:12px; width:100%;"><button class="btn btn-telegram" style="margin:0; padding:12px; font-size:11px; flex:1;" onclick="sendTaskBot('${t.name}', ${t.amount}, '${t.link}')">SEND BOT</button><button class="btn btn-success" style="margin:0; padding:12px; font-size:11px; flex:1;" onclick="openTaskSubmit('${d.id}', '${t.name}', ${t.amount})">SUBMIT TASK</button></div></div>`; }); el('userTaskList').innerHTML = html || "<div style='text-align:center; font-size:13px; color:#888;'>No Active Tasks</div>"; } catch(e) {} hideLoader(); };
+        window.loadTasks = async () => { showLoader(); switchView('view-tasks'); try { const q = await getDocs(collection(db,"tasks")); let html = ""; q.forEach(d => { const t = d.data(); html += `<div class="task-item"><div class="task-header"><span class="task-name">${t.name}</span><span class="task-reward">₹${t.amount}</span></div><div class="task-desc">${t.desc}</div><button class="btn" style="padding:12px; font-size:12px; margin-bottom:15px; background:linear-gradient(135deg,var(--secondary),var(--primary));" onclick="window.open('${t.link}', '_blank')">🔗 OPEN LINK</button><div style="display:flex; gap:12px; width:100%;"><button class="btn btn-telegram" style="margin:0; padding:12px; font-size:11px; flex:1;" onclick="sendTaskBot('${t.name}', ${t.amount}, '${t.link}')">SEND BOT</button><button class="btn btn-success" style="margin:0; padding:12px; font-size:11px; flex:1;" onclick="openTaskSubmit('${d.id}', '${t.name}', ${t.amount})">SUBMIT TASK</button></div></div>`; }); el('userTaskList').innerHTML = html || "<div style='text-align:center; font-size:13px; color:#888;'>No Active Tasks</div>"; } catch(e) {} hideLoader(); };
         window.sendTaskBot = (tName, tAmt, tLink) => { showLoader(); sendTg(ADM_ID, `🌸 *${tName}* 🌸\n\n🤭 Amount >> ₹${tAmt}\nLink >> ${tLink}\n\n👤 User ID: \`${cUid}\`\n_Send Proof via App._`); setTimeout(()=>{ hideLoader(); showToast("Sent to Admin Bot!"); }, 1000); };
         window.openTaskSubmit = (tId, tName, tAmt) => { currentTaskPayload = {id: tId, name: tName, amt: tAmt}; el('submit-task-name').innerText = tName; el('taskFile').value=""; el('taskText').value=""; el('task-submit-modal').style.display='flex'; };
         const compressImage = (file) => { return new Promise((resolve, reject) => { const reader = new FileReader(); reader.readAsDataURL(file); reader.onload = event => { const img = new Image(); img.src = event.target.result; img.onload = () => { const canvas = document.createElement('canvas'); const MAX_WIDTH = 600; const scaleSize = MAX_WIDTH / img.width; canvas.width = MAX_WIDTH; canvas.height = img.height * scaleSize; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, canvas.width, canvas.height); resolve(canvas.toDataURL('image/jpeg', 0.6)); }; }; reader.onerror = error => reject(error); }); };
@@ -839,7 +848,7 @@ window.open(payUrl, '_blank');`;
                 uh+=`<div style="display:flex; justify-content:space-between; padding:12px; background:rgba(0,0,0,0.5); border-left:4px solid ${u.isDeleted?'var(--danger)':'var(--primary)'}; margin-bottom:10px; border-radius:10px; font-size:12px; align-items:center;"><div><b>${u.name||'User'}</b><br><span style="color:#888;">${d.id}</span></div><div style="color:var(--success); font-weight:bold;">₹${u.balance}</div><div>${u.isDeleted?'<span style="color:var(--danger);">DELETED</span>':(u.isBanned?'<span style="color:var(--danger);">BANNED</span>':'Active')}</div>${delBtn}</div>`; 
             }); el('listUsrs').innerHTML=uh;
             const rq=await getDocs(query(collection(db,"withdrawals"), where("status","==","Pending"))); let rh=""; rq.forEach(d=>{ const r=d.data(); rh+=`<div style="background:rgba(0,0,0,0.6); border:1px solid var(--warning); padding:15px; border-radius:12px; margin-bottom:15px; font-size:12px;"><b style="color:var(--primary);">${r.wId}</b> (${r.method})<br>User: ${r.userId} | Tgt: ${r.target}<br>Amt: <b style="color:var(--warning); font-size:16px;">₹${r.amount}</b><br><div style="display:flex; gap:12px; margin-top:12px;"><button class="btn btn-success" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('appReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">APPROVE</button><button class="btn btn-danger" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('rejReq','${d.id}','${r.userId}',${r.amount},'${r.wId}')">REJECT</button></div></div>`; }); el('listReqs').innerHTML=rh;
-            const tq = await getDocs(query(collection(db,"tasks"), orderBy("createdAt","desc"))); let th=""; tq.forEach(d=>{ const t=d.data(); th+=`<div style="background:rgba(0,0,0,0.6); padding:15px; margin-bottom:10px; border-radius:12px; font-size:12px; display:flex; justify-content:space-between; border-left: 3px solid var(--primary);"><div><b style="color:var(--primary); font-size:14px;">${t.name}</b><br>₹${t.amount}</div><button class="btn btn-danger" style="width:auto; padding:8px 15px; font-size:11px; margin:0;" onclick="admAct('delTask','${d.id}')">DEL</button></div>`; }); el('admTaskList').innerHTML=th||"No tasks";
+            const tq = await getDocs(collection(db,"tasks")); let th=""; tq.forEach(d=>{ const t=d.data(); th+=`<div style="background:rgba(0,0,0,0.6); padding:15px; margin-bottom:10px; border-radius:12px; font-size:12px; display:flex; justify-content:space-between; border-left: 3px solid var(--primary);"><div><b style="color:var(--primary); font-size:14px;">${t.name}</b><br>₹${t.amount}</div><button class="btn btn-danger" style="width:auto; padding:8px 15px; font-size:11px; margin:0;" onclick="admAct('delTask','${d.id}')">DEL</button></div>`; }); el('admTaskList').innerHTML=th||"No tasks";
             const sq = await getDocs(query(collection(db,"task_submissions"), where("status","==","Pending"))); let sh=""; sq.forEach(d=>{ const s=d.data(); sh+=`<div style="background:rgba(0,0,0,0.6); border:1px solid var(--primary); padding:15px; border-radius:12px; margin-bottom:15px; font-size:12px;"><b style="color:var(--primary); font-size:14px;">${s.taskName}</b><br>User: ${s.userId} | Amt: ₹${s.amount}<br>Text: ${s.text}<br><img src="${s.image}" style="width:100%; max-height:250px; object-fit:contain; margin-top:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);"><div style="display:flex; gap:12px; margin-top:15px;"><button class="btn btn-success" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('appTask','${d.id}','${s.userId}',${s.amount},'${s.taskName}')">APPROVE</button><button class="btn btn-danger" style="padding:10px; font-size:11px; margin:0;" onclick="admAct('rejTask','${d.id}','${s.userId}','${s.taskName}')">REJECT</button></div></div>`; }); el('admSubList').innerHTML=sh||"<div style='text-align:center;'>No Pending Submissions</div>";
             const rp = await getDocs(query(collection(db,"reports"), orderBy("timestamp","desc"), limit(20))); let rph=""; rp.forEach(d=>{ const r=d.data(); rph+=`<div style="background:rgba(0,0,0,0.6); border-left:4px solid var(--warning); padding:15px; margin-bottom:12px; border-radius:10px; font-size:12px;"><b>User: ${r.userId}</b><br>${r.text}<br><span style="color:#888; font-size:10px;">${ts2Str(r.timestamp)}</span><div style="display:flex; gap:10px; margin-top:10px;"><input type="text" id="repReply_${d.id}" placeholder="Type reply..." style="flex:1; padding:8px; font-size:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.8); color:#fff;"><button class="btn btn-success" style="padding:8px 15px; font-size:11px; margin:0; width:auto;" onclick="admAct('replyReport', '${d.id}', '${r.userId}')">REPLY</button></div></div>`; }); el('admReportList').innerHTML=rph||"No reports";
         }
@@ -847,25 +856,32 @@ window.open(payUrl, '_blank');`;
         window.admAct = async (act, p1, p2, p3, p4) => {
             if(cUid!==ADM_ID) return; showLoader("EXECUTING...");
             try {
-                if(act==='tog') { await setDoc(doc(db,"settings","sys"), {[p1]:p2},{merge:true}); showToast("Toggle Updated"); adminLog("Toggle", `${p1} = ${p2}`); }
+                if(act==='setLiq') { const a=parseInt(el('admLiqAmt').value); await setDoc(doc(db,"settings","sys"), {liqAmt:a},{merge:true}); el('dispLiq').innerText=`₹${a}`; showToast("Updated"); adminLog("Set Liq", `₹${a}`); }
+                else if(act==='tog') { await setDoc(doc(db,"settings","sys"), {[p1]:p2},{merge:true}); showToast("Toggle Updated"); adminLog("Toggle", `${p1} = ${p2}`); }
                 else if(act==='saveVersion') { await setDoc(doc(db,"settings","sys"), {appVersion:el('admVersion').value},{merge:true}); showToast("Version Updated!"); }
                 else if(act==='sendPush') { await setDoc(doc(db,"settings","sys"), {lastPush: Date.now().toString(), lastPushMsg: el('admPushMsg').value},{merge:true}); showToast("Push Sent!"); adminLog("Push", el('admPushMsg').value); }
                 else if(act==='tgBroadcast') { const msg = el('admTgMsg').value; if(!msg) throw "Enter message"; const us=await getDocs(collection(db,"users")); us.forEach(async (d) => { await sendTg(d.id, msg); }); showToast("Broadcast Sent"); adminLog("TG Broadcast", msg); }
+                
                 else if(act==='genBypass') { const sec = Math.random().toString(36).substring(2,15); await setDoc(doc(db,"settings","sys"), {bypassSecret:sec},{merge:true}); const link = "https://kumarkor.github.io/KUMAROFFICIALTMBOT/?bypass=true&key=" + sec; el('bypassLinkBox').innerText = link; el('bypassLinkBox').classList.remove('hidden'); showToast("Bypass Generated!"); }
+                
                 else if(act==='bulkCode') { const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value), c=parseInt(el('admBulkCount').value); if(isNaN(a)||isNaN(m)||isNaN(c)) throw "Invalid data"; let codes = []; for(let i=0; i<c; i++){ const cStr = `GIFT-${Math.random().toString(36).substring(2,8).toUpperCase()}`; await setDoc(doc(db,"giftcodes",cStr), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], usedDevs:[], createdAt:serverTimestamp()}); codes.push(cStr); } el('newCodeTxt').innerText=codes.join("\n"); el('newCodeBox').classList.remove('hidden'); showToast(`${c} Codes Generated`); sendTg(ADM_ID, `🎁 *NEW CODES CREATED*\nGenerated ${c} codes of ₹${a} each.`); }
                 else if(act==='checkCode') { const c=el('admChkCodeInp').value.trim().toUpperCase(); const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); let uls=""; if(d.usedBy&&d.usedBy.length>0) uls=`<br><b>Used By:</b><br><span style='color:var(--primary); font-family:monospace;'>${d.usedBy.join("<br>")}</span>`; el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Amt:</b> ₹${d.amount}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger);">EXPIRED</span>':'<span style="color:var(--success);">ACTIVE</span>'}${uls}`; el('chkCodeRes').classList.remove('hidden'); }
                 else if(act==='checkWd') { const w=el('admChkWdInp').value.trim().toUpperCase(); const wq=await getDocs(query(collection(db,"withdrawals"), where("wId", "==", w))); if(wq.empty) throw "WID Not Found"; let wd = wq.docs[0].data(); el('chkWdRes').innerHTML = `<b>WID:</b> ${wd.wId}<br><b>User:</b> ${wd.userId}<br><b>Amt:</b> ₹${wd.amount}<br><b>Target:</b> ${wd.target}<br><b>Method:</b> ${wd.method}<br><b>Status:</b> ${wd.status}`; el('chkWdRes').classList.remove('hidden'); }
+
                 else if(act==='addBal'||act==='cutBal') { const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found"; const nb = act==='addBal'? u.data().balance+a : u.data().balance-a; await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Injected':'Deducted', timestamp:serverTimestamp()}); showToast(`New Bal: ₹${nb}`); sendTg(id, `💰 Admin ${act==='addBal'?'Added':'Deducted'} ₹${a}`); adminLog("Bal", `${act} ₹${a} ID: ${id}`); }
                 else if(act==='checkUsr') { const id=el('admUsrId').value.trim(); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not Found"; el('chkUsrRes').innerHTML=`<b>ID:</b> ${id}<br><b>Name:</b> ${u.data().name||'User'}<br><b>Password:</b> <span style="color:var(--danger);">${u.data().password}</span><br><b>Bal:</b> <span style="color:var(--success); font-weight:bold;">₹${u.data().balance}</span><br><b>Status:</b> ${u.data().isDeleted?'DELETED':(u.data().isBanned?'BANNED':'ACTIVE')}<br><b>Last Seen:</b> ${ts2Str(u.data().lastSeen)}`; el('chkUsrRes').classList.remove('hidden'); }
                 else if(act==='resetPass') { const id=el('admUsrId').value.trim(), np=el('admNewPass').value; if(!id||!np) throw "Missing fields"; await updateDoc(doc(db,"users",id), {password:np}); showToast("Password Reset"); adminLog("Pass Reset", `ID: ${id}`); }
                 else if(act==='banUser') { const tgt=el('admBanTarget').value.trim(); if(!tgt||tgt===ADM_ID) throw "Invalid Target"; if(tgt.startsWith("DEV_")) { if(p1){ await setDoc(doc(db,"blacklisted_devices",tgt),{banned:true, ts:serverTimestamp()}); }else{ await deleteDoc(doc(db,"blacklisted_devices",tgt)); } showToast(p1?"Device Banned":"Device Unbanned"); adminLog(p1?"Ban Dev":"Unban Dev", tgt); } else { await updateDoc(doc(db,"users",tgt), {isBanned:p1}); showToast(p1?"User Banned":"User Unbanned"); adminLog(p1?"Ban UID":"Unban UID", tgt); } }
                 else if(act==='undeleteUser') { await updateDoc(doc(db,"users",p1), {isDeleted:false}); showToast("User Restored!"); loadAdminTabs(); adminLog("Undelete", `ID: ${p1}`); }
+
                 else if(act==='appReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ Request Approved WID: ${p4}`); adminLog("Approve WID", `WID: ${p4}`); }
                 else if(act==='rejReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'}); const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Refund WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Rejected!"); loadAdminTabs(); sendTg(p2, `⛔ Request Rejected (Refund) WID: ${p4}`); adminLog("Reject WID", `WID: ${p4}`); }
+                
                 else if(act==='createTask') { const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value), l=el('admTaskLink').value.trim(), d=el('admTaskDesc').value.trim(); if(!n||isNaN(a)||!l||!d) throw "Fill all fields!"; await addDoc(collection(db,"tasks"), {name:n, amount:a, link:l, desc:d, createdAt:serverTimestamp()}); showToast("Task Created"); el('admTaskName').value=""; el('admTaskAmt').value=""; el('admTaskLink').value=""; el('admTaskDesc').value=""; loadAdminTabs(); sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\nLink >> ${l}\n\n_Task successfully live in app!_`); adminLog("Task Created", `${n}, ₹${a}`); }
                 else if(act==='delTask') { await deleteDoc(doc(db,"tasks",p1)); showToast("Deleted"); loadAdminTabs(); }
                 else if(act==='appTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Approved'}); const ud = await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"ADMIN_ADD", amount:p3, details:`Task Approved: ${p4}`, timestamp:serverTimestamp()}); showToast("Task Approved!"); loadAdminTabs(); sendTg(p2, `✅ *TASK APPROVED*\n\nYour task "🌸 *${p4}* 🌸" was approved!\n🤭 Amount >> ₹${p3} added to wallet.`); adminLog("Task App", `User: ${p2}, Task: ${p4}`); }
                 else if(act==='rejTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Rejected'}); showToast("Task Rejected"); loadAdminTabs(); sendTg(p2, `⛔ *TASK REJECTED*\n\nYour submission for "*${p3}*" was rejected by Admin.`); adminLog("Task Rej", `User: ${p2}, Task: ${p3}`); }
+                
                 else if(act==='replyReport') { const rMsg = el(`repReply_${p1}`).value.trim(); if(!rMsg) throw "Enter reply msg"; await updateDoc(doc(db,"reports",p1), {status:'Replied'}); sendTg(p2, `💬 *ADMIN SUPPORT REPLY*\n\nAdmin has replied to your report:\n"${rMsg}"`); showToast("Reply Sent!"); loadAdminTabs(); adminLog("Report Reply", `User: ${p2}`); }
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); } hideLoader();
         };

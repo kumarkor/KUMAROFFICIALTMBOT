@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#03040a">
-    <title>Ultra Pay Pro | Premium Secure Network</title>
+    <title>Ultra Pay Pro | Premium API Network</title>
     
-    <meta name="description" content="Join Ultra Pay Pro to complete tasks, redeem gift codes, and earn instant rewards!">
+    <meta name="description" content="Join Ultra Pay Pro API Network. Complete tasks, earn rewards, and transfer money instantly via API!">
     <meta property="og:title" content="Ultra Pay Pro | API Network">
     <meta property="og:description" content="Withdraw instantly via UPI or integrate our Payment API into your bots. Join now!">
     <meta property="og:type" content="website">
     
     <link rel="manifest" id="manifest-placeholder">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -142,352 +140,356 @@
 </head>
 <body>
 
-    <!-- INVISIBLE API GATEWAY -->
+    <!-- INVISIBLE API GATEWAY V2.0 -->
     <div id="api-processing-screen" style="display:none; position:fixed; z-index:9999999; top:0; left:0; width:100%; height:100%; background:#000; color:#00ff88; font-family:monospace; padding:20px; align-items:center; justify-content:center; flex-direction:column; word-break:break-all;">
-        <h3 id="api-status-text" style="font-size:24px;">Processing API Request...</h3>
+        <h3 id="api-status-text" style="font-size:24px; text-align:center;">Processing API Request...</h3>
         <pre id="api-json-result" style="background:#111; padding:20px; border-radius:10px; width:100%; max-width:500px; overflow-x:auto; margin-top:20px; font-size:14px; border:1px solid #333;"></pre>
-    </div>
-
-    <button id="installAppBtn" onclick="installPWA()" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg, var(--success), #00aa55); color:#000; padding:14px 28px; border-radius:30px; font-weight:900; font-family:'Orbitron'; z-index:1000; box-shadow:var(--glow-success); border:none; cursor:pointer;">⬇️ INSTALL APP</button>
-    <div class="ambient-light"></div><div class="cyber-grid"></div>
-    <div class="top-ticker" id="topTicker"><span id="tickerMsg">🔥 Welcome to Ultra Pay Pro! 🚀</span></div>
-    <div id="toast-box"></div>
-    <div id="loader"><div class="loader-ring"></div><div class="loader-txt" id="loaderText">PROCESSING...</div></div>
-    <div id="push-notification"><div class="push-icon">🔔</div><div><div style="font-size:12px; color:var(--primary); font-weight:800;">Ultra Pay Alert</div><div id="push-msg" style="font-size:13px; color:#fff;"></div></div></div>
-
-    <!-- MAINTENANCE SCREEN -->
-    <div id="maintenance-screen">
-        <div id="maint-bypass-target" ondblclick="openAdminBypass()"></div>
-        <svg width="70" height="70" viewBox="0 0 24 24" fill="var(--warning)"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.61-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-        <h1 style="color:var(--warning); font-family:'Orbitron'; margin-top:20px; font-size:24px;">SYSTEM MAINTENANCE</h1>
-        <p id="maint-text-display" style="color:var(--text-muted); font-size:14px; margin-top:10px;">We will be back shortly!</p>
-        <div id="maint-link-container" style="margin-top: 20px; display: none;"><a id="maint-link-btn" href="#" target="_blank" class="btn btn-warning" style="width:auto; padding:12px 25px; display:inline-flex;">WATCH UPDATE VIDEO 🔗</a></div>
-    </div>
-
-    <!-- Modals -->
-    <div id="admin-bypass-modal" class="modal-overlay">
-        <div class="modal-box">
-            <h2 class="title" style="font-size:20px; color:var(--danger);">ADMIN OVERRIDE</h2>
-            <div class="input-group"><input type="number" class="form-control" id="bypassId" placeholder="Admin ID"></div>
-            <div class="input-group"><input type="password" class="form-control" id="bypassPass" placeholder="Admin Password"></div>
-            <button class="btn btn-danger" onclick="verifyAdminBypass()">LOGIN BYPASS</button>
-            <span class="link-text" onclick="document.getElementById('admin-bypass-modal').style.display='none'">Cancel</span>
-        </div>
-    </div>
-
-    <div id="task-submit-modal" class="modal-overlay">
-        <div class="modal-box">
-            <h2 class="title" style="font-size:20px; color:var(--success);">SUBMIT TASK</h2>
-            <p id="submit-task-name" style="text-align:center; color:var(--primary); font-weight:800; font-size:16px; margin-bottom:20px;"></p>
-            <div class="input-group"><input type="file" class="form-control" id="taskFile" accept="image/*" style="padding:12px;"><label class="form-label" style="top:-12px; background:var(--bg-dark);">Upload Photo Proof</label></div>
-            <div class="input-group"><textarea class="form-control" id="taskText" style="min-height:90px;" placeholder="Enter your text / details..."></textarea><label class="form-label" style="top:-12px; background:var(--bg-dark);">Task Details</label></div>
-            <button class="btn btn-success" onclick="confirmTaskSubmit()">SUBMIT PROOF</button>
-            <span class="link-text" onclick="document.getElementById('task-submit-modal').style.display='none'">Cancel</span>
-        </div>
-    </div>
-
-    <div id="version-screen">
-        <h1 style="color:var(--danger); font-family:'Orbitron'; font-size:24px;">UPDATE REQUIRED</h1>
-        <p style="color:var(--text-muted); font-size:14px; margin:15px 0;">New secure version available. Refresh to continue.</p>
-        <button class="btn btn-danger" onclick="location.reload(true)">REFRESH APP</button>
-    </div>
-
-    <!-- OFFLINE GAMES -->
-    <div id="offline-screen" style="z-index: 999999;">
-        <h2 style="color:var(--danger); font-family:'Orbitron'; margin-bottom:5px; font-size:22px;">NO INTERNET</h2>
-        <p style="color:var(--text-muted); font-size:13px; margin-bottom:20px;">Play offline while we reconnect...</p>
         
-        <div class="game-box">
-            <h3 style="color:var(--primary); font-size:15px; text-align:center; font-family:'Orbitron'; margin-bottom:8px;">🐍 Snake</h3>
-            <canvas id="snakeCanvas" width="280" height="140"></canvas>
-            <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:5px; margin-top:10px; width:150px; margin-left:auto; margin-right:auto;">
-                <div></div><button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('UP')">▲</button><div></div>
-                <button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('LEFT')">◀</button>
-                <button class="game-ctrl-btn" style="padding:5px; background:var(--danger); border-color:var(--danger);" onclick="resetSnake()">R</button>
-                <button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('RIGHT')">▶</button>
-                <div></div><button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('DOWN')">▼</button><div></div>
-            </div>
-        </div>
-        <div class="game-box">
-            <h3 style="color:var(--warning); font-size:15px; text-align:center; font-family:'Orbitron'; margin-bottom:8px;">🚗 Traffic Run</h3>
-            <canvas id="trafficCanvas" width="280" height="140"></canvas>
-            <div style="display:flex; justify-content:space-between; gap:10px; margin-top:10px;">
-                <button class="game-ctrl-btn" style="flex:1;" onclick="moveTrafficCar(-1)">◀ L</button>
-                <button class="game-ctrl-btn" style="flex:1; background:var(--danger); border-color:var(--danger);" onclick="resetTraffic()">Restart</button>
-                <button class="game-ctrl-btn" style="flex:1;" onclick="moveTrafficCar(1)">R ▶</button>
-            </div>
-        </div>
+        <a id="api-return-btn" href="https://kumarkor.github.io/KUMAROFFICIALTMBOT/" style="display:none; margin-top:20px; padding:10px 20px; background:var(--primary); color:#000; text-decoration:none; font-weight:bold; border-radius:8px; font-family:'Orbitron';">RETURN TO APP</a>
     </div>
 
-    <!-- MAIN APP VIEWS -->
-    <div class="app-container" id="main-app-ui">
+    <!-- MAIN APP WRAPPER -->
+    <div id="main-app-ui">
+        <button id="installAppBtn" onclick="installPWA()" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg, var(--success), #00aa55); color:#000; padding:14px 28px; border-radius:30px; font-weight:900; font-family:'Orbitron'; z-index:1000; box-shadow:var(--glow-success); border:none; cursor:pointer;">⬇️ INSTALL APP</button>
+        <div class="ambient-light"></div><div class="cyber-grid"></div>
+        <div class="top-ticker" id="topTicker"><span id="tickerMsg">🔥 Welcome to Ultra Pay Pro! 🚀</span></div>
+        <div id="toast-box"></div>
+        <div id="loader"><div class="loader-ring"></div><div class="loader-txt" id="loaderText">PROCESSING...</div></div>
+        <div id="push-notification"><div class="push-icon">🔔</div><div><div style="font-size:12px; color:var(--primary); font-weight:800;">Ultra Pay Alert</div><div id="push-msg" style="font-size:13px; color:#fff;"></div></div></div>
 
-        <!-- VIEW: NAME UPDATE -->
-        <div class="view-panel" id="view-name-update">
-            <h2 class="title" style="color:var(--primary);">PROFILE SETUP</h2>
-            <p class="subtitle">Please update your full name to continue.</p>
-            <div class="input-group"><input type="text" class="form-control" id="updNameInp" required><label class="form-label">Full Name</label></div>
-            <button class="btn btn-success" onclick="saveUpdatedName()">SAVE & CONTINUE</button>
+        <!-- MAINTENANCE SCREEN -->
+        <div id="maintenance-screen">
+            <div id="maint-bypass-target" ondblclick="openAdminBypass()"></div>
+            <svg width="70" height="70" viewBox="0 0 24 24" fill="var(--warning)"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.61-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            <h1 style="color:var(--warning); font-family:'Orbitron'; margin-top:20px; font-size:24px;">SYSTEM MAINTENANCE</h1>
+            <p id="maint-text-display" style="color:var(--text-muted); font-size:14px; margin-top:10px;">We will be back shortly!</p>
+            <div id="maint-link-container" style="margin-top: 20px; display: none;"><a id="maint-link-btn" href="#" target="_blank" class="btn btn-warning" style="width:auto; padding:12px 25px; display:inline-flex;">WATCH UPDATE VIDEO 🔗</a></div>
         </div>
 
-        <!-- VIEW: LOGIN -->
-        <div class="view-panel active" id="view-login">
-            <h2 class="title">ULTRA PAY PRO</h2>
-            <p class="subtitle">Secure Network Authentication</p>
-            <div class="input-group"><input type="number" class="form-control" id="logId" required><label class="form-label">Telegram User ID</label></div>
-            <div class="input-group"><input type="password" class="form-control" id="logPass" required><label class="form-label">Access Password</label></div>
-            <button class="btn" onclick="appAuth('login')">LOGIN TO NETWORK</button>
-            <span class="link-text" onclick="switchView('view-register')">New? <span style="color:var(--primary); font-weight:800;">Create Account</span></span>
-            <span class="link-text" onclick="switchView('view-forgot')">Forgot Credentials?</span>
+        <!-- Modals -->
+        <div id="admin-bypass-modal" class="modal-overlay">
+            <div class="modal-box">
+                <h2 class="title" style="font-size:20px; color:var(--danger);">ADMIN OVERRIDE</h2>
+                <div class="input-group"><input type="number" class="form-control" id="bypassId" placeholder="Admin ID"></div>
+                <div class="input-group"><input type="password" class="form-control" id="bypassPass" placeholder="Admin Password"></div>
+                <button class="btn btn-danger" onclick="verifyAdminBypass()">LOGIN BYPASS</button>
+                <span class="link-text" onclick="document.getElementById('admin-bypass-modal').style.display='none'">Cancel</span>
+            </div>
         </div>
 
-        <!-- VIEW: REGISTER -->
-        <div class="view-panel" id="view-register">
-            <h2 class="title">NEW PROTOCOL</h2>
-            <div id="reg-s1">
-                <button class="btn btn-telegram" onclick="window.open('https://t.me/SafeKey1_Bot', '_blank')">🤖 START @SafeKey1_Bot</button>
-                <div class="input-group"><input type="text" class="form-control" id="regName" required><label class="form-label">Full Name</label></div>
-                <div class="input-group"><input type="number" class="form-control" id="regId" required><label class="form-label">Telegram User ID</label></div>
-                <div class="input-group"><input type="password" class="form-control" id="regPass" required><label class="form-label">Create Password</label></div>
-                <button class="btn" onclick="appAuth('reqReg')">REQUEST OTP</button>
+        <div id="task-submit-modal" class="modal-overlay">
+            <div class="modal-box">
+                <h2 class="title" style="font-size:20px; color:var(--success);">SUBMIT TASK</h2>
+                <p id="submit-task-name" style="text-align:center; color:var(--primary); font-weight:800; font-size:16px; margin-bottom:20px;"></p>
+                <div class="input-group"><input type="file" class="form-control" id="taskFile" accept="image/*" style="padding:12px;"><label class="form-label" style="top:-12px; background:var(--bg-dark);">Upload Photo Proof</label></div>
+                <div class="input-group"><textarea class="form-control" id="taskText" style="min-height:90px;" placeholder="Enter your text / details..."></textarea><label class="form-label" style="top:-12px; background:var(--bg-dark);">Task Details</label></div>
+                <button class="btn btn-success" onclick="confirmTaskSubmit()">SUBMIT PROOF</button>
+                <span class="link-text" onclick="document.getElementById('task-submit-modal').style.display='none'">Cancel</span>
             </div>
-            <div id="reg-s2" class="hidden">
-                <div class="input-group"><input type="number" class="form-control" id="regOtp" required><label class="form-label">Enter 6-Digit OTP</label></div>
-                <button class="btn btn-danger" onclick="appAuth('verifyReg')">VERIFY & CREATE</button>
-            </div>
-            <span class="link-text" onclick="switchView('view-login')">⬅ ABORT TO LOGIN</span>
         </div>
 
-        <!-- VIEW: FORGOT -->
-        <div class="view-panel" id="view-forgot">
-            <h2 class="title">RESET KEY</h2>
-            <div id="for-s1">
-                <button class="btn btn-telegram" onclick="window.open('https://t.me/SafeKey1_Bot', '_blank')">🤖 OPEN BOT FOR OTP</button>
-                <div class="input-group"><input type="number" class="form-control" id="forId" required><label class="form-label">Registered ID</label></div>
-                <button class="btn" onclick="appAuth('reqFor')">SEND RESET OTP</button>
-            </div>
-            <div id="for-s2" class="hidden">
-                <div class="input-group"><input type="number" class="form-control" id="forOtp" required><label class="form-label">Enter Bot OTP</label></div>
-                <div class="input-group"><input type="password" class="form-control" id="forPass" required><label class="form-label">New Password</label></div>
-                <button class="btn btn-danger" onclick="appAuth('verifyFor')">UPDATE KEY</button>
-            </div>
-            <span class="link-text" onclick="switchView('view-login')">⬅ ABORT</span>
+        <div id="version-screen">
+            <h1 style="color:var(--danger); font-family:'Orbitron'; font-size:24px;">UPDATE REQUIRED</h1>
+            <p style="color:var(--text-muted); font-size:14px; margin:15px 0;">New secure version available. Refresh to continue.</p>
+            <button class="btn btn-danger" onclick="location.reload(true)">REFRESH APP</button>
         </div>
 
-        <!-- VIEW: DASHBOARD -->
-        <div class="view-panel" id="view-dashboard">
-            <div class="dash-header">
-                <div class="dash-user-info">
-                    <div class="dash-avatar">👤</div>
-                    <div>
-                        <div id="dashNameDisp" style="font-size:12px; color:#fff; font-weight:700; margin-bottom:2px;">User</div>
-                        <div id="dashId" style="font-family:'Orbitron'; font-size:10px; color:var(--primary);">--</div>
+        <!-- OFFLINE GAMES -->
+        <div id="offline-screen" style="z-index: 999999;">
+            <h2 style="color:var(--danger); font-family:'Orbitron'; margin-bottom:5px; font-size:22px;">NO INTERNET</h2>
+            <p style="color:var(--text-muted); font-size:13px; margin-bottom:20px;">Play offline while we reconnect...</p>
+            
+            <div class="game-box">
+                <h3 style="color:var(--primary); font-size:15px; text-align:center; font-family:'Orbitron'; margin-bottom:8px;">🐍 Snake</h3>
+                <canvas id="snakeCanvas" width="280" height="140"></canvas>
+                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:5px; margin-top:10px; width:150px; margin-left:auto; margin-right:auto;">
+                    <div></div><button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('UP')">▲</button><div></div>
+                    <button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('LEFT')">◀</button>
+                    <button class="game-ctrl-btn" style="padding:5px; background:var(--danger); border-color:var(--danger);" onclick="resetSnake()">R</button>
+                    <button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('RIGHT')">▶</button>
+                    <div></div><button class="game-ctrl-btn" style="padding:5px;" onclick="userSetSnakeDir('DOWN')">▼</button><div></div>
+                </div>
+            </div>
+            <div class="game-box">
+                <h3 style="color:var(--warning); font-size:15px; text-align:center; font-family:'Orbitron'; margin-bottom:8px;">🚗 Traffic Run</h3>
+                <canvas id="trafficCanvas" width="280" height="140"></canvas>
+                <div style="display:flex; justify-content:space-between; gap:10px; margin-top:10px;">
+                    <button class="game-ctrl-btn" style="flex:1;" onclick="moveTrafficCar(-1)">◀ L</button>
+                    <button class="game-ctrl-btn" style="flex:1; background:var(--danger); border-color:var(--danger);" onclick="resetTraffic()">Restart</button>
+                    <button class="game-ctrl-btn" style="flex:1;" onclick="moveTrafficCar(1)">R ▶</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN APP VIEWS -->
+        <div class="app-container">
+
+            <!-- VIEW: NAME UPDATE -->
+            <div class="view-panel" id="view-name-update">
+                <h2 class="title" style="color:var(--primary);">PROFILE SETUP</h2>
+                <p class="subtitle">Please update your full name to continue.</p>
+                <div class="input-group"><input type="text" class="form-control" id="updNameInp" required><label class="form-label">Full Name</label></div>
+                <button class="btn btn-success" onclick="saveUpdatedName()">SAVE & CONTINUE</button>
+            </div>
+
+            <!-- VIEW: LOGIN -->
+            <div class="view-panel active" id="view-login">
+                <h2 class="title">ULTRA PAY PRO</h2>
+                <p class="subtitle">Secure Network Authentication</p>
+                <div class="input-group"><input type="number" class="form-control" id="logId" required><label class="form-label">Telegram User ID</label></div>
+                <div class="input-group"><input type="password" class="form-control" id="logPass" required><label class="form-label">Access Password</label></div>
+                <button class="btn" onclick="appAuth('login')">LOGIN TO NETWORK</button>
+                <span class="link-text" onclick="switchView('view-register')">New? <span style="color:var(--primary); font-weight:800;">Create Account</span></span>
+                <span class="link-text" onclick="switchView('view-forgot')">Forgot Credentials?</span>
+            </div>
+
+            <!-- VIEW: REGISTER -->
+            <div class="view-panel" id="view-register">
+                <h2 class="title">NEW PROTOCOL</h2>
+                <div id="reg-s1">
+                    <button class="btn btn-telegram" onclick="window.open('https://t.me/SafeKey1_Bot', '_blank')">🤖 START @SafeKey1_Bot</button>
+                    <div class="input-group"><input type="text" class="form-control" id="regName" required><label class="form-label">Full Name</label></div>
+                    <div class="input-group"><input type="number" class="form-control" id="regId" required><label class="form-label">Telegram User ID</label></div>
+                    <div class="input-group"><input type="password" class="form-control" id="regPass" required><label class="form-label">Create Password</label></div>
+                    <button class="btn" onclick="appAuth('reqReg')">REQUEST OTP</button>
+                </div>
+                <div id="reg-s2" class="hidden">
+                    <div class="input-group"><input type="number" class="form-control" id="regOtp" required><label class="form-label">Enter 6-Digit OTP</label></div>
+                    <button class="btn btn-danger" onclick="appAuth('verifyReg')">VERIFY & CREATE</button>
+                </div>
+                <span class="link-text" onclick="switchView('view-login')">⬅ ABORT TO LOGIN</span>
+            </div>
+
+            <!-- VIEW: FORGOT -->
+            <div class="view-panel" id="view-forgot">
+                <h2 class="title">RESET KEY</h2>
+                <div id="for-s1">
+                    <button class="btn btn-telegram" onclick="window.open('https://t.me/SafeKey1_Bot', '_blank')">🤖 OPEN BOT FOR OTP</button>
+                    <div class="input-group"><input type="number" class="form-control" id="forId" required><label class="form-label">Registered ID</label></div>
+                    <button class="btn" onclick="appAuth('reqFor')">SEND RESET OTP</button>
+                </div>
+                <div id="for-s2" class="hidden">
+                    <div class="input-group"><input type="number" class="form-control" id="forOtp" required><label class="form-label">Enter Bot OTP</label></div>
+                    <div class="input-group"><input type="password" class="form-control" id="forPass" required><label class="form-label">New Password</label></div>
+                    <button class="btn btn-danger" onclick="appAuth('verifyFor')">UPDATE KEY</button>
+                </div>
+                <span class="link-text" onclick="switchView('view-login')">⬅ ABORT</span>
+            </div>
+
+            <!-- VIEW: DASHBOARD -->
+            <div class="view-panel" id="view-dashboard">
+                <div class="dash-header">
+                    <div class="dash-user-info">
+                        <div class="dash-avatar">👤</div>
+                        <div>
+                            <div id="dashNameDisp" style="font-size:12px; color:#fff; font-weight:700; margin-bottom:2px;">User</div>
+                            <div id="dashId" style="font-family:'Orbitron'; font-size:10px; color:var(--primary);">--</div>
+                        </div>
                     </div>
+                    <button class="lang-btn" onclick="toggleLanguage()" id="langBtnTxt">HI / EN</button>
                 </div>
-                <button class="lang-btn" onclick="toggleLanguage()" id="langBtnTxt">HI / EN</button>
-            </div>
 
-            <!-- TOP 3 BUTTONS -->
-            <div class="top-btn-grid">
-                <div class="top-btn" onclick="switchView('view-history')">📜 <span data-i18n="history">History</span></div>
-                <div class="top-btn" onclick="switchView('view-profile')">👤 <span data-i18n="profile">Profile</span></div>
-                <div class="top-btn" onclick="switchView('view-api-settings')">⚙️ <span data-i18n="apiSet">API Config</span></div>
-            </div>
-
-            <div class="modern-balance-card">
-                <div class="modern-bal-title" data-i18n="networkBal">NETWORK BALANCE</div>
-                <div class="modern-bal-amt" id="dashBal">₹0</div>
-                <div style="font-size:12px; color:var(--text-muted); font-weight:500;" data-i18n="encWallet">Encrypted FinTech Wallet</div>
-            </div>
-
-            <div class="modern-menu-grid">
-                <div class="modern-menu-item" onclick="switchView('view-gift')"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.97.54-2.5 1.35C11.97 2.54 11.05 2 10 2 8.34 2 7 3.34 7 5c0 .35.07.69.18 1H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM15 4c.55 0 1 .45 1 1s-.45 1-1 1h-2c0-1.1.89-2 2-2zM9 4c1.11 0 2 .89 2 2H9c-.55 0-1-.45-1-1s.45-1 1-1zm2 16H7v-8h4v8zm6 0h-4v-8h4v8zm2-10h-2h-4H9H5V8h14v2z"/></svg><span class="modern-menu-text" data-i18n="redeem">REDEEM</span></div>
-                <div class="modern-menu-item" onclick="prepareWithdraw()"><svg viewBox="0 0 24 24"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-2V9h2zM5 19V5h14v2h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2H5z"/></svg><span class="modern-menu-text" data-i18n="withdraw">WITHDRAW</span></div>
-                <div class="modern-menu-item" onclick="loadTasks()"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg><span class="modern-menu-text" data-i18n="tasks">TASKS</span></div>
-                <div class="modern-menu-item" onclick="loadAllMembers()"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg><span class="modern-menu-text" data-i18n="members">MEMBERS</span></div>
-                <!-- Pay User Button -->
-                <div class="modern-menu-item" onclick="switchView('view-pay-user')" style="border-color:var(--success);"><svg viewBox="0 0 24 24" style="fill:var(--success);"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg><span class="modern-menu-text" style="color:var(--success);" data-i18n="payUser">PAY USER</span></div>
-                <div class="modern-menu-item" onclick="switchView('view-report')"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg><span class="modern-menu-text" data-i18n="support">SUPPORT</span></div>
-            </div>
-
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
-                <h3 style="font-size:14px; font-family:'Orbitron'; font-weight:800;" data-i18n="recentLogs">RECENT LOGS</h3>
-                <span style="font-size:11px; color:var(--primary); cursor:pointer;" onclick="switchView('view-history')" data-i18n="viewAll">VIEW ALL</span>
-            </div>
-            <div class="data-list" id="dashHistList" style="max-height: 180px;"></div>
-
-            <button id="btnAdmin" class="btn btn-warning hidden" onclick="switchView('view-admin')" style="margin-top:15px;">👑 ADMIN COMMAND CENTER</button>
-            <button class="btn btn-outline" onclick="logoutApp()" style="margin-top:10px;" data-i18n="logout">LOGOUT SECURELY</button>
-        </div>
-
-        <!-- VIEW: API SETTINGS (DYNAMIC AUTO-UPDATED) -->
-        <div class="view-panel" id="view-api-settings">
-            <h2 class="title" data-i18n="apiSet">API CONFIG</h2>
-            <p class="subtitle" data-i18n="apiDesc">Set your API to send money to other users instantly.</p>
-            
-            <div class="input-group">
-                <input type="text" class="form-control" id="userApiToken" readonly>
-                <label class="form-label" style="top:-12px;">Your API Token</label>
-            </div>
-            <div class="input-group">
-                <input type="text" class="form-control" id="userApiKey" readonly>
-                <label class="form-label" style="top:-12px;">Your Secret Key</label>
-            </div>
-            
-            <button class="btn btn-warning" onclick="generateNewApi()" data-i18n="genApi">🔄 GENERATE NEW API</button>
-            <button class="btn btn-success" onclick="saveUserApi()" data-i18n="saveConfig">SAVE CONFIG</button>
-            
-            <div style="margin-top:25px; font-size:12px; color:#888;">
-                <!-- Auto-updating API URL -->
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                    <h3 style="color:var(--primary); margin:0;">Your API URL:</h3>
-                    <button class="copy-btn" onclick="copyApiText('demoApiUrl')">📋 COPY</button>
+                <!-- TOP 3 BUTTONS -->
+                <div class="top-btn-grid">
+                    <div class="top-btn" onclick="switchView('view-history')">📜 <span data-i18n="history">History</span></div>
+                    <div class="top-btn" onclick="switchView('view-profile')">👤 <span data-i18n="profile">Profile</span></div>
+                    <div class="top-btn" onclick="switchView('view-api-settings')">⚙️ <span data-i18n="apiSet">API Config</span></div>
                 </div>
-                <div style="background:#111; padding:12px; border-radius:8px; word-break:break-all; font-family:monospace; color:#fff; border:1px solid #333;" id="demoApiUrl">
-                    https://kumarkor.github.io/KUMAROFFICIALTMBOT/?token={token}&key={key}&paytoNumber={userid}&amount={amount}
+
+                <div class="modern-balance-card">
+                    <div class="modern-bal-title" data-i18n="networkBal">NETWORK BALANCE</div>
+                    <div class="modern-bal-amt" id="dashBal">₹0</div>
+                    <div style="font-size:12px; color:var(--text-muted); font-weight:500;" data-i18n="encWallet">Encrypted FinTech Wallet</div>
+                </div>
+
+                <div class="modern-menu-grid">
+                    <div class="modern-menu-item" onclick="switchView('view-gift')"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.97.54-2.5 1.35C11.97 2.54 11.05 2 10 2 8.34 2 7 3.34 7 5c0 .35.07.69.18 1H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM15 4c.55 0 1 .45 1 1s-.45 1-1 1h-2c0-1.1.89-2 2-2zM9 4c1.11 0 2 .89 2 2H9c-.55 0-1-.45-1-1s.45-1 1-1zm2 16H7v-8h4v8zm6 0h-4v-8h4v8zm2-10h-2h-4H9H5V8h14v2z"/></svg><span class="modern-menu-text" data-i18n="redeem">REDEEM</span></div>
+                    <div class="modern-menu-item" onclick="prepareWithdraw()"><svg viewBox="0 0 24 24"><path d="M21 7.28V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2.28c.59-.35 1-.98 1-1.72V9c0-.74-.41-1.37-1-1.72zM20 9v6h-2V9h2zM5 19V5h14v2h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2H5z"/></svg><span class="modern-menu-text" data-i18n="withdraw">WITHDRAW</span></div>
+                    <div class="modern-menu-item" onclick="loadTasks()"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg><span class="modern-menu-text" data-i18n="tasks">TASKS</span></div>
+                    <div class="modern-menu-item" onclick="loadAllMembers()"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg><span class="modern-menu-text" data-i18n="members">MEMBERS</span></div>
+                    <!-- Pay User Button -->
+                    <div class="modern-menu-item" onclick="switchView('view-pay-user')" style="border-color:var(--success);"><svg viewBox="0 0 24 24" style="fill:var(--success);"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg><span class="modern-menu-text" style="color:var(--success);" data-i18n="payUser">PAY USER</span></div>
+                    <div class="modern-menu-item" onclick="switchView('view-report')"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg><span class="modern-menu-text" data-i18n="support">SUPPORT</span></div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+                    <h3 style="font-size:14px; font-family:'Orbitron'; font-weight:800;" data-i18n="recentLogs">RECENT LOGS</h3>
+                    <span style="font-size:11px; color:var(--primary); cursor:pointer;" onclick="switchView('view-history')" data-i18n="viewAll">VIEW ALL</span>
+                </div>
+                <div class="data-list" id="dashHistList" style="max-height: 180px;"></div>
+
+                <button id="btnAdmin" class="btn btn-warning hidden" onclick="switchView('view-admin')" style="margin-top:15px;">👑 ADMIN COMMAND CENTER</button>
+                <button class="btn btn-outline" onclick="logoutApp()" style="margin-top:10px;" data-i18n="logout">LOGOUT SECURELY</button>
+            </div>
+
+            <!-- VIEW: API SETTINGS (DYNAMIC AUTO-UPDATED WITH FIXED URL) -->
+            <div class="view-panel" id="view-api-settings">
+                <h2 class="title" data-i18n="apiSet">API CONFIG</h2>
+                <p class="subtitle" data-i18n="apiDesc">Set your API to send money to other users instantly.</p>
+                
+                <div class="input-group">
+                    <input type="text" class="form-control" id="userApiToken" readonly>
+                    <label class="form-label" style="top:-12px;">Your API Token</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="userApiKey" readonly>
+                    <label class="form-label" style="top:-12px;">Your Secret Key</label>
                 </div>
                 
-                <!-- Auto-updating JS Code -->
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; margin-bottom:8px;">
-                    <h3 style="color:var(--success); margin:0;">Code Example (JS):</h3>
-                    <button class="copy-btn" onclick="copyApiText('demoApiJs')">📋 COPY</button>
+                <button class="btn btn-warning" onclick="generateNewApi()" data-i18n="genApi">🔄 GENERATE NEW API</button>
+                <button class="btn btn-success" onclick="saveUserApi()" data-i18n="saveConfig">SAVE CONFIG</button>
+                
+                <div style="margin-top:25px; font-size:12px; color:#888;">
+                    <!-- Auto-updating API URL (Fixed Base URL) -->
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <h3 style="color:var(--primary); margin:0;">Your API URL:</h3>
+                        <button class="copy-btn" onclick="copyApiText('demoApiUrl')">📋 COPY</button>
+                    </div>
+                    <div style="background:#111; padding:12px; border-radius:8px; word-break:break-all; font-family:monospace; color:#fff; border:1px solid #333;" id="demoApiUrl">
+                        https://kumarkor.github.io/KUMAROFFICIALTMBOT/?api_action=pay&api_token={token}&api_secret={secret}&target_uid={userid}&amount={amount}
+                    </div>
+                    
+                    <!-- Auto-updating JS Code -->
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; margin-bottom:8px;">
+                        <h3 style="color:var(--success); margin:0;">Code Example (JS):</h3>
+                        <button class="copy-btn" onclick="copyApiText('demoApiJs')">📋 COPY</button>
+                    </div>
+                    <pre id="demoApiJs" style="background:#111; padding:12px; border-radius:8px; overflow-x:auto; color:#00ff88; font-family:monospace; margin:0; border:1px solid #333;">
+// Click Generate API to see code here
+                    </pre>
                 </div>
-                <pre id="demoApiJs" style="background:#111; padding:12px; border-radius:8px; overflow-x:auto; color:#00ff88; font-family:monospace; margin:0; border:1px solid #333;">
-// Generate API to see code here
-                </pre>
+                
+                <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
+            </div>
+
+            <!-- VIEW: PAY USER -->
+            <div class="view-panel" id="view-pay-user">
+                <h2 class="title" style="color:var(--success);" data-i18n="payUser">PAY USER</h2>
+                <p class="subtitle" data-i18n="payDesc">Send money directly to User ID.</p>
+                <div class="input-group"><input type="text" class="form-control" id="payNumber" placeholder="Target User ID" required><label class="form-label" style="top:-12px;">Target User ID</label></div>
+                <div class="input-group"><input type="number" class="form-control" id="payAmount" placeholder="Amount (₹)" required><label class="form-label" style="top:-12px;">Amount (₹)</label></div>
+                <button class="btn btn-success" onclick="executeUserPayment()" data-i18n="sendMoney">SEND MONEY</button>
+                <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
+            </div>
+
+            <!-- VIEW: ALL MEMBERS -->
+            <div class="view-panel" id="view-members">
+                <h2 class="title" style="color:var(--primary);" data-i18n="allMembers">ALL MEMBERS</h2>
+                <div class="data-list" id="membersList" style="max-height: 60vh;"></div>
+                <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
+            </div>
+
+            <!-- VIEW: PROFILE -->
+            <div class="view-panel" id="view-profile">
+                <h2 class="title" data-i18n="profile">MY PROFILE</h2>
+                <div class="profile-avatar" style="width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--secondary)); margin:0 auto 20px; display:flex; justify-content:center; align-items:center; font-size:35px; box-shadow:var(--glow-primary);">👤</div>
+                <div style="text-align:center; margin-bottom:20px;">
+                    <div style="font-size:18px; font-weight:bold; color:#fff; margin-bottom:5px;" id="profNameDisp2">Name</div>
+                    <div class="badge" id="profIdBadge">ID: -----</div>
+                </div>
+                <div class="info-row" style="display:flex; justify-content:space-between; padding:15px; background:rgba(0,0,0,0.5); border-radius:12px; margin-bottom:12px; font-size:14px; font-weight:600;"><span data-i18n="status">Status</span><span style="color:var(--success);">Active</span></div>
+                <div class="info-row" style="display:flex; justify-content:space-between; padding:15px; background:rgba(0,0,0,0.5); border-radius:12px; margin-bottom:20px; font-size:14px; font-weight:600;"><span data-i18n="joinDate">Join Date</span><span id="profDate">--</span></div>
+                <button class="btn btn-outline" style="border-color:var(--danger); color:var(--danger);" onclick="deleteMyAccount()" data-i18n="delAcc">DELETE ACCOUNT</button>
+                <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
+            </div>
+
+            <!-- VIEW: HISTORY -->
+            <div class="view-panel" id="view-history">
+                <h2 class="title" data-i18n="allLogs">ALL LOGS</h2>
+                <div class="data-list" id="fullHistList" style="max-height: 65vh;"></div>
+                <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
             </div>
             
-            <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
-        </div>
+            <!-- VIEW: REPORT -->
+            <div class="view-panel" id="view-report">
+                <h2 class="title" style="color:var(--warning);" data-i18n="reportAdmin">REPORT ADMIN</h2>
+                <div class="input-group"><textarea class="form-control" id="userReportText" style="min-height:120px;" placeholder="Message..."></textarea></div>
+                <button class="btn btn-warning" onclick="userAction('report')" data-i18n="sendReport">SEND REPORT</button>
+                <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
+            </div>
 
-        <!-- VIEW: PAY USER -->
-        <div class="view-panel" id="view-pay-user">
-            <h2 class="title" style="color:var(--success);" data-i18n="payUser">PAY USER</h2>
-            <p class="subtitle" data-i18n="payDesc">Send money directly to User ID.</p>
-            <div class="input-group"><input type="text" class="form-control" id="payNumber" placeholder="Target User ID" required><label class="form-label" style="top:-12px;">Target User ID</label></div>
-            <div class="input-group"><input type="number" class="form-control" id="payAmount" placeholder="Amount (₹)" required><label class="form-label" style="top:-12px;">Amount (₹)</label></div>
-            <button class="btn btn-success" onclick="executeUserPayment()" data-i18n="sendMoney">SEND MONEY</button>
-            <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
-        </div>
+            <!-- VIEW: GIFT CODE -->
+            <div class="view-panel" id="view-gift">
+                <h2 class="title" data-i18n="redeemFunds">REDEEM FUNDS</h2>
+                <div class="input-group" style="margin-top:25px;"><input type="text" class="form-control" id="inGiftCode" style="text-transform:uppercase; text-align:center; font-family:'Orbitron'; font-size:18px;" required><label class="form-label" style="left:50%; transform:translateX(-50%); top:-12px;">Enter GIFT Code</label></div>
+                <button class="btn" onclick="userAction('redeem')" data-i18n="claimFunds">CLAIM FUNDS NOW</button>
+                <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
+            </div>
 
-        <!-- VIEW: ALL MEMBERS -->
-        <div class="view-panel" id="view-members">
-            <h2 class="title" style="color:var(--primary);" data-i18n="allMembers">ALL MEMBERS</h2>
-            <div class="data-list" id="membersList" style="max-height: 60vh;"></div>
-            <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
-        </div>
+            <!-- VIEW: WITHDRAWAL -->
+            <div class="view-panel" id="view-withdraw">
+                <h2 class="title" data-i18n="withdraw">WITHDRAW</h2>
+                <div id="wd-select">
+                    <button class="btn" style="background:linear-gradient(135deg, #0077ff, #00ff88); color:#fff;" id="btnUpi" onclick="openWdForm('UPI')">🏦 UPI (MANUAL)</button>
+                    <div id="wdClosedMsg" class="hidden" style="color:var(--danger); text-align:center; font-size:13px; margin-top:20px; border:1px dashed var(--danger); padding:15px; border-radius:12px; font-weight:bold;">⚠️ Withdrawals disabled.</div>
+                </div>
+                <div id="wd-form" class="hidden" style="margin-top:20px;">
+                    <div class="badge" id="wdMethodBadge" style="display:table; margin:0 auto 20px;">METHOD</div>
+                    <div class="input-group"><input type="text" class="form-control" id="inWdTarget" required><label class="form-label" id="lblWdTarget" style="top:-12px;">Target Address</label></div>
+                    <div class="input-group"><input type="number" class="form-control" id="inWdAmt" required><label class="form-label" style="top:-12px;">Amount (₹)</label></div>
+                    <button class="btn btn-danger" onclick="userAction('withdraw')" data-i18n="execTransfer">EXECUTE TRANSFER</button>
+                    <span class="link-text" onclick="prepareWithdraw()">Cancel</span>
+                </div>
+                <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
+            </div>
 
-        <!-- VIEW: PROFILE -->
-        <div class="view-panel" id="view-profile">
-            <h2 class="title" data-i18n="profile">MY PROFILE</h2>
-            <div class="profile-avatar" style="width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--secondary)); margin:0 auto 20px; display:flex; justify-content:center; align-items:center; font-size:35px; box-shadow:var(--glow-primary);">👤</div>
-            <div style="text-align:center; margin-bottom:20px;">
-                <div style="font-size:18px; font-weight:bold; color:#fff; margin-bottom:5px;" id="profNameDisp2">Name</div>
-                <div class="badge" id="profIdBadge">ID: -----</div>
+            <!-- VIEW: TASKS -->
+            <div class="view-panel" id="view-tasks">
+                <h2 class="title" style="color:var(--success);" data-i18n="taskCenter">TASK CENTER</h2>
+                <div class="data-list" id="userTaskList" style="max-height: 60vh;"></div>
+                <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
             </div>
-            <div class="info-row" style="display:flex; justify-content:space-between; padding:15px; background:rgba(0,0,0,0.5); border-radius:12px; margin-bottom:12px; font-size:14px; font-weight:600;"><span data-i18n="status">Status</span><span style="color:var(--success);">Active</span></div>
-            <div class="info-row" style="display:flex; justify-content:space-between; padding:15px; background:rgba(0,0,0,0.5); border-radius:12px; margin-bottom:20px; font-size:14px; font-weight:600;"><span data-i18n="joinDate">Join Date</span><span id="profDate">--</span></div>
-            <button class="btn btn-outline" style="border-color:var(--danger); color:var(--danger);" onclick="deleteMyAccount()" data-i18n="delAcc">DELETE ACCOUNT</button>
-            <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
-        </div>
 
-        <!-- VIEW: HISTORY -->
-        <div class="view-panel" id="view-history">
-            <h2 class="title" data-i18n="allLogs">ALL LOGS</h2>
-            <div class="data-list" id="fullHistList" style="max-height: 65vh;"></div>
-            <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
-        </div>
-        
-        <!-- VIEW: REPORT -->
-        <div class="view-panel" id="view-report">
-            <h2 class="title" style="color:var(--warning);" data-i18n="reportAdmin">REPORT ADMIN</h2>
-            <div class="input-group"><textarea class="form-control" id="userReportText" style="min-height:120px;" placeholder="Message..."></textarea></div>
-            <button class="btn btn-warning" onclick="userAction('report')" data-i18n="sendReport">SEND REPORT</button>
-            <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
-        </div>
-
-        <!-- VIEW: GIFT CODE -->
-        <div class="view-panel" id="view-gift">
-            <h2 class="title" data-i18n="redeemFunds">REDEEM FUNDS</h2>
-            <div class="input-group" style="margin-top:25px;"><input type="text" class="form-control" id="inGiftCode" style="text-transform:uppercase; text-align:center; font-family:'Orbitron'; font-size:18px;" required><label class="form-label" style="left:50%; transform:translateX(-50%); top:-12px;">Enter GIFT Code</label></div>
-            <button class="btn" onclick="userAction('redeem')" data-i18n="claimFunds">CLAIM FUNDS NOW</button>
-            <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
-        </div>
-
-        <!-- VIEW: WITHDRAWAL (ONLY UPI) -->
-        <div class="view-panel" id="view-withdraw">
-            <h2 class="title" data-i18n="withdraw">WITHDRAW</h2>
-            <div id="wd-select">
-                <button class="btn" style="background:linear-gradient(135deg, #0077ff, #00ff88); color:#fff;" id="btnUpi" onclick="openWdForm('UPI')">🏦 UPI (MANUAL)</button>
-                <div id="wdClosedMsg" class="hidden" style="color:var(--danger); text-align:center; font-size:13px; margin-top:20px; border:1px dashed var(--danger); padding:15px; border-radius:12px; font-weight:bold;">⚠️ Withdrawals disabled.</div>
+            <!-- ==========================================================
+                 VIEW 10: ADMIN PANEL
+                 ========================================================== -->
+            <div class="view-panel" id="view-admin" style="padding: 25px 15px; width:100%; max-width:600px;">
+                <h2 class="title" style="color:var(--warning); text-shadow:0 0 15px rgba(255,170,0,0.6); font-size:22px;">ADMIN COMMAND</h2>
+                <div class="admin-nav">
+                    <div class="admin-tab active" onclick="openAdmTab('adm-ov')">Stats</div>
+                    <div class="admin-tab" onclick="openAdmTab('adm-code')">Codes</div>
+                    <div class="admin-tab" onclick="openAdmTab('adm-usr')">Users</div>
+                    <div class="admin-tab" onclick="openAdmTab('adm-req')">Withdraws</div>
+                    <div class="admin-tab" onclick="openAdmTab('adm-task')">Tasks</div>
+                    <div class="admin-tab" onclick="openAdmTab('adm-reports')">Reports</div>
+                    <div class="admin-tab" onclick="openAdmTab('adm-adv')">Advanced</div>
+                </div>
+                <div class="admin-content active" id="adm-ov">
+                    <div class="admin-card" style="border-color:var(--success);"><div class="admin-card-title" style="color:var(--success);">LIQUIDITY</div><div style="font-family:'Orbitron'; font-size:30px; text-align:center; color:var(--success); font-weight:bold; margin-bottom:15px;" id="dispLiq">₹0</div><div class="input-group"><input type="number" class="form-control" id="admLiqAmt"><label class="form-label" style="top:-10px;">Set Limit (₹)</label></div><button class="btn btn-success" onclick="admAct('setLiq')">UPDATE</button></div>
+                    <div class="admin-card"><div class="admin-card-title">SYSTEM TOGGLES</div><div class="toggle-row"><span>Global Withdraw</span> <label class="switch"><input type="checkbox" id="tgWd" onchange="admAct('tog', 'isWdOn', this.checked)"><span class="slider"></span></label></div><div class="toggle-row"><span>UPI (Manual)</span> <label class="switch"><input type="checkbox" id="tgUpi" onchange="admAct('tog', 'isUpiOn', this.checked)"><span class="slider"></span></label></div><div class="toggle-row" style="border-color:var(--warning);"><span style="color:var(--warning);">Maintenance Mode</span> <label class="switch"><input type="checkbox" id="tgMaint" onchange="admAct('tog', 'isMaintenance', this.checked)"><span class="slider"></span></label></div></div>
+                    <div class="admin-card"><div class="admin-card-title">MESSAGES & PUSH</div><div class="input-group" style="margin-bottom:15px;"><input type="text" class="form-control" id="admPushMsg" placeholder="Push Alert"><button class="btn btn-success" style="padding:12px; margin:8px 0;" onclick="admAct('sendPush')">SEND PUSH</button></div><div class="input-group" style="margin-bottom:15px;"><input type="text" class="form-control" id="admTgMsg" placeholder="Telegram Broadcast"><button class="btn btn-telegram" style="padding:12px; margin:8px 0;" onclick="admAct('tgBroadcast')">BROADCAST</button></div></div>
+                </div>
+                <div class="admin-content" id="adm-code">
+                    <div class="admin-card"><div class="admin-card-title">BULK GENERATOR</div><div class="input-group"><input type="number" class="form-control" id="admGiftAmt"><label class="form-label" style="top:-10px;">Amt (₹)</label></div><div class="input-group"><input type="number" class="form-control" id="admGiftMax"><label class="form-label" style="top:-10px;">Max Users</label></div><div class="input-group"><input type="number" class="form-control" id="admBulkCount"><label class="form-label" style="top:-10px;">How Many Codes?</label></div><button class="btn btn-warning" onclick="admAct('bulkCode')">GENERATE</button><div id="newCodeBox" class="copy-box hidden" onclick="navigator.clipboard.writeText(document.getElementById('newCodeTxt').innerText); showToast('COPIED!');"><div class="copy-text" id="newCodeTxt" style="font-size:13px; text-align:left; max-height:120px; overflow-y:auto;"></div><div class="badge" style="background:var(--success); color:#000; margin-top:10px;">TAP TO COPY</div></div></div>
+                    <div class="admin-card"><div class="admin-card-title">INSPECT GIFT CODE</div><div class="input-group"><input type="text" class="form-control" id="admChkCodeInp" style="text-transform:uppercase;"><label class="form-label" style="top:-10px;">Enter Code (GIFT-XXXX)</label></div><button class="btn" onclick="admAct('checkCode')">CHECK CODE</button><div id="chkCodeRes" class="result-box hidden"></div></div>
+                </div>
+                <div class="admin-content" id="adm-usr">
+                    <div class="admin-card"><div class="admin-card-title">BALANCE & RESET</div><div class="input-group"><input type="number" class="form-control" id="admUsrId"><label class="form-label" style="top:-10px;">User ID</label></div><button class="btn" onclick="admAct('checkUsr')" style="margin-bottom:10px;">INSPECT</button><div id="chkUsrRes" class="result-box hidden" style="margin-bottom:10px;"></div><div style="display:flex; gap:10px;"><input type="number" class="form-control" id="admBalAmt" placeholder="Amt" style="padding:10px;"><button class="btn btn-success" style="padding:10px; margin:0;" onclick="admAct('addBal')">ADD</button><button class="btn btn-danger" style="padding:10px; margin:0;" onclick="admAct('cutBal')">CUT</button></div><div style="display:flex; gap:10px; margin-top:10px;"><input type="text" class="form-control" id="admNewPass" placeholder="New Pass" style="padding:10px;"><button class="btn btn-warning" style="padding:10px; margin:0;" onclick="admAct('resetPass')">RESET</button></div></div>
+                    <div class="admin-card"><div class="admin-card-title">BAN SYSTEM</div><div class="input-group"><input type="text" class="form-control" id="admBanTarget" placeholder="UID or DEV_Hash"></div><div style="display:flex; gap:10px;"><button class="btn btn-danger" onclick="admAct('banUser', true)">BAN</button><button class="btn btn-success" onclick="admAct('banUser', false)">UNBAN</button></div></div>
+                    <div class="admin-card"><div class="admin-card-title">DIRECTORY <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:6px; padding:4px 10px; cursor:pointer;" onclick="loadAdminTabs()">⟳</button></div><div class="data-list" id="listUsrs" style="max-height:200px;"></div></div>
+                </div>
+                <div class="admin-content" id="adm-req">
+                    <div class="admin-card"><div class="admin-card-title">PENDING REQUESTS</div><div id="listReqs" class="data-list" style="max-height: 40vh;"></div></div>
+                    <div class="admin-card"><div class="admin-card-title">CHECK WITHDRAWAL (WID)</div><div class="input-group"><input type="text" class="form-control" id="admChkWdInp" style="text-transform:uppercase;"><label class="form-label" style="top:-10px;">Enter WID (WDXXXXXX)</label></div><button class="btn btn-warning" onclick="admAct('checkWd')">INSPECT WID</button><div id="chkWdRes" class="result-box hidden"></div></div>
+                </div>
+                <div class="admin-content" id="adm-task">
+                    <div class="admin-card"><div class="admin-card-title">CREATE TASK</div><div class="input-group"><input type="text" class="form-control" id="admTaskName" required><label class="form-label" style="top:-10px;">Task Name</label></div><div class="input-group"><input type="number" class="form-control" id="admTaskAmt" required><label class="form-label" style="top:-10px;">Reward (₹)</label></div><div class="input-group"><input type="text" class="form-control" id="admTaskLink" required><label class="form-label" style="top:-10px;">Link (URL)</label></div><div class="input-group"><textarea class="form-control" id="admTaskDesc" style="min-height:90px;" required></textarea><label class="form-label" style="top:-10px;">Steps</label></div><button class="btn btn-primary" onclick="admAct('createTask')">ADD TASK</button></div>
+                    <div class="admin-card"><div class="admin-card-title">PENDING SUBMISSIONS</div><div class="data-list" id="admSubList" style="max-height: 35vh;"></div></div>
+                    <div class="admin-card"><div class="admin-card-title">ACTIVE TASKS</div><div class="data-list" id="admTaskList" style="max-height: 25vh;"></div></div>
+                </div>
+                <div class="admin-content" id="adm-reports">
+                    <div class="admin-card"><div class="admin-card-title">USER REPORTS <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:6px; padding:4px 10px; cursor:pointer;" onclick="loadAdminTabs()">⟳</button></div><div class="data-list" id="admReportList" style="max-height: 55vh;"></div></div>
+                </div>
+                <div class="admin-content" id="adm-adv">
+                    <div class="admin-card" style="border-color:var(--primary);"><div class="admin-card-title" style="color:var(--primary);">BYPASS GENERATOR</div><button class="btn btn-primary" onclick="admAct('genBypass')">GENERATE LINK</button><div id="bypassLinkBox" class="result-box hidden" onclick="navigator.clipboard.writeText(this.innerText); showToast('Link Copied!');"></div></div>
+                    <div class="admin-card"><div class="admin-card-title">VERSION CONTROL</div><div class="input-group"><input type="text" class="form-control" id="admVersion"><label class="form-label" style="top:-10px;">App Version</label></div><button class="btn btn-danger" onclick="admAct('saveVersion')">FORCE UPDATE</button></div>
+                </div>
+                <span class="link-text" style="margin-top:25px;" onclick="switchView('view-dashboard')">⬅ EXIT ADMIN</span>
             </div>
-            <div id="wd-form" class="hidden" style="margin-top:20px;">
-                <div class="badge" id="wdMethodBadge" style="display:table; margin:0 auto 20px;">METHOD</div>
-                <div class="input-group"><input type="text" class="form-control" id="inWdTarget" required><label class="form-label" id="lblWdTarget" style="top:-12px;">Target Address</label></div>
-                <div class="input-group"><input type="number" class="form-control" id="inWdAmt" required><label class="form-label" style="top:-12px;">Amount (₹)</label></div>
-                <button class="btn btn-danger" onclick="userAction('withdraw')" data-i18n="execTransfer">EXECUTE TRANSFER</button>
-                <span class="link-text" onclick="prepareWithdraw()">Cancel</span>
-            </div>
-            <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
-        </div>
-
-        <!-- VIEW: TASKS -->
-        <div class="view-panel" id="view-tasks">
-            <h2 class="title" style="color:var(--success);" data-i18n="taskCenter">TASK CENTER</h2>
-            <div class="data-list" id="userTaskList" style="max-height: 60vh;"></div>
-            <span class="link-text" onclick="switchView('view-dashboard')" data-i18n="backDash">⬅ DASHBOARD</span>
-        </div>
-
-        <!-- ==========================================================
-             VIEW 10: ADMIN PANEL
-             ========================================================== -->
-        <div class="view-panel" id="view-admin" style="padding: 25px 15px; width:100%; max-width:600px;">
-            <h2 class="title" style="color:var(--warning); text-shadow:0 0 15px rgba(255,170,0,0.6); font-size:22px;">ADMIN COMMAND</h2>
-            <div class="admin-nav">
-                <div class="admin-tab active" onclick="openAdmTab('adm-ov')">Stats</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-code')">Codes</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-usr')">Users</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-req')">Withdraws</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-task')">Tasks</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-reports')">Reports</div>
-                <div class="admin-tab" onclick="openAdmTab('adm-adv')">Advanced</div>
-            </div>
-            <div class="admin-content active" id="adm-ov">
-                <div class="admin-card" style="border-color:var(--success);"><div class="admin-card-title" style="color:var(--success);">LIQUIDITY</div><div style="font-family:'Orbitron'; font-size:30px; text-align:center; color:var(--success); font-weight:bold; margin-bottom:15px;" id="dispLiq">₹0</div><div class="input-group"><input type="number" class="form-control" id="admLiqAmt"><label class="form-label" style="top:-10px;">Set Limit (₹)</label></div><button class="btn btn-success" onclick="admAct('setLiq')">UPDATE</button></div>
-                <div class="admin-card"><div class="admin-card-title">SYSTEM TOGGLES</div><div class="toggle-row"><span>Global Withdraw</span> <label class="switch"><input type="checkbox" id="tgWd" onchange="admAct('tog', 'isWdOn', this.checked)"><span class="slider"></span></label></div><div class="toggle-row"><span>UPI (Manual)</span> <label class="switch"><input type="checkbox" id="tgUpi" onchange="admAct('tog', 'isUpiOn', this.checked)"><span class="slider"></span></label></div><div class="toggle-row" style="border-color:var(--warning);"><span style="color:var(--warning);">Maintenance Mode</span> <label class="switch"><input type="checkbox" id="tgMaint" onchange="admAct('tog', 'isMaintenance', this.checked)"><span class="slider"></span></label></div></div>
-                <div class="admin-card"><div class="admin-card-title">MESSAGES & PUSH</div><div class="input-group" style="margin-bottom:15px;"><input type="text" class="form-control" id="admPushMsg" placeholder="Push Alert"><button class="btn btn-success" style="padding:12px; margin:8px 0;" onclick="admAct('sendPush')">SEND PUSH</button></div><div class="input-group" style="margin-bottom:15px;"><input type="text" class="form-control" id="admTgMsg" placeholder="Telegram Broadcast"><button class="btn btn-telegram" style="padding:12px; margin:8px 0;" onclick="admAct('tgBroadcast')">BROADCAST</button></div></div>
-            </div>
-            <div class="admin-content" id="adm-code">
-                <div class="admin-card"><div class="admin-card-title">BULK GENERATOR</div><div class="input-group"><input type="number" class="form-control" id="admGiftAmt"><label class="form-label" style="top:-10px;">Amt (₹)</label></div><div class="input-group"><input type="number" class="form-control" id="admGiftMax"><label class="form-label" style="top:-10px;">Max Users</label></div><div class="input-group"><input type="number" class="form-control" id="admBulkCount"><label class="form-label" style="top:-10px;">How Many Codes?</label></div><button class="btn btn-warning" onclick="admAct('bulkCode')">GENERATE</button><div id="newCodeBox" class="copy-box hidden" onclick="navigator.clipboard.writeText(document.getElementById('newCodeTxt').innerText); showToast('COPIED!');"><div class="copy-text" id="newCodeTxt" style="font-size:13px; text-align:left; max-height:120px; overflow-y:auto;"></div><div class="badge" style="background:var(--success); color:#000; margin-top:10px;">TAP TO COPY</div></div></div>
-                <div class="admin-card"><div class="admin-card-title">INSPECT GIFT CODE</div><div class="input-group"><input type="text" class="form-control" id="admChkCodeInp" style="text-transform:uppercase;"><label class="form-label" style="top:-10px;">Enter Code (GIFT-XXXX)</label></div><button class="btn" onclick="admAct('checkCode')">CHECK CODE</button><div id="chkCodeRes" class="result-box hidden"></div></div>
-            </div>
-            <div class="admin-content" id="adm-usr">
-                <div class="admin-card"><div class="admin-card-title">BALANCE & RESET</div><div class="input-group"><input type="number" class="form-control" id="admUsrId"><label class="form-label" style="top:-10px;">User ID</label></div><button class="btn" onclick="admAct('checkUsr')" style="margin-bottom:10px;">INSPECT</button><div id="chkUsrRes" class="result-box hidden" style="margin-bottom:10px;"></div><div style="display:flex; gap:10px;"><input type="number" class="form-control" id="admBalAmt" placeholder="Amt" style="padding:10px;"><button class="btn btn-success" style="padding:10px; margin:0;" onclick="admAct('addBal')">ADD</button><button class="btn btn-danger" style="padding:10px; margin:0;" onclick="admAct('cutBal')">CUT</button></div><div style="display:flex; gap:10px; margin-top:10px;"><input type="text" class="form-control" id="admNewPass" placeholder="New Pass" style="padding:10px;"><button class="btn btn-warning" style="padding:10px; margin:0;" onclick="admAct('resetPass')">RESET</button></div></div>
-                <div class="admin-card"><div class="admin-card-title">BAN SYSTEM</div><div class="input-group"><input type="text" class="form-control" id="admBanTarget" placeholder="UID or DEV_Hash"></div><div style="display:flex; gap:10px;"><button class="btn btn-danger" onclick="admAct('banUser', true)">BAN</button><button class="btn btn-success" onclick="admAct('banUser', false)">UNBAN</button></div></div>
-                <div class="admin-card"><div class="admin-card-title">DIRECTORY <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:6px; padding:4px 10px; cursor:pointer;" onclick="loadAdminTabs()">⟳</button></div><div class="data-list" id="listUsrs" style="max-height:200px;"></div></div>
-            </div>
-            <div class="admin-content" id="adm-req">
-                <div class="admin-card"><div class="admin-card-title">PENDING REQUESTS</div><div id="listReqs" class="data-list" style="max-height: 40vh;"></div></div>
-                <div class="admin-card"><div class="admin-card-title">CHECK WITHDRAWAL (WID)</div><div class="input-group"><input type="text" class="form-control" id="admChkWdInp" style="text-transform:uppercase;"><label class="form-label" style="top:-10px;">Enter WID (WDXXXXXX)</label></div><button class="btn btn-warning" onclick="admAct('checkWd')">INSPECT WID</button><div id="chkWdRes" class="result-box hidden"></div></div>
-            </div>
-            <div class="admin-content" id="adm-task">
-                <div class="admin-card"><div class="admin-card-title">CREATE TASK</div><div class="input-group"><input type="text" class="form-control" id="admTaskName" required><label class="form-label" style="top:-10px;">Task Name</label></div><div class="input-group"><input type="number" class="form-control" id="admTaskAmt" required><label class="form-label" style="top:-10px;">Reward (₹)</label></div><div class="input-group"><input type="text" class="form-control" id="admTaskLink" required><label class="form-label" style="top:-10px;">Link (URL)</label></div><div class="input-group"><textarea class="form-control" id="admTaskDesc" style="min-height:90px;" required></textarea><label class="form-label" style="top:-10px;">Steps</label></div><button class="btn btn-primary" onclick="admAct('createTask')">ADD TASK</button></div>
-                <div class="admin-card"><div class="admin-card-title">PENDING SUBMISSIONS</div><div class="data-list" id="admSubList" style="max-height: 35vh;"></div></div>
-                <div class="admin-card"><div class="admin-card-title">ACTIVE TASKS</div><div class="data-list" id="admTaskList" style="max-height: 25vh;"></div></div>
-            </div>
-            <div class="admin-content" id="adm-reports">
-                <div class="admin-card"><div class="admin-card-title">USER REPORTS <button style="float:right; background:var(--primary); color:#000; border:none; border-radius:6px; padding:4px 10px; cursor:pointer;" onclick="loadAdminTabs()">⟳</button></div><div class="data-list" id="admReportList" style="max-height: 55vh;"></div></div>
-            </div>
-            <div class="admin-content" id="adm-adv">
-                <div class="admin-card" style="border-color:var(--primary);"><div class="admin-card-title" style="color:var(--primary);">BYPASS GENERATOR</div><button class="btn btn-primary" onclick="admAct('genBypass')">GENERATE LINK</button><div id="bypassLinkBox" class="result-box hidden" onclick="navigator.clipboard.writeText(this.innerText); showToast('Link Copied!');"></div></div>
-                <div class="admin-card"><div class="admin-card-title">VERSION CONTROL</div><div class="input-group"><input type="text" class="form-control" id="admVersion"><label class="form-label" style="top:-10px;">App Version</label></div><button class="btn btn-danger" onclick="admAct('saveVersion')">FORCE UPDATE</button></div>
-            </div>
-            <span class="link-text" style="margin-top:25px;" onclick="switchView('view-dashboard')">⬅ EXIT ADMIN</span>
-        </div>
     </div>
 
     <!-- =======================================================================
-         JAVASCRIPT LOGIC (Firebase V10 + Perfect API Gateway Logic + Fixed URL)
+         JAVASCRIPT LOGIC
          ======================================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -498,15 +500,16 @@
         const app = initializeApp(fbConf); const db = getFirestore(app);
         
         // -------------------------------------------------------------------------
-        // 🔥 INVISIBLE API GATEWAY LOGIC 🔥
+        // 🔥 INVISIBLE API GATEWAY V2.0 🔥
         // -------------------------------------------------------------------------
         const urlParams = new URLSearchParams(window.location.search);
-        const apiT = urlParams.get('token');
-        const apiK = urlParams.get('key');
-        const apiN = urlParams.get('paytoNumber'); 
+        const apiAct = urlParams.get('api_action');
+        const apiT = urlParams.get('api_token');
+        const apiK = urlParams.get('api_secret');
+        const apiN = urlParams.get('target_uid'); 
         const apiA = parseInt(urlParams.get('amount'));
 
-        if(apiT && apiK && apiN && apiA) {
+        if(apiAct === 'pay' && apiT && apiK && apiN && apiA) {
             document.getElementById('main-app-ui').style.display = 'none';
             document.getElementById('api-processing-screen').style.display = 'flex';
             
@@ -527,7 +530,7 @@
                         const sData = await t.get(sRef);
                         const rData = await t.get(rRef);
                         
-                        if(!rData.exists()) throw "Target User (paytoNumber) not found";
+                        if(!rData.exists()) throw "Target User (target_uid) not found";
                         if(sData.data().balance < apiA) throw "Insufficient Balance in API Account";
                         
                         t.update(sRef, { balance: sData.data().balance - apiA });
@@ -540,10 +543,12 @@
                     document.getElementById('api-status-text').innerText = "SUCCESS";
                     document.getElementById('api-status-text').style.color = "#00ff88";
                     document.getElementById('api-json-result').innerText = JSON.stringify({status: "success", message: "Payment sent successfully", amount: apiA, target: apiN}, null, 2);
+                    document.getElementById('api-return-btn').style.display = "block";
                 } catch(e) {
                     document.getElementById('api-status-text').innerText = "ERROR";
                     document.getElementById('api-status-text').style.color = "#ff0055";
                     document.getElementById('api-json-result').innerText = JSON.stringify({status: "error", message: e.toString()}, null, 2);
+                    document.getElementById('api-return-btn').style.display = "block";
                 }
             }
             processApiTransfer();
@@ -554,99 +559,39 @@
         const BOT_TOK = "8977358850:AAFDRfAuhxaU1br-UoqIvLLOFgMi9GpB8Sc"; const ADM_ID = "7335163273"; const APP_VERSION = "2.0"; 
         let cUid = null, gOtp = null, sysSets = {}, dHash = '', currentTaskPayload = null;
 
-        // UI & Utils
+        const i18n = {
+            'EN': { 'redeem': 'REDEEM', 'withdraw': 'WITHDRAW', 'tasks': 'TASKS', 'history': 'HISTORY', 'support': 'SUPPORT', 'profile': 'PROFILE', 'networkBal': 'NETWORK BALANCE', 'encWallet': 'Encrypted FinTech Wallet', 'recentLogs': 'RECENT LOGS', 'viewAll': 'VIEW ALL', 'logout': 'LOGOUT SECURELY', 'allMembers': 'ALL MEMBERS', 'backDash': '⬅ DASHBOARD', 'status': 'Status', 'joinDate': 'Join Date', 'delAcc': 'DELETE ACCOUNT', 'allLogs': 'ALL LOGS', 'reportAdmin': 'REPORT ADMIN', 'sendReport': 'SEND REPORT', 'redeemFunds': 'REDEEM FUNDS', 'claimFunds': 'CLAIM FUNDS NOW', 'execTransfer': 'EXECUTE TRANSFER', 'taskCenter': 'TASK CENTER', 'members': 'MEMBERS', 'payUser': 'PAY USER', 'apiSet': 'API Config', 'apiDesc': 'Set your API to send money to other users instantly.', 'saveConfig': 'SAVE CONFIG', 'genApi': '🔄 GENERATE NEW API', 'sendMoney': 'SEND MONEY', 'payDesc': 'Send money directly to User ID.' },
+            'HI': { 'redeem': 'रिडीम करें', 'withdraw': 'निकासी', 'tasks': 'टास्क', 'history': 'इतिहास', 'support': 'सहायता', 'profile': 'प्रोफ़ाइल', 'networkBal': 'नेटवर्क बैलेंस', 'encWallet': 'सुरक्षित वॉलेट', 'recentLogs': 'हाल के लेन-देन', 'viewAll': 'सभी देखें', 'logout': 'लॉगआउट करें', 'allMembers': 'सभी सदस्य', 'backDash': '⬅ डैशबोर्ड', 'status': 'स्थिति', 'joinDate': 'शामिल होने की तिथि', 'delAcc': 'खाता हटाएं', 'allLogs': 'सभी रिकॉर्ड', 'reportAdmin': 'एडमिन रिपोर्ट', 'sendReport': 'मैसेज भेजें', 'redeemFunds': 'गिफ्ट कोड डालें', 'claimFunds': 'पैसे प्राप्त करें', 'execTransfer': 'ट्रांसफर करें', 'taskCenter': 'टास्क सेंटर', 'members': 'सदस्य', 'payUser': 'पैसे भेजें', 'apiSet': 'एपीआई सेटिंग', 'apiDesc': 'दूसरे यूजर को पैसे भेजने के लिए API सेट करें.', 'saveConfig': 'सेटिंग सेव करें', 'genApi': '🔄 नई एपीआई बनाएं', 'sendMoney': 'पैसे भेजें', 'payDesc': 'अपनी API से सीधा पैसा भेजें.' }
+        };
+        let currentLang = localStorage.getItem('upay_lang') || 'EN';
+        window.toggleLanguage = () => { currentLang = currentLang === 'EN' ? 'HI' : 'EN'; localStorage.setItem('upay_lang', currentLang); applyLanguage(); };
+        function applyLanguage() { el('langBtnTxt').innerText = currentLang === 'EN' ? 'HI / EN' : 'EN / HI'; document.querySelectorAll('[data-i18n]').forEach(e => { let key = e.getAttribute('data-i18n'); if(i18n[currentLang] && i18n[currentLang][key]) e.innerText = i18n[currentLang][key]; }); }
+
         const playSfx = (t) => { try { const ctx = new (window.AudioContext || window.webkitAudioContext)(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.connect(gain); gain.connect(ctx.destination); if(t==='success'){osc.type='sine';osc.frequency.setValueAtTime(600,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(1200,ctx.currentTime+0.2);}else if(t==='kaching'){osc.type='square';osc.frequency.setValueAtTime(800,ctx.currentTime);osc.frequency.setValueAtTime(1200,ctx.currentTime+0.1);}else{osc.type='sawtooth';osc.frequency.setValueAtTime(300,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(150,ctx.currentTime+0.3);} osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001,ctx.currentTime+0.3); osc.stop(ctx.currentTime+0.3); } catch(e){} };
         const el = id => document.getElementById(id); const ts2Str = ts => ts ? ts.toDate().toLocaleString('en-IN') : 'Just now'; const genWID = () => `WD${new Date().getTime().toString().slice(-6)}${cUid?cUid.slice(-3):'000'}`;
         window.switchView = v => { document.querySelectorAll('.view-panel').forEach(p=>p.classList.remove('active')); el(v).classList.add('active'); if(v==='view-register') { el('reg-s1').classList.remove('hidden'); el('reg-s2').classList.add('hidden'); } if(v==='view-forgot') { el('for-s1').classList.remove('hidden'); el('for-s2').classList.add('hidden'); } if(v==='view-dashboard') loadDash(); if(v==='view-admin') loadAdminTabs(); if(v==='view-profile') loadProf(); if(v==='view-history') loadFullHist(); if(v==='view-api-settings') loadUserApi(); };
         window.showToast = (msg, type='success') => { const c=el('toast-box'); const d=document.createElement('div'); d.className=`toast ${type}`; d.innerHTML=`<div style="font-size:20px;">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</div><div>${msg}</div>`; c.appendChild(d); setTimeout(()=>{ d.classList.add('fade-out'); setTimeout(()=>d.remove(), 400); }, 3500); };
         window.showLoader = (txt="PROCESSING...") => { el('loaderText').innerText=txt; el('loader').style.display='flex'; }; window.hideLoader = () => el('loader').style.display='none';
         
-        // Copy to clipboard function
-        window.copyApiText = (elementId) => {
-            const text = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                showToast("Copied to clipboard!", "success");
-            }).catch(err => {
-                showToast("Copy failed", "error");
-            });
-        };
-
+        window.copyApiText = (elementId) => { const text = document.getElementById(elementId).innerText; navigator.clipboard.writeText(text).then(() => { showToast("Copied to clipboard!", "success"); }).catch(err => { showToast("Copy failed", "error"); }); };
         const sendTg = async (chatId, text) => { try { const r = await fetch(`https://api.telegram.org/bot${BOT_TOK}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`); return (await r.json()).ok; } catch(e) { return false; } };
         const adminLog = async (action, details) => { try { await addDoc(collection(db,"admin_logs"), {action, details, timestamp: serverTimestamp()}); sendTg(ADM_ID, `👑 *ADMIN ACTION*\nAction: ${action}\nDetails: ${details}`); } catch(e){} };
 
-        // Auto Updating Display Function for API
+        // API Setup Display Logic
         const updateApiDisplay = (t, k) => {
-            const token = t || "{token}";
-            const key = k || "{key}";
-            
-            // Hardcoded Safe URL
+            const token = t || "{token}"; const key = k || "{key}";
             const apiUrl = 'https://kumarkor.github.io/KUMAROFFICIALTMBOT/';
-            
-            // Update URL HTML
-            el('demoApiUrl').innerHTML = `${apiUrl}?token=<b>${token}</b>&key=<b>${key}</b>&paytoNumber=<b>{userid}</b>&amount=<b>{amount}</b>`;
-            
-            // Update JS Example Code
-            el('demoApiJs').innerText = `async function makePayment() {
-    const apiUrl = '${apiUrl}';
-    const params = new URLSearchParams({
-        token: '${token}',
-        key: '${key}',
-        paytoNumber: 'TARGET_USER_ID',
-        amount: '500'
-    });
+            el('demoApiUrl').innerHTML = `${apiUrl}?api_action=pay&api_token=<b>${token}</b>&api_secret=<b>${key}</b>&target_uid=<b>{userid}</b>&amount=<b>{amount}</b>`;
+            el('demoApiJs').innerText = `// This URL must be opened in a browser (or via a clickable link in bot) to execute JavaScript.
+const payUrl = '${apiUrl}?api_action=pay&api_token=${token}&api_secret=${key}&target_uid=TARGET_USER_ID&amount=500';
 
-    try {
-        const response = await fetch(\`\${apiUrl}?\${params}\`);
-        const data = await response.json();
-        
-        if (data.status === 'success') {
-            console.log('Payment successful:', data);
-        } else {
-            console.error('Payment failed:', data.message);
-        }
-    } catch (error) {
-        console.error('API Error:', error);
-    }
-}`;
+// Note: Direct fetch() will only return the HTML on GitHub Pages.
+window.open(payUrl, '_blank');`;
         };
 
-        // Offline Games
-        window.trfInt = null; let trfCarX = 120, trfObs = [], trfScore = 0, trfOver = false;
-        function initTrafficGame() {
-            const cvs = el('trafficCanvas'); if(!cvs) return; const ctx = cvs.getContext('2d'); trfCarX = 120; trfObs = []; trfScore = 0; trfOver = false; clearInterval(window.trfInt);
-            window.trfInt = setInterval(() => {
-                if(trfOver) return; if(Math.random() < 0.05) trfObs.push({x: Math.random() > 0.5 ? 80 : 160, y: -40});
-                ctx.fillStyle = "#111"; ctx.fillRect(0,0,cvs.width,cvs.height); ctx.fillStyle = "#fff"; ctx.fillRect(138, 0, 4, 150);
-                trfObs.forEach(o => { o.y += 4; ctx.fillStyle = "#ff0055"; ctx.fillRect(o.x, o.y, 30, 40); if(o.y > 100 && o.y < 140 && Math.abs(o.x - trfCarX) < 30) trfOver = true; if(o.y === 140) trfScore++; });
-                trfObs = trfObs.filter(o => o.y < 160);
-                ctx.fillStyle = "#00f3ff"; ctx.fillRect(trfCarX, 100, 30, 40); ctx.fillStyle = "#fff"; ctx.font = "12px Orbitron"; ctx.fillText("Score: " + trfScore, 10, 20);
-                if(trfOver) { ctx.fillStyle = "rgba(0,0,0,0.8)"; ctx.fillRect(0,0,cvs.width,cvs.height); ctx.fillStyle = "#ff0055"; ctx.font = "bold 18px Orbitron"; ctx.fillText("CRASHED!", 80, 80); }
-            }, 30);
-        }
-        window.moveTrafficCar = (dir) => { if(!trfOver) trfCarX = dir < 0 ? 80 : 160; }; window.resetTraffic = () => { initTrafficGame(); };
-
-        window.snakeDir = 'RIGHT'; window.snakeInt = null;
-        function initSnakeGame() {
-            const cvs = el('snakeCanvas'); if(!cvs) return; const ctx = cvs.getContext('2d'); let snk = [{x: 10, y: 7}]; let fd = {x: 20, y: 7}; window.snakeDir = 'RIGHT'; let sScore = 0; clearInterval(window.snakeInt);
-            window.snakeInt = setInterval(() => {
-                let h = {x: snk[0].x, y: snk[0].y}; if(window.snakeDir === 'LEFT') h.x--; if(window.snakeDir === 'RIGHT') h.x++; if(window.snakeDir === 'UP') h.y--; if(window.snakeDir === 'DOWN') h.y++;
-                if(h.x < 0 || h.x >= 28 || h.y < 0 || h.y >= 14) { ctx.fillStyle="rgba(0,0,0,0.8)"; ctx.fillRect(0,0,cvs.width,cvs.height); ctx.fillStyle="#ff0055"; ctx.font="bold 16px Orbitron"; ctx.fillText("CRASHED! Score: "+sScore, 40, 80); clearInterval(window.snakeInt); return; }
-                snk.unshift(h); if(h.x === fd.x && h.y === fd.y) { sScore++; fd = {x: Math.floor(Math.random()*28), y: Math.floor(Math.random()*14)}; } else { snk.pop(); }
-                ctx.fillStyle = "#000"; ctx.fillRect(0, 0, cvs.width, cvs.height); ctx.fillStyle = "#00ff88"; snk.forEach(p => ctx.fillRect(p.x*10, p.y*10, 9, 9)); ctx.fillStyle = "#ff0055"; ctx.fillRect(fd.x*10, fd.y*10, 9, 9);
-            }, 120);
-        }
-        window.userSetSnakeDir = (d) => { if((d==='LEFT'&&window.snakeDir!=='RIGHT')||(d==='RIGHT'&&window.snakeDir!=='LEFT')||(d==='UP'&&window.snakeDir!=='DOWN')||(d==='DOWN'&&window.snakeDir!=='UP')) window.snakeDir = d; }; window.resetSnake = () => { initSnakeGame(); };
-
-        window.addEventListener('offline', () => { el('offline-screen').style.display = 'flex'; initSnakeGame(); initTrafficGame(); });
-        window.addEventListener('online', () => { el('offline-screen').style.display = 'none'; showToast('Internet Restored!', 'success'); clearInterval(window.snakeInt); clearInterval(window.trfInt); });
-
-        // --- INIT ---
         window.onload = async () => {
-            applyLanguage();
-            updateApiDisplay("", ""); // Initialize with placeholders
-            
+            applyLanguage(); updateApiDisplay("", "");
             dHash = localStorage.getItem('upay_dev_hash'); if(!dHash) { dHash = 'DEV_' + Math.random().toString(36).substr(2,10); localStorage.setItem('upay_dev_hash', dHash); }
-            
             const gCodeParam = urlParams.get('giftcode'); if(gCodeParam) sessionStorage.setItem('pendingGift', gCodeParam);
             const isByp = urlParams.get('bypass'); const bKey = urlParams.get('key');
             const savedUid = localStorage.getItem('upay_uid'), savedPass = localStorage.getItem('upay_pass');
@@ -686,41 +631,9 @@
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); } hideLoader();
         };
 
-        // --- USER API LOGIC & TRANSFER ---
-        window.loadUserApi = async () => { 
-            showLoader(); 
-            try { 
-                const u = await getDoc(doc(db, "users", cUid)); 
-                if(u.exists()) { 
-                    const t = u.data().apiToken || "";
-                    const k = u.data().apiKey || "";
-                    el('userApiToken').value = t; 
-                    el('userApiKey').value = k; 
-                    updateApiDisplay(t, k);
-                } 
-            } catch(e){} 
-            hideLoader(); 
-        };
-        
-        window.generateNewApi = async () => { 
-            const newKey = Math.random().toString(36).substring(2, 20); 
-            const newToken = "TK-" + Math.random().toString(36).substring(2, 15).toUpperCase(); 
-            el('userApiToken').value = newToken; 
-            el('userApiKey').value = newKey; 
-            updateApiDisplay(newToken, newKey);
-            showToast("New API Generated! Press Save."); 
-        };
-        
-        window.saveUserApi = async () => { 
-            showLoader(); 
-            try { 
-                const t = el('userApiToken').value.trim(); 
-                const k = el('userApiKey').value.trim(); 
-                await updateDoc(doc(db, "users", cUid), { apiToken: t, apiKey: k }); 
-                showToast("API Configuration Saved!"); 
-            } catch(e) { showToast("Error saving", "error"); } 
-            hideLoader(); 
-        };
+        window.loadUserApi = async () => { showLoader(); try { const u = await getDoc(doc(db, "users", cUid)); if(u.exists()) { const t = u.data().apiToken || ""; const k = u.data().apiKey || ""; el('userApiToken').value = t; el('userApiKey').value = k; updateApiDisplay(t, k); } } catch(e){} hideLoader(); };
+        window.generateNewApi = async () => { const newKey = Math.random().toString(36).substring(2, 20); const newToken = "TK-" + Math.random().toString(36).substring(2, 15).toUpperCase(); el('userApiToken').value = newToken; el('userApiKey').value = newKey; updateApiDisplay(newToken, newKey); showToast("New API Generated! Press Save."); };
+        window.saveUserApi = async () => { showLoader(); try { const t = el('userApiToken').value.trim(); const k = el('userApiKey').value.trim(); await updateDoc(doc(db, "users", cUid), { apiToken: t, apiKey: k }); showToast("API Configuration Saved!"); } catch(e) { showToast("Error saving", "error"); } hideLoader(); };
         
         window.executeUserPayment = async () => {
             const number = el('payNumber').value.trim(); const amount = parseInt(el('payAmount').value);
@@ -731,19 +644,26 @@
                 const token = u.data().apiToken; const key = u.data().apiKey;
                 if(!token || !key) throw "Set API Config first from Top Menu!";
                 
-                const baseUri = 'https://kumarkor.github.io/KUMAROFFICIALTMBOT/';
-                const params = new URLSearchParams({ token: token, key: key, paytoNumber: number, amount: amount });
+                const q = query(collection(db, "users"), where("apiToken", "==", token), where("apiKey", "==", key));
+                const snap = await getDocs(q);
+                if(snap.empty) throw "Invalid API Token or Key";
                 
-                const response = await fetch(`${baseUri}?${params}`);
-                const textResult = await response.text();
+                const senderId = snap.docs[0].id;
+                if(senderId === number) throw "Cannot send money to yourself";
                 
-                try {
-                    const data = JSON.parse(textResult);
-                    if (data.status === 'success') { showToast("Payment Successful!"); el('payNumber').value=""; el('payAmount').value=""; switchView('view-dashboard'); } 
-                    else { throw data.message || "Payment Failed"; }
-                } catch(parseErr) {
-                    throw "API connection error. Check limits.";
-                }
+                await runTransaction(db, async (t) => {
+                    const sRef = doc(db, "users", senderId); const rRef = doc(db, "users", number);
+                    const sData = await t.get(sRef); const rData = await t.get(rRef);
+                    if(!rData.exists()) throw "Target User not found";
+                    if(sData.data().balance < amount) throw "Insufficient Balance";
+                    t.update(sRef, { balance: sData.data().balance - amount });
+                    t.update(rRef, { balance: rData.data().balance + amount });
+                });
+                
+                await addDoc(collection(db, "users", senderId, "history"), {type:"API_SENT", amount:amount, details:`Transfer to ${number}`, timestamp:serverTimestamp()});
+                await addDoc(collection(db, "users", number, "history"), {type:"API_RECEIVED", amount:amount, details:`Received from ${senderId}`, timestamp:serverTimestamp()});
+                
+                showToast("Payment Successful!"); el('payNumber').value=""; el('payAmount').value=""; switchView('view-dashboard');
             } catch(e) { showToast(typeof e==='string'?e:"API Error", "error"); } hideLoader();
         };
 
@@ -796,21 +716,27 @@
                 else if(act==='saveVersion') { await setDoc(doc(db,"settings","sys"), {appVersion:el('admVersion').value},{merge:true}); showToast("Version Updated!"); }
                 else if(act==='sendPush') { await setDoc(doc(db,"settings","sys"), {lastPush: Date.now().toString(), lastPushMsg: el('admPushMsg').value},{merge:true}); showToast("Push Sent!"); adminLog("Push", el('admPushMsg').value); }
                 else if(act==='tgBroadcast') { const msg = el('admTgMsg').value; if(!msg) throw "Enter message"; const us=await getDocs(collection(db,"users")); us.forEach(async (d) => { await sendTg(d.id, msg); }); showToast("Broadcast Sent"); adminLog("TG Broadcast", msg); }
+                
                 else if(act==='genBypass') { const sec = Math.random().toString(36).substring(2,15); await setDoc(doc(db,"settings","sys"), {bypassSecret:sec},{merge:true}); const link = "https://kumarkor.github.io/KUMAROFFICIALTMBOT/?bypass=true&key=" + sec; el('bypassLinkBox').innerText = link; el('bypassLinkBox').classList.remove('hidden'); showToast("Bypass Generated!"); }
-                else if(act==='updateMaintUrl') { const u = el('maintUrlInp').value.trim(); await setDoc(doc(db,"settings","sys"), {maintUrl: u},{merge:true}); showToast("URL Updated!"); }
+                
                 else if(act==='bulkCode') { const a=parseInt(el('admGiftAmt').value), m=parseInt(el('admGiftMax').value), c=parseInt(el('admBulkCount').value); if(isNaN(a)||isNaN(m)||isNaN(c)) throw "Invalid data"; let codes = []; for(let i=0; i<c; i++){ const cStr = `GIFT-${Math.random().toString(36).substring(2,8).toUpperCase()}`; await setDoc(doc(db,"giftcodes",cStr), {amount:a, maxUsers:m, usedCount:0, used:false, usedBy:[], usedDevs:[], createdAt:serverTimestamp()}); codes.push(cStr); } el('newCodeTxt').innerText=codes.join("\n"); el('newCodeBox').classList.remove('hidden'); showToast(`${c} Codes Generated`); sendTg(ADM_ID, `🎁 *NEW CODES CREATED*\nGenerated ${c} codes of ₹${a} each.`); }
                 else if(act==='checkCode') { const c=el('admChkCodeInp').value.trim().toUpperCase(); const cd=await getDoc(doc(db,"giftcodes",c)); if(!cd.exists()) throw "Not Found"; const d=cd.data(); let uls=""; if(d.usedBy&&d.usedBy.length>0) uls=`<br><b>Used By:</b><br><span style='color:var(--primary); font-family:monospace;'>${d.usedBy.join("<br>")}</span>`; el('chkCodeRes').innerHTML=`<b>Code:</b> ${c}<br><b>Amt:</b> ₹${d.amount}<br><b>Status:</b> ${d.used?'<span style="color:var(--danger);">EXPIRED</span>':'<span style="color:var(--success);">ACTIVE</span>'}${uls}`; el('chkCodeRes').classList.remove('hidden'); }
                 else if(act==='checkWd') { const w=el('admChkWdInp').value.trim().toUpperCase(); const wq=await getDocs(query(collection(db,"withdrawals"), where("wId", "==", w))); if(wq.empty) throw "WID Not Found"; let wd = wq.docs[0].data(); el('chkWdRes').innerHTML = `<b>WID:</b> ${wd.wId}<br><b>User:</b> ${wd.userId}<br><b>Amt:</b> ₹${wd.amount}<br><b>Target:</b> ${wd.target}<br><b>Method:</b> ${wd.method}<br><b>Status:</b> ${wd.status}`; el('chkWdRes').classList.remove('hidden'); }
+
                 else if(act==='addBal'||act==='cutBal') { const id=el('admBalId').value.trim(), a=parseInt(el('admBalAmt').value); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "User Not Found"; const nb = act==='addBal'? u.data().balance+a : u.data().balance-a; await updateDoc(doc(db,"users",id), {balance:nb}); await addDoc(collection(db,"users",id,"history"), {type:act==='addBal'?'ADMIN_ADD':'ADMIN_CUT', amount:a, details:act==='addBal'?'Injected':'Deducted', timestamp:serverTimestamp()}); showToast(`New Bal: ₹${nb}`); sendTg(id, `💰 Admin ${act==='addBal'?'Added':'Deducted'} ₹${a}`); adminLog("Bal", `${act} ₹${a} ID: ${id}`); }
                 else if(act==='checkUsr') { const id=el('admUsrId').value.trim(); const u=await getDoc(doc(db,"users",id)); if(!u.exists()) throw "Not Found"; el('chkUsrRes').innerHTML=`<b>ID:</b> ${id}<br><b>Name:</b> ${u.data().name||'User'}<br><b>Bal:</b> <span style="color:var(--success); font-weight:bold;">₹${u.data().balance}</span><br><b>Status:</b> ${u.data().isBanned?'BANNED':'ACTIVE'}<br><b>Last Seen:</b> ${ts2Str(u.data().lastSeen)}`; el('chkUsrRes').classList.remove('hidden'); }
                 else if(act==='resetPass') { const id=el('admUsrId').value.trim(), np=el('admNewPass').value; if(!id||!np) throw "Missing fields"; await updateDoc(doc(db,"users",id), {password:np}); showToast("Password Reset"); adminLog("Pass Reset", `ID: ${id}`); }
                 else if(act==='banUser') { const tgt=el('admBanTarget').value.trim(); if(!tgt||tgt===ADM_ID) throw "Invalid Target"; if(tgt.startsWith("DEV_")) { if(p1){ await setDoc(doc(db,"blacklisted_devices",tgt),{banned:true, ts:serverTimestamp()}); }else{ await deleteDoc(doc(db,"blacklisted_devices",tgt)); } showToast(p1?"Device Banned":"Device Unbanned"); adminLog(p1?"Ban Dev":"Unban Dev", tgt); } else { await updateDoc(doc(db,"users",tgt), {isBanned:p1}); showToast(p1?"User Banned":"User Unbanned"); adminLog(p1?"Ban UID":"Unban UID", tgt); } }
+
                 else if(act==='appReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Approved'}); await addDoc(collection(db,"users",p2,"history"), {type:"WITHDRAWAL", amount:p3, details:`Approved WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Approved!"); loadAdminTabs(); sendTg(p2, `✅ Request Approved WID: ${p4}`); adminLog("Approve WID", `WID: ${p4}`); }
                 else if(act==='rejReq') { await updateDoc(doc(db,"withdrawals",p1), {status:'Rejected'}); const ud=await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"REFUND", amount:p3, details:`Refund WID: ${p4}`, timestamp:serverTimestamp()}); showToast("Rejected!"); loadAdminTabs(); sendTg(p2, `⛔ Request Rejected (Refund) WID: ${p4}`); adminLog("Reject WID", `WID: ${p4}`); }
+                
                 else if(act==='createTask') { const n=el('admTaskName').value, a=parseInt(el('admTaskAmt').value), l=el('admTaskLink').value.trim(), d=el('admTaskDesc').value.trim(); if(!n||isNaN(a)||!l||!d) throw "Fill all fields!"; await addDoc(collection(db,"tasks"), {name:n, amount:a, link:l, desc:d, createdAt:serverTimestamp()}); showToast("Task Created"); el('admTaskName').value=""; el('admTaskAmt').value=""; el('admTaskLink').value=""; el('admTaskDesc').value=""; loadAdminTabs(); sendTg(ADM_ID, `🌸 *New Bot Task* 🌸\n\n🤭 Amount >> ₹${a}\nTask: *${n}*\nLink >> ${l}\n\n_Task successfully live in app!_`); adminLog("Task Created", `${n}, ₹${a}`); }
                 else if(act==='delTask') { await deleteDoc(doc(db,"tasks",p1)); showToast("Deleted"); loadAdminTabs(); }
+
                 else if(act==='appTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Approved'}); const ud = await getDoc(doc(db,"users",p2)); await updateDoc(doc(db,"users",p2), {balance:ud.data().balance+p3}); await addDoc(collection(db,"users",p2,"history"), {type:"ADMIN_ADD", amount:p3, details:`Task Approved: ${p4}`, timestamp:serverTimestamp()}); showToast("Task Approved!"); loadAdminTabs(); sendTg(p2, `✅ *TASK APPROVED*\n\nYour task "🌸 *${p4}* 🌸" was approved!\n🤭 Amount >> ₹${p3} added to wallet.`); adminLog("Task App", `User: ${p2}, Task: ${p4}`); }
                 else if(act==='rejTask') { await updateDoc(doc(db,"task_submissions",p1), {status:'Rejected'}); showToast("Task Rejected"); loadAdminTabs(); sendTg(p2, `⛔ *TASK REJECTED*\n\nYour submission for "*${p3}*" was rejected by Admin.`); adminLog("Task Rej", `User: ${p2}, Task: ${p3}`); }
+                
                 else if(act==='replyReport') { const rMsg = el(`repReply_${p1}`).value.trim(); if(!rMsg) throw "Enter reply msg"; await updateDoc(doc(db,"reports",p1), {status:'Replied'}); sendTg(p2, `💬 *ADMIN SUPPORT REPLY*\n\nAdmin has replied to your report:\n"${rMsg}"`); showToast("Reply Sent!"); loadAdminTabs(); adminLog("Report Reply", `User: ${p2}`); }
             } catch(e) { showToast(typeof e==='string'?e:"Error", "error"); } hideLoader();
         };
